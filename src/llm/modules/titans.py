@@ -1,8 +1,8 @@
+from collections import OrderedDict
+
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-from collections import OrderedDict
-from typing import Dict, Tuple
+import torch.nn.functional as functional
 
 
 class MemoryMLP(nn.Module):
@@ -40,10 +40,10 @@ class TitansMemory(nn.Module):
     Simplified sequential Titans neural-memory block.
 
     Input:
-        x: [B, T, D]
+        x: [batch, Tsequence, dim]
 
     Output:
-        y: [B, T, D]
+        y: [batch, sequence, dim]
 
     Important:
         This is the straightforward sequential/reference implementation.
@@ -53,7 +53,7 @@ class TitansMemory(nn.Module):
     def __init__(
         self,
         dim: int,
-        hidden_size: int = None,
+        hidden_size: int | None = None,
         memory_depth: int = 2,
         max_lr: float = 0.1,
     ):
@@ -99,7 +99,7 @@ class TitansMemory(nn.Module):
     @staticmethod
     def _functional_memory(
         memory: nn.Module,
-        params: Dict[str, torch.Tensor],
+        params: dict[str, torch.Tensor],
         x: torch.Tensor,
     ):
         """
@@ -120,10 +120,11 @@ class TitansMemory(nn.Module):
         independently.
         """
 
-        B, T, D = x.shape
+        batch, sequence, dim = x.shape
 
-        if D != self.dim:
-            raise ValueError(f"expected feature dimension {self.dim}, got {D}")
+        if self.dim != dim:
+            error_msg = f"expected feature dimension {self.dim}, got {dim}"
+            raise ValueError(error_msg)
 
         x_norm = self.norm(x)
 
@@ -143,7 +144,7 @@ class TitansMemory(nn.Module):
         batch_outputs = []
         final_states = []
 
-        for b in range(B):
+        for b in range(batch):
             # M_0
             params = self._initial_fast_weights()
 
@@ -154,8 +155,8 @@ class TitansMemory(nn.Module):
 
             outputs = []
 
-            for t in range(T):
-                kt = k[b, t : t + 1]  # [1, D]
+            for t in range(sequence):
+                kt = k[b, t : t + 1]  # [1, dim]
                 vt = v[b, t : t + 1]
                 qt = q[b, t : t + 1]
 
@@ -176,7 +177,7 @@ class TitansMemory(nn.Module):
                     kt,
                 )
 
-                memory_loss = F.mse_loss(
+                memory_loss = functional.mse_loss(
                     predicted_value,
                     vt,
                     reduction="sum",
@@ -192,7 +193,7 @@ class TitansMemory(nn.Module):
                     retain_graph=self.training,
                 )
 
-                grads = OrderedDict(zip(params.keys(), grads))
+                grads = OrderedDict(zip(params.keys(), grads, strict=False))
 
                 # -----------------------------------------------------
                 # 2. Surprise momentum

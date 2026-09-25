@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 
-
 from huggingface_hub import snapshot_download
+
 from src.llm.helpers.config import MODELS
 
 if TYPE_CHECKING:

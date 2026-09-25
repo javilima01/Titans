@@ -51,8 +51,8 @@ class Qwen35Wrapper:
     def _install_titans(self):
         # detect full attention layers
         ids = self._full_attention_layers()
-        for id in ids:
-            self._add_to_existing(layer_idx=id)
+        for layer_idx in ids:
+            self._add_to_existing(layer_idx=layer_idx)
 
     def _add_to_existing(self, layer_idx: int = 11):
         layer = self.model.model.layers[layer_idx]
@@ -83,15 +83,11 @@ class Qwen35Wrapper:
             memory=memory,
         )
 
-        wrapped_attention.memory_gate.data = wrapped_attention.memory_gate.data.to(
-            param.device
-        )
+        wrapped_attention.memory_gate.data = wrapped_attention.memory_gate.data.to(param.device)
 
         layer.self_attn = wrapped_attention
 
-    def generate(
-        self, msgs: list[Message] | Message, max_new_tokens: int = 200, **kwargs
-    ):
+    def generate(self, msgs: list[Message] | Message, max_new_tokens: int = 200, **kwargs):
         msgs = self._msg_to_dict(msgs=msgs)
 
         text = self.tokenizer.apply_chat_template(

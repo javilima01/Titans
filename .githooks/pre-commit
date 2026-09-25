@@ -1,14 +1,5 @@
 #!/bin/sh
 set -eu
 
-printf '%s\n' 'Running Ruff formatter...'
-if ! uv run ruff format; then
-    printf '%s\n' 'Ruff formatting failed. Fix the reported issue and retry the commit.' >&2
-    exit 1
-fi
-
-printf '%s\n' 'Running Ruff checks...'
-if ! uv run ruff check; then
-    printf '%s\n' 'Ruff found issues. Fix them and retry the commit.' >&2
-    exit 1
-fi
+repo_root=$(git rev-parse --show-toplevel)
+exec python3 "$repo_root/.githooks/check-staged-ruff.py"

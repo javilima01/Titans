@@ -67,7 +67,8 @@ class MemoryEpisode:
 
     @property
     def prompt(self) -> str:
-        return f"{self.context}\n\nQuestion: {self.question}\nAnswer: "
+        # Keep Qwen's BPE boundary stable for both numeric and word answers.
+        return f"{self.context}\n\nQuestion: {self.question}\nAnswer:\n"
 
     def training_example(self) -> dict:
         """Render a canonical answer with a half-open CHARACTER loss span.

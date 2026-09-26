@@ -4,6 +4,127 @@
 The adapter input/output width always matches Qwen's hidden size. The optional
 `memory_hidden_size` changes only the internal memory MLP width.
 
+## Command line workflow
+
+`main.py` has `train`, `validate`, `test`, and `chat` subcommands. Run
+`.venv/bin/python main.py COMMAND --help` for options. The default dataset is
+`.datasets_cache/memory-v1` (also accepts `datasets_cache/memory-v1`), with
+`train.jsonl`, `validation.jsonl`, and `test.jsonl` selected by command.
+
+```sh
+# Train adapters and save a new checkpoint directory.
+.venv/bin/python main.py train --output checkpoints/memory-v1 \
+  --layers 11 --memory-hidden-size 256 --window-size 512 \
+  --bptt-windows 4 --gradient-accumulation-steps 4
+
+# Generate answers on validation examples and compare memory ablations.
+.venv/bin/python main.py validate --checkpoint checkpoints/memory-v1 \
+  --limit 20 --ablations --report checkpoints/validation.json
+
+# Final evaluation on the held-out test split.
+.venv/bin/python main.py test --checkpoint checkpoints/memory-v1 \
+  --report checkpoints/test.json
+
+# Interactive chat with a checkpoint, or with the original Qwen model.
+.venv/bin/python main.py chat --checkpoint checkpoints/memory-v1
+.venv/bin/python main.py chat
+
+# One response, then exit.
+.venv/bin/python main.py chat --checkpoint checkpoints/memory-v1 \
+  --prompt "Hello!" --max-new-tokens 100
+```
+
+Use `--device cpu|mps|cuda` and `--dtype float32|bfloat16` to override automatic
+selection. New CLI runs default to one adapter at layer 11, internal width 256,
+memory chunk size 16, Qwen window size 512, and checkpointing enabled. Start with
+`train --limit 8 --max-steps 2` to check resource use. These are starting settings,
+not measured performance optima. Existing checkpoints/reports are not overwritten.
+Chat supports `/reset` and `/exit`; it replays conversation history per turn.
+
+All commands accept saved normalized JSONL data via `--data PATH` (file or
+directory). Training and evaluation can also download normalized episodes directly:
+
+```sh
+HF_HOME=.datasets_cache/hf .venv/bin/python main.py train \
+  --hf-dataset qasper --limit 100 --output checkpoints/qasper
+
+HF_HOME=.datasets_cache/hf .venv/bin/python main.py test \
+  --hf-dataset babilong --hf-task qa1 --hf-length 4k --limit 20 \
+  --checkpoint checkpoints/memory-v1
+```
+
+These support the synthetic, BABILong, and QASPER formats from the dataset helper;
+arbitrary Hugging Face schemas must first be normalized. Episodes are loaded and
+tokenized on CPU once; `--limit` bounds the collection. The trainer preserves whole
+episodes and never discards a long document's answer. Split labels are checked to
+prevent accidental training on evaluation files. BABILong has no built-in validation
+split in this loader; use a separately held-out, correctly labeled JSONL subset.
+
+### Episode training and bounded memory
+
+The episode path uses cross-entropy on **answer tokens and EOS only**. Its prompt
+ends with `Answer:` followed by a newline, keeping Qwen's tokenization boundary
+consistent between training and generation. The vocabulary head runs only on
+supervised positions. Context remains available for differentiable memory writes.
+
+Qwen processes fixed windows; Titans fast weights **and momentum** carry between
+windows within each episode. Qwen attention/linear-attention state and position IDs
+restart each window. All state resets between episodes. `--window-size` must be a
+multiple of the memory chunk size. `--bptt-windows 4` detaches state every four
+windows; `0` retains the full episode graph and requires more memory. Prefix spans
+without any supervised labels run without autograd because later losses cannot
+cross their detach boundary. Keep relevant facts and answers within the same
+backpropagation span when teaching writing/retention. Carrying detached state alone
+does not teach an earlier write from a later answer loss.
+
+With fixed windows, backpropagation span, and batch size, accelerator activation
+memory is bounded with respect to episode length. CPU dataset storage and total
+compute still grow. Whole-window checkpointing recomputes Qwen and its adapters
+without retaining mutable state caches. Optimizer steps happen after complete
+microbatches, and gradients are normalized by the actual supervised-token count.
+
+Qwen adapters default to an inner gradient norm limit of 1.0. The norm is computed
+from the factored per-token MLP gradients, includes biases, and stays differentiable.
+This prevents fast-weight blowups observed during a real long-episode smoke test;
+outer optimizer gradient clipping alone cannot prevent those forward-pass failures.
+Python callers can configure `max_inner_grad_norm` on `Qwen35Titans` (`None` disables
+it). This stability addition is saved with the checkpoint.
+
+### Checkpoint API and evaluation
+
+```python
+from src.llm.helpers.dataset_generation import read_episodes
+from src.llm.modules.qwen import Qwen35Titans
+
+model = Qwen35Titans(layer_indices=[11], memory_hidden_size=256)
+losses = model.train(
+    episodes=read_episodes(".datasets_cache/memory-v1/train.jsonl"),
+    max_length=512, bptt_windows=4, checkpoint_decoder=True,
+)
+model.save_pretrained("checkpoints/my-memory")
+loaded = Qwen35Titans.from_pretrained("checkpoints/my-memory")
+```
+
+Checkpoints contain adapter/gate weights in Safetensors, architecture settings,
+training window settings, and the tokenizer. Loading reconstructs the adapters
+and checks tensor names/shapes against the saved architecture. The unchanged
+`Qwen/Qwen3.5-0.8B` base weights are reused from the model cache (downloaded if
+absent). Optimizer state and individual episodes' fast memory are not saved.
+`train --checkpoint OLD --output NEW` continues training with a fresh optimizer.
+
+Validation/test greedily generate answers with the saved window size and report
+normalized exact match, word-token precision/recall/F1, and per-task scores.
+Recall means answer-token recall, not retrieval Recall@K. Alternative answer
+annotations are scored against the best reference by F1. JSON reports include
+individual predictions; metric summaries go to stdout and progress to stderr.
+`--ablations` additionally disables the memory branch and resets memory at every
+window. These use the same bounded Qwen windows, so the disabled condition is a
+windowed baseline. Training and evaluation use the same streaming state path;
+each generated partial window is replayed from its starting state to avoid
+writing the same tokens into memory twice.
+
+The legacy plain-text training API remains available:
+
 ```python
 from src.llm.modules.qwen import Qwen35Titans
 
@@ -103,7 +224,7 @@ uses the `refs/convert/parquet` export by default, and includes paper text and
 figure/table captions. It retains alternative answer annotations, including
 yes/no and unanswerable cases; questions without answer annotations are skipped.
 
-### Read episodes and prepare future answer labels
+### Read episodes and inspect answer labels
 
 ```python
 from src.llm.helpers.dataset_generation import read_episodes
@@ -122,9 +243,8 @@ tokenizing prompt and answer separately can change their BPE boundary. Metadata
 must never become model input. Preserve context order and reset memory between
 episodes; QASPER `document_id` is available for grouping related questions.
 
-The current `train(train_texts=...)` loop still uses independent windows and
-loss on all next tokens. It does **not** consume these answer spans or carry
-state between windows yet. Those changes belong to the next training-loop step.
+Use `train(episodes=...)` for this schema. The legacy `train(train_texts=...)`
+path uses independent windows and loss on all next tokens.
 
 ## Training implementation
 
@@ -146,11 +266,12 @@ state between windows yet. Those changes belong to the next training-loop step.
 - Memory chunks are checkpointed by default. `checkpoint_memory=False` trades
   additional saved activations for less recomputation. Whole decoder
   checkpointing is optional; enabling it disables nested memory checkpointing
-  for the duration of training.
+  for the duration of training. Episode training checkpoints whole Qwen windows,
+  including their explicit returned memory state.
 - The vocabulary projection and cross entropy are computed and checkpointed in
   `loss_chunk_size` token groups, avoiding retained logits for the entire
   sequence. The loss is the ordinary next-token objective.
-- Text is tokenized once. Long documents use windows overlapping by one token,
+- Legacy plain text is tokenized once. Long documents use windows overlapping by one token,
   covering every next-token target once without mixing documents. Windows are
   independent memory episodes; context does not carry across windows.
 - Shuffled length buckets reduce padding. Padding neither updates memory nor
@@ -160,8 +281,9 @@ state between windows yet. Those changes belong to the next training-loop step.
 ## Relationship to the papers
 
 [Titans, section 3.2](https://arxiv.org/html/2501.00663v1#S3.SS2) motivates
-chunk-start gradients and matrix-based parallel updates. With chunk size 1,
-this module matches the sequential surprise/momentum/forgetting recurrence.
+chunk-start gradients and matrix-based parallel updates. With chunk size 1 and
+inner gradient clipping disabled, this module matches the sequential
+surprise/momentum/forgetting recurrence.
 Larger chunks evaluate all gradients at the chunk's initial memory weights,
 then apply causal token updates and reads. This approximation trades some
 adaptation accuracy for parallelism; it is not numerically equivalent to
@@ -192,6 +314,15 @@ native objective, and verify that batched/accumulated updates agree while Qwen
 weights remain unchanged. A tiny hybrid Qwen model exercises the actual
 Transformers integration, including decoder checkpointing and BF16 loading.
 
+The episode/CLI tests additionally cover carried-state gradients, differentiable
+inner clipping, answer/EOS masks, checkpoint round trips, generation across window
+boundaries, metrics, and all four commands. A real Qwen smoke test on one full
+`memory-v1` episode completed with BF16 base weights, the CLI's default layer 11 /
+width 256 / window 512 settings, and a finite loss of 3.5707. Checkpoint loading,
+validation, and chat were also exercised with a smaller one-step checkpoint.
+These are functional checks, not evidence of trained recall quality; the full
+1,000-episode training run has not been performed.
+
 The benchmark measures memory forward + backward, not full Qwen training.
 Its sequential baseline and chunked implementation use different gradient
 refresh intervals; a second reference uses the same chunk update rule.
@@ -213,7 +344,7 @@ training step on CPU with a BF16 backbone and one FP32 adapter (layer 23,
 internal width 32, chunk 4), producing a finite loss and changing adapter
 weights while the checked Qwen attention weights stayed unchanged.
 
-Cached decoding needs a cache that carries Titans fast weights, momentum, and
-chunk position alongside Qwen's cache. Until that is implemented, the Titans
-wrapper defaults to `use_cache=False`, recomputing the prefix to preserve its
-memory history. Explicit gradient formulas allow inference under `no_grad()`.
+Generation now carries Titans state explicitly between complete Qwen windows
+and recomputes only the current partial window for each generated token.
+HF KV caching remains disabled for the Titans path; each window restarts Qwen's
+own attention state. Explicit gradient formulas allow inference under `no_grad()`.

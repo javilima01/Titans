@@ -74,6 +74,7 @@ class TitansMemory(nn.Module):
         chunk_size: int = 16,
         checkpoint_chunks: bool = True,
         normalize_qk: bool = True,
+        max_inner_grad_norm: float | None = None,
     ):
         super().__init__()
         if chunk_size < 1 or max_lr <= 0:
@@ -84,6 +85,10 @@ class TitansMemory(nn.Module):
         self.chunk_size = chunk_size
         self.checkpoint_chunks = checkpoint_chunks
         self.normalize_qk = normalize_qk
+        if max_inner_grad_norm is not None and max_inner_grad_norm <= 0:
+            msg = "max_inner_grad_norm must be positive or None"
+            raise ValueError(msg)
+        self.max_inner_grad_norm = max_inner_grad_norm
         self.to_q = nn.Linear(dim, dim, bias=False)
         self.to_k = nn.Linear(dim, dim, bias=False)
         self.to_v = nn.Linear(dim, dim, bias=False)
@@ -121,6 +126,16 @@ class TitansMemory(nn.Module):
         update_coeff = weight_transition @ (surprise_coeff * valid.unsqueeze(-1))
         carry_coeff = weight_transition @ (momentum_prefix * valid.unsqueeze(-1))
         factors = self.memory.associative_factors(params, k, v)
+        if self.max_inner_grad_norm is not None:
+            # ||delta outer activation||_F = ||delta|| * ||activation||;
+            # include bias gradients and clip the entire per-token MLP gradient.
+            # The scale remains differentiable for outer meta-learning.
+            norm_squared = sum(
+                delta.square().sum(-1) * (activations.square().sum(-1) + 1)
+                for activations, delta in factors
+            )
+            scale = (self.max_inner_grad_norm / norm_squared.clamp_min(1e-12).sqrt()).clamp(max=1)
+            factors = [(activations, delta * scale.unsqueeze(-1)) for activations, delta in factors]
 
         new_params, new_momentum = {}, {}
         x = q
@@ -155,7 +170,21 @@ class TitansMemory(nn.Module):
                 x = functional.silu(x)
         return x * valid.unsqueeze(-1), new_params, new_momentum
 
-    def forward(self, x: torch.Tensor, return_state: bool = False, token_mask=None):
+    def forward(
+        self,
+        x: torch.Tensor,
+        return_state: bool = False,
+        token_mask=None,
+        *,
+        state=None,
+        batched_state: bool = False,
+    ):
+        """Optionally continue batched fast weights/momentum at a chunk boundary.
+
+        State is explicit and never modified in place. Callers must finish whole
+        chunks before carrying state to another call to preserve the update rule.
+        ``batched_state`` selects a tensor dictionary instead of the legacy list.
+        """
         batch, sequence, dim = x.shape
         if dim != self.dim:
             error_msg = f"expected feature dimension {self.dim}, got {dim}"
@@ -180,11 +209,19 @@ class TitansMemory(nn.Module):
             alpha = self.to_alpha(x).sigmoid()
             eta = self.to_eta(x).sigmoid()
             theta = self.max_lr * self.to_theta(x).sigmoid()
-            params = {
-                name: p.unsqueeze(0).expand(batch, *p.shape)
-                for name, p in self.memory.named_parameters()
-            }
-            momentum = {name: torch.zeros_like(p) for name, p in params.items()}
+            if state is None:
+                params = {
+                    name: p.unsqueeze(0).expand(batch, *p.shape)
+                    for name, p in self.memory.named_parameters()
+                }
+                momentum = {name: torch.zeros_like(p) for name, p in params.items()}
+            else:
+                params, momentum = state["params"], state["surprise"]
+                for name, parameter in self.memory.named_parameters():
+                    for values in (params, momentum):
+                        if values[name].shape != (batch, *parameter.shape):
+                            msg = f"Invalid batched memory state shape for {name}"
+                            raise ValueError(msg)
             outputs = []
             for start in range(0, sequence, self.chunk_size):
                 stop = start + self.chunk_size
@@ -208,6 +245,8 @@ class TitansMemory(nn.Module):
                 outputs.append(y)
             y = torch.cat(outputs, dim=1)
         if return_state:
+            if batched_state:
+                return y, {"params": params, "surprise": momentum}
             # Keep the existing per-example state format.
             states = [
                 {
@@ -223,11 +262,18 @@ class TitansMemory(nn.Module):
 class AttentionWithTitans(nn.Module):
     """Add a gated neural-memory branch to Qwen's attention residual."""
 
-    def __init__(self, attention: nn.Module, memory: TitansMemory, gate_init: float = -5.0):
+    def __init__(
+        self,
+        attention: nn.Module,
+        memory: TitansMemory,
+        gate_init: float = -5.0,
+        memory_id: int = 0,
+    ):
         super().__init__()
         self.attention = attention
         self.memory = memory
         self.memory_gate = nn.Parameter(torch.tensor(gate_init, dtype=torch.float32))
+        self.memory_id = memory_id
 
     def forward(
         self,
@@ -237,6 +283,7 @@ class AttentionWithTitans(nn.Module):
         position_ids=None,
         past_key_values=None,
         memory_mask=None,
+        memory_context=None,
         **kwargs,
     ):
         attn_out, attn_weights = self.attention(
@@ -247,7 +294,21 @@ class AttentionWithTitans(nn.Module):
             past_key_values=past_key_values,
             **kwargs,
         )
-        memory_out = self.memory(hidden_states, token_mask=memory_mask)
+        if memory_context is None:
+            memory_out = self.memory(hidden_states, token_mask=memory_mask)
+        else:
+            mode = memory_context["mode"]
+            if mode == "disabled":
+                return attn_out, attn_weights
+            initial = memory_context["initial"].get(self.memory_id) if mode == "normal" else None
+            memory_out, final = self.memory(
+                hidden_states,
+                token_mask=memory_mask,
+                state=initial,
+                return_state=True,
+                batched_state=True,
+            )
+            memory_context["final"][self.memory_id] = final
         # Gate and multiply in FP32 before casting back to the backbone dtype.
         out = attn_out + (self.memory_gate.sigmoid() * memory_out).to(attn_out.dtype)
         return out, attn_weights

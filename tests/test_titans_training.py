@@ -37,6 +37,10 @@ def reference_memory(module, inputs):
                 create_graph=True,
                 retain_graph=True,
             )
+            if module.max_inner_grad_norm is not None:
+                norm = torch.linalg.vector_norm(torch.cat([grad.flatten() for grad in grads]))
+                scale = (module.max_inner_grad_norm / norm.clamp_min(1e-6)).clamp(max=1)
+                grads = tuple(grad * scale for grad in grads)
             surprise = {
                 name: eta[batch, t] * surprise[name] - theta[batch, t] * grad
                 for name, grad in zip(start_params, grads, strict=True)

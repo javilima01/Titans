@@ -219,4 +219,5 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 .models_cache/
+.datasets_cache/
 .vscode

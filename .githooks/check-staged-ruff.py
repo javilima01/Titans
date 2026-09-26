@@ -41,10 +41,10 @@ def main() -> int:
             target.write_bytes(blob)
             staged_paths.append(target)
 
-        staged_config = temp / "pyproject.toml"
-        config_path = repo / "pyproject.toml"
+        # Lint from the temp dir so per-file-ignores patterns match the copied files.
+        config_path = temp / "pyproject.toml"
         if b"pyproject.toml" in staged:
-            staged_config.write_bytes(
+            config_path.write_bytes(
                 subprocess.run(
                     ["git", "show", ":pyproject.toml"],
                     cwd=repo,
@@ -52,14 +52,17 @@ def main() -> int:
                     capture_output=True,
                 ).stdout
             )
-            config_path = staged_config
+        else:
+            config_path.write_bytes((repo / "pyproject.toml").read_bytes())
 
-        files = [str(path) for path in staged_paths]
+        files = [str(path.relative_to(temp)) for path in staged_paths]
         print("Checking staged Python files with Ruff formatter...")
         if not run(
             [
                 "uv",
                 "run",
+                "--project",
+                str(repo),
                 "ruff",
                 "format",
                 "--check",
@@ -67,7 +70,7 @@ def main() -> int:
                 str(config_path),
                 *files,
             ],
-            cwd=repo,
+            cwd=temp,
         ):
             print(
                 "Staged Python code needs formatting. Run `uv run ruff format`, stage the fixes, "
@@ -78,8 +81,18 @@ def main() -> int:
 
         print("Checking staged Python files with Ruff...")
         if not run(
-            ["uv", "run", "ruff", "check", "--config", str(config_path), *files],
-            cwd=repo,
+            [
+                "uv",
+                "run",
+                "--project",
+                str(repo),
+                "ruff",
+                "check",
+                "--config",
+                str(config_path),
+                *files,
+            ],
+            cwd=temp,
         ):
             print(
                 "Ruff found issues in the staged code. Fix them, stage the fixes, "

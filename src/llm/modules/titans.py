@@ -1,53 +1,68 @@
-from collections import OrderedDict
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as functional
+from torch.utils.checkpoint import checkpoint
 
 
 class MemoryMLP(nn.Module):
-    """
-    Neural memory M(k).
+    """MLP whose fast weights hold the sequence's associative memory."""
 
-    This network's *weights* are the long-term memory state.
-    """
-
-    def __init__(
-        self,
-        dim: int,
-        hidden_dim: int,
-        depth: int = 2,
-    ):
+    def __init__(self, dim: int, hidden_dim: int, depth: int = 2):
         super().__init__()
-
+        if min(dim, hidden_dim, depth) < 1:
+            msg = "Memory dimensions and depth must be positive"
+            raise ValueError(msg)
         layers = []
         in_dim = dim
-
         for _ in range(depth - 1):
-            layers.append(nn.Linear(in_dim, hidden_dim))
-            layers.append(nn.SiLU())
+            layers.extend((nn.Linear(in_dim, hidden_dim), nn.SiLU()))
             in_dim = hidden_dim
-
         layers.append(nn.Linear(in_dim, dim))
         self.net = nn.Sequential(*layers)
+        self.linear_indices = tuple(range(0, len(layers), 2))
 
     def forward(self, x):
         return self.net(x)
 
+    def associative_factors(self, params, keys, values):
+        """Factor each token's weight gradient as delta @ activation.T.
+
+        The explicit chain rule is differentiable itself: outer backprop retains
+        the higher order terms needed to learn keys, values and update gates.
+        Keeping these factors avoids allocating [batch, chunk, out, in]
+        gradient tensors. Bias gradients are simply delta.
+        """
+        inputs, preactivations = [], []
+        x = keys
+        for index in self.linear_indices:
+            inputs.append(x)
+            x = x @ params[f"net.{index}.weight"].transpose(-1, -2)
+            x = x + params[f"net.{index}.bias"].unsqueeze(1)
+            preactivations.append(x)
+            if index != self.linear_indices[-1]:
+                x = functional.silu(x)
+
+        delta = 2 * (x - values)
+        factors = []
+        for layer_number in range(len(self.linear_indices) - 1, -1, -1):
+            index = self.linear_indices[layer_number]
+            factors.append((inputs[layer_number], delta))
+            if layer_number:
+                delta = delta @ params[f"net.{index}.weight"]
+                z = preactivations[layer_number - 1]
+                sigmoid = z.sigmoid()
+                delta = delta * sigmoid * (1 + z * (1 - sigmoid))
+        return list(reversed(factors))
+
 
 class TitansMemory(nn.Module):
-    """
-    Simplified sequential Titans neural-memory block.
+    """Causal, batched Titans recurrence with gradients refreshed per chunk.
 
-    Input:
-        x: [batch, Tsequence, dim]
-
-    Output:
-        y: [batch, sequence, dim]
-
-    Important:
-        This is the straightforward sequential/reference implementation.
-        It does NOT implement the paper's chunk-parallel training algorithm.
+    Chunk size 1 is the original sequential update. Larger chunks use the
+    paper's approximation: all associative gradients in a chunk use the same
+    chunk-start weights. Momentum, forgetting and retrieval remain causal at
+    every token. Factorized gradients and a dual-form read avoid materializing
+    per-token weights entirely. Checkpointing reduces saved activations further.
     """
 
     def __init__(
@@ -56,241 +71,174 @@ class TitansMemory(nn.Module):
         hidden_size: int | None = None,
         memory_depth: int = 2,
         max_lr: float = 0.1,
+        chunk_size: int = 16,
+        checkpoint_chunks: bool = True,
+        normalize_qk: bool = True,
     ):
         super().__init__()
-
-        hidden_size = hidden_size or 4 * dim
-
+        if chunk_size < 1 or max_lr <= 0:
+            msg = "chunk_size and max_lr must be positive"
+            raise ValueError(msg)
         self.dim = dim
         self.max_lr = max_lr
-
-        # Associative memory projections
+        self.chunk_size = chunk_size
+        self.checkpoint_chunks = checkpoint_chunks
+        self.normalize_qk = normalize_qk
         self.to_q = nn.Linear(dim, dim, bias=False)
         self.to_k = nn.Linear(dim, dim, bias=False)
         self.to_v = nn.Linear(dim, dim, bias=False)
-
-        # Neural memory M
         self.memory = MemoryMLP(
-            dim=dim,
-            hidden_dim=hidden_size,
-            depth=memory_depth,
+            dim, hidden_size if hidden_size is not None else 4 * dim, memory_depth
         )
-
-        # Data-dependent Titans gates.
-        #
-        # alpha: forgetting / weight decay
-        # eta:   surprise momentum
-        # theta: inner-loop learning rate
         self.to_alpha = nn.Linear(dim, 1)
         self.to_eta = nn.Linear(dim, 1)
         self.to_theta = nn.Linear(dim, 1)
-
-        # Optional normalization before memory projections
         self.norm = nn.LayerNorm(dim)
-
-    def _initial_fast_weights(self):
-        """
-        Clone the learned initialization of the memory network.
-
-        These tensors become the mutable test-time memory state.
-        """
-        return OrderedDict((name, p.clone()) for name, p in self.memory.named_parameters())
+        # Start with slow forgetting and conservative inner steps.
+        nn.init.constant_(self.to_alpha.bias, -4.0)
+        nn.init.constant_(self.to_eta.bias, 2.0)
+        nn.init.constant_(self.to_theta.bias, -4.0)
 
     @staticmethod
-    def _functional_memory(
-        memory: nn.Module,
-        params: dict[str, torch.Tensor],
-        x: torch.Tensor,
-    ):
-        """
-        Run MemoryMLP with explicitly supplied fast weights.
-        """
-        return torch.func.functional_call(memory, params, (x,))
+    def _transition(decay):
+        """A[t, i] = product(decay[i+1:t+1]), i <= t; avoids dividing prefixes."""
+        length = decay.shape[1]
+        positions = torch.arange(length, device=decay.device)
+        after = positions[:, None] > positions[None, :]
+        factors = torch.where(after, decay.unsqueeze(-1), 1.0)
+        return factors.cumprod(dim=1).tril()
 
-    def forward(
-        self,
-        x: torch.Tensor,
-        return_state: bool = False,
-    ):
-        """
-        x: [batch, sequence, dim]
+    def _chunk(self, params, momentum, q, k, v, alpha, eta, theta, valid):
+        # Masked tokens preserve BOTH fast weights and momentum.
+        decay = 1 - alpha.squeeze(-1) * valid
+        eta = torch.where(valid, eta.squeeze(-1), 1.0)
+        theta = theta.squeeze(-1) * valid
+        momentum_transition = self._transition(eta)
+        weight_transition = self._transition(decay)
+        momentum_prefix = eta.cumprod(dim=1).unsqueeze(-1)
+        weight_prefix = decay.cumprod(dim=1).unsqueeze(-1)
+        surprise_coeff = momentum_transition * theta.unsqueeze(1)
+        update_coeff = weight_transition @ (surprise_coeff * valid.unsqueeze(-1))
+        carry_coeff = weight_transition @ (momentum_prefix * valid.unsqueeze(-1))
+        factors = self.memory.associative_factors(params, k, v)
 
-        Memory is independent for every item in the batch.
-        For clarity this reference implementation scans batch elements
-        independently.
-        """
+        new_params, new_momentum = {}, {}
+        x = q
+        for index, (activations, delta) in zip(self.memory.linear_indices, factors, strict=True):
+            weight_name, bias_name = f"net.{index}.weight", f"net.{index}.bias"
+            weight, bias = params[weight_name], params[bias_name]
+            sw, sb = momentum[weight_name], momentum[bias_name]
+            # W_t q_t can be evaluated using low-rank gradient factors instead
+            # of constructing every W_t. The +1 accounts for the bias update.
+            similarities = x @ activations.transpose(-1, -2) + 1
+            x = (
+                weight_prefix * (x @ weight.transpose(-1, -2) + bias.unsqueeze(1))
+                + carry_coeff * (x @ sw.transpose(-1, -2) + sb.unsqueeze(1))
+                - (update_coeff * similarities) @ delta
+            )
+            weighted_delta = update_coeff[:, -1].unsqueeze(-1) * delta
+            momentum_delta = surprise_coeff[:, -1].unsqueeze(-1) * delta
+            new_params[weight_name] = (
+                weight_prefix[:, -1].unsqueeze(-1) * weight
+                + carry_coeff[:, -1].unsqueeze(-1) * sw
+                - weighted_delta.transpose(-1, -2) @ activations
+            )
+            new_params[bias_name] = (
+                weight_prefix[:, -1] * bias + carry_coeff[:, -1] * sb - weighted_delta.sum(dim=1)
+            )
+            new_momentum[weight_name] = (
+                momentum_prefix[:, -1].unsqueeze(-1) * sw
+                - momentum_delta.transpose(-1, -2) @ activations
+            )
+            new_momentum[bias_name] = momentum_prefix[:, -1] * sb - momentum_delta.sum(dim=1)
+            if index != self.memory.linear_indices[-1]:
+                x = functional.silu(x)
+        return x * valid.unsqueeze(-1), new_params, new_momentum
 
+    def forward(self, x: torch.Tensor, return_state: bool = False, token_mask=None):
         batch, sequence, dim = x.shape
-
-        if self.dim != dim:
+        if dim != self.dim:
             error_msg = f"expected feature dimension {self.dim}, got {dim}"
             raise ValueError(error_msg)
+        if batch < 1 or sequence < 1:
+            msg = "Memory requires a nonempty batch and sequence"
+            raise ValueError(msg)
+        if token_mask is None:
+            token_mask = torch.ones((batch, sequence), dtype=torch.bool, device=x.device)
+        elif token_mask.shape != x.shape[:2]:
+            msg = "token_mask must have shape [batch, sequence]"
+            raise ValueError(msg)
+        token_mask = token_mask.to(device=x.device, dtype=torch.bool)
 
-        x_norm = self.norm(x)
-
-        q = self.to_q(x_norm)
-        k = self.to_k(x_norm)
-        v = self.to_v(x_norm)
-
-        # Titans' input-dependent update coefficients.
-        alpha = torch.sigmoid(self.to_alpha(x_norm))
-
-        # momentum coefficient in [0, 1]
-        eta = torch.sigmoid(self.to_eta(x_norm))
-
-        # positive bounded inner-loop step size
-        theta = self.max_lr * torch.sigmoid(self.to_theta(x_norm))
-
-        batch_outputs = []
-        final_states = []
-
-        for b in range(batch):
-            # M_0
-            params = self._initial_fast_weights()
-
-            # S_0 = 0
-            surprise_momentum = OrderedDict(
-                (name, torch.zeros_like(p)) for name, p in params.items()
-            )
-
+        # Keep the adapter FP32 when Qwen uses BF16; disable ambient AMP here.
+        # Explicit gradients also work under no_grad/inference_mode at test time.
+        with torch.autocast(device_type=x.device.type, enabled=False):
+            x = self.norm(x.to(self.norm.weight.dtype))
+            q, k, v = self.to_q(x), self.to_k(x), self.to_v(x)
+            if self.normalize_qk:
+                q, k = functional.normalize(q, dim=-1), functional.normalize(k, dim=-1)
+            alpha = self.to_alpha(x).sigmoid()
+            eta = self.to_eta(x).sigmoid()
+            theta = self.max_lr * self.to_theta(x).sigmoid()
+            params = {
+                name: p.unsqueeze(0).expand(batch, *p.shape)
+                for name, p in self.memory.named_parameters()
+            }
+            momentum = {name: torch.zeros_like(p) for name, p in params.items()}
             outputs = []
-
-            for t in range(sequence):
-                kt = k[b, t : t + 1]  # [1, dim]
-                vt = v[b, t : t + 1]
-                qt = q[b, t : t + 1]
-
-                alpha_t = alpha[b, t]
-                eta_t = eta[b, t]
-                theta_t = theta[b, t]
-
-                # -----------------------------------------------------
-                # 1. Associative memory loss
-                #
-                # l(M_{t-1}; x_t)
-                #   = ||M_{t-1}(k_t) - v_t||^2
-                # -----------------------------------------------------
-
-                predicted_value = self._functional_memory(
-                    self.memory,
+            for start in range(0, sequence, self.chunk_size):
+                stop = start + self.chunk_size
+                inputs = (
                     params,
-                    kt,
+                    momentum,
+                    q[:, start:stop],
+                    k[:, start:stop],
+                    v[:, start:stop],
+                    alpha[:, start:stop],
+                    eta[:, start:stop],
+                    theta[:, start:stop],
+                    token_mask[:, start:stop],
                 )
-
-                memory_loss = functional.mse_loss(
-                    predicted_value,
-                    vt,
-                    reduction="sum",
-                )
-
-                # "Momentary surprise":
-                #
-                # grad_M l(M_{t-1}; x_t)
-                grads = torch.autograd.grad(
-                    memory_loss,
-                    tuple(params.values()),
-                    create_graph=self.training,
-                    retain_graph=self.training,
-                )
-
-                grads = OrderedDict(zip(params.keys(), grads, strict=False))
-
-                # -----------------------------------------------------
-                # 2. Surprise momentum
-                #
-                # S_t = eta_t S_{t-1}
-                #       - theta_t grad(l_t)
-                # -----------------------------------------------------
-
-                new_surprise = OrderedDict()
-
-                for name in params:
-                    new_surprise[name] = eta_t * surprise_momentum[name] - theta_t * grads[name]
-
-                # -----------------------------------------------------
-                # 3. Forgetting + memory update
-                #
-                # M_t = (1 - alpha_t) M_{t-1} + S_t
-                # -----------------------------------------------------
-
-                new_params = OrderedDict()
-
-                for name in params:
-                    new_params[name] = (1.0 - alpha_t) * params[name] + new_surprise[name]
-
-                params = new_params
-                surprise_momentum = new_surprise
-
-                # -----------------------------------------------------
-                # 4. Retrieve from UPDATED memory
-                #
-                # y_t = M_t(q_t)
-                # -----------------------------------------------------
-
-                recalled = self._functional_memory(
-                    self.memory,
-                    params,
-                    qt,
-                )
-
-                outputs.append(recalled)
-
-            outputs = torch.cat(outputs, dim=0)
-            batch_outputs.append(outputs)
-
-            final_states.append(
-                {
-                    "params": params,
-                    "surprise": surprise_momentum,
-                }
-            )
-
-        y = torch.stack(batch_outputs, dim=0)
-
+                if self.checkpoint_chunks and self.training and torch.is_grad_enabled():
+                    y, params, momentum = checkpoint(
+                        self._chunk, *inputs, use_reentrant=False, preserve_rng_state=False
+                    )
+                else:
+                    y, params, momentum = self._chunk(*inputs)
+                outputs.append(y)
+            y = torch.cat(outputs, dim=1)
         if return_state:
-            return y, final_states
-
+            # Keep the existing per-example state format.
+            states = [
+                {
+                    "params": {name: p[b] for name, p in params.items()},
+                    "surprise": {name: p[b] for name, p in momentum.items()},
+                }
+                for b in range(batch)
+            ]
+            return y, states
         return y
 
 
 class AttentionWithTitans(nn.Module):
-    """
-    Wraps an existing Qwen attention module:
+    """Add a gated neural-memory branch to Qwen's attention residual."""
 
-        Attention(x)
-
-    becomes:
-
-        Attention(x) + sigmoid(gate) * Titans(x)
-
-    Qwen's original decoder residual connection remains untouched.
-    """
-
-    def __init__(
-        self,
-        attention: nn.Module,
-        memory: TitansMemory,
-        gate_init: float = -5.0,
-    ):
+    def __init__(self, attention: nn.Module, memory: TitansMemory, gate_init: float = -5.0):
         super().__init__()
-
         self.attention = attention
         self.memory = memory
-
-        # sigmoid(-5) ~= 0.0067, so initially the pretrained model
-        # is almost unchanged.
         self.memory_gate = nn.Parameter(torch.tensor(gate_init, dtype=torch.float32))
 
     def forward(
         self,
-        hidden_states: torch.Tensor,
+        hidden_states,
         position_embeddings,
         attention_mask=None,
         position_ids=None,
         past_key_values=None,
+        memory_mask=None,
         **kwargs,
     ):
-        # Original pretrained Qwen attention
         attn_out, attn_weights = self.attention(
             hidden_states=hidden_states,
             position_embeddings=position_embeddings,
@@ -299,16 +247,7 @@ class AttentionWithTitans(nn.Module):
             past_key_values=past_key_values,
             **kwargs,
         )
-
-        # Titans branch sees exactly the same normalized hidden state
-        # as attention.
-        memory_out = self.memory(hidden_states)
-
-        gate = torch.sigmoid(self.memory_gate).to(
-            dtype=attn_out.dtype,
-            device=attn_out.device,
-        )
-
-        out = attn_out + gate * memory_out
-
+        memory_out = self.memory(hidden_states, token_mask=memory_mask)
+        # Gate and multiply in FP32 before casting back to the backbone dtype.
+        out = attn_out + (self.memory_gate.sigmoid() * memory_out).to(attn_out.dtype)
         return out, attn_weights

@@ -13,8 +13,14 @@ def run(command: list[str], *, cwd: Path) -> bool:
     return subprocess.run(command, cwd=cwd, check=False).returncode == 0
 
 
+def tool(name: str, *, repo: Path) -> str:
+    vendored = repo / ".venv" / "bin" / name
+    return str(vendored) if vendored.exists() else name
+
+
 def main() -> int:
     repo = Path(__file__).resolve().parent.parent
+    uv = tool("uv", repo=repo)
     staged = subprocess.run(
         ["git", "diff", "--cached", "--name-only", "--diff-filter=ACMR", "-z"],
         cwd=repo,
@@ -28,38 +34,20 @@ def main() -> int:
 
     with tempfile.TemporaryDirectory(prefix="staged-ruff-") as temp_name:
         temp = Path(temp_name)
-        staged_paths: list[Path] = []
-        for relative_path in python_files:
-            target = temp / relative_path
-            target.parent.mkdir(parents=True, exist_ok=True)
-            blob = subprocess.run(
-                ["git", "show", f":{relative_path.as_posix()}"],
-                cwd=repo,
-                check=True,
-                capture_output=True,
-            ).stdout
-            target.write_bytes(blob)
-            staged_paths.append(target)
+        # Materialize the whole index so Ruff sees the same package layout as the commit.
+        subprocess.run(
+            ["git", "checkout-index", "--all", f"--prefix={temp}{os.sep}"],
+            cwd=repo,
+            check=True,
+        )
 
         # Lint from the temp dir so per-file-ignores patterns match the copied files.
         config_path = temp / "pyproject.toml"
-        if b"pyproject.toml" in staged:
-            config_path.write_bytes(
-                subprocess.run(
-                    ["git", "show", ":pyproject.toml"],
-                    cwd=repo,
-                    check=True,
-                    capture_output=True,
-                ).stdout
-            )
-        else:
-            config_path.write_bytes((repo / "pyproject.toml").read_bytes())
-
-        files = [str(path.relative_to(temp)) for path in staged_paths]
+        files = [path.as_posix() for path in python_files]
         print("Checking staged Python files with Ruff formatter...")
         if not run(
             [
-                "uv",
+                uv,
                 "run",
                 "--project",
                 str(repo),
@@ -82,7 +70,7 @@ def main() -> int:
         print("Checking staged Python files with Ruff...")
         if not run(
             [
-                "uv",
+                uv,
                 "run",
                 "--project",
                 str(repo),

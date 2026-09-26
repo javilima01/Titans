@@ -1,4 +1,5 @@
 """CPU integration checks for state carry, episode loss, checkpoints and CLI."""
+
 # The repository uses unittest rather than pytest for exception assertions.
 # ruff: noqa: PT027
 
@@ -40,7 +41,10 @@ def tokenizer():
     backend = Tokenizer(models.WordLevel(vocab, unk_token="[UNK]"))
     backend.pre_tokenizer = pre_tokenizers.Whitespace()
     result = PreTrainedTokenizerFast(
-        tokenizer_object=backend, pad_token="[PAD]", eos_token="[EOS]", unk_token="[UNK]"
+        tokenizer_object=backend,
+        pad_token="[PAD]",
+        eos_token="[EOS]",
+        unk_token="[UNK]",
     )
     result.chat_template = (
         "{% for message in messages %}{{ message['content'] }} {% endfor %}Answer:"
@@ -123,7 +127,12 @@ class EpisodeTrainingTests(unittest.TestCase):
         accumulated = copy.deepcopy(eager)
         before = {name: value.detach().clone() for name, value in eager.model.named_parameters()}
         episodes = [episode(), episode(1)]
-        common = {"episodes": episodes, "max_length": 4, "bptt_windows": 0, "shuffle": False}
+        common = {
+            "episodes": episodes,
+            "max_length": 4,
+            "bptt_windows": 0,
+            "shuffle": False,
+        }
         expected = eager.train(**common, batch_size=2)
         actual = checkpointed.train(**common, batch_size=2, checkpoint_decoder=True)
         separate = accumulated.train(**common, gradient_accumulation_steps=2)
@@ -135,10 +144,16 @@ class EpisodeTrainingTests(unittest.TestCase):
                 assert ".memory." in name or name.endswith("memory_gate")
                 changed.append(name)
             torch.testing.assert_close(
-                parameter, dict(checkpointed.model.named_parameters())[name], atol=2e-6, rtol=2e-5
+                parameter,
+                dict(checkpointed.model.named_parameters())[name],
+                atol=2e-6,
+                rtol=2e-5,
             )
             torch.testing.assert_close(
-                parameter, dict(accumulated.model.named_parameters())[name], atol=2e-6, rtol=2e-5
+                parameter,
+                dict(accumulated.model.named_parameters())[name],
+                atol=2e-6,
+                rtol=2e-5,
             )
         assert any("to_k.weight" in name for name in changed)
         assert any("memory.net.0.weight" in name for name in changed)
@@ -180,6 +195,49 @@ class EpisodeTrainingTests(unittest.TestCase):
         assert all(length <= 4 for length, *_ in calls)
         assert any(not grad and state for _, grad, state, _ in calls)
         assert any(grad and state and not history for _, grad, state, history in calls)
+
+    def test_validation_loss_reported_after_each_epoch(self):
+        model = wrapper()
+        events = []
+        validation = [episode(split="validation"), episode(1, split="validation")]
+        losses = model.train(
+            episodes=[episode(), episode(1)],
+            max_length=4,
+            bptt_windows=0,
+            batch_size=2,
+            epochs=2,
+            shuffle=False,
+            validation_episodes=validation,
+            on_validation=events.append,
+        )
+        assert len(losses) == 2
+        assert [event["epoch"] for event in events] == [1, 2]
+        assert [event["step"] for event in events] == [1, 2]
+        windows, labels = tokenize_episodes(model.tokenizer, validation)
+        expected, tokens = model._episodes_loss(
+            windows, labels, 2, 4, 128, model.tokenizer.pad_token_id
+        )
+        assert all(event["target_tokens"] == tokens for event in events)
+        assert abs(events[-1]["val_loss"] - expected) < 1e-6
+
+    def test_train_interrupt_restores_model_state(self):
+        model = wrapper()
+
+        def interrupt(event):
+            raise KeyboardInterrupt
+
+        with self.assertRaises(KeyboardInterrupt):
+            model.train(
+                episodes=[episode(), episode(1)],
+                max_length=4,
+                bptt_windows=0,
+                batch_size=2,
+                on_step=interrupt,
+                checkpoint_decoder=True,
+            )
+        assert not model.model.training
+        assert all(layer.memory.checkpoint_chunks for layer in model._titans_attn)
+        assert len(model.train(episodes=[episode()], max_length=4, bptt_windows=0)) == 1
 
     def test_generation_recomputes_partial_windows_without_double_writes(self):
         model = wrapper()
@@ -228,7 +286,10 @@ class CheckpointAndCLITests(unittest.TestCase):
 
     def test_checkpoint_restores_weights_config_and_predictions(self):
         model = Qwen35Titans(
-            device="cpu", layer_indices=[0, 2], memory_hidden_size=8, memory_chunk_size=2
+            device="cpu",
+            layer_indices=[0, 2],
+            memory_hidden_size=8,
+            memory_chunk_size=2,
         )
         model.train(episodes=[episode()], max_length=4, bptt_windows=0)
         expected = model.generate_text(episode().prompt.rstrip(), max_new_tokens=3)
@@ -309,12 +370,153 @@ class CheckpointAndCLITests(unittest.TestCase):
                         "2",
                     ]
                 )
-                main(["chat", "--device", "cpu", "--prompt", "3 4 5", "--max-new-tokens", "2"])
+                main(
+                    [
+                        "chat",
+                        "--device",
+                        "cpu",
+                        "--prompt",
+                        "3 4 5",
+                        "--max-new-tokens",
+                        "2",
+                    ]
+                )
             for command, split in (("validate", "validation"), ("test", "test")):
                 report = json.loads((root / f"{command}.json").read_text())
                 assert report["split"] == split
                 assert set(report["evaluations"]) == {"normal", "disabled", "reset"}
                 assert report["evaluations"]["normal"]["metrics"]["count"] == 1
+
+    def test_cli_train_writes_monitor_and_validation_history(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            data = root / "data"
+            for split in ("train", "validation", "test"):
+                write_episodes(data / f"{split}.jsonl", [episode(split=split)])
+            checkpoint_path = root / "checkpoint"
+            with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                main(
+                    [
+                        "train",
+                        "--data",
+                        str(data),
+                        "--output",
+                        str(checkpoint_path),
+                        "--layers",
+                        "0",
+                        "--memory-hidden-size",
+                        "8",
+                        "--memory-chunk-size",
+                        "2",
+                        "--window-size",
+                        "4",
+                        "--device",
+                        "cpu",
+                    ]
+                )
+            assert (checkpoint_path / "training.png").read_bytes()[:4] == b"\x89PNG"
+            assert not (root / "checkpoint.training.png").exists()
+            records = [
+                json.loads(line)
+                for line in (checkpoint_path / "training_log.jsonl").read_text().splitlines()
+            ]
+            assert [record["type"] for record in records] == [
+                "started",
+                "step",
+                "validation",
+                "finished",
+            ]
+            config = json.loads((checkpoint_path / "adapter_config.json").read_text())
+            assert config["metadata"]["interrupted"] is False
+            assert len(config["metadata"]["validation"]) == 1
+
+    def test_cli_train_saves_partial_checkpoint_on_interrupt(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            data = root / "data"
+            write_episodes(data / "train.jsonl", [episode()])
+            checkpoint_path = root / "checkpoint"
+            output = io.StringIO()
+
+            def two_steps_then_interrupt(*args, **kwargs):
+                for step in (1, 2):
+                    kwargs["on_step"](
+                        {
+                            "step": step,
+                            "epoch": 1,
+                            "loss": 4.0 - step,
+                            "target_tokens": 3,
+                        }
+                    )
+                raise KeyboardInterrupt
+
+            with (
+                patch.object(Qwen35Titans, "train", side_effect=two_steps_then_interrupt),
+                redirect_stdout(output),
+                redirect_stderr(io.StringIO()),
+            ):
+                main(
+                    [
+                        "train",
+                        "--data",
+                        str(data),
+                        "--output",
+                        str(checkpoint_path),
+                        "--layers",
+                        "0",
+                        "--memory-hidden-size",
+                        "8",
+                        "--memory-chunk-size",
+                        "2",
+                        "--window-size",
+                        "4",
+                        "--device",
+                        "cpu",
+                    ]
+                )
+            config = json.loads((checkpoint_path / "adapter_config.json").read_text())
+            assert config["metadata"]["interrupted"] is True
+            assert config["metadata"]["losses"] == [3.0, 2.0]
+            assert config["metadata"]["optimizer_steps"] == 2
+            assert (checkpoint_path / "training.png").exists()
+            summary = json.loads(output.getvalue().strip().splitlines()[-1])
+            assert summary["interrupted"] is True
+            assert summary["steps"] == 2
+
+    def test_cli_train_interrupt_before_first_step_saves_nothing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            data = root / "data"
+            write_episodes(data / "train.jsonl", [episode()])
+            checkpoint_path = root / "checkpoint"
+            errors = io.StringIO()
+            with (
+                patch.object(Qwen35Titans, "train", side_effect=KeyboardInterrupt),
+                redirect_stdout(io.StringIO()),
+                redirect_stderr(errors),
+            ):
+                main(
+                    [
+                        "train",
+                        "--data",
+                        str(data),
+                        "--output",
+                        str(checkpoint_path),
+                        "--layers",
+                        "0",
+                        "--memory-hidden-size",
+                        "8",
+                        "--memory-chunk-size",
+                        "2",
+                        "--window-size",
+                        "4",
+                        "--device",
+                        "cpu",
+                    ]
+                )
+            assert not checkpoint_path.exists()
+            assert (root / "checkpoint.training.png").exists()
+            assert "checkpoint not saved" in errors.getvalue()
 
     def test_cli_refuses_split_leakage(self):
         with tempfile.TemporaryDirectory() as directory:

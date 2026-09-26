@@ -73,6 +73,13 @@ def build_parser() -> argparse.ArgumentParser:
     train.add_argument("--max-steps", type=_positive)
     train.add_argument("--checkpoint-decoder", action=argparse.BooleanOptionalAction, default=True)
     train.add_argument("--log-every", type=_positive, default=10)
+    train.add_argument(
+        "--validation-data",
+        type=Path,
+        help="Validation JSONL file or split directory for per-epoch validation loss "
+        "(default: the validation split of the training source when available)",
+    )
+    train.add_argument("--validation-limit", type=_positive, help="Maximum validation episodes")
 
     for name, split in (("validate", "validation"), ("test", "test")):
         command = commands.add_parser(name, help=f"Evaluate generated answers on the {split} split")
@@ -136,6 +143,55 @@ def load_episodes(args, split):
     return result
 
 
+def load_validation_episodes(args):
+    """Resolve episodes for per-epoch validation loss; None when no validation split exists."""
+    limit = args.validation_limit
+    if args.validation_data is not None:
+        path = args.validation_data
+        if path.is_dir():
+            path = path / "validation.jsonl"
+        episodes = read_episodes(path)
+    elif args.hf_dataset:
+        try:
+            episodes = load_hf_episodes(
+                args.hf_dataset,
+                split="validation",
+                limit=limit or 1000,
+                length=args.hf_length,
+                task=args.hf_task,
+                revision=args.hf_revision,
+                cache_dir=ROOT / ".datasets_cache" / "hf",
+            )
+        except ValueError as exc:
+            print(f"Monitoring training loss only: {exc}", file=sys.stderr)
+            return None
+    else:
+        path = args.data
+        if path is None:
+            path = ROOT / ".datasets_cache" / "memory-v1"
+            if not path.exists():
+                path = ROOT / "datasets_cache" / "memory-v1"
+        if not path.is_dir():
+            print(
+                "Monitoring training loss only: pass --validation-data for a file dataset",
+                file=sys.stderr,
+            )
+            return None
+        path = path / "validation.jsonl"
+        if not path.exists():
+            print(f"Monitoring training loss only: no validation data at {path}", file=sys.stderr)
+            return None
+        episodes = read_episodes(path)
+    result = list(islice(episodes, limit)) if limit else list(episodes)
+    if not result:
+        print("Monitoring training loss only: validation data is empty", file=sys.stderr)
+        return None
+    if any(episode.split != "validation" for episode in result):
+        msg = "Validation monitoring expects episodes labeled with the validation split"
+        raise ValueError(msg)
+    return result
+
+
 def _write_report(path, report):
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("x", encoding="utf-8") as handle:
@@ -147,6 +203,7 @@ def run(args):
     # Keep argparse/help and dataset inspection independent of model imports.
     import torch
 
+    from src.llm.helpers.monitoring import TrainingMonitor
     from src.llm.modules.evaluation import evaluate_episodes
     from src.llm.modules.qwen import Qwen35Titans, Qwen35Wrapper
     from src.llm.schemas.messages import Message
@@ -167,6 +224,7 @@ def run(args):
             msg = "Adapter architecture comes from --checkpoint; omit --layers/--memory-*-size"
             raise ValueError(msg)
         episodes = load_episodes(args, "train")
+        validation_episodes = load_validation_episodes(args)
         model = (
             Qwen35Titans.from_pretrained(args.checkpoint, **runtime)
             if args.checkpoint
@@ -178,39 +236,72 @@ def run(args):
             )
         )
         window_size = args.window_size or model.training_config.get("window_size", 512)
+        # The output directory must stay absent until saving, so the live
+        # report is written next to it and moved into the checkpoint at the end.
+        monitor = TrainingMonitor(
+            args.output.parent / f"{args.output.name}.training.png",
+            title=args.output.name,
+        )
         print(
             json.dumps(
                 {
                     "event": "training_started",
                     "episodes": len(episodes),
+                    "validation_episodes": len(validation_episodes or []),
                     "window_size": window_size,
                     "bptt_windows": args.bptt_windows,
+                    "monitor": str(monitor.image_path),
                 }
             ),
             file=sys.stderr,
             flush=True,
         )
 
+        step_losses, validation_history = [], []
+
         def progress(event):
+            step_losses.append(event["loss"])
+            monitor.record_step(event)
             if event["step"] == 1 or event["step"] % args.log_every == 0:
                 print(json.dumps(event), file=sys.stderr, flush=True)
 
-        losses = model.train(
-            episodes=episodes,
-            max_length=window_size,
-            bptt_windows=args.bptt_windows,
-            lr=args.lr,
-            batch_size=args.batch_size,
-            epochs=args.epochs,
-            gradient_accumulation_steps=args.gradient_accumulation_steps,
-            weight_decay=args.weight_decay,
-            max_grad_norm=args.max_grad_norm,
-            loss_chunk_size=args.loss_chunk_size,
-            checkpoint_decoder=args.checkpoint_decoder,
-            max_steps=args.max_steps,
-            seed=args.seed,
-            on_step=progress,
-        )
+        def validation(event):
+            validation_history.append(event)
+            monitor.record_validation(event)
+            print(json.dumps(event), file=sys.stderr, flush=True)
+
+        interrupted = False
+        try:
+            losses = model.train(
+                episodes=episodes,
+                max_length=window_size,
+                bptt_windows=args.bptt_windows,
+                lr=args.lr,
+                batch_size=args.batch_size,
+                epochs=args.epochs,
+                gradient_accumulation_steps=args.gradient_accumulation_steps,
+                weight_decay=args.weight_decay,
+                max_grad_norm=args.max_grad_norm,
+                loss_chunk_size=args.loss_chunk_size,
+                checkpoint_decoder=args.checkpoint_decoder,
+                max_steps=args.max_steps,
+                seed=args.seed,
+                on_step=progress,
+                validation_episodes=validation_episodes,
+                on_validation=validation,
+            )
+        except KeyboardInterrupt:
+            interrupted = True
+            losses = step_losses
+            print(
+                "\nInterrupted; saving a checkpoint from the completed steps...",
+                file=sys.stderr,
+                flush=True,
+            )
+        if not losses:
+            monitor.finish("interrupted" if interrupted else "finished")
+            print("No optimizer steps completed; checkpoint not saved.", file=sys.stderr)
+            return
         model.save_pretrained(
             args.output,
             metadata={
@@ -218,16 +309,24 @@ def run(args):
                 "seed": args.seed,
                 "optimizer_steps": len(losses),
                 "losses": losses,
+                "validation": validation_history,
+                "interrupted": interrupted,
                 "source": str(args.data) if args.data else args.hf_dataset or "memory-v1",
             },
         )
+        monitor.finish("interrupted" if interrupted else "finished", move_into=args.output)
         print(
             json.dumps(
                 {
                     "checkpoint": str(args.output),
+                    "interrupted": interrupted,
                     "episodes": len(episodes),
                     "steps": len(losses),
                     "final_loss": losses[-1],
+                    "final_validation_loss": (
+                        validation_history[-1]["val_loss"] if validation_history else None
+                    ),
+                    "monitor": str(args.output / "training.png"),
                 }
             )
         )

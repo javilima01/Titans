@@ -429,6 +429,36 @@ class Qwen35Titans(Qwen35Wrapper):
         )
         return self.generate_text(prompt, max_new_tokens=max_new_tokens, **kwargs)
 
+    @torch.no_grad()
+    def _episodes_loss(self, windows, labels, batch_size, window_size, loss_chunk_size, pad_id):
+        """Token-mean answer loss without gradients; memory carries within episodes."""
+        device = self.model.model.embed_tokens.weight.device
+        total_loss = torch.zeros((), device=device)
+        total_tokens = 0
+        for inputs, mask, targets, token_count in token_batches(
+            windows, batch_size, pad_id, None, labels=labels
+        ):
+            states = {}
+            episode_loss = torch.zeros((), device=device)
+            for start in range(0, inputs.shape[1], window_size):
+                end = min(start + window_size, inputs.shape[1])
+                hidden, states = self._stream_forward(
+                    inputs[:, start:end].to(device),
+                    mask[:, start:end].to(device),
+                    states,
+                )
+                window_labels = targets[:, start:end]
+                if bool((window_labels != -100).any()):
+                    episode_loss = episode_loss + chunked_lm_loss(
+                        self.model.lm_head, hidden, window_labels.to(device), loss_chunk_size
+                    )
+            total_loss += episode_loss
+            total_tokens += token_count
+        if not total_tokens:
+            msg = "Validation data must contain at least one supervised token"
+            raise ValueError(msg)
+        return float(total_loss) / total_tokens, total_tokens
+
     def _episode_backward(
         self, inputs, mask, targets, window_size, bptt_windows, loss_chunk_size, checkpoint_window
     ):
@@ -484,6 +514,8 @@ class Qwen35Titans(Qwen35Wrapper):
         bptt_windows: int = 4,
         max_steps: int | None = None,
         on_step: Callable[[dict], None] | None = None,
+        validation_episodes: Iterable[MemoryEpisode] | None = None,
+        on_validation: Callable[[dict], None] | None = None,
     ) -> list[float]:
         """Train only memory initializations, projections, update gates and residual gates.
 
@@ -491,6 +523,12 @@ class Qwen35Titans(Qwen35Wrapper):
         accumulation group). Pass either legacy texts or normalized QA episodes.
         Episodes retain state across max_length-token Qwen windows, supervise
         answers/EOS and detach every bptt_windows windows (0 = full unroll).
+        Validation episodes are scored once per completed epoch under no_grad,
+        carrying memory across each episode's windows like generation does;
+        on_validation receives {"epoch", "step", "val_loss", "target_tokens"}.
+        Stopping via max_steps ends training before that epoch's validation.
+        KeyboardInterrupt propagates after adapter state is restored, so the
+        caller can still save the partially trained adapters.
         """
         if (
             max_length < 2
@@ -525,6 +563,12 @@ class Qwen35Titans(Qwen35Wrapper):
         if not windows:
             msg = "Training data must contain at least one next-token target"
             raise ValueError(msg)
+        validation_windows = validation_labels = None
+        if validation_episodes is not None:
+            self._check_window_size(max_length)
+            validation_windows, validation_labels = tokenize_episodes(
+                self.tokenizer, validation_episodes
+            )
         pad_id = self.tokenizer.pad_token_id
         if pad_id is None:
             pad_id = self.tokenizer.eos_token_id
@@ -641,6 +685,24 @@ class Qwen35Titans(Qwen35Wrapper):
                         step(accumulated_tokens, accumulated_loss)
                         if max_steps is not None and len(losses) >= max_steps:
                             return losses
+                    if validation_windows is not None:
+                        val_loss, val_tokens = self._episodes_loss(
+                            validation_windows,
+                            validation_labels,
+                            batch_size,
+                            max_length,
+                            loss_chunk_size,
+                            pad_id,
+                        )
+                        if on_validation is not None:
+                            on_validation(
+                                {
+                                    "epoch": epoch + 1,
+                                    "step": len(losses),
+                                    "val_loss": val_loss,
+                                    "target_tokens": val_tokens,
+                                }
+                            )
         finally:
             optimizer.zero_grad(set_to_none=True)
             if checkpoint_decoder and not episode_mode:

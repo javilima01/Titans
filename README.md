@@ -34,6 +34,25 @@ The adapter input/output width always matches Qwen's hidden size. The optional
   --prompt "Hello!" --max-new-tokens 100
 ```
 
+Training writes a live report next to `--output`: `NAME.training.png` charts
+(per-step training loss with validation markers, plus training vs validation
+loss per epoch) and a `NAME.training.jsonl` event log. The PNG is regenerated
+after every step, so opening it in a viewer that reloads changed files
+(Preview, a browser) monitors training as it runs; both files move into the
+checkpoint directory when training ends. Validation loss is the answer-token
+cross-entropy on the training source's validation split, evaluated once per
+completed epoch (`--max-steps` ends training before that epoch's validation).
+`--validation-data PATH` overrides the source and `--validation-limit N`
+bounds its size; sources without a validation split (a JSONL file dataset,
+BABILong) monitor the training loss only. Press Ctrl+C to stop early: the
+completed optimizer steps are still saved to `--output`, marked
+`"interrupted": true` in the checkpoint metadata. Chart rendering requires
+matplotlib in the venv:
+
+```sh
+.venv/bin/uv pip install --python .venv/bin/python matplotlib
+```
+
 Use `--device cpu|mps|cuda` and `--dtype float32|bfloat16` to override automatic
 selection. New CLI runs default to one adapter at layer 11, internal width 256,
 memory chunk size 16, Qwen window size 512, and checkpointing enabled. Start with
@@ -99,17 +118,21 @@ from src.llm.modules.qwen import Qwen35Titans
 model = Qwen35Titans(layer_indices=[11], memory_hidden_size=256)
 losses = model.train(
     episodes=read_episodes(".datasets_cache/memory-v1/train.jsonl"),
-    max_length=512, bptt_windows=4, checkpoint_decoder=True,
+    max_length=512,
+    bptt_windows=4,
+    checkpoint_decoder=True,
 )
 model.save_pretrained("checkpoints/my-memory")
 loaded = Qwen35Titans.from_pretrained("checkpoints/my-memory")
 ```
 
 Checkpoints contain adapter/gate weights in Safetensors, architecture settings,
-training window settings, and the tokenizer. Loading reconstructs the adapters
-and checks tensor names/shapes against the saved architecture. The unchanged
-`Qwen/Qwen3.5-0.8B` base weights are reused from the model cache (downloaded if
-absent). Optimizer state and individual episodes' fast memory are not saved.
+training window settings, and the tokenizer; CLI training runs also add the
+monitor report (`training.png`, `training_log.jsonl`) and record the loss
+history in the metadata. Loading reconstructs the adapters and checks tensor
+names/shapes against the saved architecture. The unchanged `Qwen/Qwen3.5-0.8B`
+base weights are reused from the model cache (downloaded if absent). Optimizer
+state and individual episodes' fast memory are not saved.
 `train --checkpoint OLD --output NEW` continues training with a fresh optimizer.
 
 Validation/test greedily generate answers with the saved window size and report

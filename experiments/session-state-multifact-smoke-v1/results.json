@@ -1,0 +1,56 @@
+{
+  "evaluation_kind": "five_separate_processes_fast_state",
+  "checkpoint": "checkpoints/session-broad-pairs-aligned-v1",
+  "state_file": "/private/tmp/codex-memory-multifact-20260927.safetensors",
+  "cases": [
+    {
+      "case": "write_two",
+      "prompt": "Session 1. My account is jbtest2. The build tool for repository alpha is Bazel. The build tool for repository beta is Meson.",
+      "returncode": 0,
+      "answer": "Bazel",
+      "state_bytes": 4205472,
+      "expected": null,
+      "exact_match": null
+    },
+    {
+      "case": "ask_alpha_before",
+      "prompt": "Session 2. My account is jbtest2. Which build tool does repository alpha use?",
+      "returncode": 0,
+      "answer": "Bazel",
+      "state_bytes": 4205472,
+      "expected": "Bazel",
+      "exact_match": true
+    },
+    {
+      "case": "correct_alpha",
+      "prompt": "Session 3. My account is jbtest2. Correction: the build tool for repository alpha is Ninja.",
+      "returncode": 0,
+      "answer": "Bazel",
+      "state_bytes": 4205472,
+      "expected": null,
+      "exact_match": null
+    },
+    {
+      "case": "ask_alpha_after",
+      "prompt": "Session 4. My account is jbtest2. Which build tool does repository alpha use?",
+      "returncode": 0,
+      "answer": "Bazel",
+      "state_bytes": 4205472,
+      "expected": "Ninja",
+      "exact_match": false
+    },
+    {
+      "case": "ask_beta_after",
+      "prompt": "Session 5. My account is jbtest2. Which build tool does repository beta use?",
+      "returncode": 0,
+      "answer": "Bazel",
+      "state_bytes": 4205472,
+      "expected": "Meson",
+      "exact_match": false
+    }
+  ],
+  "scored": {
+    "correct": 1,
+    "questions": 3
+  }
+}

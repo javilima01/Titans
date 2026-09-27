@@ -1,0 +1,257 @@
+{
+  "id": "session-pairs-full-v1",
+  "checkpoint": "checkpoints/session-pairs-full-v1",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "memory_qk_scale": 5.656854249492381,
+    "aligned_qk_init": true,
+    "memory_delta_read": false,
+    "layer_indices": [
+      11
+    ]
+  },
+  "source": ".datasets_cache/session-pairs-256-v1",
+  "parent_checkpoint": null,
+  "dataset_manifest": {
+    "schema_version": 1,
+    "source": "session-counterfactual-v1",
+    "config": {
+      "seed": 47,
+      "gap_turns": 7,
+      "tasks": [
+        "name",
+        "age",
+        "preference",
+        "repo_entry",
+        "age_update",
+        "repo_update"
+      ]
+    },
+    "pair_counts": {
+      "train": 600,
+      "validation": 60,
+      "test": 60
+    },
+    "counts": {
+      "train": 1200,
+      "validation": 120,
+      "test": 120
+    }
+  },
+  "training": {
+    "steps": 600,
+    "loss_first_50": 2.5948058888316154,
+    "loss_last_50": 1.4861922274648616,
+    "last_validation_loss": 1.0700627432929144,
+    "started_at": "2026-09-26T12:54:22.564000+00:00",
+    "ended_at": "2026-09-26T13:03:36.780000+00:00",
+    "optimizer_steps": 600,
+    "episodes": 1200,
+    "seed": 42,
+    "interrupted": false,
+    "options": null,
+    "supervise_eos": null,
+    "window_size": 256,
+    "bptt_windows": 4,
+    "objective": "answer_ce"
+  },
+  "reports": {
+    "validation-24.json": {
+      "path": "checkpoints/session-pairs-full-v1/validation-24.json",
+      "split": "validation",
+      "evaluated_at": "2026-09-26T13:05:10.907752+00:00",
+      "window_size": 256,
+      "max_new_tokens": 8,
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 24,
+            "exact_match": 0.041666666666666664,
+            "precision": 0.3095238095238095,
+            "recall": 0.5104166666666666,
+            "f1": 0.38257575757575757
+          },
+          "paired_metrics": {
+            "pairs": 12,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "age": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "age_update": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 2,
+              "exact_match": 0.5,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1": 0.5
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 10,
+              "exact_match": 0.0,
+              "precision": 0.4714285714285714,
+              "recall": 0.825,
+              "f1": 0.6
+            },
+            "repo_update": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.42857142857142855,
+              "recall": 0.75,
+              "f1": 0.5454545454545454
+            }
+          }
+        },
+        "disabled": {
+          "metrics": {
+            "count": 24,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": {
+            "pairs": 12,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "age": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "age_update": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 10,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_update": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "reset": {
+          "metrics": {
+            "count": 24,
+            "exact_match": 0.0,
+            "precision": 0.22916666666666666,
+            "recall": 0.4583333333333333,
+            "f1": 0.3055555555555555
+          },
+          "paired_metrics": {
+            "pairs": 12,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "age": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "age_update": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 10,
+              "exact_match": 0.0,
+              "precision": 0.4,
+              "recall": 0.8,
+              "f1": 0.5333333333333333
+            },
+            "repo_update": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.375,
+              "recall": 0.75,
+              "f1": 0.5
+            }
+          }
+        }
+      }
+    }
+  },
+  "supplementary_reports": [],
+  "note": "Full 600-pair answer-only training learned common answer tokens but did not use memory reliably.",
+  "command": "",
+  "result": "Pilot validation: 1/24 exact answers, zero fully correct pairs."
+}

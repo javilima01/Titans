@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 def tokenize_episodes(tokenizer, episodes: Iterable[MemoryEpisode]):
-    """Keep whole episodes, supervising answer tokens and EOS only.
+    """Keep whole episodes, supervising answer tokens and optional EOS.
 
     Offset overlap handles tokens that straddle the prompt/answer boundary.
     Context still participates in differentiable memory writes.
@@ -41,7 +41,7 @@ def tokenize_episodes(tokenizer, episodes: Iterable[MemoryEpisode]):
             raise ValueError(msg)
         if tokenizer.eos_token_id is not None:
             ids.append(tokenizer.eos_token_id)
-            targets.append(tokenizer.eos_token_id)
+            targets.append(tokenizer.eos_token_id if episode.supervise_eos else -100)
         windows.append(torch.tensor(ids, dtype=torch.long))
         labels.append(torch.tensor(targets, dtype=torch.long))
     return windows, labels
@@ -135,3 +135,40 @@ def chunked_lm_loss(lm_head, hidden_states, targets, chunk_size: int = 128):
             part = project_and_loss(states, labels)
         loss = loss + part
     return loss
+
+
+def first_counterfactual_positions(targets):
+    """Find the first answer-token difference after aligning each row's target span."""
+    if targets.ndim != 2 or targets.shape[0] != 2:
+        msg = "Counterfactual targets require a two-row batch"
+        raise ValueError(msg)
+    positions = [(row >= 0).nonzero(as_tuple=True)[0] for row in targets]
+    for first, second in zip(*positions, strict=False):
+        if targets[0, first] != targets[1, second]:
+            return first.item(), second.item()
+    return None
+
+
+def counterfactual_pair_loss(lm_head, hidden_states, targets, *, positions=None):
+    """Rank the first differing answer token according to its earlier fact.
+
+    The two variants have the same teacher-forced answer prefix at this
+    position, so the shared answer prior cancels from the joint margin.
+    Later positions can see different earlier answer tokens and would leak
+    the label even without memory. The caller supplies a two-row pair.
+    """
+    if hidden_states.shape[0] != 2 or targets.shape != hidden_states.shape[:2]:
+        msg = "Counterfactual loss requires two episodes and targets"
+        raise ValueError(msg)
+    positions = positions if positions is not None else first_counterfactual_positions(targets)
+    if positions is None:
+        return hidden_states.new_zeros((), dtype=torch.float32)
+    first_position, second_position = positions
+    states = torch.stack(
+        (hidden_states[0, first_position], hidden_states[1, second_position]), dim=0
+    )
+    logits = lm_head(states).float()
+    first = targets[0, first_position].item()
+    second = targets[1, second_position].item()
+    margin = (logits[0, first] - logits[0, second]) - (logits[1, first] - logits[1, second])
+    return functional.softplus(-margin)

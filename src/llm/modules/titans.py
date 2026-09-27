@@ -1,3 +1,5 @@
+import math
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as functional
@@ -75,22 +77,31 @@ class TitansMemory(nn.Module):
         checkpoint_chunks: bool = True,
         normalize_qk: bool = True,
         max_inner_grad_norm: float | None = None,
+        qk_scale: float = 1.0,
+        aligned_qk_init: bool = False,
+        delta_read: bool = False,
     ):
         super().__init__()
-        if chunk_size < 1 or max_lr <= 0:
-            msg = "chunk_size and max_lr must be positive"
+        if chunk_size < 1 or max_lr <= 0 or not math.isfinite(qk_scale) or qk_scale <= 0:
+            msg = "chunk_size, max_lr and finite qk_scale must be positive"
             raise ValueError(msg)
         self.dim = dim
         self.max_lr = max_lr
         self.chunk_size = chunk_size
         self.checkpoint_chunks = checkpoint_chunks
         self.normalize_qk = normalize_qk
+        self.qk_scale = qk_scale
+        self.aligned_qk_init = aligned_qk_init
+        self.delta_read = delta_read
         if max_inner_grad_norm is not None and max_inner_grad_norm <= 0:
             msg = "max_inner_grad_norm must be positive or None"
             raise ValueError(msg)
         self.max_inner_grad_norm = max_inner_grad_norm
         self.to_q = nn.Linear(dim, dim, bias=False)
         self.to_k = nn.Linear(dim, dim, bias=False)
+        if aligned_qk_init:
+            nn.init.eye_(self.to_q.weight)
+            nn.init.eye_(self.to_k.weight)
         self.to_v = nn.Linear(dim, dim, bias=False)
         self.memory = MemoryMLP(
             dim, hidden_size if hidden_size is not None else 4 * dim, memory_depth
@@ -99,10 +110,13 @@ class TitansMemory(nn.Module):
         self.to_eta = nn.Linear(dim, 1)
         self.to_theta = nn.Linear(dim, 1)
         self.norm = nn.LayerNorm(dim)
-        # Start with slow forgetting and conservative inner steps.
-        nn.init.constant_(self.to_alpha.bias, -4.0)
+        # A 512-token gap nearly erases writes at sigmoid(-4) forgetting.
+        # Start near sigmoid(-8) so cross-window facts can survive long enough
+        # for the outer answer loss to teach selective retention.
+        nn.init.constant_(self.to_alpha.bias, -8.0)
         nn.init.constant_(self.to_eta.bias, 2.0)
-        nn.init.constant_(self.to_theta.bias, -4.0)
+        # Make the clipped fast update visible after normalized-key retrieval.
+        nn.init.constant_(self.to_theta.bias, -2.0)
 
     @staticmethod
     def _transition(decay):
@@ -205,7 +219,8 @@ class TitansMemory(nn.Module):
             x = self.norm(x.to(self.norm.weight.dtype))
             q, k, v = self.to_q(x), self.to_k(x), self.to_v(x)
             if self.normalize_qk:
-                q, k = functional.normalize(q, dim=-1), functional.normalize(k, dim=-1)
+                q = functional.normalize(q, dim=-1) * self.qk_scale
+                k = functional.normalize(k, dim=-1) * self.qk_scale
             alpha = self.to_alpha(x).sigmoid()
             eta = self.to_eta(x).sigmoid()
             theta = self.max_lr * self.to_theta(x).sigmoid()
@@ -244,6 +259,9 @@ class TitansMemory(nn.Module):
                     y, params, momentum = self._chunk(*inputs)
                 outputs.append(y)
             y = torch.cat(outputs, dim=1)
+            if self.delta_read:
+                # Expose only changes made by this episode's fast weights.
+                y = y - self.memory(q)
         if return_state:
             if batched_state:
                 return y, {"params": params, "surprise": momentum}
@@ -266,12 +284,13 @@ class AttentionWithTitans(nn.Module):
         self,
         attention: nn.Module,
         memory: TitansMemory,
-        gate_init: float = -5.0,
+        gate_init: float = -2.0,
         memory_id: int = 0,
     ):
         super().__init__()
         self.attention = attention
         self.memory = memory
+        # The branch must exceed BF16 rounding to receive useful answer feedback.
         self.memory_gate = nn.Parameter(torch.tensor(gate_init, dtype=torch.float32))
         self.memory_id = memory_id
 

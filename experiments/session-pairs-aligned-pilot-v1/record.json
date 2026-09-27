@@ -1,0 +1,66 @@
+{
+  "id": "session-pairs-aligned-pilot-v1",
+  "checkpoint": "checkpoints/session-pairs-aligned-pilot-v1",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "memory_qk_scale": 5.656854249492381,
+    "aligned_qk_init": true,
+    "layer_indices": [
+      11
+    ]
+  },
+  "source": ".datasets_cache/session-pairs-256-v1",
+  "parent_checkpoint": null,
+  "dataset_manifest": {
+    "schema_version": 1,
+    "source": "session-counterfactual-v1",
+    "config": {
+      "seed": 47,
+      "gap_turns": 7,
+      "tasks": [
+        "name",
+        "age",
+        "preference",
+        "repo_entry",
+        "age_update",
+        "repo_update"
+      ]
+    },
+    "pair_counts": {
+      "train": 600,
+      "validation": 60,
+      "test": 60
+    },
+    "counts": {
+      "train": 1200,
+      "validation": 120,
+      "test": 120
+    }
+  },
+  "training": {
+    "steps": 50,
+    "loss_first_50": 2.5948058888316154,
+    "loss_last_50": 2.5948058888316154,
+    "last_validation_loss": 1.421441290113661,
+    "started_at": "2026-09-26T12:45:38.717000+00:00",
+    "ended_at": "2026-09-26T12:46:29.412000+00:00",
+    "optimizer_steps": 50,
+    "episodes": 100,
+    "seed": 42,
+    "interrupted": false,
+    "options": null,
+    "supervise_eos": null,
+    "window_size": 256,
+    "bptt_windows": 4,
+    "objective": "answer_ce"
+  },
+  "reports": {},
+  "supplementary_reports": [],
+  "note": "Aligned query/key initialization improved a diagnostic margin but solved no held-out pairs.",
+  "command": "",
+  "result": ""
+}

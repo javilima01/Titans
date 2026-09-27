@@ -1,0 +1,66 @@
+{
+  "id": "session-pairs-repeat-mps-v1",
+  "checkpoint": "checkpoints/session-pairs-repeat-mps-v1",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "layer_indices": [
+      11
+    ]
+  },
+  "source": ".datasets_cache/session-pairs-256-v1",
+  "parent_checkpoint": "checkpoints/session-pairs-pilot-mps-v1",
+  "dataset_manifest": {
+    "schema_version": 1,
+    "source": "session-counterfactual-v1",
+    "config": {
+      "seed": 47,
+      "gap_turns": 7,
+      "tasks": [
+        "name",
+        "age",
+        "preference",
+        "repo_entry",
+        "age_update",
+        "repo_update"
+      ]
+    },
+    "pair_counts": {
+      "train": 600,
+      "validation": 60,
+      "test": 60
+    },
+    "counts": {
+      "train": 1200,
+      "validation": 120,
+      "test": 120
+    }
+  },
+  "training": {
+    "steps": 200,
+    "loss_first_50": 1.8598475945847375,
+    "loss_last_50": 1.6593348304075854,
+    "last_validation_loss": 1.354522493150499,
+    "started_at": "2026-09-26T12:37:15.286000+00:00",
+    "ended_at": "2026-09-26T12:40:32.453000+00:00",
+    "optimizer_steps": 200,
+    "episodes": 100,
+    "seed": 42,
+    "interrupted": false,
+    "options": null,
+    "supervise_eos": null,
+    "window_size": 256,
+    "bptt_windows": 4,
+    "objective": "answer_ce"
+  },
+  "reports": {},
+  "supplementary_reports": [
+    "checkpoints/session-pairs-repeat-mps-v1/paired-diagnostic-24.json"
+  ],
+  "note": "Four more epochs on the same 50 pairs: zero fully correct held-out pairs.",
+  "command": "",
+  "result": ""
+}

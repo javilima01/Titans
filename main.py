@@ -1,10 +1,14 @@
 """Train memory adapters, evaluate checkpoints, or chat with Qwen."""
 
 import argparse
+from dataclasses import replace
+from datetime import UTC, datetime
 from itertools import islice
 import json
 from pathlib import Path
+import shlex
 import sys
+import tempfile
 
 from src.llm.helpers.config import ROOT
 from src.llm.helpers.dataset_generation import load_hf_episodes, read_episodes
@@ -56,6 +60,18 @@ def build_parser() -> argparse.ArgumentParser:
     train.add_argument("--layers", type=int, nargs="+", help="New model only; default: 11")
     train.add_argument("--memory-hidden-size", type=_positive, help="New model only; default: 256")
     train.add_argument("--memory-chunk-size", type=_positive, help="New model only; default: 16")
+    train.add_argument("--memory-qk-scale", type=float, help="New model only; default: 1.0")
+    train.add_argument("--max-inner-grad-norm", type=float, help="New model only; default: 1.0")
+    train.add_argument(
+        "--aligned-qk-init",
+        action="store_true",
+        help="New model only; initialize query/key as identity",
+    )
+    train.add_argument(
+        "--memory-delta-read",
+        action="store_true",
+        help="New model only; expose only fast-memory changes to Qwen",
+    )
     train.add_argument("--window-size", type=_positive, help="Default: checkpoint setting or 512")
     train.add_argument(
         "--bptt-windows",
@@ -66,6 +82,18 @@ def build_parser() -> argparse.ArgumentParser:
     train.add_argument("--epochs", type=_positive, default=1)
     train.add_argument("--batch-size", type=_positive, default=1)
     train.add_argument("--gradient-accumulation-steps", type=_positive, default=1)
+    train.add_argument(
+        "--pair-contrastive-weight",
+        type=float,
+        default=0.0,
+        help="Additional paired answer-ranking loss; requires --batch-size 2 --no-shuffle",
+    )
+    train.add_argument(
+        "--supervise-eos",
+        action="store_true",
+        help="Train an end-of-answer token after the answer in each episode",
+    )
+    train.add_argument("--shuffle", action=argparse.BooleanOptionalAction, default=True)
     train.add_argument("--lr", type=float, default=1e-4)
     train.add_argument("--weight-decay", type=float, default=0.01)
     train.add_argument("--max-grad-norm", type=float, default=1.0)
@@ -80,6 +108,7 @@ def build_parser() -> argparse.ArgumentParser:
         "(default: the validation split of the training source when available)",
     )
     train.add_argument("--validation-limit", type=_positive, help="Maximum validation episodes")
+    train.add_argument("--experiment-dir", type=Path, help="Experiment records directory")
 
     for name, split in (("validate", "validation"), ("test", "test")):
         command = commands.add_parser(name, help=f"Evaluate generated answers on the {split} split")
@@ -95,14 +124,29 @@ def build_parser() -> argparse.ArgumentParser:
             help="Also disable memory and reset memory at each window",
         )
         command.add_argument(
+            "--memory-modes",
+            nargs="+",
+            choices=("normal", "disabled", "reset"),
+            help="Evaluate selected memory modes (overrides --ablations)",
+        )
+        command.add_argument(
             "--report", type=Path, help="Write JSON metrics and individual predictions"
         )
+        command.add_argument("--experiment-dir", type=Path, help="Experiment records directory")
 
     chat = commands.add_parser("chat", help="Chat with the base model or trained memory adapters")
     runtime(chat)
     chat.add_argument("--checkpoint", type=Path, help="Omit to chat with the original Qwen model")
     chat.add_argument("--prompt", help="Generate one response and exit")
     chat.add_argument("--system", default="You are a helpful assistant.")
+    chat.add_argument(
+        "--session-file", type=Path, help="Save and reload this conversation across chat runs"
+    )
+    chat.add_argument(
+        "--memory-state-file",
+        type=Path,
+        help="Save and reload one user's compact Titans fast-memory state across chat runs",
+    )
     chat.add_argument("--max-new-tokens", type=_positive, default=200)
     chat.add_argument(
         "--window-size", type=_positive, help="Adapter model only; default: saved training window"
@@ -199,10 +243,57 @@ def _write_report(path, report):
         handle.write("\n")
 
 
+def _load_chat_session(path, message_type):
+    if not path.exists():
+        return None
+    try:
+        records = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        msg = f"Invalid chat session JSON: {path}"
+        raise ValueError(msg) from exc
+    if not isinstance(records, list) or not records:
+        msg = "Chat session must contain a nonempty message list"
+        raise ValueError(msg)
+    history = [message_type.model_validate(record) for record in records]
+    if history[0].role.value != "system" or history[-1].role.value not in (
+        "system",
+        "assistant",
+    ):
+        msg = "Chat session must start with a system message and end after an assistant turn"
+        raise ValueError(msg)
+    return history
+
+
+def _save_chat_session(path, history):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(
+        mode="w", encoding="utf-8", dir=path.parent, delete=False
+    ) as handle:
+        temporary = Path(handle.name)
+        try:
+            json.dump([message.model_dump(mode="json") for message in history], handle)
+            handle.write("\n")
+        except BaseException:
+            temporary.unlink(missing_ok=True)
+            raise
+    temporary.replace(path)
+
+
+def _experiment_root(checkpoint: Path, requested: Path | None) -> Path:
+    if requested is not None:
+        return requested
+    try:
+        checkpoint.resolve().relative_to(ROOT)
+    except ValueError:
+        return checkpoint.parent / "experiments"
+    return ROOT / "experiments"
+
+
 def run(args):
     # Keep argparse/help and dataset inspection independent of model imports.
     import torch
 
+    from src.llm.helpers.experiment_tracking import record_experiment
     from src.llm.helpers.monitoring import TrainingMonitor
     from src.llm.modules.evaluation import evaluate_episodes
     from src.llm.modules.qwen import Qwen35Titans, Qwen35Wrapper
@@ -219,11 +310,21 @@ def run(args):
             raise ValueError(msg)
         if args.checkpoint and any(
             value is not None
-            for value in (args.layers, args.memory_hidden_size, args.memory_chunk_size)
+            for value in (
+                args.layers,
+                args.memory_hidden_size,
+                args.memory_chunk_size,
+                args.memory_qk_scale,
+                args.max_inner_grad_norm,
+                args.aligned_qk_init or None,
+                args.memory_delta_read or None,
+            )
         ):
             msg = "Adapter architecture comes from --checkpoint; omit --layers/--memory-*-size"
             raise ValueError(msg)
         episodes = load_episodes(args, "train")
+        if args.supervise_eos:
+            episodes = [replace(episode, supervise_eos=True) for episode in episodes]
         validation_episodes = load_validation_episodes(args)
         model = (
             Qwen35Titans.from_pretrained(args.checkpoint, **runtime)
@@ -233,6 +334,12 @@ def run(args):
                 layer_indices=args.layers or [11],
                 memory_hidden_size=args.memory_hidden_size or 256,
                 memory_chunk_size=args.memory_chunk_size or 16,
+                memory_qk_scale=args.memory_qk_scale if args.memory_qk_scale is not None else 1.0,
+                max_inner_grad_norm=(
+                    args.max_inner_grad_norm if args.max_inner_grad_norm is not None else 1.0
+                ),
+                aligned_qk_init=args.aligned_qk_init,
+                memory_delta_read=args.memory_delta_read,
             )
         )
         window_size = args.window_size or model.training_config.get("window_size", 512)
@@ -286,6 +393,8 @@ def run(args):
                 checkpoint_decoder=args.checkpoint_decoder,
                 max_steps=args.max_steps,
                 seed=args.seed,
+                shuffle=args.shuffle,
+                pair_contrastive_weight=args.pair_contrastive_weight,
                 on_step=progress,
                 validation_episodes=validation_episodes,
                 on_validation=validation,
@@ -312,9 +421,34 @@ def run(args):
                 "validation": validation_history,
                 "interrupted": interrupted,
                 "source": str(args.data) if args.data else args.hf_dataset or "memory-v1",
+                "supervise_eos": args.supervise_eos,
+                "parent_checkpoint": str(args.checkpoint) if args.checkpoint else None,
+                "training_options": {
+                    "device": args.device,
+                    "dtype": args.dtype,
+                    "lr": args.lr,
+                    "weight_decay": args.weight_decay,
+                    "max_grad_norm": args.max_grad_norm,
+                    "loss_chunk_size": args.loss_chunk_size,
+                    "batch_size": args.batch_size,
+                    "gradient_accumulation_steps": args.gradient_accumulation_steps,
+                    "epochs": args.epochs,
+                    "max_steps": args.max_steps,
+                    "shuffle": args.shuffle,
+                    "checkpoint_decoder": args.checkpoint_decoder,
+                    "pair_contrastive_weight": args.pair_contrastive_weight,
+                    "supervise_eos": args.supervise_eos,
+                    "validation_limit": args.validation_limit,
+                    "limit": args.limit,
+                },
             },
         )
         monitor.finish("interrupted" if interrupted else "finished", move_into=args.output)
+        record_experiment(
+            args.output,
+            output_root=_experiment_root(args.output, args.experiment_dir),
+            command=args.command_line,
+        )
         print(
             json.dumps(
                 {
@@ -339,7 +473,10 @@ def run(args):
         episodes = load_episodes(args, args.split)
         model = Qwen35Titans.from_pretrained(args.checkpoint, **runtime)
         reports = {}
-        for mode in ("normal", "disabled", "reset") if args.ablations else ("normal",):
+        modes = args.memory_modes or (
+            ("normal", "disabled", "reset") if args.ablations else ("normal",)
+        )
+        for mode in modes:
             reports[mode] = evaluate_episodes(
                 model,
                 episodes,
@@ -352,14 +489,38 @@ def run(args):
                     flush=True,
                 ),
             )
-        report = {"checkpoint": str(args.checkpoint), "split": args.split, "evaluations": reports}
-        if args.report:
-            _write_report(args.report, report)
+        report = {
+            "checkpoint": str(args.checkpoint),
+            "split": args.split,
+            "data_source": str(args.data) if args.data else args.hf_dataset or "memory-v1",
+            "evaluation_options": {
+                "device": args.device,
+                "window_size": args.window_size or model.training_config.get("window_size", 512),
+                "max_new_tokens": args.max_new_tokens,
+                "limit": args.limit,
+                "ablations": args.ablations,
+                "memory_modes": list(modes),
+            },
+            "evaluations": reports,
+        }
+        report_path = args.report or (
+            args.checkpoint / f"{args.split}-{datetime.now(UTC):%Y%m%dT%H%M%S%fZ}.json"
+        )
+        _write_report(report_path, report)
+        record_experiment(
+            args.checkpoint,
+            output_root=_experiment_root(args.checkpoint, args.experiment_dir),
+            additional_reports=(report_path,),
+        )
         summary = {
             mode: {key: value for key, value in result.items() if key != "predictions"}
             for mode, result in reports.items()
         }
-        print(json.dumps({"split": args.split, "evaluations": summary}, indent=2))
+        print(
+            json.dumps(
+                {"split": args.split, "report": str(report_path), "evaluations": summary}, indent=2
+            )
+        )
         return
 
     if args.temperature < 0 or not 0 < args.top_p <= 1:
@@ -368,12 +529,25 @@ def run(args):
     if args.window_size and not args.checkpoint:
         msg = "--window-size is available for adapter checkpoints only"
         raise ValueError(msg)
+    if args.memory_state_file and not args.checkpoint:
+        msg = "--memory-state-file requires --checkpoint"
+        raise ValueError(msg)
+    if args.memory_state_file and args.session_file:
+        msg = "Use either --memory-state-file or --session-file for a chat"
+        raise ValueError(msg)
     model = (
         Qwen35Titans.from_pretrained(args.checkpoint, **runtime)
         if args.checkpoint
         else Qwen35Wrapper(**runtime)
     )
-    history = [Message.system_msg(args.system)]
+    history = (_load_chat_session(args.session_file, Message) if args.session_file else None) or [
+        Message.system_msg(args.system)
+    ]
+    memory_state = (
+        model.load_memory_state(args.memory_state_file)
+        if args.memory_state_file and args.memory_state_file.exists()
+        else None
+    )
     if args.prompt is None:
         print("Type /exit to quit or /reset to clear the conversation.")
     while True:
@@ -385,25 +559,41 @@ def run(args):
             break
         if text.strip() == "/reset":
             history = [Message.system_msg(args.system)]
+            memory_state = None
+            if args.session_file:
+                _save_chat_session(args.session_file, history)
+            if args.memory_state_file:
+                args.memory_state_file.unlink(missing_ok=True)
             if args.prompt is not None:
                 break
             continue
         history.append(Message.user_msg(text))
         if isinstance(model, Qwen35Titans):
-            answer = model.generate(
+            response = model.generate(
                 history,
                 max_new_tokens=args.max_new_tokens,
                 window_size=args.window_size,
                 temperature=args.temperature,
                 top_p=args.top_p,
+                memory_state=memory_state,
+                return_memory_state=bool(args.memory_state_file),
             )
+            if args.memory_state_file:
+                answer, memory_state = response
+                model.save_memory_state(args.memory_state_file, memory_state)
+            else:
+                answer = response
         else:
             options = {"do_sample": args.temperature > 0}
             if args.temperature > 0:
                 options.update(temperature=args.temperature, top_p=args.top_p)
             answer = model.generate(history, max_new_tokens=args.max_new_tokens, **options)
-        print(answer if args.prompt is not None else f"Assistant: {answer}")
         history.append(Message.assistant_msg(answer))
+        if args.session_file:
+            _save_chat_session(args.session_file, history)
+        if args.memory_state_file:
+            history = [Message.system_msg(args.system)]
+        print(answer if args.prompt is not None else f"Assistant: {answer}")
         if args.prompt is not None:
             break
 
@@ -411,6 +601,8 @@ def run(args):
 def main(argv=None):
     parser = build_parser()
     args = parser.parse_args(argv)
+    if args.command == "train":
+        args.command_line = shlex.join([".venv/bin/python", "main.py", *(argv or sys.argv[1:])])
     try:
         run(args)
     except (ValueError, FileNotFoundError, FileExistsError) as exc:

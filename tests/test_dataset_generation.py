@@ -12,14 +12,23 @@ from unittest.mock import Mock, patch
 from src.llm.helpers.dataset_generation import (
     BABILONG_TEST,
     BABILONG_TRAIN,
+    HELDOUT_SESSION_TASKS,
+    SESSION_TASKS,
     MemoryEpisode,
+    SessionSyntheticConfig,
     SyntheticConfig,
+    generate_session_counterfactual_pairs,
+    generate_session_synthetic,
     generate_synthetic,
     load_hf_episodes,
     read_episodes,
     write_episodes,
+    write_session_counterfactual_dataset,
+    write_session_synthetic_dataset,
     write_synthetic_dataset,
 )
+from src.llm.helpers.novel_value_dataset import NOVEL_VALUES, write_novel_value_dataset
+from src.llm.helpers.retrieval_evaluation import lexical_fact
 
 
 class SyntheticDatasetTests(unittest.TestCase):
@@ -101,6 +110,149 @@ class SyntheticDatasetTests(unittest.TestCase):
                 )
             with self.assertRaises(FileExistsError):
                 write_synthetic_dataset(output, train_size=1)
+
+
+class SessionSyntheticDatasetTests(unittest.TestCase):
+    def test_later_sessions_recall_latest_user_and_repository_facts(self):
+        for task in SESSION_TASKS:
+            config = SessionSyntheticConfig(seed=12, gap_turns=2, tasks=(task,))
+            episode = next(generate_session_synthetic(1, config=config))
+            with self.subTest(task=task):
+                assert episode.prompt_style == "qwen_chat"
+                assert not episode.supervise_eos
+                assert episode.prompt.count("<|im_start|>user") == (
+                    3 + config.gap_turns + int(task.endswith("update"))
+                )
+                assert episode.prompt.endswith("<|im_start|>assistant\n<think>\n\n</think>\n\n")
+                assert episode.answers[0] not in episode.question
+                boundaries = episode.metadata["session_boundaries"]
+                assert len(boundaries) == 3
+                assert boundaries == sorted(boundaries)
+                assert boundaries[-1] == len(episode.context)
+                spans = episode.metadata["support_spans"]
+                assert len(spans) == (2 if task.endswith("update") else 1)
+                assert episode.answers[0] in episode.context[slice(*spans[-1])]
+                assert spans[-1][1] < boundaries[-1]
+
+    def test_reproducible_splits_and_roundtrip(self):
+        config = SessionSyntheticConfig(seed=31, gap_turns=1)
+        train = list(generate_session_synthetic(7, config=config))
+        assert train == list(generate_session_synthetic(7, config=config))
+        assert train[4:] == list(generate_session_synthetic(3, config=config, start_index=4))
+        validation = list(generate_session_synthetic(7, split="validation", config=config))
+        assert {episode.id for episode in train}.isdisjoint(episode.id for episode in validation)
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "sessions"
+            counts = write_session_synthetic_dataset(
+                output, train_size=7, validation_size=2, test_size=1, config=config
+            )
+            assert counts == {"train": 7, "validation": 2, "test": 1}
+            assert json.loads((output / "manifest.json").read_text())["source"] == (
+                "session-synthetic-v1"
+            )
+            assert list(read_episodes(output / "train.jsonl")) == train
+
+    def test_configuration_errors(self):
+        for kwargs in ({"gap_turns": -1}, {"tasks": ()}, {"tasks": ("unknown",)}):
+            with self.subTest(kwargs=kwargs), self.assertRaises(ValueError):
+                SessionSyntheticConfig(**kwargs)
+        with self.assertRaises(ValueError):
+            list(generate_session_synthetic(-1))
+
+
+class SessionCounterfactualDatasetTests(unittest.TestCase):
+    def test_lexical_retrieval_finds_latest_support(self):
+        for task in ("repo_test_command_update", "age_update", "repo_deploy_region"):
+            config = SessionSyntheticConfig(seed=23, gap_turns=7, tasks=(task,))
+            first, second = list(generate_session_counterfactual_pairs(1, config=config))
+            for episode in (first, second):
+                with self.subTest(task=task, variant=episode.metadata["pair_variant"]):
+                    start, end = episode.metadata["support_spans"][-1]
+                    assert lexical_fact(episode) == episode.context[start:end]
+
+    def test_novel_values_preserve_held_out_pair_structure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "source"
+            output = Path(directory) / "novel"
+            write_session_counterfactual_dataset(
+                source,
+                train_pairs=0,
+                validation_pairs=14,
+                test_pairs=2,
+                config=SessionSyntheticConfig(seed=19, gap_turns=2),
+            )
+            assert write_novel_value_dataset(source, output) == {
+                "train": 0,
+                "validation": 28,
+                "test": 4,
+            }
+            old = list(read_episodes(source / "validation.jsonl"))
+            new = list(read_episodes(output / "validation.jsonl"))
+            for before, after in zip(old, new, strict=True):
+                assert after.answers[0] in NOVEL_VALUES[before.metadata["task"]]
+                assert after.answers != before.answers
+                assert after.question == before.question
+                start, end = before.metadata["support_spans"][-1]
+                new_start, new_end = after.metadata["support_spans"][-1]
+                assert before.context[:start] == after.context[:new_start]
+                assert before.context[end:] == after.context[new_end:]
+
+    def test_unseen_fact_categories_are_available_outside_training_defaults(self):
+        assert set(HELDOUT_SESSION_TASKS).isdisjoint(SESSION_TASKS)
+        for task in HELDOUT_SESSION_TASKS:
+            config = SessionSyntheticConfig(seed=37, gap_turns=2, tasks=(task,))
+            first, second = list(generate_session_counterfactual_pairs(1, config=config))
+            with self.subTest(task=task):
+                assert first.answers != second.answers
+                assert first.question == second.question
+                for episode in (first, second):
+                    start, end = episode.metadata["support_spans"][-1]
+                    assert episode.answers[0] in episode.context[start:end]
+
+    def test_pairs_change_only_the_latest_support_and_answer(self):
+        for task in SESSION_TASKS:
+            config = SessionSyntheticConfig(seed=49, gap_turns=2, tasks=(task,))
+            first, second = list(generate_session_counterfactual_pairs(1, config=config))
+            with self.subTest(task=task):
+                assert first.question == second.question
+                assert first.answers != second.answers
+                assert first.metadata["pair_id"] == second.metadata["pair_id"]
+                assert first.metadata["pair_variant"] == 0
+                assert second.metadata["pair_variant"] == 1
+                assert not first.supervise_eos
+                assert not second.supervise_eos
+                first_start, first_end = first.metadata["support_spans"][-1]
+                second_start, second_end = second.metadata["support_spans"][-1]
+                assert first.context[:first_start] == second.context[:second_start]
+                assert first.context[first_end:] == second.context[second_end:]
+                assert first.answers[0] in first.context[first_start:first_end]
+                assert second.answers[0] in second.context[second_start:second_end]
+                assert first.metadata["session_boundaries"][-1] == len(first.context)
+                assert second.metadata["session_boundaries"][-1] == len(second.context)
+
+    def test_pair_manifest_and_split_isolation(self):
+        config = SessionSyntheticConfig(seed=4, gap_turns=1)
+        train = list(generate_session_counterfactual_pairs(3, config=config))
+        assert train == list(generate_session_counterfactual_pairs(3, config=config))
+        assert train[2:] == list(
+            generate_session_counterfactual_pairs(2, start_index=1, config=config)
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "pairs"
+            counts = write_session_counterfactual_dataset(
+                output, train_pairs=3, validation_pairs=2, test_pairs=1, config=config
+            )
+            assert counts == {"train": 6, "validation": 4, "test": 2}
+            assert json.loads((output / "manifest.json").read_text())["pair_counts"] == {
+                "train": 3,
+                "validation": 2,
+                "test": 1,
+            }
+            assert list(read_episodes(output / "train.jsonl")) == train
+            validation = list(read_episodes(output / "validation.jsonl"))
+            assert {episode.id for episode in train}.isdisjoint(
+                episode.id for episode in validation
+            )
 
 
 class EpisodeIOTests(unittest.TestCase):

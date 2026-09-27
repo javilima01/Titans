@@ -1,0 +1,94 @@
+{
+  "id": "session-state-cli-smoke-v1",
+  "kind": "evaluation",
+  "checkpoint": "checkpoints/session-broad-pairs-aligned-v1",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "memory_qk_scale": 5.656854249492381,
+    "aligned_qk_init": true,
+    "memory_delta_read": false,
+    "layer_indices": [
+      11
+    ]
+  },
+  "source": ".datasets_cache/session-broad-pairs-256-v1",
+  "parent_checkpoint": "checkpoints/session-pairs-contrastive-full-v1",
+  "dataset_manifest": {
+    "schema_version": 1,
+    "source": "session-counterfactual-v1",
+    "config": {
+      "seed": 61,
+      "gap_turns": 7,
+      "tasks": [
+        "name",
+        "age",
+        "preference",
+        "repo_entry",
+        "age_update",
+        "repo_update",
+        "timezone",
+        "editor",
+        "current_project",
+        "repo_runtime",
+        "repo_test_command",
+        "repo_test_command_update",
+        "repo_config_file",
+        "repo_build_tool"
+      ]
+    },
+    "pair_counts": {
+      "train": 700,
+      "validation": 80,
+      "test": 80
+    },
+    "counts": {
+      "train": 1400,
+      "validation": 160,
+      "test": 160
+    }
+  },
+  "training": {
+    "steps": 700,
+    "loss_first_50": 3.227038603451356,
+    "loss_last_50": 0.15495721935673293,
+    "last_validation_loss": 0.09348436502309945,
+    "started_at": "2026-09-27T00:00:23.114000+00:00",
+    "ended_at": "2026-09-27T00:11:05.837000+00:00",
+    "optimizer_steps": 700,
+    "episodes": 1400,
+    "seed": 42,
+    "interrupted": false,
+    "options": {
+      "device": "mps",
+      "dtype": null,
+      "lr": 0.0003,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "loss_chunk_size": 128,
+      "batch_size": 2,
+      "gradient_accumulation_steps": 1,
+      "epochs": 1,
+      "max_steps": null,
+      "shuffle": false,
+      "checkpoint_decoder": false,
+      "pair_contrastive_weight": 16.0,
+      "supervise_eos": true,
+      "validation_limit": 40,
+      "limit": null
+    },
+    "supervise_eos": true,
+    "window_size": 256,
+    "bptt_windows": 4,
+    "objective": "answer_ce+pair_contrastive",
+    "pair_contrastive_weight": 16.0
+  },
+  "reports": {},
+  "supplementary_reports": [],
+  "note": "Two separate chat processes used one serialized fast-memory file for a synthetic repository build-tool fact; one prompt pair only.",
+  "command": "MPLCONFIGDIR=/private/tmp/codex-mpl .venv/bin/python main.py chat --checkpoint checkpoints/session-broad-pairs-aligned-v1 --device mps --window-size 256 --memory-state-file /private/tmp/codex-memory-smoke-20260927.safetensors --system 'Answer questions with only the requested value, without explanation.' --prompt 'Session 1. My account is jbtest. The build tool for repository projectx is Bazel.' --max-new-tokens 8\nMPLCONFIGDIR=/private/tmp/codex-mpl .venv/bin/python main.py chat --checkpoint checkpoints/session-broad-pairs-aligned-v1 --device mps --window-size 256 --memory-state-file /private/tmp/codex-memory-smoke-20260927.safetensors --system 'Answer questions with only the requested value, without explanation.' --prompt 'Session 3. My account is jbtest. Which build tool does repository projectx use?' --max-new-tokens 12\nMPLCONFIGDIR=/private/tmp/codex-mpl .venv/bin/python main.py chat --checkpoint checkpoints/session-broad-pairs-aligned-v1 --device mps --window-size 256 --system 'Answer questions with only the requested value, without explanation.' --prompt 'Session 3. My account is jbtest. Which build tool does repository projectx use?' --max-new-tokens 12",
+  "result": "Second process answered Bazel correctly from saved state; identical question without saved state answered Zed. The first process replied 3; state file was 4.0 MB."
+}

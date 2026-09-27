@@ -1,0 +1,254 @@
+{
+  "id": "session-pairs-pilot-mps-v1",
+  "checkpoint": "checkpoints/session-pairs-pilot-mps-v1",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "layer_indices": [
+      11
+    ]
+  },
+  "source": ".datasets_cache/session-pairs-256-v1",
+  "parent_checkpoint": null,
+  "dataset_manifest": {
+    "schema_version": 1,
+    "source": "session-counterfactual-v1",
+    "config": {
+      "seed": 47,
+      "gap_turns": 7,
+      "tasks": [
+        "name",
+        "age",
+        "preference",
+        "repo_entry",
+        "age_update",
+        "repo_update"
+      ]
+    },
+    "pair_counts": {
+      "train": 600,
+      "validation": 60,
+      "test": 60
+    },
+    "counts": {
+      "train": 1200,
+      "validation": 120,
+      "test": 120
+    }
+  },
+  "training": {
+    "steps": 50,
+    "loss_first_50": 2.7594300157257488,
+    "loss_last_50": 2.7594300157257488,
+    "last_validation_loss": 1.325050459967719,
+    "started_at": "2026-09-26T12:34:13.293000+00:00",
+    "ended_at": "2026-09-26T12:35:06.544000+00:00",
+    "optimizer_steps": 50,
+    "episodes": 100,
+    "seed": 42,
+    "interrupted": false,
+    "options": null,
+    "supervise_eos": null,
+    "window_size": 256,
+    "bptt_windows": 4,
+    "objective": "answer_ce"
+  },
+  "reports": {
+    "validation-24.json": {
+      "path": "checkpoints/session-pairs-pilot-mps-v1/validation-24.json",
+      "split": "validation",
+      "evaluated_at": "2026-09-26T12:36:35.770566+00:00",
+      "window_size": 256,
+      "max_new_tokens": 8,
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 24,
+            "exact_match": 0.0,
+            "precision": 0.5,
+            "recall": 0.4375,
+            "f1": 0.46428571428571425
+          },
+          "paired_metrics": {
+            "pairs": 12,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "age": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "age_update": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 10,
+              "exact_match": 0.0,
+              "precision": 0.85,
+              "recall": 0.75,
+              "f1": 0.7928571428571429
+            },
+            "repo_update": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.875,
+              "recall": 0.75,
+              "f1": 0.8035714285714286
+            }
+          }
+        },
+        "disabled": {
+          "metrics": {
+            "count": 24,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": {
+            "pairs": 12,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "age": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "age_update": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 10,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_update": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "reset": {
+          "metrics": {
+            "count": 24,
+            "exact_match": 0.0,
+            "precision": 0.47500000000000003,
+            "recall": 0.4375,
+            "f1": 0.45039682539682535
+          },
+          "paired_metrics": {
+            "pairs": 12,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "age": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "age_update": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 10,
+              "exact_match": 0.0,
+              "precision": 0.82,
+              "recall": 0.75,
+              "f1": 0.7761904761904761
+            },
+            "repo_update": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.8,
+              "recall": 0.75,
+              "f1": 0.7619047619047619
+            }
+          }
+        }
+      }
+    }
+  },
+  "supplementary_reports": [],
+  "note": "One layer, 50 pairs, one pass: zero fully correct validation pairs.",
+  "command": "",
+  "result": ""
+}

@@ -5,6 +5,7 @@
 
 from contextlib import redirect_stderr, redirect_stdout
 import copy
+from dataclasses import replace
 import io
 import json
 from pathlib import Path
@@ -18,10 +19,16 @@ from transformers import PreTrainedTokenizerFast
 
 from main import build_parser, load_episodes, main
 from src.llm.helpers.dataset_generation import MemoryEpisode, write_episodes
+from src.llm.helpers.state_io import load_fast_memory_state, save_fast_memory_state
 from src.llm.modules.evaluation import answer_metrics, evaluate_episodes
 from src.llm.modules.qwen import Qwen35Titans, Qwen35Wrapper
 from src.llm.modules.titans import TitansMemory
-from src.llm.modules.training import detach_memory_states, tokenize_episodes
+from src.llm.modules.training import (
+    counterfactual_pair_loss,
+    detach_memory_states,
+    first_counterfactual_positions,
+    tokenize_episodes,
+)
 from tests.test_titans_training import reference_memory, tiny_wrapper
 
 
@@ -73,6 +80,103 @@ def wrapper():
 
 
 class EpisodeTrainingTests(unittest.TestCase):
+    def test_fast_memory_state_roundtrip_and_adapter_binding(self):
+        states = {
+            11: {
+                "params": {"net.0.weight": torch.arange(4).reshape(1, 2, 2).float()},
+                "surprise": {"net.0.weight": torch.ones(1, 2, 2)},
+            }
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "user.safetensors"
+            save_fast_memory_state(path, states, adapter_digest="first")
+            loaded = load_fast_memory_state(path, adapter_digest="first", device="cpu")
+            for kind in ("params", "surprise"):
+                torch.testing.assert_close(
+                    loaded[11][kind]["net.0.weight"], states[11][kind]["net.0.weight"]
+                )
+            with self.assertRaisesRegex(ValueError, "does not match"):
+                load_fast_memory_state(path, adapter_digest="second", device="cpu")
+
+    def test_memorized_text_can_initialize_a_later_generation(self):
+        model = wrapper()
+        state = model.memorize_text("3 4 5", window_size=4)
+        assert state
+        answer, later_state = model.generate_text(
+            "6 7",
+            window_size=4,
+            max_new_tokens=2,
+            memory_state=state,
+            return_memory_state=True,
+        )
+        assert isinstance(answer, str)
+        assert set(later_state) == set(state)
+        with self.assertRaisesRegex(ValueError, "normal memory mode"):
+            model.generate_text("6 7", memory_state=state, memory_mode="disabled", window_size=4)
+
+    def test_counterfactual_loss_cancels_shared_answer_prior(self):
+        hidden = torch.zeros(2, 1, 2, requires_grad=True)
+        targets = torch.tensor([[0], [1]])
+        loss = counterfactual_pair_loss(torch.nn.Identity(), hidden, targets)
+        torch.testing.assert_close(loss, torch.tensor(2.0).log())
+        loss.backward()
+        torch.testing.assert_close(hidden.grad[:, 0], torch.tensor([[-0.5, 0.5], [0.5, -0.5]]))
+        assert (
+            counterfactual_pair_loss(torch.nn.Identity(), hidden.detach(), torch.tensor([[0], [0]]))
+            == 0
+        )
+        two_digits = torch.zeros(2, 2, 2, requires_grad=True)
+        two_digit_targets = torch.tensor([[0, 0], [1, 1]])
+        two_digit_loss = counterfactual_pair_loss(
+            torch.nn.Identity(), two_digits, two_digit_targets
+        )
+        torch.testing.assert_close(two_digit_loss, torch.tensor(2.0).log())
+        two_digit_loss.backward()
+        torch.testing.assert_close(two_digits.grad[:, 0], hidden.grad[:, 0])
+        torch.testing.assert_close(two_digits.grad[:, 1], torch.zeros_like(hidden.grad[:, 0]))
+
+    def test_counterfactual_loss_aligns_shifted_answer_spans(self):
+        hidden = torch.zeros(2, 4, 2, requires_grad=True)
+        targets = torch.tensor([[-100, -100, 0, 1], [-100, 1, 0, -100]])
+        assert first_counterfactual_positions(targets) == (2, 1)
+        loss = counterfactual_pair_loss(torch.nn.Identity(), hidden, targets)
+        torch.testing.assert_close(loss, torch.tensor(2.0).log())
+        loss.backward()
+        torch.testing.assert_close(hidden.grad[0, 2], torch.tensor([-0.5, 0.5]))
+        torch.testing.assert_close(hidden.grad[1, 1], torch.tensor([0.5, -0.5]))
+        torch.testing.assert_close(hidden.grad[0, 3], torch.zeros(2))
+        torch.testing.assert_close(hidden.grad[1, 2], torch.zeros(2))
+
+    def test_pair_contrastive_training_requires_adjacent_variants(self):
+        first = replace(
+            episode(),
+            metadata={"pair_id": "one", "pair_variant": 0},
+        )
+        second = replace(
+            episode(),
+            context="4 4 5 6 7 ",
+            answers=("10 9",),
+            metadata={"pair_id": "one", "pair_variant": 1},
+        )
+        model = wrapper()
+        losses = model.train(
+            episodes=[first, second],
+            max_length=4,
+            bptt_windows=0,
+            batch_size=2,
+            shuffle=False,
+            pair_contrastive_weight=2.0,
+        )
+        assert len(losses) == 1
+        assert torch.isfinite(torch.tensor(losses)).all()
+        with self.assertRaisesRegex(ValueError, "shuffle=False"):
+            model.train(
+                episodes=[first, second],
+                max_length=4,
+                batch_size=2,
+                pair_contrastive_weight=2.0,
+            )
+
     def setUp(self):
         torch.manual_seed(37)
         torch.set_num_threads(1)
@@ -120,6 +224,11 @@ class EpisodeTrainingTests(unittest.TestCase):
         assert (
             ids[0][:boundary].tolist() == tok(example.prompt, add_special_tokens=False)["input_ids"]
         )
+        no_eos = replace(example, supervise_eos=False)
+        other_ids, other_labels = tokenize_episodes(tok, [no_eos])
+        assert other_ids[0][-1] == tok.eos_token_id
+        assert other_labels[0][-1] == -100
+        assert other_labels[0][other_labels[0] != -100].tolist() == [8, 9]
 
     def test_episode_checkpoint_and_batch_accumulation_equivalence(self):
         eager = wrapper()
@@ -265,6 +374,13 @@ class EpisodeTrainingTests(unittest.TestCase):
 
 
 class CheckpointAndCLITests(unittest.TestCase):
+    def test_explicit_mps_reports_sandbox_visibility(self):
+        with (
+            patch("torch.backends.mps.is_available", return_value=False),
+            self.assertRaisesRegex(RuntimeError, "execution sandbox has GPU access"),
+        ):
+            Qwen35Wrapper(device="mps")
+
     def setUp(self):
         torch.manual_seed(37)
         torch.set_num_threads(1)
@@ -305,10 +421,39 @@ class CheckpointAndCLITests(unittest.TestCase):
                 model.save_pretrained(checkpoint_path)
             config_path = checkpoint_path / "adapter_config.json"
             config = json.loads(config_path.read_text())
+            for setting in ("memory_qk_scale", "aligned_qk_init", "memory_delta_read"):
+                config["adapter"].pop(setting)
+            config_path.write_text(json.dumps(config))
+            legacy = Qwen35Titans.from_pretrained(checkpoint_path, device="cpu")
+            assert legacy.generate_text(episode().prompt.rstrip(), max_new_tokens=3) == expected
             config["version"] = 999
             config_path.write_text(json.dumps(config))
             with self.assertRaises(ValueError):
                 Qwen35Titans.from_pretrained(checkpoint_path, device="cpu")
+
+    def test_scaled_query_key_configuration_roundtrips(self):
+        model = Qwen35Titans(
+            device="cpu",
+            layer_indices=[0],
+            memory_hidden_size=8,
+            memory_chunk_size=2,
+            memory_qk_scale=2.0,
+            aligned_qk_init=True,
+            memory_delta_read=True,
+        )
+        memory = model._titans_attn[0].memory
+        assert memory.qk_scale == 2.0
+        assert memory.aligned_qk_init
+        assert memory.delta_read
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "checkpoint"
+            model.save_pretrained(path)
+            loaded = Qwen35Titans.from_pretrained(path, device="cpu")
+            assert loaded._titans_attn[0].memory.qk_scale == 2.0
+            assert loaded._titans_attn[0].memory.aligned_qk_init
+            assert loaded._titans_attn[0].memory.delta_read
+            for name, value in model._adapter_tensors().items():
+                torch.testing.assert_close(value, loaded._adapter_tensors()[name], rtol=0, atol=0)
 
     def test_cli_train_validate_test_and_chat(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -381,11 +526,86 @@ class CheckpointAndCLITests(unittest.TestCase):
                         "2",
                     ]
                 )
+                session_file = root / "chat-session.json"
+                seen = []
+
+                def reply(_model, messages, **_kwargs):
+                    seen.append([message.content for message in messages])
+                    return "Ari"
+
+                with patch.object(Qwen35Titans, "generate", autospec=True, side_effect=reply):
+                    for prompt in ("My name is Ari", "What is my name?"):
+                        main(
+                            [
+                                "chat",
+                                "--checkpoint",
+                                str(checkpoint_path),
+                                "--device",
+                                "cpu",
+                                "--session-file",
+                                str(session_file),
+                                "--prompt",
+                                prompt,
+                            ]
+                        )
+                assert seen[1][1:4] == ["My name is Ari", "Ari", "What is my name?"]
+                assert len(json.loads(session_file.read_text())) == 5
+                memory_file = root / "fast-memory.safetensors"
+                for prompt in ("Remember 3 4 5", "What was 3 4 5?"):
+                    main(
+                        [
+                            "chat",
+                            "--checkpoint",
+                            str(checkpoint_path),
+                            "--device",
+                            "cpu",
+                            "--memory-state-file",
+                            str(memory_file),
+                            "--prompt",
+                            prompt,
+                            "--max-new-tokens",
+                            "2",
+                        ]
+                    )
+                    assert memory_file.exists()
+                main(
+                    [
+                        "chat",
+                        "--checkpoint",
+                        str(checkpoint_path),
+                        "--device",
+                        "cpu",
+                        "--memory-state-file",
+                        str(memory_file),
+                        "--prompt",
+                        "/reset",
+                    ]
+                )
+                assert not memory_file.exists()
+                main(
+                    [
+                        "chat",
+                        "--checkpoint",
+                        str(checkpoint_path),
+                        "--device",
+                        "cpu",
+                        "--session-file",
+                        str(session_file),
+                        "--prompt",
+                        "/reset",
+                    ]
+                )
+                assert len(json.loads(session_file.read_text())) == 1
             for command, split in (("validate", "validation"), ("test", "test")):
                 report = json.loads((root / f"{command}.json").read_text())
                 assert report["split"] == split
+                assert report["data_source"] == str(data)
                 assert set(report["evaluations"]) == {"normal", "disabled", "reset"}
                 assert report["evaluations"]["normal"]["metrics"]["count"] == 1
+            experiment = json.loads((root / "experiments/checkpoint/record.json").read_text())
+            assert experiment["training"]["options"]["device"] == "cpu"
+            assert set(experiment["reports"]) == {"validate.json", "test.json"}
+            assert (root / "experiments/checkpoint/README.md").exists()
 
     def test_cli_train_writes_monitor_and_validation_history(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -547,6 +767,36 @@ class EvaluationTests(unittest.TestCase):
         result = evaluate_episodes(Predictor(), [episode(), episode(1)])
         assert result["metrics"]["exact_match"] == 1.0
         assert result["by_task"]["recall"]["count"] == 2
+
+    def test_paired_metrics_require_both_counterfactual_answers(self):
+        episodes = [
+            MemoryEpisode(
+                id=f"pair-{variant}",
+                context=f"The name is {name}.",
+                question="What is the name?",
+                answers=(name,),
+                source="pair-test",
+                split="validation",
+                metadata={"pair_id": "one", "pair_variant": variant},
+            )
+            for variant, name in enumerate(("Alice", "David"))
+        ]
+
+        class Predictor:
+            def __init__(self, use_fact):
+                self.use_fact = use_fact
+                self.training_config = {"window_size": 256}
+
+            def generate_text(self, prompt, **kwargs):
+                return "David" if self.use_fact and "David" in prompt else "Alice"
+
+        solved = evaluate_episodes(Predictor(True), episodes)["paired_metrics"]
+        ignored = evaluate_episodes(Predictor(False), episodes)["paired_metrics"]
+        assert solved["pairs"] == 1
+        assert solved["both_correct"] == 1
+        assert solved["changed_prediction_rate"] == 1.0
+        assert ignored["both_correct"] == 0
+        assert ignored["changed_prediction_rate"] == 0.0
 
 
 if __name__ == "__main__":

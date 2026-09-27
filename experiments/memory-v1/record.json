@@ -1,0 +1,39 @@
+{
+  "id": "memory-v1",
+  "checkpoint": "checkpoints/memory-v1",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "layer_indices": [
+      11
+    ]
+  },
+  "source": "memory-v1",
+  "parent_checkpoint": null,
+  "dataset_manifest": null,
+  "training": {
+    "steps": 1000,
+    "loss_first_50": 3.2564439096450806,
+    "loss_last_50": 1.8294042981900274,
+    "last_validation_loss": 1.618173095703125,
+    "started_at": "2026-09-26T07:46:19.670000+00:00",
+    "ended_at": "2026-09-26T08:34:50.234000+00:00",
+    "optimizer_steps": 1000,
+    "episodes": 1000,
+    "seed": 42,
+    "interrupted": false,
+    "options": null,
+    "supervise_eos": null,
+    "window_size": 512,
+    "bptt_windows": 4,
+    "objective": "answer_ce"
+  },
+  "reports": {},
+  "supplementary_reports": [],
+  "note": "Initial synthetic memory baseline; answer accuracy remained low despite the loss plateau.",
+  "command": "",
+  "result": "User-reported test: 9/100 exact answers overall; multi-hop 0/37, recall 4/34, update 5/29."
+}

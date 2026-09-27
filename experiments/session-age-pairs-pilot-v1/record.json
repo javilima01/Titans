@@ -1,0 +1,170 @@
+{
+  "id": "session-age-pairs-pilot-v1",
+  "checkpoint": "checkpoints/session-age-pairs-pilot-v1",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "memory_qk_scale": 5.656854249492381,
+    "aligned_qk_init": true,
+    "memory_delta_read": false,
+    "layer_indices": [
+      11
+    ]
+  },
+  "source": ".datasets_cache/session-age-pairs-256-v1",
+  "parent_checkpoint": "checkpoints/session-pairs-contrastive-full-v1",
+  "dataset_manifest": {
+    "schema_version": 1,
+    "source": "session-counterfactual-v1",
+    "config": {
+      "seed": 53,
+      "gap_turns": 7,
+      "tasks": [
+        "age",
+        "age_update"
+      ]
+    },
+    "pair_counts": {
+      "train": 600,
+      "validation": 60,
+      "test": 60
+    },
+    "counts": {
+      "train": 1200,
+      "validation": 120,
+      "test": 120
+    }
+  },
+  "training": {
+    "steps": 50,
+    "loss_first_50": 2.947459789911906,
+    "loss_last_50": 2.947459789911906,
+    "last_validation_loss": 1.6545411745707195,
+    "started_at": "2026-09-26T13:25:01.512000+00:00",
+    "ended_at": "2026-09-26T13:25:58.721000+00:00",
+    "optimizer_steps": 50,
+    "episodes": 100,
+    "seed": 42,
+    "interrupted": false,
+    "options": null,
+    "supervise_eos": true,
+    "window_size": 256,
+    "bptt_windows": 4,
+    "objective": "answer_ce+pair_contrastive",
+    "pair_contrastive_weight": 16.0
+  },
+  "reports": {
+    "validation-24.json": {
+      "path": "checkpoints/session-age-pairs-pilot-v1/validation-24.json",
+      "split": "validation",
+      "evaluated_at": "2026-09-26T13:27:29.595500+00:00",
+      "window_size": 256,
+      "max_new_tokens": 8,
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 24,
+            "exact_match": 0.041666666666666664,
+            "precision": 0.041666666666666664,
+            "recall": 0.041666666666666664,
+            "f1": 0.041666666666666664
+          },
+          "paired_metrics": {
+            "pairs": 12,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.75
+          },
+          "by_task": {
+            "age": {
+              "count": 12,
+              "exact_match": 0.08333333333333333,
+              "precision": 0.08333333333333333,
+              "recall": 0.08333333333333333,
+              "f1": 0.08333333333333333
+            },
+            "age_update": {
+              "count": 12,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "disabled": {
+          "metrics": {
+            "count": 24,
+            "exact_match": 0.041666666666666664,
+            "precision": 0.041666666666666664,
+            "recall": 0.041666666666666664,
+            "f1": 0.041666666666666664
+          },
+          "paired_metrics": {
+            "pairs": 12,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "age": {
+              "count": 12,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "age_update": {
+              "count": 12,
+              "exact_match": 0.08333333333333333,
+              "precision": 0.08333333333333333,
+              "recall": 0.08333333333333333,
+              "f1": 0.08333333333333333
+            }
+          }
+        },
+        "reset": {
+          "metrics": {
+            "count": 24,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": {
+            "pairs": 12,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "age": {
+              "count": 12,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "age_update": {
+              "count": 12,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "supplementary_reports": [],
+  "note": "Age-focused pilot with all differing answer tokens and EOS supervision: changed answers, but zero fully correct pairs.",
+  "command": "",
+  "result": "Age-only pilot validation: 1/24 exact answers, zero fully correct pairs; 9/12 pairs changed their predictions."
+}

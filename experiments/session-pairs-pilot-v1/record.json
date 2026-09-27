@@ -1,0 +1,64 @@
+{
+  "id": "session-pairs-pilot-v1",
+  "checkpoint": "checkpoints/session-pairs-pilot-v1",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "layer_indices": [
+      11
+    ]
+  },
+  "source": ".datasets_cache/session-pairs-256-v1",
+  "parent_checkpoint": null,
+  "dataset_manifest": {
+    "schema_version": 1,
+    "source": "session-counterfactual-v1",
+    "config": {
+      "seed": 47,
+      "gap_turns": 7,
+      "tasks": [
+        "name",
+        "age",
+        "preference",
+        "repo_entry",
+        "age_update",
+        "repo_update"
+      ]
+    },
+    "pair_counts": {
+      "train": 600,
+      "validation": 60,
+      "test": 60
+    },
+    "counts": {
+      "train": 1200,
+      "validation": 120,
+      "test": 120
+    }
+  },
+  "training": {
+    "steps": 18,
+    "loss_first_50": 3.913202923697394,
+    "loss_last_50": 3.913202923697394,
+    "started_at": "2026-09-26T12:27:07.558000+00:00",
+    "ended_at": "2026-09-26T12:33:27.826000+00:00",
+    "optimizer_steps": 18,
+    "episodes": 100,
+    "seed": 42,
+    "interrupted": true,
+    "last_validation_loss": null,
+    "options": null,
+    "supervise_eos": null,
+    "window_size": 256,
+    "bptt_windows": 4,
+    "objective": "answer_ce"
+  },
+  "reports": {},
+  "supplementary_reports": [],
+  "note": "First paired-dataset pilot.",
+  "command": "",
+  "result": ""
+}

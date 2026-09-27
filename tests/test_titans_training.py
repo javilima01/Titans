@@ -18,7 +18,8 @@ def reference_memory(module, inputs):
     x = module.norm(inputs)
     q, k, v = module.to_q(x), module.to_k(x), module.to_v(x)
     if module.normalize_qk:
-        q, k = functional.normalize(q, dim=-1), functional.normalize(k, dim=-1)
+        q = functional.normalize(q, dim=-1) * module.qk_scale
+        k = functional.normalize(k, dim=-1) * module.qk_scale
     alpha = module.to_alpha(x).sigmoid()
     eta = module.to_eta(x).sigmoid()
     theta = module.max_lr * module.to_theta(x).sigmoid()
@@ -50,7 +51,10 @@ def reference_memory(module, inputs):
             }
             sequence.append(torch.func.functional_call(module.memory, params, (q[batch, t],)))
         outputs.append(torch.stack(sequence))
-    return torch.stack(outputs)
+    outputs = torch.stack(outputs)
+    if module.delta_read:
+        outputs = outputs - module.memory(q)
+    return outputs
 
 
 class TinyTokenizer:
@@ -118,6 +122,22 @@ class MemoryTests(unittest.TestCase):
                     assert p.grad is not None
                     assert other.grad is not None
                     torch.testing.assert_close(p.grad, other.grad, atol=1e-10, rtol=1e-7)
+
+    def test_scaled_aligned_queries_match_reference(self):
+        memory = TitansMemory(
+            4, 7, chunk_size=2, qk_scale=4**0.25, aligned_qk_init=True, delta_read=True
+        ).double()
+        torch.testing.assert_close(memory.to_q.weight, torch.eye(4, dtype=torch.float64))
+        torch.testing.assert_close(memory.to_k.weight, torch.eye(4, dtype=torch.float64))
+        reference = copy.deepcopy(memory)
+        inputs = torch.randn(2, 4, 4, dtype=torch.float64, requires_grad=True)
+        other_inputs = inputs.detach().clone().requires_grad_()
+        actual = memory(inputs)
+        expected = reference_memory(reference, other_inputs)
+        torch.testing.assert_close(actual, expected, atol=1e-10, rtol=1e-8)
+        actual.square().sum().backward()
+        expected.square().sum().backward()
+        torch.testing.assert_close(inputs.grad, other_inputs.grad, atol=1e-10, rtol=1e-7)
 
     def test_causality_batch_isolation_and_padding_state(self):
         memory = TitansMemory(4, 7, chunk_size=3).eval()

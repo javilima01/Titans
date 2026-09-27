@@ -53,12 +53,68 @@ matplotlib in the venv:
 .venv/bin/uv pip install --python .venv/bin/python matplotlib
 ```
 
+Training and evaluation also update an experiment record under `experiments/`.
+Each checkpoint gets a folder with `README.md` and `record.json` containing the
+dataset manifest, adapter settings, training options, loss summary, and compact
+evaluation metrics. [The index](experiments/README.md) links the completed and
+failed runs. `validate` and `test` always save a full JSON report; when
+`--report` is omitted they give it a timestamped name inside the checkpoint.
+Use `--experiment-dir PATH` to keep records elsewhere. To refresh a record
+after adding a report manually, run:
+
+```sh
+.venv/bin/python -m src.llm.helpers.experiment_tracking \
+  --checkpoint checkpoints/session-pairs-contrastive-full-v1
+```
+
 Use `--device cpu|mps|cuda` and `--dtype float32|bfloat16` to override automatic
 selection. New CLI runs default to one adapter at layer 11, internal width 256,
 memory chunk size 16, Qwen window size 512, and checkpointing enabled. Start with
 `train --limit 8 --max-steps 2` to check resource use. These are starting settings,
 not measured performance optima. Existing checkpoints/reports are not overwritten.
 Chat supports `/reset` and `/exit`; it replays conversation history per turn.
+For conversations that span process launches, pass a per-user `--session-file`:
+
+```sh
+.venv/bin/python main.py chat --checkpoint checkpoints/session-profile-example \
+  --session-file .sessions/alice.json
+```
+
+The session file stores the transcript after each response. The next run
+replays it to reconstruct the Titans fast state. Replay cost grows with the
+transcript length; `/reset` clears the saved conversation.
+
+For compact neural state instead of replaying the full transcript, use a
+per-user `--memory-state-file` with an adapter checkpoint. The file is bound to
+the exact adapter weights and is updated after each answer. Reuse the same file
+on later launches; `/reset` removes it. This mode keeps only the Titans fast
+state, so prior messages are no longer in Qwen's ordinary attention window:
+
+```sh
+.venv/bin/python main.py chat --checkpoint checkpoints/session-broad-pairs-aligned-v1 \
+  --memory-state-file .sessions/alice.safetensors --prompt "My time zone is Berlin"
+.venv/bin/python main.py chat --checkpoint checkpoints/session-broad-pairs-aligned-v1 \
+  --memory-state-file .sessions/alice.safetensors --prompt "What is my time zone?"
+```
+
+The compact-state mode is experimental. The synthetic training data tests
+carrying facts across Qwen windows within one sequence; measure actual
+cross-process recall separately before relying on it for personal or codebase
+facts. A two-process smoke check recovered one trained-format build-tool fact;
+in a five-process check, a correction and second repository fact were not
+recalled correctly. Do not share one state file between users or adapter
+checkpoints.
+For a controlled held-out check, `state_evaluation` memorizes each episode's
+prior sessions, saves and reloads the fast state, then asks the question with
+only that state and the new session's prompt. It compares against a reset run
+and updates the checkpoint's experiment record:
+
+```sh
+.venv/bin/python -m src.llm.helpers.state_evaluation \
+  --data .datasets_cache/session-broad-pairs-256-v1 \
+  --checkpoint checkpoints/session-broad-pairs-aligned-v1 \
+  --device mps --limit 40
+```
 
 All commands accept saved normalized JSONL data via `--data PATH` (file or
 directory). Training and evaluation can also download normalized episodes directly:
@@ -81,9 +137,10 @@ split in this loader; use a separately held-out, correctly labeled JSONL subset.
 
 ### Episode training and bounded memory
 
-The episode path uses cross-entropy on **answer tokens and EOS only**. Its prompt
-ends with `Answer:` followed by a newline, keeping Qwen's tokenization boundary
-consistent between training and generation. The vocabulary head runs only on
+The episode path uses cross-entropy on **answer tokens and optional EOS**. Plain
+episodes end with `Answer:` followed by a newline; multi-session episodes use
+Qwen's non-thinking assistant prefix. Both keep tokenization consistent between
+training and generation. The vocabulary head runs only on
 supervised positions. Context remains available for differentiable memory writes.
 
 Qwen processes fixed windows; Titans fast weights **and momentum** carry between
@@ -108,6 +165,10 @@ This prevents fast-weight blowups observed during a real long-episode smoke test
 outer optimizer gradient clipping alone cannot prevent those forward-pass failures.
 Python callers can configure `max_inner_grad_norm` on `Qwen35Titans` (`None` disables
 it). This stability addition is saved with the checkpoint.
+New adapters initialize the forgetting gate near `sigmoid(-8)` so an early write
+is still present across hundreds of tokens. The inner update gate starts near
+`sigmoid(-2)`, and the output branch starts near `sigmoid(-2)`. These gates remain
+trainable. Existing checkpoints keep their saved gate weights.
 
 ### Checkpoint API and evaluation
 
@@ -213,6 +274,145 @@ independent random associations but share task templates; they test new facts,
 not generalization to unseen task templates. Synthetic filler is deliberately
 simple. Add real-document tasks after recall works. Output directories must be
 new; existing datasets are never silently overwritten.
+
+### Generate multi-session training episodes
+
+`synthetic-sessions` creates Qwen chat-formatted histories with a fact in session 1,
+an optional correction in session 2, unrelated turns, and a question in session 3.
+It supports names, ages, preferences, time zones, editors, current projects,
+repository entry points, runtimes, test commands, config files, build tools,
+and corrections to ages, entry points, and test commands.
+The generated splits have independent users and repositories. They supervise
+answer tokens without EOS, so a low loss cannot come mainly from learning when
+to stop. For example:
+
+```sh
+.venv/bin/python -m src.llm.helpers.dataset_generation synthetic-sessions \
+  --output .datasets_cache/session-profile-answer-only-v2 \
+  --train-size 1200 --validation-size 160 --test-size 160 \
+  --seed 44 --gap-turns 7 --tasks name age preference age_update
+
+.venv/bin/python main.py train --data .datasets_cache/session-profile-answer-only-v2 \
+  --output checkpoints/session-profile-example --layers 11 --window-size 256 \
+  --validation-limit 40 --gradient-accumulation-steps 4 \
+  --lr 0.0003 --no-checkpoint-decoder
+```
+
+For harder training, `synthetic-session-pairs` changes one earlier fact while
+holding the question and trailing conversation fixed. Each adjacent pair has
+two different correct answers. Keep the pair in one optimizer step with
+`--batch-size 2 --no-shuffle`:
+
+```sh
+.venv/bin/python -m src.llm.helpers.dataset_generation synthetic-session-pairs \
+  --output .datasets_cache/session-pairs-256-v1 \
+  --train-pairs 600 --validation-pairs 60 --test-pairs 60 \
+  --seed 47 --gap-turns 7 \
+  --tasks name age preference repo_entry age_update repo_update
+
+.venv/bin/python main.py train --data .datasets_cache/session-pairs-256-v1 \
+  --output checkpoints/session-pairs-256-v1 --layers 11 --window-size 256 \
+  --memory-qk-scale 5.656854249492381 --aligned-qk-init \
+  --bptt-windows 4 --batch-size 2 --no-shuffle --lr 0.001
+
+.venv/bin/python main.py train --data .datasets_cache/session-pairs-256-v1 \
+  --checkpoint checkpoints/session-pairs-256-v1 \
+  --output checkpoints/session-pairs-contrastive-v1 --window-size 256 \
+  --bptt-windows 4 --batch-size 2 --no-shuffle \
+  --pair-contrastive-weight 16 --lr 0.0003
+```
+
+There are 1,200 training episodes (600 pairs). With the saved Qwen tokenizer,
+both prompts in every pair have the same final 256 tokens, the changed fact is
+at least 277 tokens before the answer, and each prompt fits in 512 tokens.
+Measure held-out paired accuracy and compare `normal` with `reset` and
+`disabled`; a lower training loss alone does not establish recall.
+For a broader fact mix, omit `--tasks`; the current defaults include user
+preferences and several repository facts:
+
+```sh
+.venv/bin/python -m src.llm.helpers.dataset_generation synthetic-session-pairs \
+  --output .datasets_cache/session-broad-pairs-256-v1 \
+  --train-pairs 700 --validation-pairs 80 --test-pairs 80 \
+  --seed 61 --gap-turns 7
+```
+
+This produces 1,400 training episodes. The changed supporting fact is 276–312
+tokens before the question on the saved tokenizer, and each pair has identical
+final 256 prompt tokens. The templates are a synthetic recall probe; success
+on them does not establish recall of arbitrary real user or codebase facts.
+Use `novel_value_dataset` to replace only held-out answers with values absent
+from the training pools while keeping the questions and surrounding sessions
+fixed:
+
+```sh
+.venv/bin/python -m src.llm.helpers.novel_value_dataset \
+  --source .datasets_cache/session-broad-pairs-256-v1 \
+  --output .datasets_cache/session-broad-novel-values-v1 --seed 71
+```
+
+The separate `session-unseen-pairs-256-v1` dataset holds out three entire fact
+categories: work hours, deployment region, and release branch. Together these
+two checks distinguish recall of familiar answer choices from transfer to new
+values and fact types.
+
+```sh
+.venv/bin/python -m src.llm.helpers.dataset_generation synthetic-session-pairs \
+  --output .datasets_cache/session-unseen-pairs-256-v1 \
+  --train-pairs 0 --validation-pairs 80 --test-pairs 80 \
+  --seed 67 --gap-turns 7 \
+  --tasks user_work_hours repo_deploy_region repo_release_branch
+```
+
+To compare neural memory with a simple text-retrieval control, run
+`retrieval_evaluation` on the same held-out episodes. It ranks earlier user
+messages by lexical overlap with the question and places the selected message
+next to the question with Titans memory disabled. The `oracle` mode uses the
+dataset's marked support span as an upper bound. Both scores and the retrieval
+hit rate are saved in the checkpoint report and `experiments/` record:
+
+```sh
+.venv/bin/python -m src.llm.helpers.retrieval_evaluation \
+  --data .datasets_cache/session-broad-novel-values-v1 \
+  --checkpoint checkpoints/session-broad-pairs-aligned-v1 \
+  --device mps --limit 40
+```
+
+The lexical baseline is easiest on these templated conversations; evaluate
+realistic paraphrases, conflicts, and unrelated facts before treating its
+synthetic hit rate as a product result.
+
+The optional second stage adds a ranking loss at the first answer token that
+differs within each pair. It compares both candidate tokens under both
+histories, so an answer prior shared by the pair cancels. `--batch-size 2` and
+`--no-shuffle` are required to preserve pair alignment. Training loss includes
+this extra term; validation loss remains answer-token cross-entropy, and
+`paired_metrics.both_correct_rate` in generation reports is the direct recall
+check. `--supervise-eos` also trains the end-of-answer token when short answers
+do not stop cleanly. Later answer tokens are excluded from the ranking loss
+because teacher forcing can expose an earlier differing answer token.
+Query/key scaling and aligned initialization apply only to new adapters;
+saved older checkpoints retain their original settings.
+On Apple Silicon, add `--device mps --no-checkpoint-decoder` when PyTorch reports
+MPS available. A restricted execution sandbox may hide the GPU even on a
+supported Mac; check `.venv/bin/python -c 'import torch; print(torch.backends.mps.is_available())'`
+in the same environment that will run training.
+
+`gap_turns` counts filler user/assistant exchanges, not tokens. With the saved Qwen
+tokenizer, every latest fact in this dataset is at least 277 tokens before the
+answer, and every prompt is under 512 tokens. This trains and tests transfer
+across a 256-token window boundary. For all six tasks at a 512-token window,
+use `--gap-turns 15`; the generated examples have the latest fact at least 541
+tokens before the answer. Each record remains one
+memory lifetime; training carries Titans state between windows inside that
+record. A checkpoint does not store per-user facts or fast state. Use
+`chat --session-file` to keep a per-user transcript and reconstruct fast state
+across process launches. A production service would need equivalent per-user
+storage and should process new turns incrementally to avoid replay cost.
+
+For a later stage that also trains repository entry points and corrections, include
+`repo_entry repo_update` in `--tasks`. The profile-only first stage keeps answer
+lengths similar while testing whether cross-window recall works at all.
 
 ### Download selected Hugging Face data
 

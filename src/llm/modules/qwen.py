@@ -1,4 +1,5 @@
 import json
+import math
 import os
 from pathlib import Path
 import tempfile
@@ -12,12 +13,19 @@ from torch.utils.checkpoint import checkpoint
 from transformers import AutoTokenizer, Qwen3_5ForCausalLM, Qwen3_5Tokenizer
 from transformers.utils import logging
 
+from src.llm.helpers.state_io import (
+    checkpoint_digest,
+    load_fast_memory_state,
+    save_fast_memory_state,
+)
 from src.llm.helpers.utils import ensure_model
 from src.llm.helpers.visualize import print_module_tree
 from src.llm.modules.titans import AttentionWithTitans, TitansMemory
 from src.llm.modules.training import (
     chunked_lm_loss,
+    counterfactual_pair_loss,
     detach_memory_states,
+    first_counterfactual_positions,
     token_batches,
     tokenize_episodes,
     tokenize_windows,
@@ -45,6 +53,12 @@ class Qwen35Wrapper:
                 else "cpu"
             )
         self.device = torch.device(device)
+        if self.device.type == "mps" and not torch.backends.mps.is_available():
+            msg = (
+                "MPS is unavailable to this process. On a supported Mac, check whether "
+                "the execution sandbox has GPU access."
+            )
+            raise RuntimeError(msg)
         self.dtype = dtype or (
             torch.bfloat16
             if self.device.type == "cuda" and torch.cuda.is_bf16_supported()
@@ -115,6 +129,9 @@ class Qwen35Titans(Qwen35Wrapper):
         memory_chunk_size: int = 16,
         checkpoint_memory: bool = True,
         max_inner_grad_norm: float | None = 1.0,
+        memory_qk_scale: float = 1.0,
+        aligned_qk_init: bool = False,
+        memory_delta_read: bool = False,
     ):
         super().__init__(device=device, dtype=dtype)
         self.model.requires_grad_(False)
@@ -125,6 +142,9 @@ class Qwen35Titans(Qwen35Wrapper):
             memory_chunk_size,
             checkpoint_memory,
             max_inner_grad_norm,
+            memory_qk_scale,
+            aligned_qk_init,
+            memory_delta_read,
         )
         self._training_config = {}
         # Fast memory is not part of HF's KV cache yet. Recompute the prefix so
@@ -146,6 +166,9 @@ class Qwen35Titans(Qwen35Wrapper):
         memory_chunk_size=16,
         checkpoint_memory=True,
         max_inner_grad_norm=1.0,
+        memory_qk_scale=1.0,
+        aligned_qk_init=False,
+        memory_delta_read=False,
     ):
         ids = self._full_attention_layers() if layer_indices is None else layer_indices
         full_attention = set(self._full_attention_layers())
@@ -159,6 +182,9 @@ class Qwen35Titans(Qwen35Wrapper):
                 memory_chunk_size,
                 checkpoint_memory,
                 max_inner_grad_norm,
+                memory_qk_scale,
+                aligned_qk_init,
+                memory_delta_read,
             )
 
     def _add_to_existing(
@@ -168,6 +194,9 @@ class Qwen35Titans(Qwen35Wrapper):
         memory_chunk_size=16,
         checkpoint_memory=True,
         max_inner_grad_norm=1.0,
+        memory_qk_scale=1.0,
+        aligned_qk_init=False,
+        memory_delta_read=False,
     ):
         layer = self.model.model.layers[layer_idx]
 
@@ -184,6 +213,9 @@ class Qwen35Titans(Qwen35Wrapper):
             chunk_size=memory_chunk_size,
             checkpoint_chunks=checkpoint_memory,
             max_inner_grad_norm=max_inner_grad_norm,
+            qk_scale=memory_qk_scale,
+            aligned_qk_init=aligned_qk_init,
+            delta_read=memory_delta_read,
         )
 
         param = next(attention.parameters())
@@ -192,6 +224,7 @@ class Qwen35Titans(Qwen35Wrapper):
         wrapped_attention = AttentionWithTitans(
             attention=attention,
             memory=memory,
+            gate_init=0.0 if memory_delta_read else -2.0,
             memory_id=layer_idx,
         )
         wrapped_attention.to(device=param.device)
@@ -234,6 +267,9 @@ class Qwen35Titans(Qwen35Wrapper):
                 "memory_chunk_size": memory.chunk_size,
                 "checkpoint_memory": memory.checkpoint_chunks,
                 "max_inner_grad_norm": memory.max_inner_grad_norm,
+                "memory_qk_scale": memory.qk_scale,
+                "aligned_qk_init": memory.aligned_qk_init,
+                "memory_delta_read": memory.delta_read,
             }
             for memory in memories
         ]
@@ -315,6 +351,7 @@ class Qwen35Titans(Qwen35Wrapper):
             msg = "Checkpoint tokenizer vocabulary exceeds the base model vocabulary"
             raise ValueError(msg)
         model._training_config = config.get("training", {})
+        model._checkpoint_digest = checkpoint_digest(path)
         model.model.eval()
         return model
 
@@ -365,7 +402,9 @@ class Qwen35Titans(Qwen35Wrapper):
         temperature: float = 0.0,
         top_p: float = 0.9,
         stop_at_newline: bool = False,
-    ) -> str:
+        memory_state: dict | None = None,
+        return_memory_state: bool = False,
+    ) -> str | tuple[str, dict]:
         """Generate with bounded Qwen windows and per-request Titans state.
 
         Completed windows commit state once. The current partial window is
@@ -377,13 +416,16 @@ class Qwen35Titans(Qwen35Wrapper):
         if max_new_tokens < 1 or temperature < 0 or not 0 < top_p <= 1:
             msg = "Require max_new_tokens >= 1, temperature >= 0 and 0 < top_p <= 1"
             raise ValueError(msg)
+        if memory_state is not None and memory_mode != "normal":
+            msg = "Saved fast-memory state requires normal memory mode"
+            raise ValueError(msg)
         ids = self.tokenizer(prompt, add_special_tokens=False)["input_ids"]
         if not ids:
             msg = "The generation prompt must contain at least one token"
             raise ValueError(msg)
         self.model.eval()
         device = self.model.model.embed_tokens.weight.device
-        states = {}
+        states = memory_state or {}
         offset = 0
 
         def forward(tokens, initial):
@@ -391,6 +433,23 @@ class Qwen35Titans(Qwen35Wrapper):
             return self._stream_forward(
                 inputs, torch.ones_like(inputs, dtype=torch.bool), initial, memory_mode=memory_mode
             )
+
+        def finish(text):
+            if not return_memory_state:
+                return text
+            # Finish each layer's current memory chunk before carrying it to a
+            # later session. Masked pad tokens preserve fast weights/momentum.
+            multiple = math.lcm(*(layer.memory.chunk_size for layer in self._titans_attn))
+            padding = (-len(current)) % multiple
+            pad_id = self.tokenizer.pad_token_id or self.tokenizer.eos_token_id
+            final_tokens = torch.tensor([current + [pad_id] * padding], device=device)
+            valid = torch.ones_like(final_tokens, dtype=torch.bool)
+            if padding:
+                valid[:, -padding:] = False
+            _, final_state = self._stream_forward(
+                final_tokens, valid, states, memory_mode=memory_mode
+            )
+            return text, detach_memory_states(final_state)
 
         while len(ids) - offset > window_size:
             _, states = forward(ids[offset : offset + window_size], states)
@@ -414,11 +473,62 @@ class Qwen35Titans(Qwen35Wrapper):
             generated.append(token)
             text = self.tokenizer.decode(generated, skip_special_tokens=True)
             if stop_at_newline and "\n" in text:
-                return text.split("\n", 1)[0].strip()
+                return finish(text.split("\n", 1)[0].strip())
             if len(current) == window_size:
                 states, current = final, []
             current.append(token)
-        return self.tokenizer.decode(generated, skip_special_tokens=True).strip()
+        return finish(self.tokenizer.decode(generated, skip_special_tokens=True).strip())
+
+    def save_memory_state(self, path: str | Path, states: dict) -> None:
+        """Save one user's fast state for this exact adapter checkpoint."""
+        if not hasattr(self, "_checkpoint_digest"):
+            msg = "Save the adapter checkpoint before saving per-user memory state"
+            raise ValueError(msg)
+        save_fast_memory_state(path, states, adapter_digest=self._checkpoint_digest)
+
+    def load_memory_state(self, path: str | Path) -> dict:
+        """Load one user's fast state onto the adapter device."""
+        if not hasattr(self, "_checkpoint_digest"):
+            msg = "Load an adapter checkpoint before loading per-user memory state"
+            raise ValueError(msg)
+        device = self.model.model.embed_tokens.weight.device
+        states = load_fast_memory_state(path, adapter_digest=self._checkpoint_digest, device=device)
+        if set(states) != {layer.memory_id for layer in self._titans_attn}:
+            msg = "Fast-memory state has different adapter layers"
+            raise ValueError(msg)
+        return states
+
+    @torch.no_grad()
+    def memorize_text(
+        self,
+        text: str,
+        *,
+        memory_state: dict | None = None,
+        window_size: int | None = None,
+    ) -> dict:
+        """Write text into fast memory and finish the last memory chunk."""
+        window_size = window_size or self.training_config.get("window_size", 512)
+        self._check_window_size(window_size)
+        ids = self.tokenizer(text, add_special_tokens=False)["input_ids"]
+        if not ids:
+            msg = "Cannot memorize empty text"
+            raise ValueError(msg)
+        self.model.eval()
+        device = self.model.model.embed_tokens.weight.device
+        states = memory_state or {}
+        multiple = math.lcm(*(layer.memory.chunk_size for layer in self._titans_attn))
+        pad_id = self.tokenizer.pad_token_id
+        if pad_id is None:
+            pad_id = self.tokenizer.eos_token_id
+        for start in range(0, len(ids), window_size):
+            window = ids[start : start + window_size]
+            padding = (-len(window)) % multiple
+            inputs = torch.tensor([window + [pad_id] * padding], device=device)
+            valid = torch.ones_like(inputs, dtype=torch.bool)
+            if padding:
+                valid[:, -padding:] = False
+            _, states = self._stream_forward(inputs, valid, states)
+        return detach_memory_states(states)
 
     def generate(self, msgs: list[Message] | Message, max_new_tokens: int = 200, **kwargs):
         prompt = self.tokenizer.apply_chat_template(
@@ -460,7 +570,15 @@ class Qwen35Titans(Qwen35Wrapper):
         return float(total_loss) / total_tokens, total_tokens
 
     def _episode_backward(
-        self, inputs, mask, targets, window_size, bptt_windows, loss_chunk_size, checkpoint_window
+        self,
+        inputs,
+        mask,
+        targets,
+        window_size,
+        bptt_windows,
+        loss_chunk_size,
+        checkpoint_window,
+        pair_contrastive_weight=0.0,
     ):
         """Backpropagate within fixed spans, carrying detached state between them."""
         states = {}
@@ -468,6 +586,14 @@ class Qwen35Titans(Qwen35Wrapper):
         length = inputs.shape[1]
         horizon = window_size * bptt_windows if bptt_windows else length
         total_loss = torch.zeros((), device=device)
+        pair_positions = (
+            first_counterfactual_positions(targets) if pair_contrastive_weight else None
+        )
+        if pair_positions is not None and pair_positions[0] // window_size != (
+            pair_positions[1] // window_size
+        ):
+            msg = "Paired answers diverge in different windows; increase --window-size"
+            raise ValueError(msg)
         for span in range(0, length, horizon):
             stop = min(span + horizon, length)
             # Prefix-only spans cannot affect any loss across the following detach.
@@ -489,6 +615,13 @@ class Qwen35Titans(Qwen35Wrapper):
                         loss = loss + chunked_lm_loss(
                             self.model.lm_head, hidden, labels.to(device), loss_chunk_size
                         )
+                        if pair_positions is not None and all(
+                            start <= position < end for position in pair_positions
+                        ):
+                            relative = tuple(position - start for position in pair_positions)
+                            loss = loss + pair_contrastive_weight * counterfactual_pair_loss(
+                                self.model.lm_head, hidden, labels, positions=relative
+                            )
                 if supervised:
                     loss.backward()
                     total_loss += loss.detach()
@@ -516,13 +649,16 @@ class Qwen35Titans(Qwen35Wrapper):
         on_step: Callable[[dict], None] | None = None,
         validation_episodes: Iterable[MemoryEpisode] | None = None,
         on_validation: Callable[[dict], None] | None = None,
+        pair_contrastive_weight: float = 0.0,
     ) -> list[float]:
         """Train only memory initializations, projections, update gates and residual gates.
 
         Returns token-mean losses per optimizer step (including a final partial
         accumulation group). Pass either legacy texts or normalized QA episodes.
         Episodes retain state across max_length-token Qwen windows, supervise
-        answers/EOS and detach every bptt_windows windows (0 = full unroll).
+        answers and optionally EOS, and detach every bptt_windows windows
+        (0 = full unroll). Use shuffle=False with adjacent counterfactual pairs
+        and batch_size=2 to keep each pair in one optimizer step.
         Validation episodes are scored once per completed epoch under no_grad,
         carrying memory across each episode's windows like generation does;
         on_validation receives {"epoch", "step", "val_loss", "target_tokens"}.
@@ -539,6 +675,9 @@ class Qwen35Titans(Qwen35Wrapper):
         if lr <= 0 or weight_decay < 0 or max_grad_norm <= 0:
             msg = "Use positive lr/max_grad_norm and nonnegative weight_decay"
             raise ValueError(msg)
+        if pair_contrastive_weight < 0:
+            msg = "pair_contrastive_weight must be nonnegative"
+            raise ValueError(msg)
         if torch.is_inference_mode_enabled():
             msg = "Training cannot run inside torch.inference_mode()"
             raise RuntimeError(msg)
@@ -549,6 +688,20 @@ class Qwen35Titans(Qwen35Wrapper):
             msg = "Require bptt_windows >= 0 and max_steps >= 1"
             raise ValueError(msg)
         episode_mode = episodes is not None
+        if pair_contrastive_weight:
+            if not episode_mode or batch_size != 2 or shuffle:
+                msg = "Pair contrastive loss requires episodes, batch_size=2 and shuffle=False"
+                raise ValueError(msg)
+            episodes = list(episodes)
+            if len(episodes) % 2 or any(
+                first.metadata.get("pair_id") != second.metadata.get("pair_id")
+                or first.metadata.get("pair_variant") != 0
+                or second.metadata.get("pair_variant") != 1
+                or first.answers == second.answers
+                for first, second in zip(episodes[::2], episodes[1::2], strict=True)
+            ):
+                msg = "Pair contrastive loss requires adjacent counterfactual variants"
+                raise ValueError(msg)
         labels = None
         if episode_mode:
             self._check_window_size(max_length)
@@ -556,7 +709,10 @@ class Qwen35Titans(Qwen35Wrapper):
             self._training_config = {
                 "window_size": max_length,
                 "bptt_windows": bptt_windows,
-                "objective": "answer_ce",
+                "objective": (
+                    "answer_ce+pair_contrastive" if pair_contrastive_weight else "answer_ce"
+                ),
+                "pair_contrastive_weight": pair_contrastive_weight,
             }
         else:
             windows = tokenize_windows(self.tokenizer, train_texts, max_length)
@@ -653,6 +809,7 @@ class Qwen35Titans(Qwen35Wrapper):
                                 bptt_windows,
                                 loss_chunk_size,
                                 checkpoint_decoder,
+                                pair_contrastive_weight,
                             )
                         else:
                             tensors = (inputs, mask, targets)

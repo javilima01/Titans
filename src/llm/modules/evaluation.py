@@ -45,18 +45,24 @@ def evaluate_episodes(
     max_new_tokens: int = 32,
     memory_mode: str = "normal",
     on_example: Callable[[dict], None] | None = None,
+    predict: Callable[[MemoryEpisode], str] | None = None,
 ) -> dict:
     """Greedy decoding, macro metrics, per-task breakdown, and predictions."""
     predictions = []
     groups = defaultdict(list)
+    paired = defaultdict(dict)
     for episode in episodes:
-        prediction = model.generate_text(
-            episode.prompt,
-            window_size=window_size,
-            max_new_tokens=max_new_tokens,
-            memory_mode=memory_mode,
-            temperature=0.0,
-            stop_at_newline=True,
+        prediction = (
+            predict(episode)
+            if predict is not None
+            else model.generate_text(
+                episode.prompt,
+                window_size=window_size,
+                max_new_tokens=max_new_tokens,
+                memory_mode=memory_mode,
+                temperature=0.0,
+                stop_at_newline=True,
+            )
         )
         scores = answer_metrics(prediction, episode.answers)
         task = episode.metadata.get("task", episode.source)
@@ -69,6 +75,8 @@ def evaluate_episodes(
         }
         predictions.append(result)
         groups[task].append(scores)
+        if "pair_id" in episode.metadata:
+            paired[episode.metadata["pair_id"]][episode.metadata["pair_variant"]] = result
         if on_example is not None:
             on_example({"completed": len(predictions), "id": episode.id, **scores})
     if not predictions:
@@ -84,7 +92,7 @@ def evaluate_episodes(
             },
         }
 
-    return {
+    report = {
         "memory_mode": memory_mode,
         "window_size": window_size or model.training_config.get("window_size", 512),
         "max_new_tokens": max_new_tokens,
@@ -92,3 +100,21 @@ def evaluate_episodes(
         "by_task": {task: average(rows) for task, rows in sorted(groups.items())},
         "predictions": predictions,
     }
+    if paired:
+        complete = [variants for variants in paired.values() if set(variants) == {0, 1}]
+        both_correct = sum(
+            variants[0]["exact_match"] == variants[1]["exact_match"] == 1.0 for variants in complete
+        )
+        changed = sum(
+            normalize_answer(variants[0]["prediction"])
+            != normalize_answer(variants[1]["prediction"])
+            for variants in complete
+        )
+        report["paired_metrics"] = {
+            "pairs": len(complete),
+            "incomplete_pairs": len(paired) - len(complete),
+            "both_correct": both_correct,
+            "both_correct_rate": both_correct / len(complete) if complete else 0.0,
+            "changed_prediction_rate": changed / len(complete) if complete else 0.0,
+        }
+    return report

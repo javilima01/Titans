@@ -221,4 +221,5 @@ __marimo__/
 .models_cache/
 .datasets_cache/
 checkpoints/
+.sessions/
 .vscode

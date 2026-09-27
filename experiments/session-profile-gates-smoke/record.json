@@ -1,0 +1,57 @@
+{
+  "id": "session-profile-gates-smoke",
+  "checkpoint": "checkpoints/session-profile-gates-smoke",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "layer_indices": [
+      11
+    ]
+  },
+  "source": ".datasets_cache/session-profile-256-v1",
+  "parent_checkpoint": null,
+  "dataset_manifest": {
+    "schema_version": 1,
+    "source": "session-synthetic-v1",
+    "config": {
+      "seed": 42,
+      "gap_turns": 7,
+      "tasks": [
+        "name",
+        "age",
+        "preference",
+        "age_update"
+      ]
+    },
+    "counts": {
+      "train": 2400,
+      "validation": 160,
+      "test": 160
+    }
+  },
+  "training": {
+    "steps": 4,
+    "loss_first_50": 5.238682104616749,
+    "loss_last_50": 5.238682104616749,
+    "last_validation_loss": 2.4523444797681724,
+    "started_at": "2026-09-26T11:11:12.841000+00:00",
+    "ended_at": "2026-09-26T11:13:08.085000+00:00",
+    "optimizer_steps": 4,
+    "episodes": 16,
+    "seed": 42,
+    "interrupted": false,
+    "options": null,
+    "supervise_eos": null,
+    "window_size": 256,
+    "bptt_windows": 4,
+    "objective": "answer_ce"
+  },
+  "reports": {},
+  "supplementary_reports": [],
+  "note": "Gate initialization smoke run.",
+  "command": "",
+  "result": ""
+}

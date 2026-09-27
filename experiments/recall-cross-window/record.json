@@ -1,0 +1,123 @@
+{
+  "id": "recall-cross-window",
+  "checkpoint": "checkpoints/recall-cross-window",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "layer_indices": [
+      11
+    ]
+  },
+  "source": ".datasets_cache/recall-cross-window",
+  "parent_checkpoint": null,
+  "dataset_manifest": {
+    "schema_version": 1,
+    "source": "synthetic-v1",
+    "config": {
+      "seed": 43,
+      "num_entities": 2,
+      "distractor_sentences": 64,
+      "min_tail_sentences": 48,
+      "tasks": [
+        "recall"
+      ]
+    },
+    "counts": {
+      "train": 2000,
+      "validation": 100,
+      "test": 100
+    }
+  },
+  "training": {
+    "steps": 1000,
+    "loss_first_50": 1.834236743927002,
+    "loss_last_50": 1.8245778350830077,
+    "last_validation_loss": 1.82007763671875,
+    "started_at": "2026-09-26T09:09:46.435000+00:00",
+    "ended_at": "2026-09-26T09:57:33.509000+00:00",
+    "optimizer_steps": 1000,
+    "episodes": 2000,
+    "seed": 42,
+    "interrupted": false,
+    "options": null,
+    "supervise_eos": null,
+    "window_size": 512,
+    "bptt_windows": 4,
+    "objective": "answer_ce"
+  },
+  "reports": {
+    "recall-cross-window-validation.json": {
+      "path": "checkpoints/recall-cross-window-validation.json",
+      "split": "validation",
+      "evaluated_at": "2026-09-26T10:08:20.594271+00:00",
+      "window_size": 512,
+      "max_new_tokens": 32,
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 100,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": null,
+          "by_task": {
+            "recall": {
+              "count": 100,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "disabled": {
+          "metrics": {
+            "count": 100,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": null,
+          "by_task": {
+            "recall": {
+              "count": 100,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "reset": {
+          "metrics": {
+            "count": 100,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": null,
+          "by_task": {
+            "recall": {
+              "count": 100,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "supplementary_reports": [],
+  "note": "Cross-window recall baseline; all three memory modes scored zero on 100 validation examples.",
+  "command": "",
+  "result": "Validation: 0/100 exact answers for normal, disabled, and reset memory."
+}

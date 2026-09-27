@@ -1,0 +1,57 @@
+{
+  "id": "session-profile-256-v1",
+  "checkpoint": "checkpoints/session-profile-256-v1",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "layer_indices": [
+      11
+    ]
+  },
+  "source": ".datasets_cache/session-profile-256-v1",
+  "parent_checkpoint": null,
+  "dataset_manifest": {
+    "schema_version": 1,
+    "source": "session-synthetic-v1",
+    "config": {
+      "seed": 42,
+      "gap_turns": 7,
+      "tasks": [
+        "name",
+        "age",
+        "preference",
+        "age_update"
+      ]
+    },
+    "counts": {
+      "train": 2400,
+      "validation": 160,
+      "test": 160
+    }
+  },
+  "training": {
+    "steps": 16,
+    "loss_first_50": 3.7470089054107665,
+    "loss_last_50": 3.7470089054107665,
+    "started_at": "2026-09-26T11:03:01.636000+00:00",
+    "ended_at": "2026-09-26T11:08:25.644000+00:00",
+    "optimizer_steps": 16,
+    "episodes": 1200,
+    "seed": 42,
+    "interrupted": true,
+    "last_validation_loss": null,
+    "options": null,
+    "supervise_eos": null,
+    "window_size": 256,
+    "bptt_windows": 4,
+    "objective": "answer_ce"
+  },
+  "reports": {},
+  "supplementary_reports": [],
+  "note": "First cross-session profile run using replayed conversation history.",
+  "command": "",
+  "result": ""
+}

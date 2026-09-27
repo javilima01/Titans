@@ -6,6 +6,7 @@ imports are lazy; install ``datasets`` to use ``load_hf_episodes``. Run
 """
 
 import argparse
+import copy
 from dataclasses import asdict, dataclass, field
 import hashlib
 from itertools import islice
@@ -23,6 +24,72 @@ if TYPE_CHECKING:
 SCHEMA_VERSION = 1
 SPLITS = ("train", "validation", "test")
 TASKS = ("recall", "update", "multi_hop")
+SESSION_TASKS = (
+    "name",
+    "age",
+    "preference",
+    "repo_entry",
+    "age_update",
+    "repo_update",
+    "timezone",
+    "editor",
+    "current_project",
+    "repo_runtime",
+    "repo_test_command",
+    "repo_test_command_update",
+    "repo_config_file",
+    "repo_build_tool",
+)
+HELDOUT_SESSION_TASKS = ("user_work_hours", "repo_deploy_region", "repo_release_branch")
+ALL_SESSION_TASKS = SESSION_TASKS + HELDOUT_SESSION_TASKS
+PAIRED_NAMES = (
+    "Alice",
+    "David",
+    "Maria",
+    "Sarah",
+    "Emma",
+    "John",
+    "Mark",
+    "Grace",
+    "James",
+    "Emily",
+    "Sam",
+    "Alex",
+    "Daniel",
+    "Robert",
+)
+PAIRED_LANGUAGES = ("English", "French", "German", "Italian", "Spanish")
+PAIRED_TIMEZONES = ("Berlin", "Tokyo", "Cairo", "Toronto", "Sydney", "Oslo")
+PAIRED_EDITORS = ("Neovim", "Emacs", "Zed", "IntelliJ", "VS Code")
+PAIRED_PROJECTS = ("Atlas", "Orion", "Nimbus", "Mercury", "Aurora", "Keystone")
+PAIRED_RUNTIMES = ("Python", "Rust", "Go", "TypeScript", "Java", "Ruby")
+PAIRED_TEST_COMMANDS = ("pytest", "unittest", "vitest", "jest", "cargo test", "go test")
+PAIRED_CONFIG_FILES = (
+    "config/app.yaml",
+    "settings/core.toml",
+    "conf/service.json",
+    "config/runtime.ini",
+    "settings/build.yaml",
+    "conf/project.toml",
+)
+PAIRED_BUILD_TOOLS = ("make", "CMake", "Bazel", "Gradle", "Cargo", "Maven")
+PAIRED_WORK_HOURS = ("mornings", "afternoons", "evenings", "weekends", "weekdays", "nights")
+PAIRED_DEPLOY_REGIONS = ("Dublin", "Virginia", "Singapore", "Frankfurt", "Mumbai", "Oslo")
+PAIRED_RELEASE_BRANCHES = ("main", "stable", "trunk", "develop", "production", "integration")
+PAIRED_MODULES = (
+    "core",
+    "auth",
+    "api",
+    "data",
+    "web",
+    "utils",
+    "config",
+    "server",
+    "client",
+    "db",
+    "models",
+    "services",
+)
 BABILONG_TRAIN = "RMT-team/babilong-train-5k-samples"
 BABILONG_TEST = "RMT-team/babilong"
 QASPER = "allenai/qasper"
@@ -43,6 +110,8 @@ class MemoryEpisode:
     source: str
     split: str
     metadata: dict = field(default_factory=dict)
+    prompt_style: str = "plain"
+    supervise_eos: bool = True
 
     def __post_init__(self):
         if self.split not in SPLITS:
@@ -64,10 +133,21 @@ class MemoryEpisode:
         if not isinstance(self.metadata, dict):
             msg = "metadata must be a dictionary"
             raise ValueError(msg)
+        if self.prompt_style not in ("plain", "qwen_chat"):
+            msg = "prompt_style must be plain or qwen_chat"
+            raise ValueError(msg)
+        if not isinstance(self.supervise_eos, bool):
+            msg = "supervise_eos must be a boolean"
+            raise ValueError(msg)
 
     @property
     def prompt(self) -> str:
         # Keep Qwen's BPE boundary stable for both numeric and word answers.
+        if self.prompt_style == "qwen_chat":
+            return (
+                f"{self.context}<|im_start|>user\n{self.question}<|im_end|>\n"
+                "<|im_start|>assistant\n<think>\n\n</think>\n\n"
+            )
         return f"{self.context}\n\nQuestion: {self.question}\nAnswer:\n"
 
     def training_example(self) -> dict:
@@ -75,7 +155,7 @@ class MemoryEpisode:
 
         Tokenize the complete text with offsets when building token labels;
         separately tokenizing the prompt/answer can change the BPE boundary.
-        This is plain text, not a Qwen chat template. No EOS is added here.
+        No EOS is added here; the tokenizer path adds it after the answer.
         """
         prompt = self.prompt
         text = prompt + self.answers[0]
@@ -99,6 +179,23 @@ class SyntheticConfig:
             raise ValueError(msg)
         if not self.tasks or any(task not in TASKS for task in self.tasks):
             msg = f"tasks must be a nonempty selection from {TASKS}"
+            raise ValueError(msg)
+
+
+@dataclass(frozen=True)
+class SessionSyntheticConfig:
+    """Synthetic conversations that ask for a fact in a later session."""
+
+    seed: int = 0
+    gap_turns: int = 14
+    tasks: tuple[str, ...] = SESSION_TASKS
+
+    def __post_init__(self):
+        if self.gap_turns < 0:
+            msg = "gap_turns must be nonnegative"
+            raise ValueError(msg)
+        if not self.tasks or any(task not in ALL_SESSION_TASKS for task in self.tasks):
+            msg = f"tasks must be a nonempty selection from {ALL_SESSION_TASKS}"
             raise ValueError(msg)
 
 
@@ -215,6 +312,278 @@ def generate_synthetic(
     config = config or SyntheticConfig()
     for index in range(start_index, start_index + count):
         yield _synthetic_episode(index, split, config)
+
+
+def _chat_message(role: str, content: str) -> str:
+    return f"<|im_start|>{role}\n{content}<|im_end|>\n"
+
+
+def _session_synthetic_episode(
+    index: int, split: str, config: SessionSyntheticConfig
+) -> MemoryEpisode:
+    key = _digest("session-synthetic-v1", asdict(config), split, index)
+    rng = random.Random(key)
+    task = rng.choice(config.tasks)
+    user = "".join(rng.choices(string.ascii_lowercase, k=6))
+    repo = "".join(rng.choices(string.ascii_lowercase, k=6))
+    name_starts = ("Ari", "Bel", "Cami", "Daro", "Eli", "Fena", "Gali", "Haro")
+    name_ends = ("len", "mira", "nora", "ravi", "sena", "tali", "vian", "zora")
+    languages = ("Arabic", "Dutch", "English", "French", "German", "Italian", "Spanish")
+    name = rng.choice(name_starts) + rng.choice(name_ends)
+    age = rng.randint(18, 79)
+    language = rng.choice(languages)
+    module = "".join(rng.choices(string.ascii_lowercase, k=7))
+    entry = f"src/{module}/main.py"
+    new_age = rng.choice([value for value in range(18, 80) if value != age])
+    new_module = "".join(rng.choices(string.ascii_lowercase, k=7))
+    new_entry = f"src/{new_module}/main.py"
+    if task == "name":
+        fact = f"My account is {user}. Please remember that my name is {name}."
+        question = f"My account is {user}. What name should you call me? Reply with only the name."
+        answer = name
+        update = None
+    elif task in ("age", "age_update"):
+        fact = f"My account is {user}. Please remember that I am {age} years old."
+        question = f"My account is {user}. How old am I now? Reply with only the number."
+        answer = str(new_age if task == "age_update" else age)
+        update = f"My account is {user}. Correction: I am {new_age} years old now."
+    elif task == "preference":
+        fact = f"My account is {user}. Please remember that I prefer replies in {language}."
+        question = f"My account is {user}. Which language do I prefer for replies?"
+        answer = language
+        update = None
+    elif task == "timezone":
+        answer = rng.choice(PAIRED_TIMEZONES)
+        fact = f"My account is {user}. My time zone is {answer}."
+        question = f"My account is {user}. Which time zone should you use for me?"
+        update = None
+    elif task == "editor":
+        answer = rng.choice(PAIRED_EDITORS)
+        fact = f"My account is {user}. I use {answer} as my editor."
+        question = f"My account is {user}. Which editor do I use?"
+        update = None
+    elif task == "current_project":
+        answer = rng.choice(PAIRED_PROJECTS)
+        fact = f"My account is {user}. My current project is {answer}."
+        question = f"My account is {user}. Which project am I working on?"
+        update = None
+    elif task == "repo_runtime":
+        answer = rng.choice(PAIRED_RUNTIMES)
+        fact = f"My account is {user}. Repository {repo} uses {answer} as its runtime."
+        question = f"My account is {user}. Which runtime does repository {repo} use?"
+        update = None
+    elif task in ("repo_test_command", "repo_test_command_update"):
+        initial_command, corrected_command = rng.sample(PAIRED_TEST_COMMANDS, 2)
+        answer = corrected_command if task.endswith("update") else initial_command
+        fact = f"My account is {user}. In repository {repo}, run tests with {initial_command}."
+        question = f"My account is {user}. How should I run tests in repository {repo}?"
+        update = (
+            f"My account is {user}. Correction: in repository {repo}, run tests with "
+            f"{corrected_command}."
+        )
+    elif task == "repo_config_file":
+        answer = rng.choice(PAIRED_CONFIG_FILES)
+        fact = f"My account is {user}. Repository {repo} reads its config from {answer}."
+        question = f"My account is {user}. What is the config file for repository {repo}?"
+        update = None
+    elif task == "repo_build_tool":
+        answer = rng.choice(PAIRED_BUILD_TOOLS)
+        fact = f"My account is {user}. The build tool for repository {repo} is {answer}."
+        question = f"My account is {user}. Which build tool does repository {repo} use?"
+        update = None
+    elif task == "user_work_hours":
+        answer = rng.choice(PAIRED_WORK_HOURS)
+        fact = f"My account is {user}. My usual coding time is {answer}."
+        question = f"My account is {user}. When am I usually available to code?"
+        update = None
+    elif task == "repo_deploy_region":
+        answer = rng.choice(PAIRED_DEPLOY_REGIONS)
+        fact = f"My account is {user}. Repository {repo} deploys in {answer}."
+        question = f"My account is {user}. Where does repository {repo} deploy?"
+        update = None
+    elif task == "repo_release_branch":
+        answer = rng.choice(PAIRED_RELEASE_BRANCHES)
+        fact = f"My account is {user}. The deploy branch for repository {repo} is {answer}."
+        question = f"My account is {user}. Which branch does repository {repo} deploy from?"
+        update = None
+    else:
+        fact = f"My account is {user}. In repository {repo}, the entry point is {entry}."
+        question = f"My account is {user}. What is the entry point file for repository {repo}?"
+        answer = new_entry if task == "repo_update" else entry
+        update = (
+            f"My account is {user}. In repository {repo}, the entry point moved to {new_entry}."
+        )
+
+    parts = []
+    support_spans = []
+    session_boundaries = []
+    length = 0
+
+    def append(role: str, content: str, *, supports: bool = False):
+        nonlocal length
+        rendered = _chat_message(role, content)
+        if supports:
+            start = length + len(f"<|im_start|>{role}\n")
+            support_spans.append([start, start + len(content)])
+        parts.append(rendered)
+        length += len(rendered)
+
+    append("system", "Answer questions with only the requested value, without explanation.")
+    session_boundaries.append(length)
+    append("user", f"Session 1. {fact}", supports=True)
+    append("assistant", "Understood.")
+    session_boundaries.append(length)
+    append("user", f"Session 2. My account is {user}. We are talking again later.")
+    append("assistant", "I am ready to help.")
+    if task in ("age_update", "repo_update", "repo_test_command_update"):
+        append("user", update, supports=True)
+        append("assistant", "I have the correction.")
+    topics = ("a routine review", "a quiet afternoon", "a planning note", "a small refactor")
+    places = ("office", "workshop", "library", "garden")
+    for _ in range(config.gap_turns):
+        append(
+            "user",
+            f"I am discussing {rng.choice(topics)} near the {rng.choice(places)}. "
+            "There is no personal or repository fact in this message.",
+        )
+        append("assistant", "Okay.")
+    session_boundaries.append(length)
+    context = "".join(parts)
+    return MemoryEpisode(
+        id=f"session-synthetic-{key[:24]}",
+        context=context,
+        question=f"Session 3. {question}",
+        answers=(answer,),
+        source="session-synthetic-v1",
+        split=split,
+        metadata={
+            "task": task,
+            "seed": config.seed,
+            "episode_index": index,
+            "user": user,
+            "repository": repo if task.startswith("repo_") else None,
+            "support_spans": support_spans,
+            "session_boundaries": session_boundaries,
+        },
+        prompt_style="qwen_chat",
+        supervise_eos=False,
+    )
+
+
+def generate_session_synthetic(
+    count: int,
+    *,
+    split: str = "train",
+    config: SessionSyntheticConfig | None = None,
+    start_index: int = 0,
+) -> Iterator[MemoryEpisode]:
+    """Generate reproducible delayed questions over independent multi-session lifetimes."""
+    if count < 0 or start_index < 0 or split not in SPLITS:
+        msg = "Require nonnegative count/start_index and a train/validation/test split"
+        raise ValueError(msg)
+    config = config or SessionSyntheticConfig()
+    for index in range(start_index, start_index + count):
+        yield _session_synthetic_episode(index, split, config)
+
+
+def _session_counterfactual_pair(
+    index: int, split: str, config: SessionSyntheticConfig
+) -> tuple[MemoryEpisode, MemoryEpisode]:
+    """Hold the question and trailing context fixed while changing an earlier fact."""
+    base = _session_synthetic_episode(index, split, config)
+    task = base.metadata["task"]
+    key = _digest("session-counterfactual-v1", asdict(config), split, index)
+    rng = random.Random(key)
+    if task == "name":
+        values = rng.sample(PAIRED_NAMES, 2)
+    elif task == "preference":
+        values = rng.sample(PAIRED_LANGUAGES, 2)
+    elif task == "timezone":
+        values = rng.sample(PAIRED_TIMEZONES, 2)
+    elif task == "editor":
+        values = rng.sample(PAIRED_EDITORS, 2)
+    elif task == "current_project":
+        values = rng.sample(PAIRED_PROJECTS, 2)
+    elif task == "repo_runtime":
+        values = rng.sample(PAIRED_RUNTIMES, 2)
+    elif task in ("repo_test_command", "repo_test_command_update"):
+        commands = list(PAIRED_TEST_COMMANDS)
+        if task.endswith("update"):
+            first_start, first_end = base.metadata["support_spans"][0]
+            original = base.context[first_start:first_end].rsplit("run tests with ", 1)[1][:-1]
+            commands.remove(original)
+        values = rng.sample(commands, 2)
+    elif task == "repo_config_file":
+        values = rng.sample(PAIRED_CONFIG_FILES, 2)
+    elif task == "repo_build_tool":
+        values = rng.sample(PAIRED_BUILD_TOOLS, 2)
+    elif task == "user_work_hours":
+        values = rng.sample(PAIRED_WORK_HOURS, 2)
+    elif task == "repo_deploy_region":
+        values = rng.sample(PAIRED_DEPLOY_REGIONS, 2)
+    elif task == "repo_release_branch":
+        values = rng.sample(PAIRED_RELEASE_BRANCHES, 2)
+    elif task in ("age", "age_update"):
+        ages = list(range(18, 80))
+        if task == "age_update":
+            first_start, first_end = base.metadata["support_spans"][0]
+            first_fact = base.context[first_start:first_end]
+            original_age = int(first_fact.split("I am ", 1)[1].split(" years old", 1)[0])
+            ages.remove(original_age)
+        values = [str(value) for value in rng.sample(ages, 2)]
+    elif task in ("repo_entry", "repo_update"):
+        values = [f"src/{module}/main.py" for module in rng.sample(PAIRED_MODULES, 2)]
+    else:
+        msg = f"Unknown paired session task: {task}"
+        raise ValueError(msg)
+
+    pair = []
+    for variant, value in enumerate(values):
+        metadata = copy.deepcopy(base.metadata)
+        start, end = metadata["support_spans"][-1]
+        support = base.context[start:end]
+        if support.count(base.answers[0]) != 1:
+            msg = "Expected one answer mention in the latest supporting fact"
+            raise ValueError(msg)
+        replacement = support.replace(base.answers[0], value, 1)
+        delta = len(replacement) - len(support)
+        context = base.context[:start] + replacement + base.context[end:]
+        metadata["support_spans"][-1][1] += delta
+        metadata["session_boundaries"] = [
+            boundary + delta if boundary > start else boundary
+            for boundary in metadata["session_boundaries"]
+        ]
+        metadata.update(pair_id=key[:24], pair_variant=variant)
+        pair.append(
+            MemoryEpisode(
+                id=f"session-pair-{key[:24]}-{variant}",
+                context=context,
+                question=base.question,
+                answers=(value,),
+                source="session-counterfactual-v1",
+                split=split,
+                metadata=metadata,
+                prompt_style="qwen_chat",
+                supervise_eos=False,
+            )
+        )
+    return pair[0], pair[1]
+
+
+def generate_session_counterfactual_pairs(
+    pair_count: int,
+    *,
+    split: str = "train",
+    config: SessionSyntheticConfig | None = None,
+    start_index: int = 0,
+) -> Iterator[MemoryEpisode]:
+    """Yield adjacent counterfactual pairs with identical questions and distractors."""
+    if pair_count < 0 or start_index < 0 or split not in SPLITS:
+        msg = "Require nonnegative pair_count/start_index and a train/validation/test split"
+        raise ValueError(msg)
+    config = config or SessionSyntheticConfig()
+    for index in range(start_index, start_index + pair_count):
+        yield from _session_counterfactual_pair(index, split, config)
 
 
 def _records(value) -> list[dict]:
@@ -434,6 +803,74 @@ def write_synthetic_dataset(
     return counts
 
 
+def write_session_synthetic_dataset(
+    output_dir: str | Path,
+    *,
+    train_size: int = 2000,
+    validation_size: int = 100,
+    test_size: int = 100,
+    config: SessionSyntheticConfig | None = None,
+) -> dict[str, int]:
+    """Write held-out sessionized lifetimes with a reproducibility manifest."""
+    counts = dict(zip(SPLITS, (train_size, validation_size, test_size), strict=True))
+    if min(counts.values()) < 0 or not sum(counts.values()):
+        msg = "Split sizes must be nonnegative and at least one must be positive"
+        raise ValueError(msg)
+    config = config or SessionSyntheticConfig()
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=False)
+    for split, count in counts.items():
+        write_episodes(
+            output_dir / f"{split}.jsonl",
+            generate_session_synthetic(count, split=split, config=config),
+        )
+    manifest = {
+        "schema_version": SCHEMA_VERSION,
+        "source": "session-synthetic-v1",
+        "config": asdict(config),
+        "counts": counts,
+    }
+    (output_dir / "manifest.json").write_text(
+        json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
+    )
+    return counts
+
+
+def write_session_counterfactual_dataset(
+    output_dir: str | Path,
+    *,
+    train_pairs: int = 600,
+    validation_pairs: int = 60,
+    test_pairs: int = 60,
+    config: SessionSyntheticConfig | None = None,
+) -> dict[str, int]:
+    """Write adjacent, split-isolated pairs; counts are individual episodes."""
+    pair_counts = dict(zip(SPLITS, (train_pairs, validation_pairs, test_pairs), strict=True))
+    if min(pair_counts.values()) < 0 or not sum(pair_counts.values()):
+        msg = "Pair counts must be nonnegative and at least one must be positive"
+        raise ValueError(msg)
+    config = config or SessionSyntheticConfig(gap_turns=7)
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=False)
+    counts = {}
+    for split, count in pair_counts.items():
+        counts[split] = write_episodes(
+            output_dir / f"{split}.jsonl",
+            generate_session_counterfactual_pairs(count, split=split, config=config),
+        )
+    manifest = {
+        "schema_version": SCHEMA_VERSION,
+        "source": "session-counterfactual-v1",
+        "config": asdict(config),
+        "pair_counts": pair_counts,
+        "counts": counts,
+    }
+    (output_dir / "manifest.json").write_text(
+        json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
+    )
+    return counts
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
@@ -447,6 +884,30 @@ def main():
     synthetic.add_argument("--distractor-sentences", type=int, default=128)
     synthetic.add_argument("--min-tail-sentences", type=int, default=32)
     synthetic.add_argument("--tasks", nargs="+", choices=TASKS, default=list(TASKS))
+    sessions = commands.add_parser(
+        "synthetic-sessions", help="Generate delayed user and repository recall across sessions"
+    )
+    sessions.add_argument("--output", type=Path, required=True)
+    sessions.add_argument("--train-size", type=int, default=2000)
+    sessions.add_argument("--validation-size", type=int, default=100)
+    sessions.add_argument("--test-size", type=int, default=100)
+    sessions.add_argument("--seed", type=int, default=0)
+    sessions.add_argument(
+        "--gap-turns", type=int, default=14, help="Unrelated user/assistant exchanges before recall"
+    )
+    sessions.add_argument(
+        "--tasks", nargs="+", choices=ALL_SESSION_TASKS, default=list(SESSION_TASKS)
+    )
+    pairs = commands.add_parser(
+        "synthetic-session-pairs", help="Generate paired delayed-fact recall episodes"
+    )
+    pairs.add_argument("--output", type=Path, required=True)
+    pairs.add_argument("--train-pairs", type=int, default=600)
+    pairs.add_argument("--validation-pairs", type=int, default=60)
+    pairs.add_argument("--test-pairs", type=int, default=60)
+    pairs.add_argument("--seed", type=int, default=0)
+    pairs.add_argument("--gap-turns", type=int, default=7)
+    pairs.add_argument("--tasks", nargs="+", choices=ALL_SESSION_TASKS, default=list(SESSION_TASKS))
     hf = commands.add_parser("huggingface", help="Download and normalize a selected HF split")
     hf.add_argument("--dataset", choices=("babilong", "qasper"), required=True)
     hf.add_argument("--output", type=Path, required=True)
@@ -472,6 +933,26 @@ def main():
                 distractor_sentences=args.distractor_sentences,
                 min_tail_sentences=args.min_tail_sentences,
                 tasks=tuple(args.tasks),
+            ),
+        )
+    elif args.command == "synthetic-sessions":
+        result = write_session_synthetic_dataset(
+            args.output,
+            train_size=args.train_size,
+            validation_size=args.validation_size,
+            test_size=args.test_size,
+            config=SessionSyntheticConfig(
+                seed=args.seed, gap_turns=args.gap_turns, tasks=tuple(args.tasks)
+            ),
+        )
+    elif args.command == "synthetic-session-pairs":
+        result = write_session_counterfactual_dataset(
+            args.output,
+            train_pairs=args.train_pairs,
+            validation_pairs=args.validation_pairs,
+            test_pairs=args.test_pairs,
+            config=SessionSyntheticConfig(
+                seed=args.seed, gap_turns=args.gap_turns, tasks=tuple(args.tasks)
             ),
         )
     else:

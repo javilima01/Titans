@@ -1,0 +1,187 @@
+{
+  "id": "session-age-pairs-full-v1",
+  "checkpoint": "checkpoints/session-age-pairs-full-v1",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "memory_qk_scale": 5.656854249492381,
+    "aligned_qk_init": true,
+    "memory_delta_read": false,
+    "layer_indices": [
+      11
+    ]
+  },
+  "source": ".datasets_cache/session-age-pairs-256-v1",
+  "parent_checkpoint": "checkpoints/session-pairs-contrastive-full-v1",
+  "dataset_manifest": {
+    "schema_version": 1,
+    "source": "session-counterfactual-v1",
+    "config": {
+      "seed": 53,
+      "gap_turns": 7,
+      "tasks": [
+        "age",
+        "age_update"
+      ]
+    },
+    "pair_counts": {
+      "train": 600,
+      "validation": 60,
+      "test": 60
+    },
+    "counts": {
+      "train": 1200,
+      "validation": 120,
+      "test": 120
+    }
+  },
+  "training": {
+    "steps": 249,
+    "loss_first_50": 2.9473253758748372,
+    "loss_last_50": 1.2873398892084758,
+    "started_at": "2026-09-26T13:33:44.997000+00:00",
+    "ended_at": "2026-09-26T13:38:05.407000+00:00",
+    "optimizer_steps": 249,
+    "episodes": 1200,
+    "seed": 42,
+    "interrupted": true,
+    "last_validation_loss": null,
+    "options": {
+      "device": "mps",
+      "dtype": null,
+      "lr": 0.0003,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "loss_chunk_size": 128,
+      "batch_size": 2,
+      "gradient_accumulation_steps": 1,
+      "epochs": 1,
+      "max_steps": null,
+      "shuffle": false,
+      "checkpoint_decoder": false,
+      "pair_contrastive_weight": 16.0,
+      "supervise_eos": true,
+      "validation_limit": 24,
+      "limit": null
+    },
+    "supervise_eos": true,
+    "window_size": 256,
+    "bptt_windows": 4,
+    "objective": "answer_ce+pair_contrastive",
+    "pair_contrastive_weight": 16.0
+  },
+  "reports": {
+    "validation-24.json": {
+      "path": "checkpoints/session-age-pairs-full-v1/validation-24.json",
+      "split": "validation",
+      "evaluated_at": "2026-09-26T13:39:04.356759+00:00",
+      "window_size": 256,
+      "max_new_tokens": 8,
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 24,
+            "exact_match": 0.25,
+            "precision": 0.25,
+            "recall": 0.25,
+            "f1": 0.25
+          },
+          "paired_metrics": {
+            "pairs": 12,
+            "incomplete_pairs": 0,
+            "both_correct": 1,
+            "both_correct_rate": 0.08333333333333333,
+            "changed_prediction_rate": 0.6666666666666666
+          },
+          "by_task": {
+            "age": {
+              "count": 12,
+              "exact_match": 0.3333333333333333,
+              "precision": 0.3333333333333333,
+              "recall": 0.3333333333333333,
+              "f1": 0.3333333333333333
+            },
+            "age_update": {
+              "count": 12,
+              "exact_match": 0.16666666666666666,
+              "precision": 0.16666666666666666,
+              "recall": 0.16666666666666666,
+              "f1": 0.16666666666666666
+            }
+          }
+        },
+        "disabled": {
+          "metrics": {
+            "count": 24,
+            "exact_match": 0.041666666666666664,
+            "precision": 0.041666666666666664,
+            "recall": 0.041666666666666664,
+            "f1": 0.041666666666666664
+          },
+          "paired_metrics": {
+            "pairs": 12,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "age": {
+              "count": 12,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "age_update": {
+              "count": 12,
+              "exact_match": 0.08333333333333333,
+              "precision": 0.08333333333333333,
+              "recall": 0.08333333333333333,
+              "f1": 0.08333333333333333
+            }
+          }
+        },
+        "reset": {
+          "metrics": {
+            "count": 24,
+            "exact_match": 0.041666666666666664,
+            "precision": 0.041666666666666664,
+            "recall": 0.041666666666666664,
+            "f1": 0.041666666666666664
+          },
+          "paired_metrics": {
+            "pairs": 12,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "age": {
+              "count": 12,
+              "exact_match": 0.08333333333333333,
+              "precision": 0.08333333333333333,
+              "recall": 0.08333333333333333,
+              "f1": 0.08333333333333333
+            },
+            "age_update": {
+              "count": 12,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "supplementary_reports": [],
+  "note": "Interrupted after 249 steps when a teacher-forcing shortcut was found in the later-digit ranking loss; partial age checkpoint retained for diagnosis.",
+  "command": ".venv/bin/python main.py train --data .datasets_cache/session-age-pairs-256-v1 --checkpoint checkpoints/session-pairs-contrastive-full-v1 --output checkpoints/session-age-pairs-full-v1 --window-size 256 --bptt-windows 4 --batch-size 2 --no-shuffle --pair-contrastive-weight 16 --supervise-eos --lr 0.0003 --device mps --no-checkpoint-decoder --validation-limit 24 --log-every 50",
+  "result": "Age-only validation (24 examples): normal 6/24 exact, 1/12 pairs fully correct; disabled 1/24, reset 1/24."
+}

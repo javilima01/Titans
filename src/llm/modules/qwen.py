@@ -20,6 +20,7 @@ from src.llm.helpers.state_io import (
 )
 from src.llm.helpers.utils import ensure_model
 from src.llm.helpers.visualize import print_module_tree
+from src.llm.modules.surprise_delta import SurpriseDeltaMemory
 from src.llm.modules.titans import (
     AttentionWithTitans,
     LinearAttentionWithTitans,
@@ -142,8 +143,13 @@ class Qwen35Titans(Qwen35Wrapper):
         memory_delta_read: bool = False,
         memory_gate_init: float | None = None,
         shared_across_layers: bool = False,
+        memory_type: str = "titans",
     ):
         super().__init__(device=device, dtype=dtype)
+        if memory_type not in ("titans", "surprise_delta"):
+            msg = "memory_type must be titans or surprise_delta"
+            raise ValueError(msg)
+        self._memory_type = memory_type
         if memory_gate_init is not None and not math.isfinite(memory_gate_init):
             msg = "memory_gate_init must be finite or None"
             raise ValueError(msg)
@@ -241,15 +247,15 @@ class Qwen35Titans(Qwen35Wrapper):
         memory_gate_init,
     ):
         hidden_size = self.model.config.hidden_size
-        memory = TitansMemory(
-            hidden_size=(memory_hidden_size if memory_hidden_size is not None else hidden_size),
-            dim=hidden_size,
-            chunk_size=memory_chunk_size,
-            checkpoint_chunks=checkpoint_memory,
-            max_inner_grad_norm=max_inner_grad_norm,
-            qk_scale=memory_qk_scale,
-            aligned_qk_init=aligned_qk_init,
-            delta_read=memory_delta_read,
+        memory = self._make_memory(
+            hidden_size,
+            memory_hidden_size,
+            memory_chunk_size,
+            checkpoint_memory,
+            max_inner_grad_norm,
+            memory_qk_scale,
+            aligned_qk_init,
+            memory_delta_read,
         )
         device = self.model.model.embed_tokens.weight.device
         bank = SharedLayerMemoryBank(
@@ -295,15 +301,15 @@ class Qwen35Titans(Qwen35Wrapper):
             raise ValueError(error_msg)
 
         hidden_size = self.model.config.hidden_size
-        memory = TitansMemory(
-            hidden_size=(memory_hidden_size if memory_hidden_size is not None else hidden_size),
-            dim=hidden_size,
-            chunk_size=memory_chunk_size,
-            checkpoint_chunks=checkpoint_memory,
-            max_inner_grad_norm=max_inner_grad_norm,
-            qk_scale=memory_qk_scale,
-            aligned_qk_init=aligned_qk_init,
-            delta_read=memory_delta_read,
+        memory = self._make_memory(
+            hidden_size,
+            memory_hidden_size,
+            memory_chunk_size,
+            checkpoint_memory,
+            max_inner_grad_norm,
+            memory_qk_scale,
+            aligned_qk_init,
+            memory_delta_read,
         )
 
         param = next(attention.parameters())
@@ -329,6 +335,44 @@ class Qwen35Titans(Qwen35Wrapper):
             layer.linear_attn = wrapped_attention
 
         self._titans_attn.append(wrapped_attention)
+
+    def _make_memory(
+        self,
+        hidden_size,
+        memory_hidden_size,
+        memory_chunk_size,
+        checkpoint_memory,
+        max_inner_grad_norm,
+        memory_qk_scale,
+        aligned_qk_init,
+        memory_delta_read,
+    ):
+        size = memory_hidden_size if memory_hidden_size is not None else hidden_size
+        if getattr(self, "_memory_type", "titans") == "surprise_delta":
+            if (
+                memory_qk_scale != 1.0
+                or aligned_qk_init
+                or memory_delta_read
+                or max_inner_grad_norm != 1.0
+            ):
+                msg = "Titans-only memory options are unavailable for surprise_delta"
+                raise ValueError(msg)
+            return SurpriseDeltaMemory(
+                dim=hidden_size,
+                memory_size=size,
+                chunk_size=memory_chunk_size,
+                checkpoint_chunks=checkpoint_memory,
+            )
+        return TitansMemory(
+            hidden_size=size,
+            dim=hidden_size,
+            chunk_size=memory_chunk_size,
+            checkpoint_chunks=checkpoint_memory,
+            max_inner_grad_norm=max_inner_grad_norm,
+            qk_scale=memory_qk_scale,
+            aligned_qk_init=aligned_qk_init,
+            delta_read=memory_delta_read,
+        )
 
     def _adapter_tensors(self):
         if self._shared_bank is not None:
@@ -367,23 +411,38 @@ class Qwen35Titans(Qwen35Wrapper):
             msg = f"Checkpoint already exists: {path}"
             raise FileExistsError(msg)
         memories = [layer.memory for layer in self._titans_attn]
-        settings = [
-            {
-                "memory_hidden_size": memory.memory.net[0].out_features,
-                "memory_chunk_size": memory.chunk_size,
-                "checkpoint_memory": memory.checkpoint_chunks,
-                "max_inner_grad_norm": memory.max_inner_grad_norm,
-                "memory_qk_scale": memory.qk_scale,
-                "aligned_qk_init": memory.aligned_qk_init,
-                "memory_delta_read": memory.delta_read,
-                "memory_gate_init": self._memory_gate_init,
-            }
-            for memory in memories
-        ]
+        settings = []
+        for memory in memories:
+            if isinstance(memory, SurpriseDeltaMemory):
+                settings.append(
+                    {
+                        "memory_type": "surprise_delta",
+                        "memory_hidden_size": memory.memory_size,
+                        "memory_chunk_size": memory.chunk_size,
+                        "checkpoint_memory": memory.checkpoint_chunks,
+                        "memory_gate_init": self._memory_gate_init,
+                    }
+                )
+            else:
+                settings.append(
+                    {
+                        "memory_hidden_size": memory.memory.net[0].out_features,
+                        "memory_chunk_size": memory.chunk_size,
+                        "checkpoint_memory": memory.checkpoint_chunks,
+                        "max_inner_grad_norm": memory.max_inner_grad_norm,
+                        "memory_qk_scale": memory.qk_scale,
+                        "aligned_qk_init": memory.aligned_qk_init,
+                        "memory_delta_read": memory.delta_read,
+                        "memory_gate_init": self._memory_gate_init,
+                    }
+                )
         if any(setting != settings[0] for setting in settings) or any(
-            len(memory.memory.linear_indices) != 2
-            or memory.max_lr != 0.1
-            or not memory.normalize_qk
+            not isinstance(memory, SurpriseDeltaMemory)
+            and (
+                len(memory.memory.linear_indices) != 2
+                or memory.max_lr != 0.1
+                or not memory.normalize_qk
+            )
             for memory in memories
         ):
             msg = (

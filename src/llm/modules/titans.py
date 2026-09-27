@@ -305,7 +305,7 @@ class TitansMemory(nn.Module):
 class SharedLayerMemoryBank(nn.Module):
     """One fast state read across layers and updated once after each window."""
 
-    def __init__(self, memory: TitansMemory, layer_indices: list[int], gate_init: float):
+    def __init__(self, memory: nn.Module, layer_indices: list[int], gate_init: float):
         super().__init__()
         self.memory = memory
         self.layer_indices = tuple(layer_indices)
@@ -412,7 +412,7 @@ class MemoryAugmentedMixer(nn.Module):
     def __init__(
         self,
         attention: nn.Module,
-        memory: TitansMemory,
+        memory: nn.Module,
         gate_init: float = -2.0,
         memory_id: int = 0,
     ):

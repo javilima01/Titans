@@ -64,6 +64,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="New model only; one fast memory read by every selected layer (default: all 24)",
     )
     train.add_argument("--memory-hidden-size", type=_positive, help="New model only; default: 256")
+    train.add_argument(
+        "--memory-type",
+        choices=("titans", "surprise_delta"),
+        help="New model only; default: titans",
+    )
     train.add_argument("--memory-chunk-size", type=_positive, help="New model only; default: 16")
     train.add_argument("--memory-qk-scale", type=float, help="New model only; default: 1.0")
     train.add_argument("--max-inner-grad-norm", type=float, help="New model only; default: 1.0")
@@ -335,6 +340,7 @@ def run(args):
             for value in (
                 args.layers,
                 args.memory_hidden_size,
+                args.memory_type,
                 args.memory_chunk_size,
                 args.memory_qk_scale,
                 args.max_inner_grad_norm,
@@ -366,6 +372,7 @@ def run(args):
                 memory_delta_read=args.memory_delta_read,
                 memory_gate_init=args.memory_gate_init,
                 shared_across_layers=args.shared_memory,
+                memory_type=args.memory_type or "titans",
             )
         )
         window_size = args.window_size or model.training_config.get("window_size", 512)

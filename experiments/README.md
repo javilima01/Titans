@@ -70,3 +70,5 @@ See [research notes](RESEARCH.md) for the benchmark interpretation and next chec
 | [session-broad-shared24-smoke-v1](session-broad-shared24-smoke-v1/README.md) | 2 | n/a | n/a | n/a | Completed two steps with losses 7.71 and 6.72; one memory adapter and one fast state were saved. |
 | [session-broad-shared24-pilot200-v1](session-broad-shared24-pilot200-v1/README.md) | 200 | validation/normal | 13/40 (32.5%) | 3/20 | 200-step pilot for one shared Titans state read by 24 Qwen layers. |
 | [session-broad-shared24-full-v1](session-broad-shared24-full-v1/README.md) | 700 | validation/normal | 121/160 (75.6%) | 55/80 | Full 700-step shared-state experiment: all 24 layers read one fast state, written once per Qwen window. |
+| [surprise-delta-shared24-pilot20-v1](surprise-delta-shared24-pilot20-v1/README.md) | 20 | validation/normal | 1/40 (2.5%) | 0/20 |  |
+| [surprise-delta-open-values-700-v1](surprise-delta-open-values-700-v1/README.md) | 700 | validation/normal | 0/40 (0.0%) | 0/20 |  |

@@ -506,6 +506,33 @@ class CheckpointAndCLITests(unittest.TestCase):
                 model.generate_text("3 4 5", max_new_tokens=2, window_size=4)
             )
 
+    def test_shared_surprise_delta_trains_and_persists_state(self):
+        model = Qwen35Titans(
+            device="cpu",
+            shared_across_layers=True,
+            layer_indices=[0, 1, 2],
+            memory_type="surprise_delta",
+            memory_hidden_size=8,
+            memory_chunk_size=2,
+        )
+        ids = torch.tensor([[3, 4, 5, 6]])
+        valid = torch.ones_like(ids, dtype=torch.bool)
+        _, state = model._stream_forward(ids, valid)
+        assert set(state) == {-1}
+        assert set(state[-1]["params"]) == {"fast", "slow"}
+        assert len(model.train(episodes=[episode()], max_length=4, bptt_windows=0)) == 1
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "delta-checkpoint"
+            model.save_pretrained(path)
+            loaded = Qwen35Titans.from_pretrained(path, device="cpu")
+            assert loaded._memory_type == "surprise_delta"
+            _, saved = loaded._stream_forward(ids, valid)
+            state_path = Path(directory) / "delta-state.safetensors"
+            loaded.save_memory_state(state_path, saved)
+            restored = loaded.load_memory_state(state_path)
+            for name in ("fast", "slow"):
+                torch.testing.assert_close(saved[-1]["params"][name], restored[-1]["params"][name])
+
     def test_scaled_query_key_configuration_roundtrips(self):
         model = Qwen35Titans(
             device="cpu",

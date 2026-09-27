@@ -232,6 +232,43 @@ is still present across hundreds of tokens. The inner update gate starts near
 `sigmoid(-2)`, and the output branch starts near `sigmoid(-2)`. These gates remain
 trainable. Existing checkpoints keep their saved gate weights.
 
+### Online surprise-delta adapter (experimental)
+
+`train --memory-type surprise_delta` selects an alternative fast-memory rule.
+It projects each Qwen hidden state to a normalized key and query and a value,
+then updates two fast matrices once per valid token. For each matrix, the write
+is `W <- exp(-lambda) W + eta (v - Wk) k^T`: the residual is the negative
+gradient of `1/2 ||Wk - v||^2`, so unexpected key/value pairs cause larger
+writes. The two learned retention rates start at 512- and 8192-token
+half-lives. Their states persist between windows and use the same checkpoint-bound
+per-user state file format as Titans. In shared mode, all selected Qwen layers read
+the same prior-window snapshot, and their weighted hidden-state mixture is
+written once after the window. Invalid padding does not advance either state.
+
+This is a compact two-timescale delta-rule experiment inspired by
+[HOPE](https://arxiv.org/html/2512.24695v1), not the full self-modifying HOPE
+architecture. The original Titans adapter already uses an associative-loss
+gradient (surprise), momentum, and per-token forgetting; the new variant tests
+an **exact online prediction-error update** and explicit exponential decay.
+Its output gate remains so an untrained adapter can start with a small effect
+on the frozen backbone. As with Titans, a saved adapter alone does not contain
+new facts: save each user's fast state, or replay the source messages.
+
+```sh
+.venv/bin/python main.py train --data .datasets_cache/session-open-values-v1 \
+  --output checkpoints/my-surprise-delta --device mps --memory-type surprise_delta \
+  --shared-memory --memory-hidden-size 128 --window-size 256 \
+  --batch-size 2 --no-shuffle --pair-contrastive-weight 16 --supervise-eos
+```
+
+The open-value dataset builder is
+`python -m src.llm.helpers.open_value_dataset --output DIR --heldout DIR`.
+It generates 4,000 training episodes by default, changing the earlier fact in
+each counterfactual pair while keeping its question and trailing context
+fixed. The held-out directory supplies separate validation/test examples with
+values absent from training. These synthetic values test transfer; success
+there would still need confirmation on natural user and repository facts.
+
 ### Checkpoint API and evaluation
 
 ```python

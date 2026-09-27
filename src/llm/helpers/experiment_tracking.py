@@ -188,7 +188,15 @@ def _write_index(output_root: Path) -> None:
         mode = next(
             (
                 choice
-                for choice in ("normal", "state_only", "lexical", "disabled", "reset", "oracle")
+                for choice in (
+                    "normal",
+                    "state_only",
+                    "episodic",
+                    "lexical",
+                    "disabled",
+                    "reset",
+                    "oracle",
+                )
                 if choice in modes
             ),
             None,

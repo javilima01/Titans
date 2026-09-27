@@ -1,0 +1,25 @@
+{
+  "id": "placement-all24-vs-full11-pilot200-v1",
+  "kind": "evaluation",
+  "checkpoint": "checkpoints/session-broad-all24-scaled-pilot-v1",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {
+    "memory_hidden_size": 256,
+    "memory_chunk_size": 16,
+    "checkpoint_memory": true,
+    "max_inner_grad_norm": 1.0,
+    "memory_qk_scale": 5.656854249492381,
+    "aligned_qk_init": true,
+    "memory_delta_read": false,
+    "memory_gate_init": -5.3,
+    "layer_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+  },
+  "source": ".datasets_cache/session-broad-pairs-256-v1",
+  "parent_checkpoint": null,
+  "training": {"steps": 200, "seed": 42, "device": "mps", "window_size": 256},
+  "reports": {},
+  "supplementary_reports": ["experiments/placement-all24-vs-full11-pilot200-v1/summary.json"],
+  "note": "200-step matched pilot: independent Titans adapters on all 24 Qwen layers versus one at full-attention layer 11.",
+  "command": "",
+  "result": "All 24: familiar 6/40 and 0/20 pairs; one layer: 13/40 and 2/20. Both novel-value 0/40. All-layer runtime 6.8x and adapter size 24x."
+}

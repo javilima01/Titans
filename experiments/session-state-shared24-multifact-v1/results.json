@@ -1,0 +1,55 @@
+{
+  "evaluation_kind": "five_separate_processes_fast_state",
+  "checkpoint": "checkpoints/session-broad-shared24-full-v1",
+  "cases": [
+    {
+      "case": "write_two",
+      "prompt": "Session 1. My account is jbtest2. The build tool for repository alpha is Bazel. The build tool for repository beta is Meson.",
+      "answer": "Bazel",
+      "expected": null,
+      "exact_match": null,
+      "returncode": 0,
+      "state_bytes": 4205472
+    },
+    {
+      "case": "ask_alpha_before",
+      "prompt": "Session 2. My account is jbtest2. Which build tool does repository alpha use?",
+      "answer": "Bazel",
+      "expected": "Bazel",
+      "exact_match": true,
+      "returncode": 0,
+      "state_bytes": 4205472
+    },
+    {
+      "case": "correct_alpha",
+      "prompt": "Session 3. My account is jbtest2. Correction: the build tool for repository alpha is Ninja.",
+      "answer": "Ninja",
+      "expected": null,
+      "exact_match": null,
+      "returncode": 0,
+      "state_bytes": 4205472
+    },
+    {
+      "case": "ask_alpha_after",
+      "prompt": "Session 4. My account is jbtest2. Which build tool does repository alpha use?",
+      "answer": "npm",
+      "expected": "Ninja",
+      "exact_match": false,
+      "returncode": 0,
+      "state_bytes": 4205472
+    },
+    {
+      "case": "ask_beta_after",
+      "prompt": "Session 5. My account is jbtest2. Which build tool does repository beta use?",
+      "answer": "CMake",
+      "expected": "Meson",
+      "exact_match": false,
+      "returncode": 0,
+      "state_bytes": 4205472
+    }
+  ],
+  "scored": {
+    "correct": 1,
+    "questions": 3
+  }
+}

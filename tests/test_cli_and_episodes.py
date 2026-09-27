@@ -421,7 +421,12 @@ class CheckpointAndCLITests(unittest.TestCase):
                 model.save_pretrained(checkpoint_path)
             config_path = checkpoint_path / "adapter_config.json"
             config = json.loads(config_path.read_text())
-            for setting in ("memory_qk_scale", "aligned_qk_init", "memory_delta_read"):
+            for setting in (
+                "memory_qk_scale",
+                "aligned_qk_init",
+                "memory_delta_read",
+                "memory_gate_init",
+            ):
                 config["adapter"].pop(setting)
             config_path.write_text(json.dumps(config))
             legacy = Qwen35Titans.from_pretrained(checkpoint_path, device="cpu")
@@ -430,6 +435,76 @@ class CheckpointAndCLITests(unittest.TestCase):
             config_path.write_text(json.dumps(config))
             with self.assertRaises(ValueError):
                 Qwen35Titans.from_pretrained(checkpoint_path, device="cpu")
+
+    def test_linear_attention_adapter_streams_trains_and_roundtrips(self):
+        model = Qwen35Titans(
+            device="cpu", layer_indices=[1], memory_hidden_size=8, memory_chunk_size=2
+        )
+        ids = torch.tensor([[3, 4, 5, 6]])
+        valid = torch.ones_like(ids, dtype=torch.bool)
+        normal, state = model._stream_forward(ids, valid)
+        disabled, disabled_state = model._stream_forward(ids, valid, memory_mode="disabled")
+        assert set(state) == {1}
+        assert disabled_state == {}
+        assert (normal - disabled).abs().max() > 1e-7
+        assert len(model.train(episodes=[episode()], max_length=4, bptt_windows=0)) == 1
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "linear-checkpoint"
+            model.save_pretrained(path)
+            loaded = Qwen35Titans.from_pretrained(path, device="cpu")
+            assert set(loaded._stream_forward(ids, valid)[1]) == {1}
+            assert loaded.generate_text("3 4 5", max_new_tokens=2, window_size=4) == (
+                model.generate_text("3 4 5", max_new_tokens=2, window_size=4)
+            )
+            for name, value in model._adapter_tensors().items():
+                torch.testing.assert_close(value, loaded._adapter_tensors()[name], rtol=0, atol=0)
+
+        combined = Qwen35Titans(
+            device="cpu", layer_indices=[1, 2], memory_hidden_size=8, memory_chunk_size=2
+        )
+        assert set(combined._stream_forward(ids, valid)[1]) == {1, 2}
+
+    def test_shared_bank_reads_all_layers_causally_and_persists_one_state(self):
+        model = Qwen35Titans(
+            device="cpu",
+            shared_across_layers=True,
+            layer_indices=[0, 1, 2],
+            memory_hidden_size=8,
+            memory_chunk_size=2,
+            aligned_qk_init=True,
+            memory_qk_scale=2.0,
+        )
+        ids = torch.tensor([[3, 4, 5, 6]])
+        valid = torch.ones_like(ids, dtype=torch.bool)
+        _, state = model._stream_forward(ids, valid)
+        assert set(state) == {-1}
+        assert len(model._shared_bank.layer_indices) == 3
+        assert len(model._titans_attn) == 1
+        first, _ = model._stream_forward(ids, valid, state)
+        changed = ids.clone()
+        changed[0, -1] = 7
+        second, _ = model._stream_forward(changed, valid, state)
+        torch.testing.assert_close(first[:, :-1], second[:, :-1], atol=1e-5, rtol=1e-5)
+        disabled, disabled_state = model._stream_forward(ids, valid, memory_mode="disabled")
+        assert disabled_state == {}
+        assert (first - disabled).abs().max() > 1e-7
+        assert len(model.train(episodes=[episode()], max_length=4, bptt_windows=0)) == 1
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "shared-checkpoint"
+            model.save_pretrained(path)
+            loaded = Qwen35Titans.from_pretrained(path, device="cpu")
+            assert loaded._shared_bank is not None
+            assert set(loaded._stream_forward(ids, valid)[1]) == {-1}
+            for name, value in model._adapter_tensors().items():
+                torch.testing.assert_close(value, loaded._adapter_tensors()[name], rtol=0, atol=0)
+            _, saved_state = loaded._stream_forward(ids, valid)
+            state_path = Path(directory) / "one-state.safetensors"
+            loaded.save_memory_state(state_path, saved_state)
+            restored = loaded.load_memory_state(state_path)
+            assert set(restored) == {-1}
+            assert loaded.generate_text("3 4 5", max_new_tokens=2, window_size=4) == (
+                model.generate_text("3 4 5", max_new_tokens=2, window_size=4)
+            )
 
     def test_scaled_query_key_configuration_roundtrips(self):
         model = Qwen35Titans(
@@ -440,11 +515,13 @@ class CheckpointAndCLITests(unittest.TestCase):
             memory_qk_scale=2.0,
             aligned_qk_init=True,
             memory_delta_read=True,
+            memory_gate_init=-4.0,
         )
         memory = model._titans_attn[0].memory
         assert memory.qk_scale == 2.0
         assert memory.aligned_qk_init
         assert memory.delta_read
+        assert model._titans_attn[0].memory_gate.item() == -4.0
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "checkpoint"
             model.save_pretrained(path)
@@ -452,6 +529,7 @@ class CheckpointAndCLITests(unittest.TestCase):
             assert loaded._titans_attn[0].memory.qk_scale == 2.0
             assert loaded._titans_attn[0].memory.aligned_qk_init
             assert loaded._titans_attn[0].memory.delta_read
+            assert loaded._titans_attn[0].memory_gate.item() == -4.0
             for name, value in model._adapter_tensors().items():
                 torch.testing.assert_close(value, loaded._adapter_tensors()[name], rtol=0, atol=0)
 
@@ -596,6 +674,66 @@ class CheckpointAndCLITests(unittest.TestCase):
                     ]
                 )
                 assert len(json.loads(session_file.read_text())) == 1
+                evidence_file = root / "episodic-memory.json"
+                evidence_seen = []
+
+                def evidence_reply(_model, messages, **_kwargs):
+                    evidence_seen.append([message.content for message in messages])
+                    return "ok"
+
+                with patch.object(
+                    Qwen35Titans, "generate", autospec=True, side_effect=evidence_reply
+                ):
+                    for prompt in (
+                        "The build tool for repository alpha is Bazel.",
+                        "Correction: the build tool for repository alpha is Ninja.",
+                        "Which build tool does repository alpha use?",
+                    ):
+                        main(
+                            [
+                                "chat",
+                                "--checkpoint",
+                                str(checkpoint_path),
+                                "--device",
+                                "cpu",
+                                "--episodic-memory-file",
+                                str(evidence_file),
+                                "--prompt",
+                                prompt,
+                            ]
+                        )
+                assert "Ninja" in evidence_seen[-1][1]
+                assert "Bazel" not in evidence_seen[-1][1]
+                assert evidence_seen[-1][-1] == "Which build tool does repository alpha use?"
+                assert len(json.loads(evidence_file.read_text())["records"]) == 2
+                main(
+                    [
+                        "chat",
+                        "--checkpoint",
+                        str(checkpoint_path),
+                        "--device",
+                        "cpu",
+                        "--episodic-memory-file",
+                        str(evidence_file),
+                        "--prompt",
+                        "/remember The build tool for repository beta is Meson.",
+                    ]
+                )
+                assert len(json.loads(evidence_file.read_text())["records"]) == 3
+                main(
+                    [
+                        "chat",
+                        "--checkpoint",
+                        str(checkpoint_path),
+                        "--device",
+                        "cpu",
+                        "--episodic-memory-file",
+                        str(evidence_file),
+                        "--prompt",
+                        "/reset",
+                    ]
+                )
+                assert not evidence_file.exists()
             for command, split in (("validate", "validation"), ("test", "test")):
                 report = json.loads((root / f"{command}.json").read_text())
                 assert report["split"] == split

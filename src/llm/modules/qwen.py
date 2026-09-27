@@ -20,7 +20,15 @@ from src.llm.helpers.state_io import (
 )
 from src.llm.helpers.utils import ensure_model
 from src.llm.helpers.visualize import print_module_tree
-from src.llm.modules.titans import AttentionWithTitans, TitansMemory
+from src.llm.modules.titans import (
+    AttentionWithTitans,
+    LinearAttentionWithTitans,
+    MemoryAugmentedMixer,
+    SharedFullAttention,
+    SharedLayerMemoryBank,
+    SharedLinearAttention,
+    TitansMemory,
+)
 from src.llm.modules.training import (
     chunked_lm_loss,
     counterfactual_pair_loss,
@@ -132,10 +140,20 @@ class Qwen35Titans(Qwen35Wrapper):
         memory_qk_scale: float = 1.0,
         aligned_qk_init: bool = False,
         memory_delta_read: bool = False,
+        memory_gate_init: float | None = None,
+        shared_across_layers: bool = False,
     ):
         super().__init__(device=device, dtype=dtype)
+        if memory_gate_init is not None and not math.isfinite(memory_gate_init):
+            msg = "memory_gate_init must be finite or None"
+            raise ValueError(msg)
+        self._memory_gate_init = (
+            -5.3 if shared_across_layers and memory_gate_init is None else memory_gate_init
+        )
+        self._shared_across_layers = shared_across_layers
+        self._shared_bank: SharedLayerMemoryBank | None = None
         self.model.requires_grad_(False)
-        self._titans_attn: list[AttentionWithTitans] = []
+        self._titans_attn: list[MemoryAugmentedMixer] = []
         self._install_titans(
             layer_indices,
             memory_hidden_size,
@@ -145,6 +163,7 @@ class Qwen35Titans(Qwen35Wrapper):
             memory_qk_scale,
             aligned_qk_init,
             memory_delta_read,
+            memory_gate_init,
         )
         self._training_config = {}
         # Fast memory is not part of HF's KV cache yet. Recompute the prefix so
@@ -169,12 +188,33 @@ class Qwen35Titans(Qwen35Wrapper):
         memory_qk_scale=1.0,
         aligned_qk_init=False,
         memory_delta_read=False,
+        memory_gate_init=None,
     ):
-        ids = self._full_attention_layers() if layer_indices is None else layer_indices
-        full_attention = set(self._full_attention_layers())
-        if not ids or len(set(ids)) != len(ids) or any(i not in full_attention for i in ids):
-            msg = "Select distinct full-attention layer indices"
+        if layer_indices is None:
+            ids = (
+                list(range(len(self.model.model.layers)))
+                if getattr(self, "_shared_across_layers", False)
+                else self._full_attention_layers()
+            )
+        else:
+            ids = layer_indices
+        layer_count = len(self.model.model.layers)
+        if not ids or len(set(ids)) != len(ids) or any(i < 0 or i >= layer_count for i in ids):
+            msg = "Select distinct valid layer indices"
             raise ValueError(msg)
+        if getattr(self, "_shared_across_layers", False):
+            self._install_shared(
+                ids,
+                memory_hidden_size,
+                memory_chunk_size,
+                checkpoint_memory,
+                max_inner_grad_norm,
+                memory_qk_scale,
+                aligned_qk_init,
+                memory_delta_read,
+                self._memory_gate_init,
+            )
+            return
         for layer_idx in ids:
             self._add_to_existing(
                 layer_idx,
@@ -185,7 +225,50 @@ class Qwen35Titans(Qwen35Wrapper):
                 memory_qk_scale,
                 aligned_qk_init,
                 memory_delta_read,
+                memory_gate_init,
             )
+
+    def _install_shared(
+        self,
+        ids,
+        memory_hidden_size,
+        memory_chunk_size,
+        checkpoint_memory,
+        max_inner_grad_norm,
+        memory_qk_scale,
+        aligned_qk_init,
+        memory_delta_read,
+        memory_gate_init,
+    ):
+        hidden_size = self.model.config.hidden_size
+        memory = TitansMemory(
+            hidden_size=(memory_hidden_size if memory_hidden_size is not None else hidden_size),
+            dim=hidden_size,
+            chunk_size=memory_chunk_size,
+            checkpoint_chunks=checkpoint_memory,
+            max_inner_grad_norm=max_inner_grad_norm,
+            qk_scale=memory_qk_scale,
+            aligned_qk_init=aligned_qk_init,
+            delta_read=memory_delta_read,
+        )
+        device = self.model.model.embed_tokens.weight.device
+        bank = SharedLayerMemoryBank(
+            memory.to(device=device, dtype=torch.float32),
+            ids,
+            gate_init=memory_gate_init if memory_gate_init is not None else -5.3,
+        ).to(device)
+        self.model.model.shared_titans_bank = bank
+        self._shared_bank = bank
+        self._titans_attn.append(bank)
+        for layer_idx in ids:
+            layer = self.model.model.layers[layer_idx]
+            if hasattr(layer, "self_attn"):
+                layer.self_attn = SharedFullAttention(layer.self_attn, bank, layer_idx)
+            elif hasattr(layer, "linear_attn"):
+                layer.linear_attn = SharedLinearAttention(layer.linear_attn, bank, layer_idx)
+            else:
+                msg = f"Layer {layer_idx} has no supported token mixer"
+                raise ValueError(msg)
 
     def _add_to_existing(
         self,
@@ -197,14 +280,19 @@ class Qwen35Titans(Qwen35Wrapper):
         memory_qk_scale=1.0,
         aligned_qk_init=False,
         memory_delta_read=False,
+        memory_gate_init=None,
     ):
         layer = self.model.model.layers[layer_idx]
 
-        if not hasattr(layer, "self_attn"):
-            error_msg = f"Layer {layer_idx} is not a full-attention layer"
+        if hasattr(layer, "self_attn"):
+            attention = layer.self_attn
+            wrapper_type = AttentionWithTitans
+        elif hasattr(layer, "linear_attn"):
+            attention = layer.linear_attn
+            wrapper_type = LinearAttentionWithTitans
+        else:
+            error_msg = f"Layer {layer_idx} has no supported token mixer"
             raise ValueError(error_msg)
-
-        attention = layer.self_attn
 
         hidden_size = self.model.config.hidden_size
         memory = TitansMemory(
@@ -221,19 +309,37 @@ class Qwen35Titans(Qwen35Wrapper):
         param = next(attention.parameters())
         # Fast weights, inner updates and AdamW state stay in FP32.
         memory = memory.to(device=param.device, dtype=torch.float32)
-        wrapped_attention = AttentionWithTitans(
+        wrapped_attention = wrapper_type(
             attention=attention,
             memory=memory,
-            gate_init=0.0 if memory_delta_read else -2.0,
+            gate_init=(
+                memory_gate_init
+                if memory_gate_init is not None
+                else 0.0
+                if memory_delta_read
+                else -2.0
+            ),
             memory_id=layer_idx,
         )
         wrapped_attention.to(device=param.device)
 
-        layer.self_attn = wrapped_attention
+        if wrapper_type is AttentionWithTitans:
+            layer.self_attn = wrapped_attention
+        else:
+            layer.linear_attn = wrapped_attention
 
         self._titans_attn.append(wrapped_attention)
 
     def _adapter_tensors(self):
+        if self._shared_bank is not None:
+            return {
+                **{
+                    f"shared.memory.{name}": tensor
+                    for name, tensor in self._shared_bank.memory.state_dict().items()
+                },
+                "shared.memory_gate": self._shared_bank.memory_gate,
+                "shared.write_logits": self._shared_bank.write_logits,
+            }
         tensors = {}
         for layer in self._titans_attn:
             prefix = f"layers.{layer.memory_id}"
@@ -270,6 +376,7 @@ class Qwen35Titans(Qwen35Wrapper):
                 "memory_qk_scale": memory.qk_scale,
                 "aligned_qk_init": memory.aligned_qk_init,
                 "memory_delta_read": memory.delta_read,
+                "memory_gate_init": self._memory_gate_init,
             }
             for memory in memories
         ]
@@ -293,7 +400,12 @@ class Qwen35Titans(Qwen35Wrapper):
             },
             "adapter": {
                 **settings[0],
-                "layer_indices": [layer.memory_id for layer in self._titans_attn],
+                "layer_indices": (
+                    list(self._shared_bank.layer_indices)
+                    if self._shared_bank is not None
+                    else [layer.memory_id for layer in self._titans_attn]
+                ),
+                "shared_across_layers": self._shared_across_layers,
             },
             "training": getattr(self, "_training_config", {}),
             "metadata": metadata or {},
@@ -376,6 +488,8 @@ class Qwen35Titans(Qwen35Wrapper):
             # Local output capture is recreated during checkpoint recomputation.
             # Nothing mutates the input state or a persistent module cache.
             context = {"initial": initial, "final": {}, "mode": memory_mode}
+            if self._shared_bank is not None:
+                context["features"] = {}
             hidden = self.model.model(
                 input_ids=ids,
                 attention_mask=valid,
@@ -383,6 +497,8 @@ class Qwen35Titans(Qwen35Wrapper):
                 memory_context=context,
                 use_cache=False,
             ).last_hidden_state
+            if self._shared_bank is not None:
+                self._shared_bank.update(context, valid)
             return hidden, context["final"]
 
         if checkpoint_window and torch.is_grad_enabled():
@@ -742,6 +858,8 @@ class Qwen35Titans(Qwen35Wrapper):
             # Avoid nested recomputation if checkpointing the whole decoder.
             if checkpoint_decoder:
                 layer.memory.checkpoint_chunks = False
+        if self._shared_bank is not None:
+            self._shared_bank.write_logits.requires_grad_(True)
         if checkpoint_decoder and not episode_mode:
             self.model.gradient_checkpointing_enable(
                 gradient_checkpointing_kwargs={"use_reentrant": False}
@@ -818,12 +936,15 @@ class Qwen35Titans(Qwen35Wrapper):
                             inputs, mask, targets = (
                                 t.to(device, non_blocking=True) for t in tensors
                             )
-                            hidden = self.model.model(
-                                input_ids=inputs,
-                                attention_mask=mask,
-                                memory_mask=mask,
-                                use_cache=False,
-                            ).last_hidden_state
+                            if self._shared_bank is not None:
+                                hidden, _ = self._stream_forward(inputs, mask)
+                            else:
+                                hidden = self.model.model(
+                                    input_ids=inputs,
+                                    attention_mask=mask,
+                                    memory_mask=mask,
+                                    use_cache=False,
+                                ).last_hidden_state
                             loss = chunked_lm_loss(
                                 self.model.lm_head, hidden, targets, loss_chunk_size
                             )

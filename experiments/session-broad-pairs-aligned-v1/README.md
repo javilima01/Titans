@@ -1,8 +1,8 @@
 # session-broad-pairs-aligned-v1
 
-Strong single-fact recall on trained synthetic templates; novel values, unseen categories, and multi-fact corrections remain unreliable.
+Trained Titans recall is strong on familiar synthetic templates but fails unseen values; optional persisted source-text memory supplies exact evidence across sessions.
 
-Result: Broad held-out test 138/160 and 67/80 pairs, disabled 0/160, reset 12/160. Novel-value matched test neural 2/160 and 0/80 pairs; lexical retrieval 150/160 and 71/80 pairs with 160/160 support hits. Serialized state single-fact check 38/40; five-process two-fact correction smoke 1/3 scored questions. Unseen categories 12/160.
+Result: Neural familiar held-out test 138/160, 67/80 pairs; novel-value test 2/160, 0 pairs. Final episodic text memory on novel-value test 149/160, 70/80 pairs and 160/160 support hits; unseen-category validation 156/160, 76/80 pairs. Eight-process correction/repository smoke 5/5 scored questions. Text memory is a separate retrieval path with Titans disabled for answering.
 
 - Checkpoint: `checkpoints/session-broad-pairs-aligned-v1`
 - Parent checkpoint: `checkpoints/session-pairs-contrastive-full-v1`
@@ -48,3 +48,17 @@ Result: Broad held-out test 138/160 and 67/80 pairs, disabled 0/160, reset 12/16
 - `novel-values-test-all.json` (test; full_prompt; data `.datasets_cache/session-broad-novel-values-v1`):
   - normal: EM 0.0125, F1 0.1895089285714286, both pairs 0/80
   - By task: age 0/12, age_update 0/10, current_project 0/2, editor 0/12, name 0/14, preference 0/10, repo_build_tool 0/8, repo_config_file 0/18, repo_entry 0/16, repo_runtime 1/20, repo_test_command 0/8, repo_test_command_update 1/6, repo_update 0/12, timezone 0/12
+- `episodic-novel-values-validation-160.json` (validation; serialized_episodic_text; data `.datasets_cache/session-broad-novel-values-v1`):
+  - episodic: EM 0.9125, F1 0.9292013888888888, both pairs 69/80
+- `episodic-novel-values-test-160.json` (test; serialized_episodic_text; data `.datasets_cache/session-broad-novel-values-v1`):
+  - episodic: EM 0.9375, F1 0.9474107142857143, both pairs 71/80
+- `episodic-unseen-categories-validation-160.json` (validation; serialized_episodic_text; data `.datasets_cache/session-unseen-pairs-256-v1`):
+  - episodic: EM 0.975, F1 0.975, both pairs 76/80
+- `episodic-top1-novel-values-validation-160.json` (validation; serialized_episodic_text; data `.datasets_cache/session-broad-novel-values-v1`):
+  - episodic: EM 0.6, F1 0.6261904761904762, both pairs 44/80
+- `episodic-corrections-novel-validation-160.json` (validation; serialized_episodic_text; data `.datasets_cache/session-broad-novel-values-v1`):
+  - episodic: EM 0.9125, F1 0.9292013888888888, both pairs 69/80
+- `episodic-corrections-novel-test-160.json` (test; serialized_episodic_text; data `.datasets_cache/session-broad-novel-values-v1`):
+  - episodic: EM 0.93125, F1 0.9436607142857143, both pairs 70/80
+- `episodic-corrections-unseen-validation-160.json` (validation; serialized_episodic_text; data `.datasets_cache/session-unseen-pairs-256-v1`):
+  - episodic: EM 0.975, F1 0.975, both pairs 76/80

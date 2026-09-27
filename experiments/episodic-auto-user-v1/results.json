@@ -1,0 +1,34 @@
+{
+  "evaluation_kind": "three_separate_processes_automatic_user_fact_storage",
+  "cases": [
+    {
+      "case": "state_facts",
+      "prompt": "My preferred editor is Helix. My usual coding time is late evenings.",
+      "expected": null,
+      "answer": "Late evenings are ideal for Helix, as it offers a",
+      "exact_match": null,
+      "returncode": 0,
+      "stored_records": 2
+    },
+    {
+      "case": "ask_editor",
+      "prompt": "Which editor do I prefer?",
+      "expected": "Helix",
+      "answer": "Helix",
+      "exact_match": true,
+      "returncode": 0,
+      "stored_records": 2,
+      "normalized_match": true
+    },
+    {
+      "case": "ask_hours",
+      "prompt": "When am I usually available to code?",
+      "expected": "late evenings",
+      "answer": "Late evenings.",
+      "exact_match": false,
+      "returncode": 0,
+      "stored_records": 2,
+      "normalized_match": true
+    }
+  ]
+}

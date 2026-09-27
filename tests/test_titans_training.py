@@ -95,6 +95,9 @@ def tiny_wrapper(mixed=False, dtype=torch.float32):
     wrapper.model = Qwen3_5ForCausalLM(config).to(dtype=dtype)
     wrapper.tokenizer = TinyTokenizer()
     wrapper._titans_attn = []
+    wrapper._shared_across_layers = False
+    wrapper._shared_bank = None
+    wrapper._memory_gate_init = None
     wrapper._install_titans(memory_hidden_size=8, memory_chunk_size=2)
     wrapper.model.eval()
     return wrapper
@@ -104,6 +107,29 @@ class MemoryTests(unittest.TestCase):
     def setUp(self):
         torch.manual_seed(7)
         torch.set_num_threads(1)
+
+    def test_shared_snapshot_read_matches_fast_mlp_and_backpropagates(self):
+        memory = TitansMemory(4, 7, chunk_size=2, qk_scale=2.0).double()
+        earlier = torch.randn(2, 4, 4, dtype=torch.float64, requires_grad=True)
+        _, state = memory(earlier, return_state=True, batched_state=True)
+        later = torch.randn(2, 3, 4, dtype=torch.float64)
+        actual = memory.read_state(later, state)
+        query = memory.to_q(memory.norm(later))
+        query = torch.nn.functional.normalize(query, dim=-1) * memory.qk_scale
+        expected = torch.stack(
+            [
+                torch.func.functional_call(
+                    memory.memory,
+                    {name: tensor[batch] for name, tensor in state["params"].items()},
+                    (query[batch],),
+                )
+                for batch in range(2)
+            ]
+        ) - memory.memory(query)
+        torch.testing.assert_close(actual, expected, atol=1e-10, rtol=1e-8)
+        actual.square().sum().backward()
+        assert earlier.grad is not None
+        assert earlier.grad.abs().sum() > 0
 
     def test_values_and_meta_gradients_match_autograd_reference(self):
         for depth in (1, 2, 3):

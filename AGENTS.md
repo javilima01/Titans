@@ -20,8 +20,9 @@ Qwen3.5-0.8B with trainable Titans-style neural-memory adapters. `README.md` is 
 
 ## Architecture
 
-- `titans.py`: `TitansMemory` chunked causal recurrence (factorized gradients, optional checkpointing); `AttentionWithTitans` adds the gated additive memory branch to a Qwen attention module.
-- `qwen.py`: `Qwen35Wrapper` is frozen inference; `Qwen35Titans` installs adapters only on full-attention layers (those with `self_attn`; Qwen3.5 is a hybrid linear/full-attention model, so `layer_indices` must be full-attention) and `train()` optimizes only memory and gates.
+- `titans.py`: `TitansMemory` chunked causal recurrence (factorized gradients, optional checkpointing); `AttentionWithTitans` and `LinearAttentionWithTitans` add the same gated branch to Qwen's full-attention or Gated DeltaNet token mixer.
+- `qwen.py`: `Qwen35Wrapper` is frozen inference; `Qwen35Titans` accepts explicit `layer_indices` on either mixer type (omitting them still selects all full-attention layers) and `train()` optimizes only memory and gates. With `shared_across_layers=True`, selected layers read one fast-state snapshot; a learned layer mixture updates that state once after each window, and checkpoints store one memory module.
+- `modules/episodic_memory.py`: Persistent source-text memory stores user assertions in a per-scope JSON file and retrieves relevant snippets for chat. It is an explicit evidence store, not HOPE or a trained neural adapter.
 - `training.py`: tokenize-once overlapping windows (one token overlap), length-bucketed batching, chunked cross-entropy that never materializes full logits.
 - `helpers/monitoring.py`: `TrainingMonitor` appends JSONL step/validation events and atomically re-renders `NAME.training.png` (matplotlib Agg) next to `--output`; both files move into the checkpoint directory on completion. `main.py train` catches `KeyboardInterrupt` and still saves the partial checkpoint (`metadata.interrupted`, with `"interrupted": true`); `Qwen35Titans.train` scores `validation_episodes` per completed epoch under `no_grad` via `_episodes_loss` (skipped when `max_steps` cuts the epoch short).
 - Memory adapters stay FP32 even with a BF16 backbone; `TitansMemory.forward` deliberately disables autocast. Titans state is not in HF's KV cache, so the wrapper forces `use_cache=False` during generation.

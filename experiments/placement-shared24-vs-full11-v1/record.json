@@ -1,0 +1,15 @@
+{
+  "id": "placement-shared24-vs-full11-v1",
+  "kind": "evaluation",
+  "checkpoint": "checkpoints/session-broad-shared24-full-v1",
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "adapter": {"shared_across_layers": true, "layer_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "memory_hidden_size": 256, "memory_chunk_size": 16, "memory_gate_init": -5.3},
+  "source": ".datasets_cache/session-broad-pairs-256-v1",
+  "parent_checkpoint": null,
+  "training": {"steps": 700, "seed": 42, "device": "mps", "window_size": 256},
+  "reports": {},
+  "supplementary_reports": ["experiments/placement-shared24-vs-full11-v1/summary.json"],
+  "note": "One shared Titans fast state read by 24 layers versus a fresh single-layer control, matched at 700 steps.",
+  "command": "",
+  "result": "Shared: 124/160 familiar test and 58/80 pairs versus 117/160 and 49/80 for layer 11. Novel-value test 2/160 versus 0/160, neither with a complete pair. Multi-fact cross-process smoke 1/3."
+}

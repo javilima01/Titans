@@ -1,0 +1,52 @@
+{
+  "dataset": ".datasets_cache/session-broad-pairs-256-v1",
+  "training_difference": "only layer index 10 versus 11; both fresh initialization, same seed and options",
+  "results": {
+    "session-broad-linear10-v1": {
+      "layer": [
+        10
+      ],
+      "steps": 700,
+      "validation_loss_first_40": 0.20531605451534957,
+      "metrics": {
+        "familiar": {
+          "exact": 123,
+          "count": 160,
+          "both_pairs": 59,
+          "pairs": 80,
+          "report": "checkpoints/session-broad-linear10-v1/broad-validation-all.json"
+        },
+        "novel_values": {
+          "exact": 1,
+          "count": 160,
+          "both_pairs": 0,
+          "pairs": 80,
+          "report": "checkpoints/session-broad-linear10-v1/novel-values-validation-all.json"
+        }
+      }
+    },
+    "session-broad-full11-scratch-v1": {
+      "layer": [
+        11
+      ],
+      "steps": 700,
+      "validation_loss_first_40": 0.4415268042148688,
+      "metrics": {
+        "familiar": {
+          "exact": 117,
+          "count": 160,
+          "both_pairs": 55,
+          "pairs": 80,
+          "report": "checkpoints/session-broad-full11-scratch-v1/broad-validation-all.json"
+        },
+        "novel_values": {
+          "exact": 0,
+          "count": 160,
+          "both_pairs": 0,
+          "pairs": 80,
+          "report": "checkpoints/session-broad-full11-scratch-v1/novel-values-validation-all.json"
+        }
+      }
+    }
+  }
+}

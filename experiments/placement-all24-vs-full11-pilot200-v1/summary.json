@@ -1,0 +1,43 @@
+{
+  "dataset": ".datasets_cache/session-broad-pairs-256-v1",
+  "novel_value_dataset": ".datasets_cache/session-broad-novel-values-v1",
+  "seed": 42,
+  "training_pairs": 200,
+  "optimizer_steps": 200,
+  "window_size": 256,
+  "device": "mps",
+  "all_24": {
+    "checkpoint": "checkpoints/session-broad-all24-scaled-pilot-v1",
+    "layer_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    "memory_gate_init": -5.3,
+    "loss_last_50": 3.680,
+    "step_time_seconds": 1191.1,
+    "adapter_bytes_approx": 353000000,
+    "familiar_validation": {"exact": 6, "count": 40, "complete_pairs": 0, "pairs": 20},
+    "disabled": {"exact": 0, "count": 40},
+    "reset_each_window": {"exact": 2, "count": 40},
+    "novel_values": {"exact": 0, "count": 40, "complete_pairs": 0, "pairs": 20},
+    "serialized_state": {"exact": 2, "count": 20, "complete_pairs": 0, "pairs": 10},
+    "serialized_state_reset": {"exact": 0, "count": 20}
+  },
+  "full_attention_11": {
+    "checkpoint": "checkpoints/session-broad-full11-pilot200-v1",
+    "layer_indices": [11],
+    "memory_gate_init": -2.0,
+    "loss_last_50": 2.495,
+    "step_time_seconds": 175.8,
+    "adapter_bytes_approx": 14700000,
+    "familiar_validation": {"exact": 13, "count": 40, "complete_pairs": 2, "pairs": 20},
+    "disabled": {"exact": 0, "count": 40},
+    "reset_each_window": {"exact": 5, "count": 40},
+    "novel_values": {"exact": 0, "count": 40, "complete_pairs": 0, "pairs": 20},
+    "serialized_state": {"exact": 5, "count": 20, "complete_pairs": 0, "pairs": 10},
+    "serialized_state_reset": {"exact": 0, "count": 20}
+  },
+  "startup_diagnostic": {
+    "unscaled_gate_init": -2.0,
+    "unscaled_first_two_losses": [13.392448425292969, 49.77467727661133],
+    "scaled_gate_init": -5.3,
+    "scaled_first_two_losses": [7.392950439453125, 6.370059013366699]
+  }
+}

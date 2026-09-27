@@ -1,0 +1,89 @@
+{
+  "prompt_variant": "separate evidence turn and latest best-matching statement (one hit)",
+  "scored": {
+    "correct": 5,
+    "questions": 5
+  },
+  "cases": [
+    {
+      "case": "remember_two",
+      "prompt": "/remember The build tool for repository alpha is Bazel. The build tool for repository beta is Meson.",
+      "expected": null,
+      "answer": "Remembered 2 statement(s).",
+      "exact_match": null,
+      "returncode": 0,
+      "stored_records": 2,
+      "file_bytes": 173
+    },
+    {
+      "case": "ask_alpha_before",
+      "prompt": "Which build tool does repository alpha use?",
+      "expected": "Bazel",
+      "answer": "Bazel",
+      "exact_match": true,
+      "returncode": 0,
+      "stored_records": 2,
+      "file_bytes": 173
+    },
+    {
+      "case": "correct_alpha",
+      "prompt": "/remember Correction: the build tool for repository alpha is Ninja.",
+      "expected": null,
+      "answer": "Remembered 1 statement(s).",
+      "exact_match": null,
+      "returncode": 0,
+      "stored_records": 3,
+      "file_bytes": 258
+    },
+    {
+      "case": "ask_alpha_after",
+      "prompt": "Which build tool does repository alpha use?",
+      "expected": "Ninja",
+      "answer": "Ninja",
+      "exact_match": true,
+      "returncode": 0,
+      "stored_records": 3,
+      "file_bytes": 258
+    },
+    {
+      "case": "ask_beta_after",
+      "prompt": "Which build tool does repository beta use?",
+      "expected": "Meson",
+      "answer": "Meson",
+      "exact_match": true,
+      "returncode": 0,
+      "stored_records": 3,
+      "file_bytes": 258
+    },
+    {
+      "case": "remember_unseen",
+      "prompt": "/remember Repository projectx runs tests with pnpm test. Repository projectx stores configuration in config/runtime.yaml.",
+      "expected": null,
+      "answer": "Remembered 2 statement(s).",
+      "exact_match": null,
+      "returncode": 0,
+      "stored_records": 5,
+      "file_bytes": 424
+    },
+    {
+      "case": "ask_test_command",
+      "prompt": "How do I run tests in repository projectx?",
+      "expected": "pnpm test",
+      "answer": "pnpm test",
+      "exact_match": true,
+      "returncode": 0,
+      "stored_records": 5,
+      "file_bytes": 424
+    },
+    {
+      "case": "ask_config_file",
+      "prompt": "What is the configuration file for repository projectx?",
+      "expected": "config/runtime.yaml",
+      "answer": "config/runtime.yaml",
+      "exact_match": true,
+      "returncode": 0,
+      "stored_records": 5,
+      "file_bytes": 424
+    }
+  ]
+}

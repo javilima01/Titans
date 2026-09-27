@@ -74,3 +74,73 @@ and an objective that directly rewards copying a value from earlier context.
 Select checkpoints on those transfer probes, then evaluate on untouched test
 conversations and actual repositories. Increasing sequence length alone will
 not address the observed novel-value failure.
+
+## Layer placement and source-text memory follow-up
+
+Qwen3.5's linear Gated DeltaNet layers now accept the same gated Titans branch
+as its full-attention layers. A matched placement experiment trained a fresh
+layer-10 linear adapter and a fresh layer-11 full-attention adapter for 700 MPS
+steps each, with the same seed, data, and optimizer settings. Layer 10 reached
+123/160 familiar validation answers and 59/80 complete pairs; layer 11 reached
+117/160 and 55/80. Layer 10 scored 1/160 on new answer values and layer 11
+scored 0/160, both with no complete pairs. The linear placement modestly
+improved trained-template recall, but did not solve open-value copying. The
+older layer-11 checkpoint had earlier training and is not the matched control.
+See [the placement record](placement-linear10-vs-full11-v1/README.md).
+
+A follow-up [all-layer pilot](placement-all24-vs-full11-pilot200-v1/README.md)
+put independent Titans branches on all 18 Gated DeltaNet and 6 full-attention
+layers. Scaling each output gate from `-2` to `-5.3` avoided a large startup
+loss. At 200 matched steps, all-layer placement scored 6/40 familiar validation
+answers and 0/20 complete pairs, versus 13/40 and 2/20 for a fresh layer-11
+control. Persisted and reloaded fast states scored 2/20 versus 5/20. Both
+models scored 0/40 on novel values. The all-layer adapter weights took 353 MB
+and its 200 training steps took 1,191 seconds, versus 14.7 MB and 176 seconds
+for layer 11. This limited pilot does not show an accuracy or generalization
+benefit from attaching independent memories at every layer; a shared-memory
+architecture or different optimization would be a separate test.
+
+The [HOPE paper](https://arxiv.org/html/2512.24695v1) combines self-modifying
+projection memories and a continuum memory system with several update rates.
+Its long-context model was trained from scratch on roughly 50 billion tokens;
+the paper notes that small models' performance can drop without task
+fine-tuning. This is not evidence that replacing one frozen-Qwen adapter with
+an untrained HOPE-style block would give dependable personal or repository
+fact recall. A full HOPE implementation was deferred in favor of measuring
+placement and preserving exact source text.
+
+The [shared-layer experiment](placement-shared24-vs-full11-v1/README.md)
+tests one Titans module and fast state: all 24 Qwen layers read the
+prior-window snapshot, and a learned mixture of their hidden inputs writes
+once after the window. This avoids causal leakage from later tokens and keeps
+the adapter at 14.7 MB rather than 353 MB for 24 independent adapters. The
+fixed write weights remained near uniform after training; token-dependent
+cross-layer attention was not tested. After 700 matched steps, the shared
+model scored 124/160 familiar test answers and
+58/80 complete pairs, versus 117/160 and 49/80 for a fresh layer-11 control.
+Serialized-state validation was similar (30/40 versus 31/40). Novel-value test
+remained almost entirely unsolved (2/160 versus 0/160, both 0/80 complete
+pairs), and a five-process two-repository correction check scored only 1/3.
+Cross-layer sharing is useful to test and gives a small familiar-template gain,
+but does not fix the intended arbitrary-fact and multi-fact memory behavior.
+
+The new optional episodic text store saves declarative user statements to a
+per-scope file and retrieves relevant wording before answering. A later
+explicit correction can suppress an older overlapping statement. On novel
+values, the final version retrieved the marked support in 160/160 examples,
+answered 146/160 validation questions and 149/160 test questions, and solved
+70/80 test pairs. On three fact categories excluded from neural training, it
+answered 156/160 validation questions and 76/80 pairs. The neural checkpoint
+answered 0/160 novel-value validation questions and 2/160 test questions.
+An eight-process chat check with two
+repository facts, a correction, and two unseen repository values answered all
+five scored questions; earlier prompt/retrieval variants answered 3/5 and
+4/5. A one-hit retrieval variant found support in only 116/160 novel-value
+validation examples, explaining why the final version retains several facts
+while suppressing explicit older conflicts. These are synthetic experiments;
+automatic retrieval of arbitrary real conversations and codebase observations
+still needs a broader evaluation and a way to ingest tool findings.
+In a separate three-process check, an ordinary user message automatically
+stored an unseen editor and work-hours value. The later answers were exact for
+the editor and semantically correct for work hours, where capitalization and a
+period prevented exact matching.

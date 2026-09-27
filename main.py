@@ -58,6 +58,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--checkpoint", type=Path, help="Continue adapter training with a new optimizer"
     )
     train.add_argument("--layers", type=int, nargs="+", help="New model only; default: 11")
+    train.add_argument(
+        "--shared-memory",
+        action="store_true",
+        help="New model only; one fast memory read by every selected layer (default: all 24)",
+    )
     train.add_argument("--memory-hidden-size", type=_positive, help="New model only; default: 256")
     train.add_argument("--memory-chunk-size", type=_positive, help="New model only; default: 16")
     train.add_argument("--memory-qk-scale", type=float, help="New model only; default: 1.0")
@@ -71,6 +76,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--memory-delta-read",
         action="store_true",
         help="New model only; expose only fast-memory changes to Qwen",
+    )
+    train.add_argument(
+        "--memory-gate-init",
+        type=float,
+        help="New model only; initial logit of each adapter output gate",
     )
     train.add_argument("--window-size", type=_positive, help="Default: checkpoint setting or 512")
     train.add_argument(
@@ -146,6 +156,17 @@ def build_parser() -> argparse.ArgumentParser:
         "--memory-state-file",
         type=Path,
         help="Save and reload one user's compact Titans fast-memory state across chat runs",
+    )
+    chat.add_argument(
+        "--episodic-memory-file",
+        type=Path,
+        help="Save source statements and retrieve relevant evidence across chat runs",
+    )
+    chat.add_argument(
+        "--episodic-hits",
+        type=_positive,
+        default=3,
+        help="Maximum retrieved source statements per question (default: 3)",
     )
     chat.add_argument("--max-new-tokens", type=_positive, default=200)
     chat.add_argument(
@@ -295,6 +316,7 @@ def run(args):
 
     from src.llm.helpers.experiment_tracking import record_experiment
     from src.llm.helpers.monitoring import TrainingMonitor
+    from src.llm.modules.episodic_memory import EpisodicMemory, evidence_message
     from src.llm.modules.evaluation import evaluate_episodes
     from src.llm.modules.qwen import Qwen35Titans, Qwen35Wrapper
     from src.llm.schemas.messages import Message
@@ -318,9 +340,11 @@ def run(args):
                 args.max_inner_grad_norm,
                 args.aligned_qk_init or None,
                 args.memory_delta_read or None,
+                args.memory_gate_init,
+                args.shared_memory or None,
             )
         ):
-            msg = "Adapter architecture comes from --checkpoint; omit --layers/--memory-*-size"
+            msg = "Adapter settings come from --checkpoint; omit new-adapter options"
             raise ValueError(msg)
         episodes = load_episodes(args, "train")
         if args.supervise_eos:
@@ -331,7 +355,7 @@ def run(args):
             if args.checkpoint
             else Qwen35Titans(
                 **runtime,
-                layer_indices=args.layers or [11],
+                layer_indices=args.layers if args.shared_memory else args.layers or [11],
                 memory_hidden_size=args.memory_hidden_size or 256,
                 memory_chunk_size=args.memory_chunk_size or 16,
                 memory_qk_scale=args.memory_qk_scale if args.memory_qk_scale is not None else 1.0,
@@ -340,6 +364,8 @@ def run(args):
                 ),
                 aligned_qk_init=args.aligned_qk_init,
                 memory_delta_read=args.memory_delta_read,
+                memory_gate_init=args.memory_gate_init,
+                shared_across_layers=args.shared_memory,
             )
         )
         window_size = args.window_size or model.training_config.get("window_size", 512)
@@ -535,6 +561,9 @@ def run(args):
     if args.memory_state_file and args.session_file:
         msg = "Use either --memory-state-file or --session-file for a chat"
         raise ValueError(msg)
+    if args.episodic_memory_file and (args.memory_state_file or args.session_file):
+        msg = "Use --episodic-memory-file separately from other persistent chat modes"
+        raise ValueError(msg)
     model = (
         Qwen35Titans.from_pretrained(args.checkpoint, **runtime)
         if args.checkpoint
@@ -548,8 +577,14 @@ def run(args):
         if args.memory_state_file and args.memory_state_file.exists()
         else None
     )
+    episodic_memory = (
+        EpisodicMemory.load(args.episodic_memory_file) if args.episodic_memory_file else None
+    )
     if args.prompt is None:
-        print("Type /exit to quit or /reset to clear the conversation.")
+        instructions = "Type /exit to quit or /reset to clear the conversation."
+        if episodic_memory is not None:
+            instructions += " Use /remember TEXT to save a fact without asking a question."
+        print(instructions)
     while True:
         try:
             text = args.prompt if args.prompt is not None else input("You: ")
@@ -564,9 +599,33 @@ def run(args):
                 _save_chat_session(args.session_file, history)
             if args.memory_state_file:
                 args.memory_state_file.unlink(missing_ok=True)
+            if args.episodic_memory_file:
+                args.episodic_memory_file.unlink(missing_ok=True)
+                episodic_memory = EpisodicMemory()
             if args.prompt is not None:
                 break
             continue
+        if episodic_memory is not None and (
+            text.strip() == "/remember" or text.strip().startswith("/remember ")
+        ):
+            fact = text.strip().removeprefix("/remember").strip()
+            if fact:
+                count = episodic_memory.remember(fact)
+                episodic_memory.save(args.episodic_memory_file)
+                print(f"Remembered {count} statement(s).")
+            else:
+                print("Usage: /remember TEXT")
+            if args.prompt is not None:
+                break
+            continue
+        recalled = (
+            episodic_memory.retrieve(text, limit=args.episodic_hits)
+            if episodic_memory is not None
+            else []
+        )
+        if recalled:
+            history.append(Message.user_msg(evidence_message(recalled)))
+            history.append(Message.assistant_msg("Understood."))
         history.append(Message.user_msg(text))
         if isinstance(model, Qwen35Titans):
             response = model.generate(
@@ -575,6 +634,7 @@ def run(args):
                 window_size=args.window_size,
                 temperature=args.temperature,
                 top_p=args.top_p,
+                memory_mode="disabled" if episodic_memory is not None else "normal",
                 memory_state=memory_state,
                 return_memory_state=bool(args.memory_state_file),
             )
@@ -593,6 +653,9 @@ def run(args):
             _save_chat_session(args.session_file, history)
         if args.memory_state_file:
             history = [Message.system_msg(args.system)]
+        if episodic_memory is not None:
+            episodic_memory.remember(text)
+            episodic_memory.save(args.episodic_memory_file)
         print(answer if args.prompt is not None else f"Assistant: {answer}")
         if args.prompt is not None:
             break

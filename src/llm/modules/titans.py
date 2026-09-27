@@ -276,9 +276,138 @@ class TitansMemory(nn.Module):
             return y, states
         return y
 
+    def read_state(self, x: torch.Tensor, state: dict | None) -> torch.Tensor:
+        """Read a fixed fast-weight snapshot without advancing its recurrence.
 
-class AttentionWithTitans(nn.Module):
-    """Add a gated neural-memory branch to Qwen's attention residual."""
+        The shared-layer architecture uses the state from before the current
+        window at every layer. Subtracting the initial MLP makes an empty state
+        contribute exactly zero, leaving the frozen backbone undisturbed.
+        """
+        if state is None:
+            return torch.zeros_like(x, dtype=torch.float32)
+        with torch.autocast(device_type=x.device.type, enabled=False):
+            query = self.to_q(self.norm(x.to(self.norm.weight.dtype)))
+            if self.normalize_qk:
+                query = functional.normalize(query, dim=-1) * self.qk_scale
+            output = query
+            for index in self.memory.linear_indices:
+                weight = state["params"][f"net.{index}.weight"]
+                bias = state["params"][f"net.{index}.bias"]
+                if weight.shape[0] != x.shape[0] or bias.shape[0] != x.shape[0]:
+                    msg = "Shared memory state batch size does not match input"
+                    raise ValueError(msg)
+                output = torch.bmm(output, weight.transpose(1, 2)) + bias.unsqueeze(1)
+                if index != self.memory.linear_indices[-1]:
+                    output = functional.silu(output)
+            return output - self.memory(query)
+
+
+class SharedLayerMemoryBank(nn.Module):
+    """One fast state read across layers and updated once after each window."""
+
+    def __init__(self, memory: TitansMemory, layer_indices: list[int], gate_init: float):
+        super().__init__()
+        self.memory = memory
+        self.layer_indices = tuple(layer_indices)
+        self.layer_positions = {layer: position for position, layer in enumerate(layer_indices)}
+        self.memory_gate = nn.Parameter(torch.full((len(layer_indices),), gate_init))
+        self.write_logits = nn.Parameter(torch.zeros(len(layer_indices)))
+        self.memory_id = -1
+
+    def read(self, hidden_states, context, layer_idx):
+        if context is None or context["mode"] == "disabled":
+            return None
+        context["features"][layer_idx] = hidden_states
+        initial = context["initial"].get(self.memory_id) if context["mode"] == "normal" else None
+        if initial is None:
+            return None
+        output = self.memory.read_state(hidden_states, initial)
+        gate = self.memory_gate[self.layer_positions[layer_idx]].sigmoid()
+        return gate * output
+
+    def update(self, context, token_mask):
+        if context["mode"] == "disabled":
+            return
+        if set(context["features"]) != set(self.layer_indices):
+            msg = "Shared memory did not receive every selected layer"
+            raise RuntimeError(msg)
+        weights = self.write_logits.softmax(dim=0)
+        features = torch.stack([context["features"][layer] for layer in self.layer_indices])
+        write_input = (weights[:, None, None, None] * features).sum(dim=0)
+        initial = context["initial"].get(self.memory_id) if context["mode"] == "normal" else None
+        _, final = self.memory(
+            write_input,
+            token_mask=token_mask,
+            state=initial,
+            return_state=True,
+            batched_state=True,
+        )
+        context["final"][self.memory_id] = final
+
+
+class SharedLayerMixer(nn.Module):
+    """Wrap one Qwen mixer while referencing a single bank owned by the model."""
+
+    def __init__(self, attention: nn.Module, bank: SharedLayerMemoryBank, layer_idx: int):
+        super().__init__()
+        self.attention = attention
+        # The model registers the bank once; readers must not register it again.
+        object.__setattr__(self, "bank", bank)
+        self.layer_idx = layer_idx
+
+    def _blend(self, hidden_states, mixer_out, memory_context):
+        correction = self.bank.read(hidden_states, memory_context, self.layer_idx)
+        if correction is None:
+            return mixer_out
+        return mixer_out + correction.to(mixer_out.dtype)
+
+
+class SharedFullAttention(SharedLayerMixer):
+    def forward(
+        self,
+        hidden_states,
+        position_embeddings,
+        attention_mask=None,
+        position_ids=None,
+        past_key_values=None,
+        memory_mask=None,
+        memory_context=None,
+        **kwargs,
+    ):
+        del memory_mask
+        attn_out, attn_weights = self.attention(
+            hidden_states=hidden_states,
+            position_embeddings=position_embeddings,
+            attention_mask=attention_mask,
+            position_ids=position_ids,
+            past_key_values=past_key_values,
+            **kwargs,
+        )
+        return self._blend(hidden_states, attn_out, memory_context), attn_weights
+
+
+class SharedLinearAttention(SharedLayerMixer):
+    def forward(
+        self,
+        hidden_states,
+        cache_params=None,
+        attention_mask=None,
+        memory_mask=None,
+        memory_context=None,
+        **kwargs,
+    ):
+        del memory_mask
+        mixer_out = self.attention(
+            hidden_states=hidden_states,
+            cache_params=cache_params,
+            attention_mask=attention_mask,
+            **kwargs,
+        )
+        return self._blend(hidden_states, mixer_out, memory_context)
+
+
+class MemoryAugmentedMixer(nn.Module):
+    """Common gated memory branch for Qwen's full and linear token mixers."""
 
     def __init__(
         self,
@@ -293,6 +422,29 @@ class AttentionWithTitans(nn.Module):
         # The branch must exceed BF16 rounding to receive useful answer feedback.
         self.memory_gate = nn.Parameter(torch.tensor(gate_init, dtype=torch.float32))
         self.memory_id = memory_id
+
+    def _blend_memory(self, hidden_states, mixer_out, memory_mask, memory_context):
+        if memory_context is None:
+            memory_out = self.memory(hidden_states, token_mask=memory_mask)
+        else:
+            mode = memory_context["mode"]
+            if mode == "disabled":
+                return mixer_out
+            initial = memory_context["initial"].get(self.memory_id) if mode == "normal" else None
+            memory_out, final = self.memory(
+                hidden_states,
+                token_mask=memory_mask,
+                state=initial,
+                return_state=True,
+                batched_state=True,
+            )
+            memory_context["final"][self.memory_id] = final
+        # Gate and multiply in FP32 before casting back to the backbone dtype.
+        return mixer_out + (self.memory_gate.sigmoid() * memory_out).to(mixer_out.dtype)
+
+
+class AttentionWithTitans(MemoryAugmentedMixer):
+    """Add a gated neural-memory branch to full attention's residual output."""
 
     def forward(
         self,
@@ -313,21 +465,27 @@ class AttentionWithTitans(nn.Module):
             past_key_values=past_key_values,
             **kwargs,
         )
-        if memory_context is None:
-            memory_out = self.memory(hidden_states, token_mask=memory_mask)
-        else:
-            mode = memory_context["mode"]
-            if mode == "disabled":
-                return attn_out, attn_weights
-            initial = memory_context["initial"].get(self.memory_id) if mode == "normal" else None
-            memory_out, final = self.memory(
-                hidden_states,
-                token_mask=memory_mask,
-                state=initial,
-                return_state=True,
-                batched_state=True,
-            )
-            memory_context["final"][self.memory_id] = final
-        # Gate and multiply in FP32 before casting back to the backbone dtype.
-        out = attn_out + (self.memory_gate.sigmoid() * memory_out).to(attn_out.dtype)
-        return out, attn_weights
+        return self._blend_memory(
+            hidden_states, attn_out, memory_mask, memory_context
+        ), attn_weights
+
+
+class LinearAttentionWithTitans(MemoryAugmentedMixer):
+    """Add the same gated branch to a Gated DeltaNet mixer's residual output."""
+
+    def forward(
+        self,
+        hidden_states,
+        cache_params=None,
+        attention_mask=None,
+        memory_mask=None,
+        memory_context=None,
+        **kwargs,
+    ):
+        mixer_out = self.attention(
+            hidden_states=hidden_states,
+            cache_params=cache_params,
+            attention_mask=attention_mask,
+            **kwargs,
+        )
+        return self._blend_memory(hidden_states, mixer_out, memory_mask, memory_context)

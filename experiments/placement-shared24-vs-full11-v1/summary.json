@@ -1,0 +1,41 @@
+{
+  "dataset": ".datasets_cache/session-broad-pairs-256-v1",
+  "novel_value_dataset": ".datasets_cache/session-broad-novel-values-v1",
+  "seed": 42,
+  "optimizer_steps": 700,
+  "window_size": 256,
+  "device": "mps",
+  "shared_24_reads": {
+    "checkpoint": "checkpoints/session-broad-shared24-full-v1",
+    "shared_fast_states": 1,
+    "layer_count": 24,
+    "memory_gate_init": -5.3,
+    "step_time_seconds": 718.1,
+    "adapter_bytes": 14707484,
+    "familiar_validation": {"exact": 121, "count": 160, "complete_pairs": 55, "pairs": 80},
+    "familiar_validation_disabled": {"exact": 0, "count": 160},
+    "familiar_validation_reset": {"exact": 0, "count": 160},
+    "familiar_test": {"exact": 124, "count": 160, "complete_pairs": 58, "pairs": 80},
+    "novel_validation": {"exact": 2, "count": 160, "complete_pairs": 0, "pairs": 80},
+    "novel_test": {"exact": 2, "count": 160, "complete_pairs": 0, "pairs": 80},
+    "serialized_state_validation": {"exact": 30, "count": 40, "complete_pairs": 12, "pairs": 20},
+    "multifact_separate_processes": {"exact": 1, "count": 3}
+  },
+  "full_attention_11": {
+    "checkpoint": "checkpoints/session-broad-full11-scratch-v1",
+    "shared_fast_states": 1,
+    "layer_count": 1,
+    "step_time_seconds": 619.9,
+    "adapter_bytes": 14707256,
+    "familiar_validation": {"exact": 117, "count": 160, "complete_pairs": 55, "pairs": 80},
+    "familiar_test": {"exact": 117, "count": 160, "complete_pairs": 49, "pairs": 80},
+    "novel_validation": {"exact": 0, "count": 160, "complete_pairs": 0, "pairs": 80},
+    "novel_test": {"exact": 0, "count": 160, "complete_pairs": 0, "pairs": 80},
+    "serialized_state_validation": {"exact": 31, "count": 40, "complete_pairs": 14, "pairs": 20}
+  },
+  "pilot_200_steps": {
+    "shared_24_familiar": {"exact": 13, "count": 40, "complete_pairs": 3, "pairs": 20},
+    "full_attention_11_familiar": {"exact": 13, "count": 40, "complete_pairs": 2, "pairs": 20},
+    "independent_24_familiar": {"exact": 6, "count": 40, "complete_pairs": 0, "pairs": 20}
+  }
+}

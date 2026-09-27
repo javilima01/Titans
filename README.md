@@ -72,6 +72,33 @@ selection. New CLI runs default to one adapter at layer 11, internal width 256,
 memory chunk size 16, Qwen window size 512, and checkpointing enabled. Start with
 `train --limit 8 --max-steps 2` to check resource use. These are starting settings,
 not measured performance optima. Existing checkpoints/reports are not overwritten.
+Qwen3.5-0.8B has 24 decoder layers: 18 Gated DeltaNet and 6 full-attention
+layers. `--layers 0 1 ... 23` installs a separate memory adapter on every
+layer. For this many branches, `--memory-gate-init -5.3` gives each branch a
+smaller initial contribution than the single-layer default of `-2`. The gate
+value is saved in the checkpoint; all-layer training uses substantially more
+memory and time. The placement experiments in `experiments/` measure whether
+this added capacity helps recall.
+
+`train --shared-memory` selects a different architecture: one Titans memory
+module and one serialized fast state for all selected layers (all 24 by
+default). Every layer reads the state that existed before the current Qwen
+window. A learned weighted mixture of the selected layer inputs writes the
+next state once after the window. The weights are fixed across tokens. Since
+the read uses the prior-window state, later tokens cannot change an earlier
+token's memory read. The read exposes only the change from the initial memory
+MLP. This setup tests shared cross-layer memory without multiplying the fast
+state or adapter weights by 24:
+
+```sh
+.venv/bin/python main.py train --data .datasets_cache/session-broad-pairs-256-v1 \
+  --output checkpoints/shared24-example --shared-memory \
+  --memory-hidden-size 256 --memory-qk-scale 5.656854249492381 \
+  --aligned-qk-init --window-size 256 --batch-size 2 --no-shuffle \
+  --pair-contrastive-weight 16 --supervise-eos --lr 0.0003 \
+  --device mps --no-checkpoint-decoder
+```
+
 Chat supports `/reset` and `/exit`; it replays conversation history per turn.
 For conversations that span process launches, pass a per-user `--session-file`:
 
@@ -115,6 +142,41 @@ and updates the checkpoint's experiment record:
   --checkpoint checkpoints/session-broad-pairs-aligned-v1 \
   --device mps --limit 40
 ```
+
+For facts whose exact wording or value matters, `--episodic-memory-file`
+persists source statements as text and retrieves up to three relevant
+statements on each later turn. Explicit corrections suppress earlier
+statements about the same subject when their wording overlaps. Use
+`--episodic-hits 1` for a single best match or increase it for broader
+questions. The file is scoped by its path; use a separate
+file for each user or project. Declarative user sentences are stored
+automatically, and `/remember TEXT` saves a fact without generating an
+answer. Later statements are shown after earlier ones so corrections can
+override them. With an adapter checkpoint, this mode disables the neural
+memory branch for answering and uses retrieved source text. `/reset` deletes
+the file.
+
+```sh
+.venv/bin/python main.py chat --checkpoint checkpoints/session-broad-pairs-aligned-v1 \
+  --episodic-memory-file .sessions/alice-projectx.json \
+  --prompt "/remember Repository projectx runs tests with pnpm test."
+.venv/bin/python main.py chat --checkpoint checkpoints/session-broad-pairs-aligned-v1 \
+  --episodic-memory-file .sessions/alice-projectx.json \
+  --prompt "How do I run tests in projectx?"
+```
+
+The source-text store can also be populated by an application from user or
+codebase observations with `EpisodicMemory.remember()`. This CLI stores user
+statements only; it does not inspect repositories automatically. Retrieval can
+miss paraphrases and the decoder can still misread evidence, so measure it on
+the intended conversations. The file is JSON with owner-only permissions.
+The synthetic cross-session check is available through
+`python -m src.llm.helpers.episodic_evaluation`.
+On the held-out synthetic novel-value test, the final text-memory path answered
+149/160 questions and 70/80 complete pairs, versus 2/160 and 0/80 for the
+neural adapter. It answered 156/160 examples from three unseen fact categories.
+See [the experiment records](experiments/README.md) and
+[interpretation](experiments/RESEARCH.md).
 
 All commands accept saved normalized JSONL data via `--data PATH` (file or
 directory). Training and evaluation can also download normalized episodes directly:
@@ -235,6 +297,14 @@ The example is a starting configuration, not a measured optimum. Increase
 context length and the number of adapted layers after profiling memory use on
 your hardware. Smaller physical batches with more accumulation use less memory.
 `losses` contains the token-mean next-token loss for each optimizer step.
+Explicit `layer_indices` or `train --layers` may now select Qwen3.5's linear
+attention layers as well as its full-attention layers. The same Titans branch
+is added to the selected token mixer's residual output; it carries its own fast
+state between windows. Omitting `layer_indices` retains the previous default
+of all six full-attention layers, and existing checkpoints keep their placement.
+A matched 700-step experiment found 123/160 familiar validation answers at
+linear layer 10 versus 117/160 at full-attention layer 11; novel-value recall
+remained 1/160 versus 0/160. [Placement details](experiments/placement-linear10-vs-full11-v1/README.md)
 
 ## Memory datasets
 

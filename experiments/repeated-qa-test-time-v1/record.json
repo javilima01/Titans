@@ -1,0 +1,9 @@
+{
+  "id": "repeated-qa-test-time-v1",
+  "kind": "analysis",
+  "checkpoint": "checkpoints/surprise-delta-open-values-700-v1",
+  "training": {},
+  "reports": {},
+  "note": "Five serialized-state Q/A presentations: 0/40 unseen answers; five Q/A in direct context: 40/40.",
+  "result": "Five serialized-state Q/A presentations: 0/40 unseen answers; five Q/A in direct context: 40/40."
+}

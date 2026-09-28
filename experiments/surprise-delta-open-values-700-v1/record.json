@@ -702,6 +702,1585 @@
           }
         }
       }
+    },
+    "read-gate-sweep-novel-validation-40.json": {
+      "path": "checkpoints/surprise-delta-open-values-700-v1/read-gate-sweep-novel-validation-40.json",
+      "split": null,
+      "data_source": ".datasets_cache/session-open-values-v1/validation.jsonl",
+      "data_manifest": null,
+      "evaluation_kind": "read_gate_multiplier_sweep",
+      "evaluation_options": {
+        "limit": 40,
+        "window_size": 256,
+        "max_new_tokens": 12,
+        "device": "mps"
+      },
+      "evaluated_at": "2026-09-28T04:02:30.696999+00:00",
+      "window_size": null,
+      "max_new_tokens": null,
+      "evaluations": {
+        "1.0": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.0875,
+            "recall": 0.0875,
+            "f1": 0.0875
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.6
+          },
+          "by_task": {
+            "age": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "current_project": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_config_file": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.3333333333333333,
+              "recall": 0.3333333333333333,
+              "f1": 0.3333333333333333
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75
+            },
+            "repo_runtime": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command_update": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "4.0": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 1.0
+          },
+          "by_task": {
+            "age": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "current_project": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_config_file": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_runtime": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command_update": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "8.0": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 1.0
+          },
+          "by_task": {
+            "age": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "current_project": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_config_file": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_runtime": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command_update": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "16.0": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.95
+          },
+          "by_task": {
+            "age": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "current_project": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_config_file": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_runtime": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command_update": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        }
+      }
+    },
+    "seen-train-probe-40.json": {
+      "path": "checkpoints/surprise-delta-open-values-700-v1/seen-train-probe-40.json",
+      "split": "validation",
+      "data_source": ".datasets_cache/session-open-train-probe-v1",
+      "data_manifest": null,
+      "evaluation_kind": "full_prompt",
+      "evaluation_options": {
+        "device": "mps",
+        "window_size": 256,
+        "max_new_tokens": 12,
+        "limit": 40,
+        "ablations": false,
+        "memory_modes": [
+          "normal",
+          "disabled"
+        ]
+      },
+      "evaluated_at": "2026-09-28T04:04:05.589764+00:00",
+      "window_size": 256,
+      "max_new_tokens": 12,
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.14583333333333331,
+            "recall": 0.14583333333333331,
+            "f1": 0.14583333333333331
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 1.0
+          },
+          "by_task": {
+            "current_project": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75
+            },
+            "repo_runtime": {
+              "count": 8,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1": 0.6666666666666666
+            },
+            "repo_update": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "disabled": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.3
+          },
+          "by_task": {
+            "current_project": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_runtime": {
+              "count": 8,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_update": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        }
+      }
+    },
+    "repeated-qa-novel-validation-40.json": {
+      "path": "checkpoints/surprise-delta-open-values-700-v1/repeated-qa-novel-validation-40.json",
+      "split": "validation",
+      "data_source": ".datasets_cache/session-open-values-v1/validation.jsonl",
+      "data_manifest": null,
+      "evaluation_kind": "repeated_test_time_qa_into_serialized_fast_state",
+      "evaluation_options": {
+        "device": "mps",
+        "window_size": 256,
+        "max_new_tokens": 12,
+        "repetitions": [
+          0,
+          1,
+          5
+        ]
+      },
+      "evaluated_at": "2026-09-28T04:07:07.795807+00:00",
+      "window_size": null,
+      "max_new_tokens": null,
+      "evaluations": {
+        "0": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "age": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "current_project": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_config_file": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_runtime": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command_update": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "1": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.020833333333333332,
+            "recall": 0.025,
+            "f1": 0.022619047619047622
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.65
+          },
+          "by_task": {
+            "age": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "current_project": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_config_file": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.13888888888888887,
+              "recall": 0.16666666666666666,
+              "f1": 0.1507936507936508
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_runtime": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command_update": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "5": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.041666666666666664,
+            "recall": 0.041666666666666664,
+            "f1": 0.041666666666666664
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.75
+          },
+          "by_task": {
+            "age": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "current_project": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_config_file": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.27777777777777773,
+              "recall": 0.27777777777777773,
+              "f1": 0.27777777777777773
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_runtime": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command_update": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        }
+      }
+    },
+    "repeated-qa-novel-system-validation-40.json": {
+      "path": "checkpoints/surprise-delta-open-values-700-v1/repeated-qa-novel-system-validation-40.json",
+      "split": "validation",
+      "data_source": ".datasets_cache/session-open-values-v1/validation.jsonl",
+      "data_manifest": null,
+      "evaluation_kind": "repeated_test_time_qa_into_serialized_fast_state",
+      "evaluation_options": {
+        "device": "mps",
+        "window_size": 256,
+        "max_new_tokens": 12,
+        "repetitions": [
+          0,
+          1,
+          5
+        ],
+        "include_system": true
+      },
+      "evaluated_at": "2026-09-28T04:08:49.997259+00:00",
+      "window_size": null,
+      "max_new_tokens": null,
+      "evaluations": {
+        "0": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.008333333333333333,
+            "recall": 0.008333333333333333,
+            "f1": 0.008333333333333333
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "age": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "current_project": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_config_file": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.05555555555555555,
+              "recall": 0.05555555555555555,
+              "f1": 0.05555555555555555
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_runtime": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command_update": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "1": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.0375,
+            "recall": 0.03333333333333333,
+            "f1": 0.034999999999999996
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.7
+          },
+          "by_task": {
+            "age": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "current_project": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_config_file": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.25,
+              "recall": 0.2222222222222222,
+              "f1": 0.2333333333333333
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_runtime": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command_update": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "5": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.05625,
+            "recall": 0.05625,
+            "f1": 0.05625
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.6
+          },
+          "by_task": {
+            "age": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "current_project": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_config_file": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.3333333333333333,
+              "recall": 0.3333333333333333,
+              "f1": 0.3333333333333333
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.125,
+              "recall": 0.125,
+              "f1": 0.125
+            },
+            "repo_runtime": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command_update": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        }
+      }
+    },
+    "repeated-qa-seen-system-validation-40.json": {
+      "path": "checkpoints/surprise-delta-open-values-700-v1/repeated-qa-seen-system-validation-40.json",
+      "split": "validation",
+      "data_source": ".datasets_cache/session-open-train-probe-v1/validation.jsonl",
+      "data_manifest": null,
+      "evaluation_kind": "repeated_test_time_qa_into_serialized_fast_state",
+      "evaluation_options": {
+        "device": "mps",
+        "window_size": 256,
+        "max_new_tokens": 12,
+        "repetitions": [
+          0,
+          1,
+          5
+        ],
+        "include_system": true
+      },
+      "evaluated_at": "2026-09-28T04:09:49.111270+00:00",
+      "window_size": null,
+      "max_new_tokens": null,
+      "evaluations": {
+        "0": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 0.0
+          },
+          "by_task": {
+            "current_project": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_runtime": {
+              "count": 8,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_update": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "1": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 1.0
+          },
+          "by_task": {
+            "current_project": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_runtime": {
+              "count": 8,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_update": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "5": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 0.0,
+            "precision": 0.014583333333333332,
+            "recall": 0.0125,
+            "f1": 0.013392857142857146
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 0,
+            "both_correct_rate": 0.0,
+            "changed_prediction_rate": 1.0
+          },
+          "by_task": {
+            "current_project": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "editor": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_build_tool": {
+              "count": 6,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.125,
+              "recall": 0.125,
+              "f1": 0.125
+            },
+            "repo_runtime": {
+              "count": 8,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_test_command": {
+              "count": 2,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "repo_update": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.08333333333333333,
+              "recall": 0.0625,
+              "f1": 0.07142857142857144
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        }
+      }
+    },
+    "repeated-qa-direct-context-novel-40.json": {
+      "path": "checkpoints/surprise-delta-open-values-700-v1/repeated-qa-direct-context-novel-40.json",
+      "split": "validation",
+      "data_source": ".datasets_cache/session-open-values-v1/validation.jsonl",
+      "data_manifest": null,
+      "evaluation_kind": "repeated_test_time_qa_into_serialized_fast_state",
+      "evaluation_options": {
+        "device": "mps",
+        "window_size": 256,
+        "max_new_tokens": 12,
+        "repetitions": [],
+        "include_system": true,
+        "direct_context": true
+      },
+      "evaluated_at": "2026-09-28T04:11:03.065096+00:00",
+      "window_size": null,
+      "max_new_tokens": null,
+      "evaluations": {
+        "direct_context_5": {
+          "metrics": {
+            "count": 40,
+            "exact_match": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "paired_metrics": {
+            "pairs": 20,
+            "incomplete_pairs": 0,
+            "both_correct": 20,
+            "both_correct_rate": 1.0,
+            "changed_prediction_rate": 1.0
+          },
+          "by_task": {
+            "age": {
+              "count": 2,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "current_project": {
+              "count": 2,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "editor": {
+              "count": 2,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "name": {
+              "count": 6,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "preference": {
+              "count": 2,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "repo_build_tool": {
+              "count": 4,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "repo_config_file": {
+              "count": 6,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "repo_entry": {
+              "count": 2,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "repo_runtime": {
+              "count": 4,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "repo_test_command_update": {
+              "count": 6,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "timezone": {
+              "count": 4,
+              "exact_match": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        }
+      }
     }
   },
   "supplementary_reports": [],

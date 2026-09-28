@@ -1,0 +1,27 @@
+{
+  "checkpoint": "checkpoints/surprise-delta-open-values-700-v1",
+  "dataset": ".datasets_cache/session-open-values-v1/validation.jsonl",
+  "evaluation_count": 40,
+  "counterfactual_pairs": 20,
+  "novel_value_exact": {
+    "zero_presentations": 0,
+    "one_presentation_saved_state": 0,
+    "five_presentations_saved_state": 0,
+    "five_presentations_direct_context_memory_disabled": 40
+  },
+  "seen_train_value_exact": {
+    "zero_presentations": 0,
+    "one_presentation_saved_state": 0,
+    "five_presentations_saved_state": 0
+  },
+  "novel_value_changed_prediction_rate": {
+    "zero_presentations": 0.0,
+    "one_presentation_saved_state": 0.7,
+    "five_presentations_saved_state": 0.6,
+    "five_presentations_direct_context_memory_disabled": 1.0
+  },
+  "direct_context_token_count": {"minimum": 205, "maximum": 273},
+  "window_size_saved_state": 256,
+  "window_size_direct_context": 512,
+  "max_new_tokens": 12
+}

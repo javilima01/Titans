@@ -400,6 +400,13 @@ class Qwen35Titans(Qwen35Wrapper):
     def training_config(self):
         return dict(getattr(self, "_training_config", {}))
 
+    @property
+    def memory_gates(self) -> tuple[torch.nn.Parameter, ...]:
+        """Output-strength parameters for the installed memory readers."""
+        if self._shared_bank is not None:
+            return (self._shared_bank.memory_gate,)
+        return tuple(layer.memory_gate for layer in self._titans_attn)
+
     def save_pretrained(self, path: str | Path, *, metadata: dict | None = None):
         """Save adapters + tokenizer atomically; the frozen base is reused on load.
 

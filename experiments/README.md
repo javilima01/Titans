@@ -12,6 +12,7 @@ See [research notes](RESEARCH.md) for the benchmark interpretation and next chec
 | --- | ---: | --- | ---: | ---: | --- |
 | [placement-all24-vs-full11-pilot200-v1](placement-all24-vs-full11-pilot200-v1/README.md) | n/a | n/a | n/a | n/a | All 24: familiar 6/40 and 0/20 pairs; one layer: 13/40 and 2/20. Both novel-value 0/40. All-layer runtime 6.8x and adapter size 24x. |
 | [placement-shared24-vs-full11-v1](placement-shared24-vs-full11-v1/README.md) | n/a | n/a | n/a | n/a | Shared: 124/160 familiar test and 58/80 pairs versus 117/160 and 49/80 for layer 11. Novel-value test 2/160 versus 0/160, neither with a complete pair. Multi-fact cross-process smoke 1/3. |
+| [repeated-qa-test-time-v1](repeated-qa-test-time-v1/README.md) | n/a | n/a | n/a | n/a | Five serialized-state Q/A presentations: 0/40 unseen answers; five Q/A in direct context: 40/40. |
 | [session-state-shared24-multifact-v1](session-state-shared24-multifact-v1/README.md) | n/a | n/a | n/a | n/a | Scored 1/3: alpha/Bazel before the correction was correct; alpha/Ninja after and beta/Meson were wrong. |
 | [memory-v1](memory-v1/README.md) | n/a | n/a | n/a | n/a | User-reported test: 9/100 exact answers overall; multi-hop 0/37, recall 4/34, update 5/29. |
 | [recall-cross-window](recall-cross-window/README.md) | n/a | validation/normal | 0/100 (0.0%) | n/a | Cross-window recall baseline; all three memory modes scored zero on 100 validation examples. |

@@ -144,3 +144,27 @@ In a separate three-process check, an ordinary user message automatically
 stored an unseen editor and work-hours value. The later answers were exact for
 the editor and semantically correct for work hours, where capitalization and a
 period prevented exact matching.
+
+## Surprise-delta and repeated test-time examples
+
+The experimental two-timescale delta-rule memory performs a tokenwise gradient
+update on key/value prediction error and uses exponential token decay. Its
+700-step run processed the first 1,400 of 4,000 generated diverse training
+episodes and reached a low training loss, but answered 0/40 held-out novel
+values exactly. Normal memory changed predictions between 60% of
+counterfactual pair variants;
+29/40 outputs were themselves training answer values. Multiplying its read
+gates by 4, 8, or 16 still gave 0/40 exact and increasingly malformed text.
+The first 40 seen training examples also gave 0/40 exact during generation.
+These checks show that the failure is more than a small read gate or a missing
+fast-state effect: the decoder does not reliably reconstruct the right value.
+
+In the [repeated-Q/A experiment](repeated-qa-test-time-v1/README.md), each
+unseen question/answer pair was written five times into a fresh fast state,
+which was saved and reloaded before asking only the question. Exact recall
+was 0/40, the same as zero or one presentation. Five Q/A examples visible
+directly in a 512-token window with memory disabled gave 40/40. This isolates
+the lost information to the compact state path for this prompt/task. Training
+with Q/A repetitions, token-level copy supervision, or a different read/write
+connection remains untested. An explicit source-text store remains the
+reliable implementation for exact user and repository facts in this project.

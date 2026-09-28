@@ -19,3 +19,26 @@
   - disabled: EM 0.0, F1 0.0, both pairs 0/20
   - reset: EM 0.0, F1 0.0, both pairs 0/20
   - By task: age 0/2, current_project 0/2, editor 0/2, name 0/6, preference 0/2, repo_build_tool 0/4, repo_config_file 0/6, repo_entry 0/2, repo_runtime 0/4, repo_test_command_update 0/6, timezone 0/4
+- `read-gate-sweep-novel-validation-40.json` (None; read_gate_multiplier_sweep; data `.datasets_cache/session-open-values-v1/validation.jsonl`):
+  - 1.0: EM 0.0, F1 0.0875, both pairs 0/20
+  - 4.0: EM 0.0, F1 0.0, both pairs 0/20
+  - 8.0: EM 0.0, F1 0.0, both pairs 0/20
+  - 16.0: EM 0.0, F1 0.0, both pairs 0/20
+- `seen-train-probe-40.json` (validation; full_prompt; data `.datasets_cache/session-open-train-probe-v1`):
+  - normal: EM 0.0, F1 0.14583333333333331, both pairs 0/20
+  - disabled: EM 0.0, F1 0.0, both pairs 0/20
+  - By task: current_project 0/4, editor 0/4, name 0/6, repo_build_tool 0/6, repo_entry 0/2, repo_runtime 0/8, repo_test_command 0/2, repo_update 0/4, timezone 0/4
+- `repeated-qa-novel-validation-40.json` (validation; repeated_test_time_qa_into_serialized_fast_state; data `.datasets_cache/session-open-values-v1/validation.jsonl`):
+  - 0: EM 0.0, F1 0.0, both pairs 0/20
+  - 1: EM 0.0, F1 0.022619047619047622, both pairs 0/20
+  - 5: EM 0.0, F1 0.041666666666666664, both pairs 0/20
+- `repeated-qa-novel-system-validation-40.json` (validation; repeated_test_time_qa_into_serialized_fast_state; data `.datasets_cache/session-open-values-v1/validation.jsonl`):
+  - 0: EM 0.0, F1 0.008333333333333333, both pairs 0/20
+  - 1: EM 0.0, F1 0.034999999999999996, both pairs 0/20
+  - 5: EM 0.0, F1 0.05625, both pairs 0/20
+- `repeated-qa-seen-system-validation-40.json` (validation; repeated_test_time_qa_into_serialized_fast_state; data `.datasets_cache/session-open-train-probe-v1/validation.jsonl`):
+  - 0: EM 0.0, F1 0.0, both pairs 0/20
+  - 1: EM 0.0, F1 0.0, both pairs 0/20
+  - 5: EM 0.0, F1 0.013392857142857146, both pairs 0/20
+- `repeated-qa-direct-context-novel-40.json` (validation; repeated_test_time_qa_into_serialized_fast_state; data `.datasets_cache/session-open-values-v1/validation.jsonl`):
+  - direct_context_5: EM 1.0, F1 1.0, both pairs 20/20

@@ -1,0 +1,13 @@
+{
+  "id": "activation-memory-live-cases-v1",
+  "kind": "dataset",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "result": "Dataset prepared; evaluation results belong to the linked reader experiments.",
+  "recorded_at": "2026-09-29T17:33:27.767877+00:00",
+  "status": "prepared",
+  "source": "experiments/activation-memory-features-v1/cases.json",
+  "command": null,
+  "note": "Take validation records in original order, select rows [::2][:20] to avoid conflicting counterfactual variants, put source statements into writes.json and question/answer pairs into reads.json. Twenty coexisting facts. Evaluated by separate live-write/live-read processes without reading the feature cache."
+}

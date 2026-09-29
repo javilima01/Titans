@@ -1,0 +1,16 @@
+{
+  "id": "token-fact-extraction-pilot-v4",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Routing demonstrations caused copied IDs and wrong fact selection.",
+  "result": "Routing demonstrations caused copied IDs and wrong fact selection.",
+  "details": "Do not treat the ID router as a functioning semantic retrieval module.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.431507+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "results.json"
+  ]
+}

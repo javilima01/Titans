@@ -1,0 +1,1533 @@
+{
+  "architecture": "ActivationFastMemory",
+  "results": [
+    {
+      "id": "session-novel-57405bde72c6f26bf6b76c8b-0",
+      "source": "Session 1. My account is cbdyxs. Repository hfogoq reads its config from config/cache.yaml.",
+      "question": "Session 3. My account is cbdyxs. What is the config file for repository hfogoq?",
+      "answer": "config/cache.yaml",
+      "task": "repo_config_file",
+      "key": "test.0",
+      "split": "test",
+      "prediction": "config/cache.yaml",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-a5450f75cfb55b99b30e4aaf-0",
+      "source": "Session 1. My account is lvejxb. Please remember that I am 87 years old.",
+      "question": "Session 3. My account is lvejxb. How old am I now? Reply with only the number.",
+      "answer": "87",
+      "task": "age",
+      "key": "test.2",
+      "split": "test",
+      "prediction": "87",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 23,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-94abb93d465a82f95dcaf727-0",
+      "source": "Session 1. My account is bcoaxu. Please remember that I prefer replies in Swedish.",
+      "question": "Session 3. My account is bcoaxu. Which language do I prefer for replies?",
+      "answer": "Swedish",
+      "task": "preference",
+      "key": "test.4",
+      "split": "test",
+      "prediction": "Swedish",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-bb958b18af3aa8b4545b4313-0",
+      "source": "Session 1. My account is stqcjk. My time zone is Reykjavik.",
+      "question": "Session 3. My account is stqcjk. Which time zone should you use for me?",
+      "answer": "Reykjavik",
+      "task": "timezone",
+      "key": "test.6",
+      "split": "test",
+      "prediction": "Reykjavik",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 21,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-0be09cba494cdff229a403d6-0",
+      "source": "My account is vvcrrc. Correction: I am 95 years old now.",
+      "question": "Session 3. My account is vvcrrc. How old am I now? Reply with only the number.",
+      "answer": "95",
+      "task": "age_update",
+      "key": "test.8",
+      "split": "test",
+      "prediction": "95",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-c180cffda89a9add32e2423c-0",
+      "source": "Session 1. My account is ouvnsx. Please remember that I prefer replies in Japanese.",
+      "question": "Session 3. My account is ouvnsx. Which language do I prefer for replies?",
+      "answer": "Japanese",
+      "task": "preference",
+      "key": "test.10",
+      "split": "test",
+      "prediction": "Japanese",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 21,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-3ea0a6ff5b8e118328fa80ec-0",
+      "source": "Session 1. My account is isgjzd. I use Helix as my editor.",
+      "question": "Session 3. My account is isgjzd. Which editor do I use?",
+      "answer": "Helix",
+      "task": "editor",
+      "key": "test.12",
+      "split": "test",
+      "prediction": "Helix",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-cc604207a1ff9a5b6ce628ed-0",
+      "source": "Session 1. My account is wqmroa. I use Sublime Text as my editor.",
+      "question": "Session 3. My account is wqmroa. Which editor do I use?",
+      "answer": "Sublime Text",
+      "task": "editor",
+      "key": "test.14",
+      "split": "test",
+      "prediction": "Sublime Text",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-58e1c19b6e1042a81b34f869-0",
+      "source": "Session 1. My account is ysgwxi. Repository oofjyi uses PHP as its runtime.",
+      "question": "Session 3. My account is ysgwxi. Which runtime does repository oofjyi use?",
+      "answer": "PHP",
+      "task": "repo_runtime",
+      "key": "test.16",
+      "split": "test",
+      "prediction": "PHP",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-2207e342648c384e8c7afad8-0",
+      "source": "Session 1. My account is tpzoby. Repository smpunt uses PHP as its runtime.",
+      "question": "Session 3. My account is tpzoby. Which runtime does repository smpunt use?",
+      "answer": "PHP",
+      "task": "repo_runtime",
+      "key": "test.18",
+      "split": "test",
+      "prediction": "PHP as its runtime",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-c884f9bf8d6074c19e743f68-0",
+      "source": "Session 1. My account is hfehns. Repository bstsfd uses Scala as its runtime.",
+      "question": "Session 3. My account is hfehns. Which runtime does repository bstsfd use?",
+      "answer": "Scala",
+      "task": "repo_runtime",
+      "key": "test.20",
+      "split": "test",
+      "prediction": "Scala",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-6ab3e4f0e1cdb01c04970293-0",
+      "source": "Session 1. My account is tprqcb. Please remember that I am 89 years old.",
+      "question": "Session 3. My account is tprqcb. How old am I now? Reply with only the number.",
+      "answer": "89",
+      "task": "age",
+      "key": "test.22",
+      "split": "test",
+      "prediction": "89",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-fcb299d51b9b4a4d737858c9-0",
+      "source": "Session 1. My account is vflfsy. I use Fleet as my editor.",
+      "question": "Session 3. My account is vflfsy. Which editor do I use?",
+      "answer": "Fleet",
+      "task": "editor",
+      "key": "test.24",
+      "split": "test",
+      "prediction": "Fleet as as as",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-7be2aeec92dbe5e1672a66ce-0",
+      "source": "Session 1. My account is swqwxy. Repository ovecnc uses Scala as its runtime.",
+      "question": "Session 3. My account is swqwxy. Which runtime does repository ovecnc use?",
+      "answer": "Scala",
+      "task": "repo_runtime",
+      "key": "test.26",
+      "split": "test",
+      "prediction": "Scala",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-0cdd2cc7dafd8bfcef5a64c8-0",
+      "source": "My account is ifllag. In repository cotqse, the entry point moved to src/billing/main.py.",
+      "question": "Session 3. My account is ifllag. What is the entry point file for repository cotqse?",
+      "answer": "src/billing/main.py",
+      "task": "repo_update",
+      "key": "test.28",
+      "split": "test",
+      "prediction": "src/billing/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-47f95dcabeb228bfd401fa29-0",
+      "source": "Session 1. My account is iksebb. Please remember that my name is Priya.",
+      "question": "Session 3. My account is iksebb. What name should you call me? Reply with only the name.",
+      "answer": "Priya",
+      "task": "name",
+      "key": "test.30",
+      "split": "test",
+      "prediction": "Priya",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 21,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-e9847f78a44cddd673268728-0",
+      "source": "My account is xvrkug. In repository lolagx, the entry point moved to src/billing/main.py.",
+      "question": "Session 3. My account is xvrkug. What is the entry point file for repository lolagx?",
+      "answer": "src/billing/main.py",
+      "task": "repo_update",
+      "key": "test.32",
+      "split": "test",
+      "prediction": "src/billing/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 26,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-6c74c78f6c8e36b734553bb9-0",
+      "source": "Session 1. My account is xihbhe. In repository ttdqps, run tests with ctest.",
+      "question": "Session 3. My account is xihbhe. How should I run tests in repository ttdqps?",
+      "answer": "ctest",
+      "task": "repo_test_command",
+      "key": "test.34",
+      "split": "test",
+      "prediction": "ctest.",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 26,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-dafdf3098426a96af1beba6c-0",
+      "source": "Session 1. My account is nmnvfs. Repository oglrst reads its config from conf/worker.json.",
+      "question": "Session 3. My account is nmnvfs. What is the config file for repository oglrst?",
+      "answer": "conf/worker.json",
+      "task": "repo_config_file",
+      "key": "test.36",
+      "split": "test",
+      "prediction": "conf/worker.json",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-714aafbcdf72cdc2f93b5abc-0",
+      "source": "Session 1. My account is qdmlwk. I use Micro as my editor.",
+      "question": "Session 3. My account is qdmlwk. Which editor do I use?",
+      "answer": "Micro",
+      "task": "editor",
+      "key": "test.38",
+      "split": "test",
+      "prediction": "Micro as as my as my",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-762197d9bde419923b91cfc8-0",
+      "source": "Session 1. My account is vrzgtb. Please remember that my name is Mina.",
+      "question": "Session 3. My account is vrzgtb. What name should you call me? Reply with only the name.",
+      "answer": "Mina",
+      "task": "name",
+      "key": "test.40",
+      "split": "test",
+      "prediction": "Mina",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 21,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-2b3e89d52072f86c5f0a5b31-0",
+      "source": "My account is ryjviw. Correction: I am 87 years old now.",
+      "question": "Session 3. My account is ryjviw. How old am I now? Reply with only the number.",
+      "answer": "87",
+      "task": "age_update",
+      "key": "test.42",
+      "split": "test",
+      "prediction": "87",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-985f5c95e10efa62979ce740-0",
+      "source": "Session 1. My account is gnsonm. Please remember that I am 98 years old.",
+      "question": "Session 3. My account is gnsonm. How old am I now? Reply with only the number.",
+      "answer": "98",
+      "task": "age",
+      "key": "test.44",
+      "split": "test",
+      "prediction": "98",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 23,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-3c84986ac1e6053dad80abc2-0",
+      "source": "Session 1. My account is qidiwu. In repository oanpje, run tests with mvn test.",
+      "question": "Session 3. My account is qidiwu. How should I run tests in repository oanpje?",
+      "answer": "mvn test",
+      "task": "repo_test_command",
+      "key": "test.46",
+      "split": "test",
+      "prediction": "mvn test",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-5f31053065cb64c81ff1b9b7-0",
+      "source": "Session 1. My account is jbekel. Please remember that I am 81 years old.",
+      "question": "Session 3. My account is jbekel. How old am I now? Reply with only the number.",
+      "answer": "81",
+      "task": "age",
+      "key": "test.48",
+      "split": "test",
+      "prediction": "81",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 23,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-f533867b7b63b29101b4e4e4-0",
+      "source": "Session 1. My account is dtqroz. The build tool for repository fmnqys is Meson.",
+      "question": "Session 3. My account is dtqroz. Which build tool does repository fmnqys use?",
+      "answer": "Meson",
+      "task": "repo_build_tool",
+      "key": "test.50",
+      "split": "test",
+      "prediction": "Meson",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-41fb3258c996598e4b63ffa2-0",
+      "source": "Session 1. My account is peuaow. My time zone is Auckland.",
+      "question": "Session 3. My account is peuaow. Which time zone should you use for me?",
+      "answer": "Auckland",
+      "task": "timezone",
+      "key": "test.52",
+      "split": "test",
+      "prediction": "Auckland",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 18,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-0d5b0cd7784418b2f2dc0663-0",
+      "source": "Session 1. My account is wbvxjt. In repository kiezyf, the entry point is src/billing/main.py.",
+      "question": "Session 3. My account is wbvxjt. What is the entry point file for repository kiezyf?",
+      "answer": "src/billing/main.py",
+      "task": "repo_entry",
+      "key": "test.54",
+      "split": "test",
+      "prediction": "src/billing/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 28,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-ad0cf1bfde6acccc7b3f395d-0",
+      "source": "Session 1. My account is zgwnig. Repository nvlbui reads its config from conf/worker.json.",
+      "question": "Session 3. My account is zgwnig. What is the config file for repository nvlbui?",
+      "answer": "conf/worker.json",
+      "task": "repo_config_file",
+      "key": "test.56",
+      "split": "test",
+      "prediction": "conf/worker.json",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 26,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-39786480465b077b798abf30-0",
+      "source": "Session 1. My account is uohhuz. Please remember that my name is Omar.",
+      "question": "Session 3. My account is uohhuz. What name should you call me? Reply with only the name.",
+      "answer": "Omar",
+      "task": "name",
+      "key": "test.58",
+      "split": "test",
+      "prediction": "Omar.",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 21,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-688cc66e8c0919da6a3405ef-0",
+      "source": "Session 1. My account is ngcvdk. My time zone is Lisbon.",
+      "question": "Session 3. My account is ngcvdk. Which time zone should you use for me?",
+      "answer": "Lisbon",
+      "task": "timezone",
+      "key": "test.60",
+      "split": "test",
+      "prediction": "Lisbon",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 18,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-7e7fd61dadcadefae951ff50-0",
+      "source": "Session 1. My account is wdfxjo. In repository difyue, run tests with dotnet test.",
+      "question": "Session 3. My account is wdfxjo. How should I run tests in repository difyue?",
+      "answer": "dotnet test",
+      "task": "repo_test_command",
+      "key": "test.62",
+      "split": "test",
+      "prediction": "dotnet test",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 26,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-6ef7952260b46e1bc7571535-0",
+      "source": "My account is ybdlvt. In repository dolsmn, the entry point moved to src/cache/main.py.",
+      "question": "Session 3. My account is ybdlvt. What is the entry point file for repository dolsmn?",
+      "answer": "src/cache/main.py",
+      "task": "repo_update",
+      "key": "test.64",
+      "split": "test",
+      "prediction": "src/cache/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-3ccec70b344852ba6cb3691e-0",
+      "source": "Session 1. My account is tbfitj. Repository bxjmwr reads its config from settings/api.toml.",
+      "question": "Session 3. My account is tbfitj. What is the config file for repository bxjmwr?",
+      "answer": "settings/api.toml",
+      "task": "repo_config_file",
+      "key": "test.66",
+      "split": "test",
+      "prediction": "settings/api.toml",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-1f6e42d331dd4480c013949c-0",
+      "source": "Session 1. My account is sbpqht. I use Micro as my editor.",
+      "question": "Session 3. My account is sbpqht. Which editor do I use?",
+      "answer": "Micro",
+      "task": "editor",
+      "key": "test.68",
+      "split": "test",
+      "prediction": "Micro as as as",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 19,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-c70c35e39e315d50ede617cd-0",
+      "source": "My account is thgoxw. Correction: I am 88 years old now.",
+      "question": "Session 3. My account is thgoxw. How old am I now? Reply with only the number.",
+      "answer": "88",
+      "task": "age_update",
+      "key": "test.70",
+      "split": "test",
+      "prediction": "88",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-4e50b30a49a9ffb05a5d65a3-0",
+      "source": "Session 1. My account is ooqckc. Repository hwrdwr reads its config from settings/api.toml.",
+      "question": "Session 3. My account is ooqckc. What is the config file for repository hwrdwr?",
+      "answer": "settings/api.toml",
+      "task": "repo_config_file",
+      "key": "test.72",
+      "split": "test",
+      "prediction": "settings/api.toml",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 26,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-39351fc506ef0b29811717e7-0",
+      "source": "Session 1. My account is exkybz. The build tool for repository gruula is Ninja.",
+      "question": "Session 3. My account is exkybz. Which build tool does repository gruula use?",
+      "answer": "Ninja",
+      "task": "repo_build_tool",
+      "key": "test.74",
+      "split": "test",
+      "prediction": "Ninja",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-740e31b908359c20a6d95988-0",
+      "source": "My account is oiusjk. Correction: I am 86 years old now.",
+      "question": "Session 3. My account is oiusjk. How old am I now? Reply with only the number.",
+      "answer": "86",
+      "task": "age_update",
+      "key": "test.76",
+      "split": "test",
+      "prediction": "86",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 19,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-b66267b89f9fdf6a4f9a10ed-0",
+      "source": "Session 1. My account is zbimyv. In repository hxxxrx, the entry point is src/cache/main.py.",
+      "question": "Session 3. My account is zbimyv. What is the entry point file for repository hxxxrx?",
+      "answer": "src/cache/main.py",
+      "task": "repo_entry",
+      "key": "test.78",
+      "split": "test",
+      "prediction": "src/cache/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 27,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-57405bde72c6f26bf6b76c8b-1",
+      "source": "Session 1. My account is cbdyxs. Repository hfogoq reads its config from settings/api.toml.",
+      "question": "Session 3. My account is cbdyxs. What is the config file for repository hfogoq?",
+      "answer": "settings/api.toml",
+      "task": "repo_config_file",
+      "key": "test.1",
+      "split": "test",
+      "prediction": "settings/api.toml",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-a5450f75cfb55b99b30e4aaf-1",
+      "source": "Session 1. My account is lvejxb. Please remember that I am 83 years old.",
+      "question": "Session 3. My account is lvejxb. How old am I now? Reply with only the number.",
+      "answer": "83",
+      "task": "age",
+      "key": "test.3",
+      "split": "test",
+      "prediction": "83",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 23,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-94abb93d465a82f95dcaf727-1",
+      "source": "Session 1. My account is bcoaxu. Please remember that I prefer replies in Korean.",
+      "question": "Session 3. My account is bcoaxu. Which language do I prefer for replies?",
+      "answer": "Korean",
+      "task": "preference",
+      "key": "test.5",
+      "split": "test",
+      "prediction": "Korean",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-bb958b18af3aa8b4545b4313-1",
+      "source": "Session 1. My account is stqcjk. My time zone is Nairobi.",
+      "question": "Session 3. My account is stqcjk. Which time zone should you use for me?",
+      "answer": "Nairobi",
+      "task": "timezone",
+      "key": "test.7",
+      "split": "test",
+      "prediction": "Nairobi",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 18,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-0be09cba494cdff229a403d6-1",
+      "source": "My account is vvcrrc. Correction: I am 87 years old now.",
+      "question": "Session 3. My account is vvcrrc. How old am I now? Reply with only the number.",
+      "answer": "87",
+      "task": "age_update",
+      "key": "test.9",
+      "split": "test",
+      "prediction": "87",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-c180cffda89a9add32e2423c-1",
+      "source": "Session 1. My account is ouvnsx. Please remember that I prefer replies in Turkish.",
+      "question": "Session 3. My account is ouvnsx. Which language do I prefer for replies?",
+      "answer": "Turkish",
+      "task": "preference",
+      "key": "test.11",
+      "split": "test",
+      "prediction": "Turkish",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 21,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-3ea0a6ff5b8e118328fa80ec-1",
+      "source": "Session 1. My account is isgjzd. I use Micro as my editor.",
+      "question": "Session 3. My account is isgjzd. Which editor do I use?",
+      "answer": "Micro",
+      "task": "editor",
+      "key": "test.13",
+      "split": "test",
+      "prediction": "Micro as my as my",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 19,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-cc604207a1ff9a5b6ce628ed-1",
+      "source": "Session 1. My account is wqmroa. I use Micro as my editor.",
+      "question": "Session 3. My account is wqmroa. Which editor do I use?",
+      "answer": "Micro",
+      "task": "editor",
+      "key": "test.15",
+      "split": "test",
+      "prediction": "Micro as as",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-58e1c19b6e1042a81b34f869-1",
+      "source": "Session 1. My account is ysgwxi. Repository oofjyi uses Swift as its runtime.",
+      "question": "Session 3. My account is ysgwxi. Which runtime does repository oofjyi use?",
+      "answer": "Swift",
+      "task": "repo_runtime",
+      "key": "test.17",
+      "split": "test",
+      "prediction": "Swift as its runtime",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-2207e342648c384e8c7afad8-1",
+      "source": "Session 1. My account is tpzoby. Repository smpunt uses Elixir as its runtime.",
+      "question": "Session 3. My account is tpzoby. Which runtime does repository smpunt use?",
+      "answer": "Elixir",
+      "task": "repo_runtime",
+      "key": "test.19",
+      "split": "test",
+      "prediction": "Elixir",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 23,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-c884f9bf8d6074c19e743f68-1",
+      "source": "Session 1. My account is hfehns. Repository bstsfd uses Elixir as its runtime.",
+      "question": "Session 3. My account is hfehns. Which runtime does repository bstsfd use?",
+      "answer": "Elixir",
+      "task": "repo_runtime",
+      "key": "test.21",
+      "split": "test",
+      "prediction": "Elixir",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 23,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-6ab3e4f0e1cdb01c04970293-1",
+      "source": "Session 1. My account is tprqcb. Please remember that I am 94 years old.",
+      "question": "Session 3. My account is tprqcb. How old am I now? Reply with only the number.",
+      "answer": "94",
+      "task": "age",
+      "key": "test.23",
+      "split": "test",
+      "prediction": "94",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-fcb299d51b9b4a4d737858c9-1",
+      "source": "Session 1. My account is vflfsy. I use Micro as my editor.",
+      "question": "Session 3. My account is vflfsy. Which editor do I use?",
+      "answer": "Micro",
+      "task": "editor",
+      "key": "test.25",
+      "split": "test",
+      "prediction": "Micro as my as my",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-7be2aeec92dbe5e1672a66ce-1",
+      "source": "Session 1. My account is swqwxy. Repository ovecnc uses Kotlin as its runtime.",
+      "question": "Session 3. My account is swqwxy. Which runtime does repository ovecnc use?",
+      "answer": "Kotlin",
+      "task": "repo_runtime",
+      "key": "test.27",
+      "split": "test",
+      "prediction": "Kotlin",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-0cdd2cc7dafd8bfcef5a64c8-1",
+      "source": "My account is ifllag. In repository cotqse, the entry point moved to src/search/main.py.",
+      "question": "Session 3. My account is ifllag. What is the entry point file for repository cotqse?",
+      "answer": "src/search/main.py",
+      "task": "repo_update",
+      "key": "test.29",
+      "split": "test",
+      "prediction": "src/search/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-47f95dcabeb228bfd401fa29-1",
+      "source": "Session 1. My account is iksebb. Please remember that my name is Omar.",
+      "question": "Session 3. My account is iksebb. What name should you call me? Reply with only the name.",
+      "answer": "Omar",
+      "task": "name",
+      "key": "test.31",
+      "split": "test",
+      "prediction": "Omar.",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-e9847f78a44cddd673268728-1",
+      "source": "My account is xvrkug. In repository lolagx, the entry point moved to src/queue/main.py.",
+      "question": "Session 3. My account is xvrkug. What is the entry point file for repository lolagx?",
+      "answer": "src/queue/main.py",
+      "task": "repo_update",
+      "key": "test.33",
+      "split": "test",
+      "prediction": "src/queue/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 26,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-6c74c78f6c8e36b734553bb9-1",
+      "source": "Session 1. My account is xihbhe. In repository ttdqps, run tests with pnpm test.",
+      "question": "Session 3. My account is xihbhe. How should I run tests in repository ttdqps?",
+      "answer": "pnpm test",
+      "task": "repo_test_command",
+      "key": "test.35",
+      "split": "test",
+      "prediction": "pnpm test",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 27,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-dafdf3098426a96af1beba6c-1",
+      "source": "Session 1. My account is nmnvfs. Repository oglrst reads its config from settings/api.toml.",
+      "question": "Session 3. My account is nmnvfs. What is the config file for repository oglrst?",
+      "answer": "settings/api.toml",
+      "task": "repo_config_file",
+      "key": "test.37",
+      "split": "test",
+      "prediction": "settings/api.toml",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-714aafbcdf72cdc2f93b5abc-1",
+      "source": "Session 1. My account is qdmlwk. I use Sublime Text as my editor.",
+      "question": "Session 3. My account is qdmlwk. Which editor do I use?",
+      "answer": "Sublime Text",
+      "task": "editor",
+      "key": "test.39",
+      "split": "test",
+      "prediction": "Sublime Text",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-762197d9bde419923b91cfc8-1",
+      "source": "Session 1. My account is vrzgtb. Please remember that my name is Theo.",
+      "question": "Session 3. My account is vrzgtb. What name should you call me? Reply with only the name.",
+      "answer": "Theo",
+      "task": "name",
+      "key": "test.41",
+      "split": "test",
+      "prediction": "Theo",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 21,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-2b3e89d52072f86c5f0a5b31-1",
+      "source": "My account is ryjviw. Correction: I am 91 years old now.",
+      "question": "Session 3. My account is ryjviw. How old am I now? Reply with only the number.",
+      "answer": "91",
+      "task": "age_update",
+      "key": "test.43",
+      "split": "test",
+      "prediction": "91",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-985f5c95e10efa62979ce740-1",
+      "source": "Session 1. My account is gnsonm. Please remember that I am 87 years old.",
+      "question": "Session 3. My account is gnsonm. How old am I now? Reply with only the number.",
+      "answer": "87",
+      "task": "age",
+      "key": "test.45",
+      "split": "test",
+      "prediction": "87",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 23,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-3c84986ac1e6053dad80abc2-1",
+      "source": "Session 1. My account is qidiwu. In repository oanpje, run tests with pnpm test.",
+      "question": "Session 3. My account is qidiwu. How should I run tests in repository oanpje?",
+      "answer": "pnpm test",
+      "task": "repo_test_command",
+      "key": "test.47",
+      "split": "test",
+      "prediction": "pnpm test",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-5f31053065cb64c81ff1b9b7-1",
+      "source": "Session 1. My account is jbekel. Please remember that I am 93 years old.",
+      "question": "Session 3. My account is jbekel. How old am I now? Reply with only the number.",
+      "answer": "93",
+      "task": "age",
+      "key": "test.49",
+      "split": "test",
+      "prediction": "93",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 23,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-f533867b7b63b29101b4e4e4-1",
+      "source": "Session 1. My account is dtqroz. The build tool for repository fmnqys is Buck.",
+      "question": "Session 3. My account is dtqroz. Which build tool does repository fmnqys use?",
+      "answer": "Buck",
+      "task": "repo_build_tool",
+      "key": "test.51",
+      "split": "test",
+      "prediction": "Buck.",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-41fb3258c996598e4b63ffa2-1",
+      "source": "Session 1. My account is peuaow. My time zone is Reykjavik.",
+      "question": "Session 3. My account is peuaow. Which time zone should you use for me?",
+      "answer": "Reykjavik",
+      "task": "timezone",
+      "key": "test.53",
+      "split": "test",
+      "prediction": "Reykjavik",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 21,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-0d5b0cd7784418b2f2dc0663-1",
+      "source": "Session 1. My account is wbvxjt. In repository kiezyf, the entry point is src/cache/main.py.",
+      "question": "Session 3. My account is wbvxjt. What is the entry point file for repository kiezyf?",
+      "answer": "src/cache/main.py",
+      "task": "repo_entry",
+      "key": "test.55",
+      "split": "test",
+      "prediction": "src/cache/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 27,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-ad0cf1bfde6acccc7b3f395d-1",
+      "source": "Session 1. My account is zgwnig. Repository nvlbui reads its config from settings/api.toml.",
+      "question": "Session 3. My account is zgwnig. What is the config file for repository nvlbui?",
+      "answer": "settings/api.toml",
+      "task": "repo_config_file",
+      "key": "test.57",
+      "split": "test",
+      "prediction": "settings/api.toml",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 26,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-39786480465b077b798abf30-1",
+      "source": "Session 1. My account is uohhuz. Please remember that my name is Lena.",
+      "question": "Session 3. My account is uohhuz. What name should you call me? Reply with only the name.",
+      "answer": "Lena",
+      "task": "name",
+      "key": "test.59",
+      "split": "test",
+      "prediction": "Lena",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 21,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-688cc66e8c0919da6a3405ef-1",
+      "source": "Session 1. My account is ngcvdk. My time zone is Reykjavik.",
+      "question": "Session 3. My account is ngcvdk. Which time zone should you use for me?",
+      "answer": "Reykjavik",
+      "task": "timezone",
+      "key": "test.61",
+      "split": "test",
+      "prediction": "Reykjavik",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 21,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-7e7fd61dadcadefae951ff50-1",
+      "source": "Session 1. My account is wdfxjo. In repository difyue, run tests with ctest.",
+      "question": "Session 3. My account is wdfxjo. How should I run tests in repository difyue?",
+      "answer": "ctest",
+      "task": "repo_test_command",
+      "key": "test.63",
+      "split": "test",
+      "prediction": "ctest.",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-6ef7952260b46e1bc7571535-1",
+      "source": "My account is ybdlvt. In repository dolsmn, the entry point moved to src/queue/main.py.",
+      "question": "Session 3. My account is ybdlvt. What is the entry point file for repository dolsmn?",
+      "answer": "src/queue/main.py",
+      "task": "repo_update",
+      "key": "test.65",
+      "split": "test",
+      "prediction": "src/queue/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 26,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-3ccec70b344852ba6cb3691e-1",
+      "source": "Session 1. My account is tbfitj. Repository bxjmwr reads its config from config/cache.yaml.",
+      "question": "Session 3. My account is tbfitj. What is the config file for repository bxjmwr?",
+      "answer": "config/cache.yaml",
+      "task": "repo_config_file",
+      "key": "test.67",
+      "split": "test",
+      "prediction": "config/cache.yaml",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-1f6e42d331dd4480c013949c-1",
+      "source": "Session 1. My account is sbpqht. I use Helix as my editor.",
+      "question": "Session 3. My account is sbpqht. Which editor do I use?",
+      "answer": "Helix",
+      "task": "editor",
+      "key": "test.69",
+      "split": "test",
+      "prediction": "Helix",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-c70c35e39e315d50ede617cd-1",
+      "source": "My account is thgoxw. Correction: I am 91 years old now.",
+      "question": "Session 3. My account is thgoxw. How old am I now? Reply with only the number.",
+      "answer": "91",
+      "task": "age_update",
+      "key": "test.71",
+      "split": "test",
+      "prediction": "91",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-4e50b30a49a9ffb05a5d65a3-1",
+      "source": "Session 1. My account is ooqckc. Repository hwrdwr reads its config from config/queue.ini.",
+      "question": "Session 3. My account is ooqckc. What is the config file for repository hwrdwr?",
+      "answer": "config/queue.ini",
+      "task": "repo_config_file",
+      "key": "test.73",
+      "split": "test",
+      "prediction": "config/queue.ini",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 26,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-39351fc506ef0b29811717e7-1",
+      "source": "Session 1. My account is exkybz. The build tool for repository gruula is Ant.",
+      "question": "Session 3. My account is exkybz. Which build tool does repository gruula use?",
+      "answer": "Ant",
+      "task": "repo_build_tool",
+      "key": "test.75",
+      "split": "test",
+      "prediction": "Ant.",
+      "correct": false,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-740e31b908359c20a6d95988-1",
+      "source": "My account is oiusjk. Correction: I am 89 years old now.",
+      "question": "Session 3. My account is oiusjk. How old am I now? Reply with only the number.",
+      "answer": "89",
+      "task": "age_update",
+      "key": "test.77",
+      "split": "test",
+      "prediction": "89",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 19,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-b66267b89f9fdf6a4f9a10ed-1",
+      "source": "Session 1. My account is zbimyv. In repository hxxxrx, the entry point is src/queue/main.py.",
+      "question": "Session 3. My account is zbimyv. What is the entry point file for repository hxxxrx?",
+      "answer": "src/queue/main.py",
+      "task": "repo_entry",
+      "key": "test.79",
+      "split": "test",
+      "prediction": "src/queue/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 28,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    }
+  ],
+  "correct": 66,
+  "count": 80,
+  "checkpoint": "experiments/activation-memory-trained-v1",
+  "split": "test",
+  "scale": 32.0,
+  "untrained_projections": false,
+  "facts_per_memory": 1,
+  "elapsed_seconds": 22.198544916987885
+}

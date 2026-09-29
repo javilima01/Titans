@@ -1,0 +1,106 @@
+{
+  "cases": [
+    {
+      "name": "write_paths",
+      "scope": "main",
+      "prompt": "/remember The startup file for repository maple is apps/api/launch.py. In repository maple, run tests with rye run pytest -k smoke.",
+      "expected": null,
+      "prediction": "Remembered 1 fact(s).",
+      "correct": null,
+      "stderr": "\nLoading weights:   0%|          | 0/320 [00:00<?, ?it/s]\nLoading weights:  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u2589   | 220/320 [00:00<00:00, 2181.09it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 320/320 [00:00<00:00, 2374.90it/s]\n",
+      "memory_bytes": 49936
+    },
+    {
+      "name": "ask_path",
+      "scope": "main",
+      "prompt": "What is the startup file for repository maple?",
+      "expected": "apps/api/launch.py",
+      "prediction": "apps/api/launch.py",
+      "correct": true,
+      "stderr": "\nLoading weights:   0%|          | 0/320 [00:00<?, ?it/s]\nLoading weights:  67%|\u2588\u2588\u2588\u2588\u2588\u2588\u258b   | 213/320 [00:00<00:00, 2127.24it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 320/320 [00:00<00:00, 2387.24it/s]\n",
+      "memory_bytes": 49936
+    },
+    {
+      "name": "ask_tests",
+      "scope": "main",
+      "prompt": "How should I run tests in repository maple?",
+      "expected": "rye run pytest -k smoke",
+      "prediction": "I don't have a matching fact in memory.",
+      "correct": false,
+      "stderr": "\nLoading weights:   0%|          | 0/320 [00:00<?, ?it/s]\nLoading weights:  63%|\u2588\u2588\u2588\u2588\u2588\u2588\u258e   | 201/320 [00:00<00:00, 1997.14it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 320/320 [00:00<00:00, 2310.12it/s]\n",
+      "memory_bytes": 49936
+    },
+    {
+      "name": "write_owner",
+      "scope": "main",
+      "prompt": "Please remember: the release approver for repository maple is Nivalis-Orun.",
+      "expected": null,
+      "prediction": "Remembered 1 fact(s).",
+      "correct": null,
+      "stderr": "\nLoading weights:   0%|          | 0/320 [00:00<?, ?it/s]\nLoading weights:  66%|\u2588\u2588\u2588\u2588\u2588\u2588\u258c   | 210/320 [00:00<00:00, 2093.66it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 320/320 [00:00<00:00, 2368.63it/s]\n",
+      "memory_bytes": 103600
+    },
+    {
+      "name": "ask_owner",
+      "scope": "main",
+      "prompt": "Who is the release approver for repository maple?",
+      "expected": "Nivalis-Orun",
+      "prediction": "Nivalis-Orun",
+      "correct": true,
+      "stderr": "\nLoading weights:   0%|          | 0/320 [00:00<?, ?it/s]\nLoading weights:  64%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 206/320 [00:00<00:00, 2054.84it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 320/320 [00:00<00:00, 2351.78it/s]\n",
+      "memory_bytes": 103600
+    },
+    {
+      "name": "correct_tests",
+      "scope": "main",
+      "prompt": "Correction: in repository maple, run tests with hatch run test:unit.",
+      "expected": null,
+      "prediction": "Remembered 1 fact(s).",
+      "correct": null,
+      "stderr": "\nLoading weights:   0%|          | 0/320 [00:00<?, ?it/s]\nLoading weights:  66%|\u2588\u2588\u2588\u2588\u2588\u2588\u258b   | 212/320 [00:00<00:00, 2106.17it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 320/320 [00:00<00:00, 2375.77it/s]\n",
+      "memory_bytes": 157280
+    },
+    {
+      "name": "ask_updated_tests",
+      "scope": "main",
+      "prompt": "How should I run tests in repository maple?",
+      "expected": "hatch run test:unit",
+      "prediction": "I don't have a matching fact in memory.",
+      "correct": false,
+      "stderr": "\nLoading weights:   0%|          | 0/320 [00:00<?, ?it/s]\nLoading weights:  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u2589   | 221/320 [00:00<00:00, 2207.50it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 320/320 [00:00<00:00, 2423.56it/s]\n",
+      "memory_bytes": 157280
+    },
+    {
+      "name": "ask_retained_path",
+      "scope": "main",
+      "prompt": "What is the startup file for repository maple?",
+      "expected": "apps/api/launch.py",
+      "prediction": "apps/api/launch.py",
+      "correct": true,
+      "stderr": "\nLoading weights:   0%|          | 0/320 [00:00<?, ?it/s]\nLoading weights:  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u2589   | 221/320 [00:00<00:00, 2204.84it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 320/320 [00:00<00:00, 2429.86it/s]\n",
+      "memory_bytes": 157280
+    },
+    {
+      "name": "ask_unknown",
+      "scope": "main",
+      "prompt": "What is my favourite fruit?",
+      "expected": "I don't have a matching fact in memory.",
+      "prediction": "I don't have a matching fact in memory.",
+      "correct": true,
+      "stderr": "\nLoading weights:   0%|          | 0/320 [00:00<?, ?it/s]\nLoading weights:  70%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588   | 225/320 [00:00<00:00, 2238.61it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 320/320 [00:00<00:00, 2463.21it/s]\n",
+      "memory_bytes": 157280
+    },
+    {
+      "name": "isolated_scope",
+      "scope": "other",
+      "prompt": "What is the startup file for repository maple?",
+      "expected": "I don't have a matching fact in memory.",
+      "prediction": "I don't have a matching fact in memory.",
+      "correct": true,
+      "stderr": "\nLoading weights:   0%|          | 0/320 [00:00<?, ?it/s]\nLoading weights:  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u2589   | 220/320 [00:00<00:00, 2178.95it/s]\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 320/320 [00:00<00:00, 2414.77it/s]\n",
+      "memory_bytes": 0
+    }
+  ],
+  "correct": 5,
+  "count": 7
+}

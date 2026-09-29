@@ -1,0 +1,16 @@
+{
+  "id": "online-token-memory-v3",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Captured classifier outputs confirmed 2/9 checks; most responses were literal no.",
+  "result": "Captured classifier outputs confirmed 2/9 checks; most responses were literal no.",
+  "details": "This ruled out answer parsing as the main addressing failure.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.432241+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "results.json"
+  ]
+}

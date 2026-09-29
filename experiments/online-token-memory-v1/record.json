@@ -1,0 +1,16 @@
+{
+  "id": "online-token-memory-v1",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Aborted before evaluation: tokenizer chat template returned BatchEncoding instead of a list.",
+  "result": "Aborted before evaluation: tokenizer chat template returned BatchEncoding instead of a list.",
+  "details": "Fixed by rendering the template as text and encoding explicitly.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.431843+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "results.json"
+  ]
+}

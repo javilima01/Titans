@@ -1,0 +1,109 @@
+{
+  "architecture": "ActivationFastMemory",
+  "checkpoint": "experiments/activation-memory-trained-multi20-v2",
+  "cases": "experiments/activation-memory-live-cases-v1/writes.json",
+  "stage": "session-write",
+  "results": [
+    {
+      "source": "My account is cyoxni. Correction: in repository ijcxfj, run tests with pnpm test.",
+      "tokens": 24,
+      "surprise": 0.0009765625
+    },
+    {
+      "source": "Session 1. My account is sjskvk. Please remember that my name is Priya.",
+      "tokens": 22,
+      "surprise": 0.0007968708122231865
+    },
+    {
+      "source": "Session 1. My account is maljal. Repository xpoqod uses Kotlin as its runtime.",
+      "tokens": 22,
+      "surprise": 0.0008126437558707834
+    },
+    {
+      "source": "Session 1. My account is mbenjf. In repository ywomjz, the entry point is src/queue/main.py.",
+      "tokens": 30,
+      "surprise": 0.0008548290887580445
+    },
+    {
+      "source": "Session 1. My account is bdwobh. Please remember that I prefer replies in Swedish.",
+      "tokens": 22,
+      "surprise": 0.0006635121665558651
+    },
+    {
+      "source": "Session 1. My account is dfgvrc. My time zone is Vancouver.",
+      "tokens": 19,
+      "surprise": 0.0006763476222931621
+    },
+    {
+      "source": "Session 1. My account is aazddz. My current project is Summit.",
+      "tokens": 19,
+      "surprise": 0.000754110346189912
+    },
+    {
+      "source": "Session 1. My account is udgulv. The build tool for repository bogxfo is Ant.",
+      "tokens": 23,
+      "surprise": 0.0009131291554882682
+    },
+    {
+      "source": "Session 1. My account is fbogcj. Repository dyysik reads its config from settings/web.yaml.",
+      "tokens": 24,
+      "surprise": 0.0009105716568254431
+    },
+    {
+      "source": "Session 1. My account is peytwe. Please remember that I am 95 years old.",
+      "tokens": 23,
+      "surprise": 0.0007120314072398165
+    },
+    {
+      "source": "My account is avcgmn. Correction: in repository efbkfi, run tests with npm test.",
+      "tokens": 23,
+      "surprise": 0.0007449917754174336
+    },
+    {
+      "source": "Session 1. My account is amszaw. Please remember that my name is Lena.",
+      "tokens": 21,
+      "surprise": 0.0005486847541864827
+    },
+    {
+      "source": "My account is huuuyq. Correction: in repository xselyf, run tests with mvn test.",
+      "tokens": 24,
+      "surprise": 0.000775918386143028
+    },
+    {
+      "source": "Session 1. My account is isvgoq. Repository dwodbq uses Kotlin as its runtime.",
+      "tokens": 23,
+      "surprise": 0.0005827363853897911
+    },
+    {
+      "source": "Session 1. My account is mhqnwg. The build tool for repository iobnmt is Ant.",
+      "tokens": 24,
+      "surprise": 0.000596084843855501
+    },
+    {
+      "source": "Session 1. My account is yaxzek. Please remember that my name is Omar.",
+      "tokens": 19,
+      "surprise": 0.0004615379954921309
+    },
+    {
+      "source": "Session 1. My account is pvvnpr. I use Kate as my editor.",
+      "tokens": 19,
+      "surprise": 0.0007046381786702426
+    },
+    {
+      "source": "Session 1. My account is lgxsdb. Repository faiidy reads its config from config/cache.yaml.",
+      "tokens": 23,
+      "surprise": 0.0007446665577267786
+    },
+    {
+      "source": "Session 1. My account is iqflmx. My time zone is Vancouver.",
+      "tokens": 18,
+      "surprise": 0.0004327686210327709
+    },
+    {
+      "source": "Session 1. My account is dfjzky. Repository iihrfa reads its config from config/queue.ini.",
+      "tokens": 26,
+      "surprise": 0.0007178330439877125
+    }
+  ],
+  "scale": null
+}

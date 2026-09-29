@@ -1,0 +1,6 @@
+{
+  "architecture": "Qwen final activations plus normalized mean of all 24 block outputs",
+  "count": 1360,
+  "elapsed_seconds": 146.3559628330404,
+  "data": ".datasets_cache/session-open-values-v1"
+}

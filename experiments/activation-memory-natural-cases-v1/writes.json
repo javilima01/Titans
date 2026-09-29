@@ -1,0 +1,31 @@
+{
+  "sources": [
+    "Please remember that I navigate applications with a screen reader and keyboard only.",
+    "When showing me code, I prefer examples in Rust.",
+    "I cannot take calls before 10:00 Europe/Riga.",
+    "Use CHF as the currency in my expense summaries.",
+    "My work Git remote is called upstream-work.",
+    "The identity I use when signing commits is Mira Sable.",
+    "Remember: the codename of my side project is Silver Otter.",
+    "I want temperatures expressed in Celsius.",
+    "Code observation in repository LLM: Qwen35Titans is defined in src/llm/modules/qwen.py.",
+    "Code observation in repository LLM: TitansMemory lives in src/llm/modules/titans.py.",
+    "Code observation in repository LLM: TrainingMonitor lives in src/llm/helpers/monitoring.py.",
+    "In repository LLM, run all tests with .venv/bin/python -m unittest discover -s tests -v.",
+    "In repository LLM, format Python files with .venv/bin/ruff format .",
+    "In repository LLM, Python commands must run from the repository root because imports use src.llm.",
+    "The Qwen model cache for repository LLM is .models_cache/Qwen/Qwen3.5-0.8B.",
+    "Code observation in repository LLM: memory adapters use FP32 even with a BF16 backbone.",
+    "Code observation in repository aster: the public HTTP routes are registered in app/web/routes_v3.py.",
+    "In repository aster, launch the development server with pnpm dev.",
+    "Repository aster reads secrets from the ASTER_SECRET_FILE environment variable.",
+    "Code observation in repository aster: retry delays use exponential backoff capped at 17 seconds.",
+    "Remember: all schema changes in repository aster need approval from the data-platform team.",
+    "The generated files in repository aster are under lib/autogen and must never be hand-edited.",
+    "Repository linden uses the deploy command ./ops/ship --region eu-west-3.",
+    "Repository linden stores its architecture decision records in design/decisions.",
+    "Correction: when showing me code, use Zig examples from now on.",
+    "Correction: in repository aster, launch the development server with just up-local."
+  ],
+  "selection": "Human-labelled important assertions only; automatic selection not evaluated."
+}

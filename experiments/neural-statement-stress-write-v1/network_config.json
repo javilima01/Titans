@@ -1,0 +1,6 @@
+{
+  "feature_width": 4096,
+  "bandwidth": 8.0,
+  "code_width": 64,
+  "latent_width": 512
+}

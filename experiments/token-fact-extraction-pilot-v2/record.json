@@ -1,0 +1,16 @@
+{
+  "id": "token-fact-extraction-pilot-v2",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Simpler extraction produced fenced and split JSON records; the strict parser left the question index empty.",
+  "result": "Simpler extraction produced fenced and split JSON records; the strict parser left the question index empty.",
+  "details": "This run exposed a parsing problem as well as bad questions; empty routing results are not an independent router measurement.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.430813+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "results.json"
+  ]
+}

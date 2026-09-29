@@ -1,0 +1,13 @@
+{
+  "id": "activation-memory-live-write-v1",
+  "kind": "analysis",
+  "checkpoint": "experiments/activation-memory-live-write-v1/network.safetensors",
+  "training": {},
+  "reports": {},
+  "note": "20 source statements written into fixed neural tensors; no recall score in this writer process.",
+  "result": "20 source statements written into fixed neural tensors; no recall score in this writer process.",
+  "command": "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python -m src.llm.helpers.activation_memory_probe session-write --checkpoint experiments/activation-memory-trained-multi20-v2 --cases experiments/activation-memory-live-cases-v1/writes.json --output experiments/activation-memory-live-write-v1",
+  "recorded_at": "2026-09-29T04:04:18.642175+00:00",
+  "status": "experimental",
+  "source": "experiments/activation-memory-live-cases-v1/writes.json"
+}

@@ -1,0 +1,594 @@
+{
+  "results": [
+    {
+      "method": "cosine_diagnostic_only",
+      "correct": 97,
+      "count": 128,
+      "by_category": {
+        "entry point": [
+          6,
+          8
+        ],
+        "development command": [
+          4,
+          8
+        ],
+        "test command": [
+          8,
+          8
+        ],
+        "configuration file": [
+          8,
+          8
+        ],
+        "release branch": [
+          0,
+          8
+        ],
+        "maintainer": [
+          6,
+          8
+        ],
+        "formatter": [
+          7,
+          8
+        ],
+        "package manager": [
+          8,
+          8
+        ],
+        "artifact directory": [
+          1,
+          8
+        ],
+        "documentation directory": [
+          8,
+          8
+        ],
+        "migration directory": [
+          8,
+          8
+        ],
+        "log format": [
+          8,
+          8
+        ],
+        "user": [
+          25,
+          32
+        ]
+      }
+    },
+    {
+      "method": "exact_kernel_1_diagnostic_only",
+      "correct": 90,
+      "count": 128,
+      "by_category": {
+        "entry point": [
+          3,
+          8
+        ],
+        "development command": [
+          2,
+          8
+        ],
+        "test command": [
+          8,
+          8
+        ],
+        "configuration file": [
+          6,
+          8
+        ],
+        "release branch": [
+          2,
+          8
+        ],
+        "maintainer": [
+          2,
+          8
+        ],
+        "formatter": [
+          5,
+          8
+        ],
+        "package manager": [
+          8,
+          8
+        ],
+        "artifact directory": [
+          3,
+          8
+        ],
+        "documentation directory": [
+          8,
+          8
+        ],
+        "migration directory": [
+          8,
+          8
+        ],
+        "log format": [
+          7,
+          8
+        ],
+        "user": [
+          28,
+          32
+        ]
+      }
+    },
+    {
+      "method": "random_features_1",
+      "correct": 87,
+      "count": 128,
+      "by_category": {
+        "entry point": [
+          2,
+          8
+        ],
+        "development command": [
+          2,
+          8
+        ],
+        "test command": [
+          8,
+          8
+        ],
+        "configuration file": [
+          6,
+          8
+        ],
+        "release branch": [
+          1,
+          8
+        ],
+        "maintainer": [
+          2,
+          8
+        ],
+        "formatter": [
+          5,
+          8
+        ],
+        "package manager": [
+          8,
+          8
+        ],
+        "artifact directory": [
+          3,
+          8
+        ],
+        "documentation directory": [
+          8,
+          8
+        ],
+        "migration directory": [
+          8,
+          8
+        ],
+        "log format": [
+          6,
+          8
+        ],
+        "user": [
+          28,
+          32
+        ]
+      }
+    },
+    {
+      "method": "exact_kernel_2_diagnostic_only",
+      "correct": 97,
+      "count": 128,
+      "by_category": {
+        "entry point": [
+          4,
+          8
+        ],
+        "development command": [
+          2,
+          8
+        ],
+        "test command": [
+          8,
+          8
+        ],
+        "configuration file": [
+          7,
+          8
+        ],
+        "release branch": [
+          2,
+          8
+        ],
+        "maintainer": [
+          4,
+          8
+        ],
+        "formatter": [
+          5,
+          8
+        ],
+        "package manager": [
+          8,
+          8
+        ],
+        "artifact directory": [
+          6,
+          8
+        ],
+        "documentation directory": [
+          8,
+          8
+        ],
+        "migration directory": [
+          8,
+          8
+        ],
+        "log format": [
+          8,
+          8
+        ],
+        "user": [
+          27,
+          32
+        ]
+      }
+    },
+    {
+      "method": "random_features_2",
+      "correct": 87,
+      "count": 128,
+      "by_category": {
+        "entry point": [
+          3,
+          8
+        ],
+        "development command": [
+          2,
+          8
+        ],
+        "test command": [
+          8,
+          8
+        ],
+        "configuration file": [
+          7,
+          8
+        ],
+        "release branch": [
+          0,
+          8
+        ],
+        "maintainer": [
+          3,
+          8
+        ],
+        "formatter": [
+          3,
+          8
+        ],
+        "package manager": [
+          8,
+          8
+        ],
+        "artifact directory": [
+          3,
+          8
+        ],
+        "documentation directory": [
+          8,
+          8
+        ],
+        "migration directory": [
+          8,
+          8
+        ],
+        "log format": [
+          7,
+          8
+        ],
+        "user": [
+          27,
+          32
+        ]
+      }
+    },
+    {
+      "method": "exact_kernel_4_diagnostic_only",
+      "correct": 96,
+      "count": 128,
+      "by_category": {
+        "entry point": [
+          4,
+          8
+        ],
+        "development command": [
+          2,
+          8
+        ],
+        "test command": [
+          8,
+          8
+        ],
+        "configuration file": [
+          8,
+          8
+        ],
+        "release branch": [
+          1,
+          8
+        ],
+        "maintainer": [
+          4,
+          8
+        ],
+        "formatter": [
+          5,
+          8
+        ],
+        "package manager": [
+          8,
+          8
+        ],
+        "artifact directory": [
+          5,
+          8
+        ],
+        "documentation directory": [
+          8,
+          8
+        ],
+        "migration directory": [
+          8,
+          8
+        ],
+        "log format": [
+          8,
+          8
+        ],
+        "user": [
+          27,
+          32
+        ]
+      }
+    },
+    {
+      "method": "random_features_4",
+      "correct": 90,
+      "count": 128,
+      "by_category": {
+        "entry point": [
+          4,
+          8
+        ],
+        "development command": [
+          2,
+          8
+        ],
+        "test command": [
+          8,
+          8
+        ],
+        "configuration file": [
+          7,
+          8
+        ],
+        "release branch": [
+          0,
+          8
+        ],
+        "maintainer": [
+          4,
+          8
+        ],
+        "formatter": [
+          4,
+          8
+        ],
+        "package manager": [
+          8,
+          8
+        ],
+        "artifact directory": [
+          2,
+          8
+        ],
+        "documentation directory": [
+          8,
+          8
+        ],
+        "migration directory": [
+          8,
+          8
+        ],
+        "log format": [
+          8,
+          8
+        ],
+        "user": [
+          27,
+          32
+        ]
+      }
+    },
+    {
+      "method": "exact_kernel_8_diagnostic_only",
+      "correct": 97,
+      "count": 128,
+      "by_category": {
+        "entry point": [
+          4,
+          8
+        ],
+        "development command": [
+          3,
+          8
+        ],
+        "test command": [
+          8,
+          8
+        ],
+        "configuration file": [
+          8,
+          8
+        ],
+        "release branch": [
+          1,
+          8
+        ],
+        "maintainer": [
+          6,
+          8
+        ],
+        "formatter": [
+          5,
+          8
+        ],
+        "package manager": [
+          8,
+          8
+        ],
+        "artifact directory": [
+          4,
+          8
+        ],
+        "documentation directory": [
+          8,
+          8
+        ],
+        "migration directory": [
+          8,
+          8
+        ],
+        "log format": [
+          8,
+          8
+        ],
+        "user": [
+          26,
+          32
+        ]
+      }
+    },
+    {
+      "method": "random_features_8",
+      "correct": 82,
+      "count": 128,
+      "by_category": {
+        "entry point": [
+          3,
+          8
+        ],
+        "development command": [
+          2,
+          8
+        ],
+        "test command": [
+          8,
+          8
+        ],
+        "configuration file": [
+          7,
+          8
+        ],
+        "release branch": [
+          0,
+          8
+        ],
+        "maintainer": [
+          2,
+          8
+        ],
+        "formatter": [
+          4,
+          8
+        ],
+        "package manager": [
+          8,
+          8
+        ],
+        "artifact directory": [
+          1,
+          8
+        ],
+        "documentation directory": [
+          8,
+          8
+        ],
+        "migration directory": [
+          8,
+          8
+        ],
+        "log format": [
+          8,
+          8
+        ],
+        "user": [
+          23,
+          32
+        ]
+      }
+    },
+    {
+      "method": "linear",
+      "correct": 11,
+      "count": 128,
+      "by_category": {
+        "entry point": [
+          0,
+          8
+        ],
+        "development command": [
+          0,
+          8
+        ],
+        "test command": [
+          0,
+          8
+        ],
+        "configuration file": [
+          1,
+          8
+        ],
+        "release branch": [
+          3,
+          8
+        ],
+        "maintainer": [
+          0,
+          8
+        ],
+        "formatter": [
+          0,
+          8
+        ],
+        "package manager": [
+          0,
+          8
+        ],
+        "artifact directory": [
+          0,
+          8
+        ],
+        "documentation directory": [
+          0,
+          8
+        ],
+        "migration directory": [
+          3,
+          8
+        ],
+        "log format": [
+          0,
+          8
+        ],
+        "user": [
+          4,
+          32
+        ]
+      }
+    }
+  ]
+}

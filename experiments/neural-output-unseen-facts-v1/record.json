@@ -1,0 +1,31 @@
+{
+  "id": "neural-output-unseen-facts-v1",
+  "kind": "analysis",
+  "checkpoint": "experiments/neural-output-unseen-facts-v1/network.safetensors",
+  "training": {},
+  "reports": {
+    "results.json": {
+      "split": "independent_probe",
+      "evaluation_kind": "neural_parameters_only",
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 8,
+            "exact_match": 0.5
+          }
+        }
+      }
+    }
+  },
+  "note": "Independent new facts: 4/8 exact answers with direct neural readout.",
+  "result": "Independent new facts: 4/8 exact answers with direct neural readout.",
+  "details": "The writer reversed the configuration relation, omitted the dietary fact, and generated answer-bearing keys for the launch command. The reader also confused the maintainer with the release branch. No read question occurred in write supervision. This is an unresolved generalization failure; the network-only design is experimental.",
+  "command": ".venv/bin/python -m src.llm.helpers.neural_fact_probe --paraphrases --cases experiments/neural-output-unseen-facts-v1/cases.json --output experiments/NEW-RUN/results.json",
+  "recorded_at": "2026-09-28T18:01:48.435183+00:00",
+  "status": "experimental",
+  "artifacts": [
+    "cases.json",
+    "network.safetensors",
+    "results.json"
+  ]
+}

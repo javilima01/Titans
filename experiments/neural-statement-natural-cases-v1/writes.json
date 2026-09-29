@@ -1,0 +1,140 @@
+{
+  "sources": [
+    {
+      "text": "Please remember that I navigate applications with a screen reader and keyboard only.",
+      "important": true
+    },
+    {
+      "text": "When showing me code, I prefer examples in Rust.",
+      "important": true
+    },
+    {
+      "text": "I cannot take calls before 10:00 Europe/Riga.",
+      "important": true
+    },
+    {
+      "text": "Use CHF as the currency in my expense summaries.",
+      "important": true
+    },
+    {
+      "text": "My work Git remote is called upstream-work.",
+      "important": true
+    },
+    {
+      "text": "Thanks, that was helpful.",
+      "important": false
+    },
+    {
+      "text": "How old am I?",
+      "important": false
+    },
+    {
+      "text": "If I were using Emacs, would this shortcut work?",
+      "important": false
+    },
+    {
+      "text": "Imagine a fictional user whose home city is Quito.",
+      "important": false
+    },
+    {
+      "text": "The progress bar has reached 42 percent.",
+      "important": false
+    },
+    {
+      "text": "Could you explain what exponential backoff means?",
+      "important": false
+    },
+    {
+      "text": "I am waiting for this test run to finish.",
+      "important": false
+    },
+    {
+      "text": "Good morning!",
+      "important": false
+    },
+    {
+      "text": "The identity I use when signing commits is Mira Sable.",
+      "important": true
+    },
+    {
+      "text": "Remember: the codename of my side project is Silver Otter.",
+      "important": true
+    },
+    {
+      "text": "I want temperatures expressed in Celsius.",
+      "important": true
+    },
+    {
+      "text": "Code observation in repository LLM: Qwen35Titans is defined in src/llm/modules/qwen.py.",
+      "important": true
+    },
+    {
+      "text": "Code observation in repository LLM: TitansMemory lives in src/llm/modules/titans.py.",
+      "important": true
+    },
+    {
+      "text": "Code observation in repository LLM: TrainingMonitor lives in src/llm/helpers/monitoring.py.",
+      "important": true
+    },
+    {
+      "text": "In repository LLM, run all tests with .venv/bin/python -m unittest discover -s tests -v.",
+      "important": true
+    },
+    {
+      "text": "In repository LLM, format Python files with .venv/bin/ruff format .",
+      "important": true
+    },
+    {
+      "text": "In repository LLM, Python commands must run from the repository root because imports use src.llm.",
+      "important": true
+    },
+    {
+      "text": "The Qwen model cache for repository LLM is .models_cache/Qwen/Qwen3.5-0.8B.",
+      "important": true
+    },
+    {
+      "text": "Code observation in repository LLM: memory adapters use FP32 even with a BF16 backbone.",
+      "important": true
+    },
+    {
+      "text": "Code observation in repository aster: the public HTTP routes are registered in app/web/routes_v3.py.",
+      "important": true
+    },
+    {
+      "text": "In repository aster, launch the development server with pnpm dev.",
+      "important": true
+    },
+    {
+      "text": "Repository aster reads secrets from the ASTER_SECRET_FILE environment variable.",
+      "important": true
+    },
+    {
+      "text": "Code observation in repository aster: retry delays use exponential backoff capped at 17 seconds.",
+      "important": true
+    },
+    {
+      "text": "Remember: all schema changes in repository aster need approval from the data-platform team.",
+      "important": true
+    },
+    {
+      "text": "The generated files in repository aster are under lib/autogen and must never be hand-edited.",
+      "important": true
+    },
+    {
+      "text": "Repository linden uses the deploy command ./ops/ship --region eu-west-3.",
+      "important": true
+    },
+    {
+      "text": "Repository linden stores its architecture decision records in design/decisions.",
+      "important": true
+    },
+    {
+      "text": "Correction: when showing me code, use Zig examples from now on.",
+      "important": true
+    },
+    {
+      "text": "Correction: in repository aster, launch the development server with just up-local.",
+      "important": true
+    }
+  ]
+}

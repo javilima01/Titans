@@ -1,0 +1,12 @@
+{"epoch": 1, "loss": 0.6231221572348946, "validation_loss": 0.7238044738769531, "validation_address_accuracy": 0.8445351719856262, "seconds": 0.39508033299352974}
+{"epoch": 2, "loss": 0.20682815579991592, "validation_loss": 0.6404231190681458, "validation_address_accuracy": 0.8584888577461243, "seconds": 0.774934499990195}
+{"epoch": 3, "loss": 0.16551189438292854, "validation_loss": 0.6118502914905548, "validation_address_accuracy": 0.8635140061378479, "seconds": 1.1210882920422591}
+{"epoch": 4, "loss": 0.13808008440231023, "validation_loss": 0.6388169229030609, "validation_address_accuracy": 0.8788585662841797, "seconds": 1.4953420420060866}
+{"epoch": 5, "loss": 0.1194938295765927, "validation_loss": 0.6331026405096054, "validation_address_accuracy": 0.8610014319419861, "seconds": 1.9132078750408255}
+{"epoch": 6, "loss": 0.1113637764202921, "validation_loss": 0.6772960722446442, "validation_address_accuracy": 0.8623923063278198, "seconds": 2.2479241670225747}
+{"epoch": 7, "loss": 0.10057067792666585, "validation_loss": 0.634408712387085, "validation_address_accuracy": 0.8674174249172211, "seconds": 2.616314582992345}
+{"epoch": 8, "loss": 0.09673272269336801, "validation_loss": 0.6521709263324738, "validation_address_accuracy": 0.8813711404800415, "seconds": 2.9890091250417754}
+{"epoch": 9, "loss": 0.09201619225113015, "validation_loss": 0.5884513258934021, "validation_address_accuracy": 0.8799802362918854, "seconds": 3.3311848750454374}
+{"epoch": 10, "loss": 0.07873865667926638, "validation_loss": 0.6295216977596283, "validation_address_accuracy": 0.8735642433166504, "seconds": 3.7222527080448344}
+{"epoch": 11, "loss": 0.07088687780656312, "validation_loss": 0.6073980331420898, "validation_address_accuracy": 0.8635140061378479, "seconds": 4.116639207990374}
+{"epoch": 12, "loss": 0.07338401832078632, "validation_loss": 0.6036884635686874, "validation_address_accuracy": 0.8724425733089447, "seconds": 4.478857917012647}

@@ -1,0 +1,16 @@
+{
+  "id": "token-memory-qa40-v1",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Historical replay-backed readout: 40/40 demonstrated answers versus 0/40 base answers.",
+  "result": "Historical replay-backed readout: 40/40 demonstrated answers versus 0/40 base answers.",
+  "details": "Zeroed readout weights abstained. This run retained replay features and a question index, so it is excluded from the network-only result.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.433400+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "results.json"
+  ]
+}

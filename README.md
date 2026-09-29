@@ -4,6 +4,121 @@
 The adapter input/output width always matches Qwen's hidden size. The optional
 `memory_hidden_size` changes only the internal memory MLP width.
 
+## Current research: learning fast weights from Qwen activations
+
+`ActivationFastMemory` is the current experimental direction. It consumes
+Qwen's final activations and a normalized mixture of all 24 block outputs,
+including attention and DeltaNet blocks. Slow read/write projections are
+trained across episodes. During a new session, observed statement tokens
+update a single dense fast-weight network; questions read that network and
+contribute directly to Qwen's vocabulary scores.
+
+```mermaid
+flowchart LR
+    S[Observed statement] --> Q[Frozen Qwen: 24 blocks]
+    Q --> K[Learned write projection]
+    K --> U[Token reconstruction update]
+    U --> W[Fast network weights]
+    N[New-session question] --> R[Qwen + learned read projection]
+    R --> W
+    W --> H[Qwen vocabulary head]
+    H --> A[Generated answer]
+```
+
+Only neural weights and an inverse-covariance optimizer tensor persist.
+No source strings, question index, external retrieval, or growing KV cache
+are needed by the reader. The online update is recursive least squares on
+observed next-token embeddings. Outer training differentiates through the
+inner reconstruction solve and also supervises token addressing. This is
+a linear fast-weight experiment inspired by test-time learning; it is not
+a full Titans or HOPE implementation. Qwen remains frozen.
+
+The first runs used 1,200 training examples. Validation/test answer values,
+account identifiers and repository identifiers were absent from training.
+With one selected fact per memory, the held-out probe produced **66/80 exact
+answers** and included the correct value in **80/80**. With **20 coexisting
+facts**, the selected larger network produced **56/80 exact answers**, with
+the value present in **68/80**. Memory-disabled generation scored **0/20**.
+Value presence is a lenient diagnostic: it does not excuse repeated words,
+incorrect surrounding text, or wrong associations. A broader natural-language
+probe with user and codebase facts scored only **3/48 known questions** after
+a process restart, despite hand-selecting which statements to write. General
+fact recall is therefore still unsolved. See the
+[research notes](experiments/RESEARCH.md) for the complete experiment sequence
+and broader-language limitations.
+
+This remains a research probe, not the default chat memory. Benchmark writes
+select the latest supporting statement using dataset annotations; automatic
+importance selection and reliable correction handling remain unsolved.
+Training feature caches are offline artifacts, not inference memory.
+The backbone runs on MPS; the small projection training and online numerical
+solves run on CPU. The 1,024-wide network checkpoint is about 36 MiB, of which
+12 MiB is the fast matrix plus its optimizer state.
+
+```sh
+# Learn the read/write projections through simulated test-time writes.
+.venv/bin/python -m src.llm.helpers.activation_memory_probe cache \
+  --output experiments/my-activation-features --train-limit 1200 --eval-limit 80
+.venv/bin/python -m src.llm.helpers.activation_memory_probe train \
+  --cache experiments/my-activation-features --output experiments/my-activation-model \
+  --facts-per-memory 20 --key-width 1024 --batch-size 4 --epochs 60
+
+# Live writer: writes.json contains {"sources": ["A factual statement", ...]}.
+.venv/bin/python -m src.llm.helpers.activation_memory_probe session-write \
+  --checkpoint experiments/my-activation-model --cases writes.json \
+  --output experiments/my-activation-session
+
+# Fresh reader: reads.json contains {"reads": [{"question": "...", "answer": "..."}]}.
+# The reference answer is used only for scoring, after generation.
+.venv/bin/python -m src.llm.helpers.activation_memory_probe session-read \
+  --checkpoint experiments/my-activation-session --cases reads.json \
+  --output experiments/my-activation-recall --scale 32
+```
+
+## Earlier network-only token-memory experiment
+
+`NeuralTokenMemory` is a new experimental memory network connected to the frozen
+decoder's output. Its fixed-size state is a learned 1024 x 1024 weight matrix
+and an inverse-covariance optimizer matrix (about 12 MiB together). A write
+updates the network with the gradient of next-token embedding reconstruction
+error, using a normalized preconditioner. Queries run through the network and
+the frozen vocabulary projection. There is no stored question index, example
+replay, retrieved text, or growing key/value datastore in this read path.
+The network/optimizer tensors can be checkpointed across process launches.
+
+This changes the learning target: the new write predicts the supplied answer's
+token embeddings, whereas the earlier Titans/delta writer reconstructed
+projected hidden activations. Automatic-write experiments use frozen Qwen to
+turn the current user statement into temporary Q/A supervision, then discard
+that supervision after updating the network. This write-side translation is
+still unreliable; it is not a solved importance detector or arbitrary-fact
+memory. This module is available for research through the probes below and is
+not installed into the regular chat path.
+
+Measured results:
+
+- [40/40 demonstrated answers](experiments/neural-output-memory-v1/README.md),
+  with 20 facts coexisting and all 20 subsequently corrected. One write per
+  demonstration; the new-session prompt contains only the question.
+- [6/8 rephrased questions](experiments/neural-output-facts-paraphrases-v2/README.md)
+  after automatic statement writes; adding memory scores to the frozen LM's
+  logits reached [7/8 on that development probe](experiments/neural-output-logit-connection-v1/README.md).
+- [4/8 independent new facts](experiments/neural-output-unseen-facts-v1/README.md)
+  with direct readout. Bad write supervision and confusing related properties
+  remain open problems. Unknown-fact abstention and long-running capacity have
+  not been established.
+
+```sh
+.venv/bin/python -m src.llm.helpers.neural_memory_probe \
+  --output experiments/my-neural-qa-run/results.json
+.venv/bin/python -m src.llm.helpers.neural_fact_probe --paraphrases \
+  --output experiments/my-neural-fact-run/results.json
+```
+
+The earlier text-addressed prototype was withdrawn after the network-only
+requirement was clarified. Its results and source snapshot remain in
+[the experiment archive](experiments/token-readout-rejected-v1/README.md).
+
 ## Command line workflow
 
 `main.py` has `train`, `validate`, `test`, and `chat` subcommands. Run

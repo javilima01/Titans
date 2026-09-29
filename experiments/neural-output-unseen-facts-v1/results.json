@@ -1,0 +1,250 @@
+{
+  "paraphrases": true,
+  "cases": "experiments/neural-output-unseen-facts-v1/cases.json",
+  "writes": [
+    {
+      "source": "Remember: my preferred editor is Lapce.",
+      "raw": "[{\"question\":\"What is my preferred editor?\",\"answer\":\"Lapce\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is my preferred editor?",
+            "Which editor do you prefer?",
+            "What is your favorite code editor?",
+            "Which editor do you use most often?",
+            "What editor do you recommend for your work?"
+          ],
+          "answer": "Lapce",
+          "raw_paraphrases": "[\"Which editor do you prefer?\", \"What is your favorite code editor?\", \"Which editor do you use most often?\", \"What editor do you recommend for your work?\"]"
+        }
+      ]
+    },
+    {
+      "source": "I want dates written as YYYY/MM/DD.",
+      "raw": "[{\"question\":\"What is the date format you prefer?\",\"answer\":\"YYYY/MM/DD\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is the date format you prefer?",
+            "What is the preferred date format for your logs?",
+            "Which date format do you use for your data?",
+            "Which date format do you prefer for your logs?"
+          ],
+          "answer": "YYYY/MM/DD",
+          "raw_paraphrases": "[\"What is the preferred date format for your logs?\", \"Which date format do you use for your data?\", \"What is the preferred date format for your logs?\", \"Which date format do you prefer for your logs?\"]"
+        }
+      ]
+    },
+    {
+      "source": "Repository selene reads configuration from config/bluebird.toml.",
+      "raw": "[{\"question\":\"Which repository reads configuration from config/bluebird.toml?\",\"answer\":\"selene\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "Which repository reads configuration from config/bluebird.toml?",
+            "What repository is configured to read from config/bluebird.toml?",
+            "Which repository uses config/bluebird.toml for configuration?",
+            "Where does the bluebird.toml configuration come from?"
+          ],
+          "answer": "selene",
+          "raw_paraphrases": "[\"Which repository reads configuration from config/bluebird.toml?\", \"What repository is configured to read from config/bluebird.toml?\", \"Which repository uses config/bluebird.toml for configuration?\", \"Where does the bluebird.toml configuration come from?\"]"
+        }
+      ]
+    },
+    {
+      "source": "In repository selene, start development with just serve-local.",
+      "raw": "[{\"question\":\"What is the command to start development in repository selene with just serve-local?\",\"answer\":\"serve-local\"}]",
+      "accepted": [
+        {
+          "questions": [],
+          "answer": "serve-local",
+          "raw_paraphrases": "[\"Which command starts development in repository selene using serve-local?\", \"What is the command to start development in repository selene with serve-local?\", \"What is the command to start development in repository selene with serve-local?\", \"What is the command to start development in repository selene with serve-local?\"]"
+        }
+      ]
+    },
+    {
+      "source": "The logging format for repository selene is newline-delimited JSON.",
+      "raw": "[{\"question\":\"What is the logging format for repository selene?\",\"answer\":\"newline-delimited JSON\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is the logging format for repository selene?",
+            "Which directory stores the selene logs?",
+            "What is the logging format for selene?",
+            "Where can I find selene logs?"
+          ],
+          "answer": "newline-delimited JSON",
+          "raw_paraphrases": "[\"The logging format for selene is JSON.\", \"Which directory stores the selene logs?\", \"What is the logging format for selene?\", \"Where can I find selene logs?\"]"
+        }
+      ]
+    },
+    {
+      "source": "For repository rowan, the release branch is stable/2026-q3.",
+      "raw": "[{\"question\":\"What is the release branch for repository rowan?\",\"answer\":\"stable/2026-q3\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is the release branch for repository rowan?",
+            "Which branch contains the release notes for rowan?",
+            "Where is the rowan release branch located?",
+            "What branch is the rowan release branch?",
+            "Which branch is the rowan release branch?"
+          ],
+          "answer": "stable/2026-q3",
+          "raw_paraphrases": "[\"Which branch contains the release notes for rowan?\", \"Where is the rowan release branch located?\", \"What branch is the rowan release branch?\", \"Which branch is the rowan release branch?\"]"
+        }
+      ]
+    },
+    {
+      "source": "I avoid foods containing sesame.",
+      "raw": "[]",
+      "accepted": []
+    },
+    {
+      "source": "The maintainer of repository rowan is Velune Arqis.",
+      "raw": "[{\"question\":\"Who is the maintainer of repository rowan?\",\"answer\":\"Velune Arqis\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "Who is the maintainer of repository rowan?"
+          ],
+          "answer": "Velune Arqis",
+          "raw_paraphrases": "[\"Who is the maintainer of repository rowan?\"]"
+        }
+      ]
+    },
+    {
+      "source": "Correction: the release branch for repository rowan is release/blue-moon.",
+      "raw": "[{\"question\":\"What is the release branch for repository rowan?\",\"answer\":\"release/blue-moon\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is the release branch for repository rowan?",
+            "Which branch contains the release notes for rowan?",
+            "Where is the rowan release branch located?",
+            "What branch is the rowan release branch?",
+            "Which branch is the rowan release branch?"
+          ],
+          "answer": "release/blue-moon",
+          "raw_paraphrases": "[\"Which branch contains the release notes for rowan?\", \"Where is the rowan release branch located?\", \"What branch is the rowan release branch?\", \"Which branch is the rowan release branch?\"]"
+        }
+      ]
+    }
+  ],
+  "reads": [
+    {
+      "question": "Which editor do I usually use?",
+      "expected": "Lapce",
+      "prediction": "Lapce",
+      "confidence": [
+        0.9903860688209534,
+        0.9888695478439331,
+        0.9979418516159058,
+        0.9976287484169006
+      ],
+      "correct": true,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "What date format do I prefer?",
+      "expected": "YYYY/MM/DD",
+      "prediction": "YYYY/MM/DD",
+      "confidence": [
+        0.9922400116920471,
+        0.9989359378814697,
+        0.999299168586731,
+        0.9988270998001099
+      ],
+      "correct": true,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "Where is selene's configuration file?",
+      "expected": "config/bluebird.toml",
+      "prediction": "newline-delimited JSON",
+      "confidence": [
+        0.9535337686538696,
+        0.9571992754936218,
+        0.9944579601287842,
+        0.9856884479522705,
+        0.9879007935523987
+      ],
+      "correct": false,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "How do I launch the selene dev server?",
+      "expected": "just serve-local",
+      "prediction": "newline-delimited JSON",
+      "confidence": [
+        0.7311406135559082,
+        0.8655548095703125,
+        0.9873924255371094,
+        0.9674673080444336,
+        0.9725576043128967
+      ],
+      "correct": false,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "How are selene's logs formatted?",
+      "expected": "newline-delimited JSON",
+      "prediction": "newline-delimited JSON",
+      "confidence": [
+        0.9838075637817383,
+        0.9670394659042358,
+        0.9972146153450012,
+        0.9908381104469299,
+        0.9944924116134644
+      ],
+      "correct": true,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "Which branch do rowan releases come from?",
+      "expected": "release/blue-moon",
+      "prediction": "release/blue-moon",
+      "confidence": [
+        0.9739869832992554,
+        0.9446269869804382,
+        0.9879109859466553,
+        0.9873440861701965,
+        0.9828073978424072
+      ],
+      "correct": true,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "Which food ingredient should you avoid recommending to me?",
+      "expected": "sesame",
+      "prediction": "release/blue-moon",
+      "confidence": [
+        0.6882676482200623,
+        0.917891800403595,
+        0.9649074077606201,
+        0.9780697226524353,
+        0.9453198313713074
+      ],
+      "correct": false,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "Who maintains rowan?",
+      "expected": "Velune Arqis",
+      "prediction": "release/blue-moon",
+      "confidence": [
+        0.8141917586326599,
+        0.9202877879142761,
+        0.983120858669281,
+        0.9918741583824158,
+        0.9616283774375916
+      ],
+      "correct": false,
+      "question_seen_during_write": false
+    }
+  ],
+  "correct": 4,
+  "count": 8,
+  "network_bytes": 12583088,
+  "elapsed_seconds": 17.86762491700938
+}

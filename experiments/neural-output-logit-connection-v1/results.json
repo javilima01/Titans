@@ -1,0 +1,649 @@
+{
+  "state": "experiments/neural-output-facts-paraphrases-v2/network.safetensors",
+  "results": [
+    {
+      "scale": 0,
+      "question": "What should you call me?",
+      "expected": "Ilaria",
+      "prediction": "I am Qwen3.5, a large language model developed by Tongyi Lab.",
+      "correct": false,
+      "confidence": [
+        0.9158968925476074,
+        0.6613462567329407,
+        0.512787938117981,
+        0.8353390693664551,
+        0.7609509229660034,
+        0.5026460289955139,
+        0.45669910311698914,
+        0.5936923027038574,
+        0.4927425682544708,
+        0.5431185960769653,
+        0.5985168218612671,
+        0.5714459419250488,
+        0.4285638928413391,
+        0.6158920526504517,
+        0.6467683911323547,
+        0.5873883366584778,
+        0.5679799318313599,
+        0.5836485624313354,
+        0.45916590094566345
+      ]
+    },
+    {
+      "scale": 0,
+      "question": "How do I like things explained?",
+      "expected": "explanations with worked examples",
+      "prediction": "I don't have feelings, so I can't \"like\" things. However, I can help you understand how to",
+      "correct": false,
+      "confidence": [
+        0.7289851307868958,
+        0.6732560396194458,
+        0.4650295078754425,
+        0.5366816520690918,
+        0.7300652265548706,
+        0.4125725328922272,
+        0.44235920906066895,
+        0.46139559149742126,
+        0.6277725696563721,
+        0.5259044170379639,
+        0.5628356337547302,
+        0.3825729489326477,
+        0.39523884654045105,
+        0.49022141098976135,
+        0.49149608612060547,
+        0.37458863854408264,
+        0.4713929295539856,
+        0.3971382975578308,
+        0.5791378617286682,
+        0.4593227505683899,
+        0.38773778080940247,
+        0.5412960052490234,
+        0.5352852940559387,
+        0.5906071662902832
+      ]
+    },
+    {
+      "scale": 0,
+      "question": "Which command runs kestrel's API tests?",
+      "expected": "uv run pytest tests/api -q",
+      "prediction": "`kubectl run --dry-run=client -s --namespace=kestrel --kubeconfig=/etc/kubernetes/kest",
+      "correct": false,
+      "confidence": [
+        0.9812784194946289,
+        0.6660123467445374,
+        0.41758427023887634,
+        0.5175809860229492,
+        0.7983407974243164,
+        0.3814530670642853,
+        0.43380334973335266,
+        0.5049130916595459,
+        0.5896314382553101,
+        0.5368524193763733,
+        0.5092563033103943,
+        0.563088595867157,
+        0.39595678448677063,
+        0.4908050298690796,
+        0.3391103744506836,
+        0.6076464056968689,
+        0.5114907026290894,
+        0.3369957208633423,
+        0.5076842308044434,
+        0.4944703280925751,
+        0.3899093270301819,
+        0.46387219429016113,
+        0.5575252175331116,
+        0.7572447657585144
+      ]
+    },
+    {
+      "scale": 0,
+      "question": "Where does the kestrel service start?",
+      "expected": "services/gateway/start.py",
+      "prediction": "The Kestrel Service starts at **00:00 UTC** on the day of the event.",
+      "correct": false,
+      "confidence": [
+        0.8997158408164978,
+        0.4711546003818512,
+        0.43496012687683105,
+        0.40681272745132446,
+        0.36377662420272827,
+        0.3813098669052124,
+        0.5005423426628113,
+        0.7206693887710571,
+        0.7986021637916565,
+        0.5308312177658081,
+        0.5031180381774902,
+        0.5487794876098633,
+        0.6636577248573303,
+        0.6261149048805237,
+        0.7835438251495361,
+        0.725885272026062,
+        0.5953107476234436,
+        0.4973943829536438,
+        0.43813902139663696,
+        0.5050299167633057,
+        0.3947271406650543,
+        0.6017864942550659,
+        0.6367976665496826
+      ]
+    },
+    {
+      "scale": 0,
+      "question": "What builds fern?",
+      "expected": "Meson",
+      "prediction": "Fungi.",
+      "correct": false,
+      "confidence": [
+        0.8722178339958191,
+        0.3738652169704437,
+        0.621309757232666,
+        0.5860756039619446
+      ]
+    },
+    {
+      "scale": 0,
+      "question": "What builds kestrel now?",
+      "expected": "Ninja",
+      "prediction": "A kestrel is a small, agile bird of prey that is native to the Arctic and subarctic regions of North",
+      "correct": false,
+      "confidence": [
+        0.5565929412841797,
+        0.3212786912918091,
+        0.3058311343193054,
+        0.39171302318573,
+        0.3502359390258789,
+        0.40378451347351074,
+        0.36328771710395813,
+        0.4064858555793762,
+        0.41607770323753357,
+        0.4606797993183136,
+        0.49562540650367737,
+        0.49852922558784485,
+        0.389983206987381,
+        0.3241441249847412,
+        0.5346499085426331,
+        0.615469753742218,
+        0.5439963936805725,
+        0.5105230808258057,
+        0.42474687099456787,
+        0.533787727355957,
+        0.4201849102973938,
+        0.49309638142585754,
+        0.4992298483848572,
+        0.4128773808479309
+      ]
+    },
+    {
+      "scale": 0,
+      "question": "What time zone do I use?",
+      "expected": "Pacific/Chatham",
+      "prediction": "UTC",
+      "correct": false,
+      "confidence": [
+        0.9696207642555237,
+        0.4689215123653412
+      ]
+    },
+    {
+      "scale": 0,
+      "question": "Where do kestrel's database changes go, and can we edit old migrations?",
+      "expected": "append-only SQL files under db/changes",
+      "prediction": "No, you cannot edit old migrations.\n\nKestrel's database changes are managed through a **migration system** that",
+      "correct": false,
+      "confidence": [
+        0.7063961625099182,
+        0.4265856444835663,
+        0.43608352541923523,
+        0.47783374786376953,
+        0.5388643741607666,
+        0.3709719479084015,
+        0.4311011731624603,
+        0.4462544322013855,
+        0.44002434611320496,
+        0.6739765405654907,
+        0.4312819838523865,
+        0.3850976824760437,
+        0.5386080741882324,
+        0.48279306292533875,
+        0.3376043438911438,
+        0.7325279712677002,
+        0.6237145662307739,
+        0.40655872225761414,
+        0.5480477809906006,
+        0.41557857394218445,
+        0.5860555171966553,
+        0.33997178077697754,
+        0.5009377002716064,
+        0.5573273301124573
+      ]
+    },
+    {
+      "scale": 8,
+      "question": "What should you call me?",
+      "expected": "Ilaria",
+      "prediction": "I",
+      "correct": false,
+      "confidence": [
+        0.9158968925476074,
+        0.6613462567329407
+      ]
+    },
+    {
+      "scale": 8,
+      "question": "How do I like things explained?",
+      "expected": "explanations with worked examples",
+      "prediction": "I can't answer this with a specific \"explanations\" or \"explanations\" (as in the specific",
+      "correct": false,
+      "confidence": [
+        0.7289851307868958,
+        0.6732560396194458,
+        0.5084692239761353,
+        0.526387631893158,
+        0.49833253026008606,
+        0.5159210562705994,
+        0.7898507118225098,
+        0.6215085387229919,
+        0.4014248847961426,
+        0.49074530601501465,
+        0.8834351897239685,
+        0.8964962363243103,
+        0.749932587146759,
+        0.5682095885276794,
+        0.6827914714813232,
+        0.46067720651626587,
+        0.878878116607666,
+        0.8855410814285278,
+        0.7915292382240295,
+        0.5326433777809143,
+        0.4592134356498718,
+        0.44787368178367615,
+        0.5700400471687317,
+        0.4151765704154968
+      ]
+    },
+    {
+      "scale": 8,
+      "question": "Which command runs kestrel's API tests?",
+      "expected": "uv run pytest tests/api -q",
+      "prediction": "uv run pytest tests/api/",
+      "correct": false,
+      "confidence": [
+        0.9812784194946289,
+        0.9779717922210693,
+        0.9802069067955017,
+        0.9904152154922485,
+        0.9661467671394348,
+        0.97560054063797,
+        0.8731806874275208
+      ]
+    },
+    {
+      "scale": 8,
+      "question": "Where does the kestrel service start?",
+      "expected": "services/gateway/start.py",
+      "prediction": "Services in the UK (including the UK's National Health Service) generally start at the **National Health Service (NHS",
+      "correct": false,
+      "confidence": [
+        0.8997158408164978,
+        0.5773998498916626,
+        0.5861752033233643,
+        0.5262449383735657,
+        0.4662896692752838,
+        0.7152635455131531,
+        0.4632868766784668,
+        0.3406699001789093,
+        0.34080925583839417,
+        0.45996183156967163,
+        0.4299684166908264,
+        0.2935367524623871,
+        0.46152833104133606,
+        0.5560606122016907,
+        0.5989879965782166,
+        0.6347682476043701,
+        0.4398480951786041,
+        0.46657902002334595,
+        0.6020129919052124,
+        0.38227787613868713,
+        0.33890533447265625,
+        0.6170706748962402,
+        0.7361414432525635,
+        0.6337674260139465
+      ]
+    },
+    {
+      "scale": 8,
+      "question": "What builds fern?",
+      "expected": "Meson",
+      "prediction": "Mesophytes",
+      "correct": false,
+      "confidence": [
+        0.8722178339958191,
+        0.9186999797821045,
+        0.4633951187133789,
+        0.4848124086856842
+      ]
+    },
+    {
+      "scale": 8,
+      "question": "What builds kestrel now?",
+      "expected": "Ninja",
+      "prediction": "A kestrel is a bird of prey, not a bird of prey.",
+      "correct": false,
+      "confidence": [
+        0.5565929412841797,
+        0.3212786912918091,
+        0.3058311343193054,
+        0.39171302318573,
+        0.3502359390258789,
+        0.40378451347351074,
+        0.4757404029369354,
+        0.5025455951690674,
+        0.49448415637016296,
+        0.3471761643886566,
+        0.3685215711593628,
+        0.4125441014766693,
+        0.35256871581077576,
+        0.43451133370399475,
+        0.4350331425666809,
+        0.49479058384895325
+      ]
+    },
+    {
+      "scale": 8,
+      "question": "What time zone do I use?",
+      "expected": "Pacific/Chatham",
+      "prediction": "Pacific/Chatham",
+      "correct": true,
+      "confidence": [
+        0.9696207642555237,
+        0.9704238176345825,
+        0.9811202883720398,
+        0.9933557510375977,
+        0.9895989894866943
+      ]
+    },
+    {
+      "scale": 8,
+      "question": "Where do kestrel's database changes go, and can we edit old migrations?",
+      "expected": "append-only SQL files under db/changes",
+      "prediction": "No, you cannot edit old migrations.\n\nKestrel's database changes are managed through a **Migrator**",
+      "correct": false,
+      "confidence": [
+        0.7063961625099182,
+        0.4265856444835663,
+        0.43608352541923523,
+        0.47783374786376953,
+        0.5388643741607666,
+        0.3709719479084015,
+        0.4311011731624603,
+        0.4462544322013855,
+        0.44002434611320496,
+        0.6739765405654907,
+        0.4312819838523865,
+        0.3850976824760437,
+        0.5386080741882324,
+        0.48279306292533875,
+        0.3376043438911438,
+        0.7325279712677002,
+        0.6237145662307739,
+        0.40655872225761414,
+        0.5480477809906006,
+        0.41557857394218445,
+        0.5860555171966553,
+        0.3325360119342804,
+        0.4970009922981262,
+        0.4306884706020355
+      ]
+    },
+    {
+      "scale": 16,
+      "question": "What should you call me?",
+      "expected": "Ilaria",
+      "prediction": "Ilaria",
+      "correct": true,
+      "confidence": [
+        0.9158968925476074,
+        0.9313310980796814,
+        0.9758760929107666
+      ]
+    },
+    {
+      "scale": 16,
+      "question": "How do I like things explained?",
+      "expected": "explanations with worked examples",
+      "prediction": "explanations with worked examples",
+      "correct": true,
+      "confidence": [
+        0.7289851307868958,
+        0.9271433353424072,
+        0.9403281211853027,
+        0.8801504969596863,
+        0.9640980958938599,
+        0.9900789856910706,
+        0.9878230094909668
+      ]
+    },
+    {
+      "scale": 16,
+      "question": "Which command runs kestrel's API tests?",
+      "expected": "uv run pytest tests/api -q",
+      "prediction": "uv run pytest tests/api -q",
+      "correct": true,
+      "confidence": [
+        0.9812784194946289,
+        0.9779717922210693,
+        0.9802069067955017,
+        0.9904152154922485,
+        0.9661467671394348,
+        0.97560054063797,
+        0.9946863055229187,
+        0.9961549639701843
+      ]
+    },
+    {
+      "scale": 16,
+      "question": "Where does the kestrel service start?",
+      "expected": "services/gateway/start.py",
+      "prediction": "Services in the UK (including the UK's National Health Service and the NHS) generally start at the **National Health Service",
+      "correct": false,
+      "confidence": [
+        0.8997158408164978,
+        0.5773998498916626,
+        0.5861752033233643,
+        0.5262449383735657,
+        0.4662896692752838,
+        0.7152635455131531,
+        0.4632868766784668,
+        0.3406699001789093,
+        0.34080925583839417,
+        0.45996183156967163,
+        0.4299684166908264,
+        0.2935367524623871,
+        0.46152833104133606,
+        0.4244101047515869,
+        0.3690985143184662,
+        0.4472306966781616,
+        0.5500569939613342,
+        0.5889403223991394,
+        0.6455212235450745,
+        0.4780866205692291,
+        0.4605107307434082,
+        0.605150580406189,
+        0.3952253460884094,
+        0.32428643107414246
+      ]
+    },
+    {
+      "scale": 16,
+      "question": "What builds fern?",
+      "expected": "Meson",
+      "prediction": "Mesonemic tissues",
+      "correct": false,
+      "confidence": [
+        0.8722178339958191,
+        0.9186999797821045,
+        0.4097031056880951,
+        0.5370797514915466,
+        0.48809313774108887,
+        0.6875523328781128
+      ]
+    },
+    {
+      "scale": 16,
+      "question": "What builds kestrel now?",
+      "expected": "Ninja",
+      "prediction": "Ninja",
+      "correct": true,
+      "confidence": [
+        0.5565929412841797,
+        0.8018787503242493,
+        0.8341271877288818
+      ]
+    },
+    {
+      "scale": 16,
+      "question": "What time zone do I use?",
+      "expected": "Pacific/Chatham",
+      "prediction": "Pacific/Chatham",
+      "correct": true,
+      "confidence": [
+        0.9696207642555237,
+        0.9704238176345825,
+        0.9811202883720398,
+        0.9933557510375977,
+        0.9895989894866943
+      ]
+    },
+    {
+      "scale": 16,
+      "question": "Where do kestrel's database changes go, and can we edit old migrations?",
+      "expected": "append-only SQL files under db/changes",
+      "prediction": "Ninja",
+      "correct": false,
+      "confidence": [
+        0.7063961625099182,
+        0.8698659539222717,
+        0.791087806224823
+      ]
+    },
+    {
+      "scale": 32,
+      "question": "What should you call me?",
+      "expected": "Ilaria",
+      "prediction": "Ilaria",
+      "correct": true,
+      "confidence": [
+        0.9158968925476074,
+        0.9313310980796814,
+        0.9758760929107666
+      ]
+    },
+    {
+      "scale": 32,
+      "question": "How do I like things explained?",
+      "expected": "explanations with worked examples",
+      "prediction": "explanations with worked examples",
+      "correct": true,
+      "confidence": [
+        0.7289851307868958,
+        0.9271433353424072,
+        0.9403281211853027,
+        0.8801504969596863,
+        0.9640980958938599,
+        0.9900789856910706,
+        0.9878230094909668
+      ]
+    },
+    {
+      "scale": 32,
+      "question": "Which command runs kestrel's API tests?",
+      "expected": "uv run pytest tests/api -q",
+      "prediction": "uv run pytest tests/api -q",
+      "correct": true,
+      "confidence": [
+        0.9812784194946289,
+        0.9779717922210693,
+        0.9802069067955017,
+        0.9904152154922485,
+        0.9661467671394348,
+        0.97560054063797,
+        0.9946863055229187,
+        0.9961549639701843
+      ]
+    },
+    {
+      "scale": 32,
+      "question": "Where does the kestrel service start?",
+      "expected": "services/gateway/start.py",
+      "prediction": "services/gateway/start.py",
+      "correct": true,
+      "confidence": [
+        0.8997158408164978,
+        0.9397895932197571,
+        0.9688904285430908,
+        0.9521775841712952,
+        0.9534630179405212,
+        0.9731975793838501
+      ]
+    },
+    {
+      "scale": 32,
+      "question": "What builds fern?",
+      "expected": "Meson",
+      "prediction": "Meson (Meson",
+      "correct": false,
+      "confidence": [
+        0.8722178339958191,
+        0.9186999797821045,
+        0.4097031056880951,
+        0.7286312580108643,
+        0.9130812287330627,
+        0.59566330909729
+      ]
+    },
+    {
+      "scale": 32,
+      "question": "What builds kestrel now?",
+      "expected": "Ninja",
+      "prediction": "Ninja",
+      "correct": true,
+      "confidence": [
+        0.5565929412841797,
+        0.8018787503242493,
+        0.8341271877288818
+      ]
+    },
+    {
+      "scale": 32,
+      "question": "What time zone do I use?",
+      "expected": "Pacific/Chatham",
+      "prediction": "Pacific/Chatham",
+      "correct": true,
+      "confidence": [
+        0.9696207642555237,
+        0.9704238176345825,
+        0.9811202883720398,
+        0.9933557510375977,
+        0.9895989894866943
+      ]
+    },
+    {
+      "scale": 32,
+      "question": "Where do kestrel's database changes go, and can we edit old migrations?",
+      "expected": "append-only SQL files under db/changes",
+      "prediction": "append-only SQL files under db/changes",
+      "correct": true,
+      "confidence": [
+        0.7063961625099182,
+        0.8511536717414856,
+        0.923272430896759,
+        0.9584136009216309,
+        0.9573453664779663,
+        0.9771630167961121,
+        0.9761027097702026,
+        0.9657279849052429,
+        0.9600916504859924
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "neural-statement-attractor-v1",
+  "kind": "analysis",
+  "checkpoint": "experiments/neural-statement-attractor-v1/network.safetensors",
+  "training": {},
+  "reports": {
+    "results.json": {
+      "split": "development",
+      "evaluation_kind": "neural_parameters_only",
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 8,
+            "value_presence": 1.0
+          }
+        }
+      }
+    }
+  },
+  "note": "8/8 predictions contain the value (lenient); exact-statement scoring was not logged. Separate E5 encoder, development probe; not a Qwen activation adapter.",
+  "result": "8/8 predictions contain the value (lenient); exact-statement scoring was not logged. Separate E5 encoder, development probe; not a Qwen activation adapter.",
+  "command": ".venv/bin/python -m src.llm.helpers.neural_statement_probe --cases experiments/neural-output-unseen-facts-v1/cases.json --output experiments/neural-statement-attractor-v1 --features 4096 --bandwidth 8 --latent-width 512",
+  "recorded_at": "2026-09-28T18:21:30.984916+00:00",
+  "status": "experimental",
+  "source": "experiments/neural-output-unseen-facts-v1/cases.json"
+}

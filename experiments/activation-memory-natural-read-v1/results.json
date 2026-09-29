@@ -1,0 +1,561 @@
+{
+  "architecture": "ActivationFastMemory",
+  "checkpoint": "experiments/activation-memory-natural-write-v1",
+  "cases": "experiments/activation-memory-natural-cases-v1/reads.json",
+  "stage": "session-read",
+  "results": [
+    {
+      "question": "How do I interact with applications?",
+      "answer": "screen reader and keyboard only",
+      "statement": "Please remember that I navigate applications with a screen reader and keyboard only.",
+      "old_value": null,
+      "category": "user",
+      "prediction": "1",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What accessibility setup do I use?",
+      "answer": "screen reader and keyboard only",
+      "statement": "Please remember that I navigate applications with a screen reader and keyboard only.",
+      "old_value": null,
+      "category": "user",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which language should your code examples use?",
+      "answer": "Zig",
+      "statement": "Correction: when showing me code, use Zig examples from now on.",
+      "old_value": "Rust",
+      "category": "correction",
+      "prediction": "",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What language do I prefer for sample code?",
+      "answer": "Zig",
+      "statement": "Correction: when showing me code, use Zig examples from now on.",
+      "old_value": "Rust",
+      "category": "correction",
+      "prediction": "",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "How early can you schedule a call with me?",
+      "answer": "10:00 Europe/Riga",
+      "statement": "I cannot take calls before 10:00 Europe/Riga.",
+      "old_value": null,
+      "category": "user",
+      "prediction": "10",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What is my earliest time for calls?",
+      "answer": "10:00 Europe/Riga",
+      "statement": "I cannot take calls before 10:00 Europe/Riga.",
+      "old_value": null,
+      "category": "user",
+      "prediction": "10",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which currency should my expense report use?",
+      "answer": "CHF",
+      "statement": "Use CHF as the currency in my expense summaries.",
+      "old_value": null,
+      "category": "user",
+      "prediction": "MyExpense",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "How do I want expenses denominated?",
+      "answer": "CHF",
+      "statement": "Use CHF as the currency in my expense summaries.",
+      "old_value": null,
+      "category": "user",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What is the name of my work remote in Git?",
+      "answer": "upstream-work",
+      "statement": "My work Git remote is called upstream-work.",
+      "old_value": null,
+      "category": "user",
+      "prediction": "",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which Git remote do I use for work?",
+      "answer": "upstream-work",
+      "statement": "My work Git remote is called upstream-work.",
+      "old_value": null,
+      "category": "user",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What name do I sign commits with?",
+      "answer": "Mira Sable",
+      "statement": "The identity I use when signing commits is Mira Sable.",
+      "old_value": null,
+      "category": "user",
+      "prediction": "",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which identity is used for my commit signatures?",
+      "answer": "Mira Sable",
+      "statement": "The identity I use when signing commits is Mira Sable.",
+      "old_value": null,
+      "category": "user",
+      "prediction": "SHA",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What did I name my side project?",
+      "answer": "Silver Otter",
+      "statement": "Remember: the codename of my side project is Silver Otter.",
+      "old_value": null,
+      "category": "user",
+      "prediction": "Silver Otter",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "What is the codename for my side project?",
+      "answer": "Silver Otter",
+      "statement": "Remember: the codename of my side project is Silver Otter.",
+      "old_value": null,
+      "category": "user",
+      "prediction": "Silver Otter",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "What temperature unit do I prefer?",
+      "answer": "Celsius",
+      "statement": "I want temperatures expressed in Celsius.",
+      "old_value": null,
+      "category": "user",
+      "prediction": "Celsius",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Which scale should you use when telling me the temperature?",
+      "answer": "Celsius",
+      "statement": "I want temperatures expressed in Celsius.",
+      "old_value": null,
+      "category": "user",
+      "prediction": "",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Where is the Qwen35Titans wrapper implemented in LLM?",
+      "answer": "src/llm/modules/qwen.py",
+      "statement": "Code observation in repository LLM: Qwen35Titans is defined in src/llm/modules/qwen.py.",
+      "old_value": null,
+      "category": "code",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which LLM source file defines Qwen35Titans?",
+      "answer": "src/llm/modules/qwen.py",
+      "statement": "Code observation in repository LLM: Qwen35Titans is defined in src/llm/modules/qwen.py.",
+      "old_value": null,
+      "category": "code",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Where should I look for TitansMemory in LLM?",
+      "answer": "src/llm/modules/titans.py",
+      "statement": "Code observation in repository LLM: TitansMemory lives in src/llm/modules/titans.py.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "/llm/titans.py",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which LLM module implements the Titans memory recurrence?",
+      "answer": "src/llm/modules/titans.py",
+      "statement": "Code observation in repository LLM: TitansMemory lives in src/llm/modules/titans.py.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "LLM:",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Where is LLM's TrainingMonitor implemented?",
+      "answer": "src/llm/helpers/monitoring.py",
+      "statement": "Code observation in repository LLM: TrainingMonitor lives in src/llm/helpers/monitoring.py.",
+      "old_value": null,
+      "category": "code",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which file handles LLM's training monitoring?",
+      "answer": "src/llm/helpers/monitoring.py",
+      "statement": "Code observation in repository LLM: TrainingMonitor lives in src/llm/helpers/monitoring.py.",
+      "old_value": null,
+      "category": "code",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "How do I run the complete LLM test suite?",
+      "answer": ".venv/bin/python -m unittest discover -s tests -v",
+      "statement": "In repository LLM, run all tests with .venv/bin/python -m unittest discover -s tests -v.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "I cannot run a \"complete\" (100%) LLM (10-billion-parameter) test suite in",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What command executes all tests in LLM?",
+      "answer": ".venv/bin/python -m unittest discover -s tests -v",
+      "statement": "In repository LLM, run all tests with .venv/bin/python -m unittest discover -s tests -v.",
+      "old_value": null,
+      "category": "code",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "How should I format the LLM Python sources?",
+      "answer": ".venv/bin/ruff format .",
+      "statement": "In repository LLM, format Python files with .venv/bin/ruff format .",
+      "old_value": null,
+      "category": "code",
+      "prediction": "",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What is LLM's Python formatting command?",
+      "answer": ".venv/bin/ruff format .",
+      "statement": "In repository LLM, format Python files with .venv/bin/ruff format .",
+      "old_value": null,
+      "category": "code",
+      "prediction": "",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which working directory should I use for LLM Python commands?",
+      "answer": "repository root",
+      "statement": "In repository LLM, Python commands must run from the repository root because imports use src.llm.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "The .venv/bin/ruff command-line executable",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Where must I be when launching Python in LLM?",
+      "answer": "repository root",
+      "statement": "In repository LLM, Python commands must run from the repository root because imports use src.llm.",
+      "old_value": null,
+      "category": "code",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Where does LLM cache its Qwen model?",
+      "answer": ".models_cache/Qwen/Qwen3.5-0.8B",
+      "statement": "The Qwen model cache for repository LLM is .models_cache/Qwen/Qwen3.5-0.8B.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "10",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which directory holds LLM's downloaded backbone?",
+      "answer": ".models_cache/Qwen/Qwen3.5-0.8B",
+      "statement": "The Qwen model cache for repository LLM is .models_cache/Qwen/Qwen3.5-0.8B.",
+      "old_value": null,
+      "category": "code",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What precision are LLM's memory adapters kept in?",
+      "answer": "FP32",
+      "statement": "Code observation in repository LLM: memory adapters use FP32 even with a BF16 backbone.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "16",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Does LLM use BF16 or FP32 for the memory adapters?",
+      "answer": "FP32",
+      "statement": "Code observation in repository LLM: memory adapters use FP32 even with a BF16 backbone.",
+      "old_value": null,
+      "category": "code",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Where does aster register its HTTP endpoints?",
+      "answer": "app/web/routes_v3.py",
+      "statement": "Code observation in repository aster: the public HTTP routes are registered in app/web/routes_v3.py.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "The aster (*) wildcard registration endpoint",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which aster file defines the public routes?",
+      "answer": "app/web/routes_v3.py",
+      "statement": "Code observation in repository aster: the public HTTP routes are registered in app/web/routes_v3.py.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "nginx/ssl/ssl.nginx",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "How can I bring up aster locally?",
+      "answer": "just up-local",
+      "statement": "Correction: in repository aster, launch the development server with just up-local.",
+      "old_value": "pnpm dev",
+      "category": "correction",
+      "prediction": "10",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What command starts aster's development server?",
+      "answer": "just up-local",
+      "statement": "Correction: in repository aster, launch the development server with just up-local.",
+      "old_value": "pnpm dev",
+      "category": "correction",
+      "prediction": "10 files",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which environment variable points aster to its secrets?",
+      "answer": "ASTER_SECRET_FILE",
+      "statement": "Repository aster reads secrets from the ASTER_SECRET_FILE environment variable.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "SECRET_FILE",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "How does aster locate the secrets file?",
+      "answer": "ASTER_SECRET_FILE",
+      "statement": "Repository aster reads secrets from the ASTER_SECRET_FILE environment variable.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "Aster uses a file watcher (a system command) to:\n- **Sweep**: Scan the 1",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What is the maximum retry delay in aster?",
+      "answer": "17 seconds",
+      "statement": "Code observation in repository aster: retry delays use exponential backoff capped at 17 seconds.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "1 msec",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "How long can aster's retry backoff get?",
+      "answer": "17 seconds",
+      "statement": "Code observation in repository aster: retry delays use exponential backoff capped at 17 seconds.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "1 msec",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Who must approve schema changes in aster?",
+      "answer": "data-platform team",
+      "statement": "Remember: all schema changes in repository aster need approval from the data-platform team.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "Users",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which team signs off on aster database schema modifications?",
+      "answer": "data-platform team",
+      "statement": "Remember: all schema changes in repository aster need approval from the data-platform team.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "Silverstripe",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which aster files should I avoid editing manually?",
+      "answer": "lib/autogen",
+      "statement": "The generated files in repository aster are under lib/autogen and must never be hand-edited.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "The",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Where does aster keep its generated files?",
+      "answer": "lib/autogen",
+      "statement": "The generated files in repository aster are under lib/autogen and must never be hand-edited.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "The src/autogen.py",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "How do I deploy linden?",
+      "answer": "./ops/ship --region eu-west-3",
+      "statement": "Repository linden uses the deploy command ./ops/ship --region eu-west-3.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "I apologize,",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which command ships linden to its configured region?",
+      "answer": "./ops/ship --region eu-west-3",
+      "statement": "Repository linden uses the deploy command ./ops/ship --region eu-west-3.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "pnpm dev-1",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Where are linden's ADRs?",
+      "answer": "design/decisions",
+      "statement": "Repository linden stores its architecture decision records in design/decisions.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "Linden",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Where can I read linden's recorded architecture decisions?",
+      "answer": "design/decisions",
+      "statement": "Repository linden stores its architecture decision records in design/decisions.",
+      "old_value": null,
+      "category": "code",
+      "prediction": "Architecture Decision Records (ADs) use identifiers",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What is my phone number?",
+      "answer": "",
+      "statement": "",
+      "category": "unknown",
+      "prediction": "",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "How old am I?",
+      "answer": "",
+      "statement": "",
+      "category": "unknown",
+      "prediction": "10",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Which database does aster use?",
+      "answer": "",
+      "statement": "",
+      "category": "unknown",
+      "prediction": "The aster use MySQL",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Who maintains linden?",
+      "answer": "",
+      "statement": "",
+      "category": "unknown",
+      "prediction": "The",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What is the test command for repository juniper?",
+      "answer": "",
+      "statement": "",
+      "category": "unknown",
+      "prediction": "scp scp scp",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What is my favourite editor?",
+      "answer": "",
+      "statement": "",
+      "category": "unknown",
+      "prediction": "1",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Where are aster's architecture decisions?",
+      "answer": "",
+      "statement": "",
+      "category": "unknown",
+      "prediction": "The",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "What is the deployment command for aster?",
+      "answer": "",
+      "statement": "",
+      "category": "unknown",
+      "prediction": "/ship --1",
+      "correct": false,
+      "contains_answer": false
+    }
+  ],
+  "scale": 32.0
+}

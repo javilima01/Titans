@@ -1,0 +1,16 @@
+{
+  "id": "token-fact-extraction-pilot-v3",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Few-shot extraction improved; question-ID selection still missed most paraphrases.",
+  "result": "Few-shot extraction improved; question-ID selection still missed most paraphrases.",
+  "details": "The proposed answer to a linked-list question was rejected because it was absent from the source.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.431277+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "results.json"
+  ]
+}

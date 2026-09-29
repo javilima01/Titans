@@ -1,0 +1,13 @@
+{
+  "id": "neural-statement-questions-write-v1",
+  "kind": "analysis",
+  "checkpoint": "experiments/neural-statement-questions-write-v1/network.safetensors",
+  "training": {},
+  "reports": {},
+  "note": "68 source statements written into fixed neural tensors; no recall score in this writer process.",
+  "result": "68 source statements written into fixed neural tensors; no recall score in this writer process.",
+  "command": ".venv/bin/python -m src.llm.helpers.neural_statement_probe --cases experiments/neural-statement-stress-cases-v1/writes.json --output experiments/neural-statement-questions-write-v1 --features 4096 --bandwidth 2 --latent-width 1024 --latent-sparsity 32 --write-only --write-questions",
+  "recorded_at": "2026-09-28T18:30:19.036343+00:00",
+  "status": "experimental",
+  "source": "experiments/neural-statement-stress-cases-v1/writes.json"
+}

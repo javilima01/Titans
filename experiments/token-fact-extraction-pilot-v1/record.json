@@ -1,0 +1,16 @@
+{
+  "id": "token-fact-extraction-pilot-v1",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Automatic extraction with an existing-question index failed: facts were attached to the name question.",
+  "result": "Automatic extraction with an existing-question index failed: facts were attached to the name question.",
+  "details": "Source-span validation rejected several invented answers. The raw extraction and routing responses are preserved.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.430585+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "results.json"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "status": "failed",
+  "error": "TypeError: unsupported operand type(s) for +: 'BatchEncoding' and 'list'",
+  "scored_examples": 0
+}

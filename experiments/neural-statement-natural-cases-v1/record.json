@@ -1,0 +1,13 @@
+{
+  "id": "neural-statement-natural-cases-v1",
+  "kind": "dataset",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "result": "Dataset prepared; evaluation results belong to the linked reader experiments.",
+  "recorded_at": "2026-09-29T17:33:27.767610+00:00",
+  "status": "prepared",
+  "source": "experiments/neural-statement-natural-cases-v1/build_cases.py",
+  "command": ".venv/bin/python -m experiments.neural-statement-natural-cases-v1.build_cases",
+  "note": "Manually authored before activation-memory measurements: 24 current facts, 26 important write events including two corrections, eight irrelevant utterances, 48 known and eight unknown questions. Prepared for a semantic-encoder experiment that was not run; positive statements were later evaluated with ActivationFastMemory."
+}

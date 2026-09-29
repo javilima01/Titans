@@ -1,0 +1,237 @@
+{
+  "writes": [
+    {
+      "source": "Please remember: My name is Ilaria.",
+      "fact_ids": [
+        0
+      ],
+      "rejected": [],
+      "index": {
+        "0": "What is my name?"
+      }
+    },
+    {
+      "source": "I prefer explanations with worked examples.",
+      "fact_ids": [
+        1
+      ],
+      "rejected": [],
+      "index": {
+        "0": "What is my name?",
+        "1": "What is the preferred style for explanations?"
+      }
+    },
+    {
+      "source": "In repository kestrel, run tests with uv run pytest tests/api -q.",
+      "fact_ids": [
+        2
+      ],
+      "rejected": [],
+      "index": {
+        "0": "What is my name?",
+        "1": "What is the preferred style for explanations?",
+        "2": "What command do I run to run tests in repository kestrel?"
+      }
+    },
+    {
+      "source": "The entry point for repository kestrel is services/gateway/start.py.",
+      "fact_ids": [
+        3
+      ],
+      "rejected": [],
+      "index": {
+        "0": "What is my name?",
+        "1": "What is the preferred style for explanations?",
+        "2": "What command do I run to run tests in repository kestrel?",
+        "3": "What is the entry point for repository kestrel?"
+      }
+    },
+    {
+      "source": "The build tool for repository fern is Meson.",
+      "fact_ids": [
+        4
+      ],
+      "rejected": [],
+      "index": {
+        "0": "What is my name?",
+        "1": "What is the preferred style for explanations?",
+        "2": "What command do I run to run tests in repository kestrel?",
+        "3": "What is the entry point for repository kestrel?",
+        "4": "What is the build tool for repository fern?"
+      }
+    },
+    {
+      "source": "For repository kestrel, use the build tool Bazel.",
+      "fact_ids": [
+        5
+      ],
+      "rejected": [],
+      "index": {
+        "0": "What is my name?",
+        "1": "What is the preferred style for explanations?",
+        "2": "What command do I run to run tests in repository kestrel?",
+        "3": "What is the entry point for repository kestrel?",
+        "4": "What is the build tool for repository fern?",
+        "5": "What is the build tool for repository kestrel?"
+      }
+    },
+    {
+      "source": "Correction: the build tool for repository kestrel is Ninja.",
+      "fact_ids": [
+        5
+      ],
+      "rejected": [],
+      "index": {
+        "0": "What is my name?",
+        "1": "What is the preferred style for explanations?",
+        "2": "What command do I run to run tests in repository kestrel?",
+        "3": "What is the entry point for repository kestrel?",
+        "4": "What is the build tool for repository fern?",
+        "5": "What is the build tool for repository kestrel?"
+      }
+    },
+    {
+      "source": "My timezone is Pacific/Chatham.",
+      "fact_ids": [
+        6
+      ],
+      "rejected": [],
+      "index": {
+        "0": "What is my name?",
+        "1": "What is the preferred style for explanations?",
+        "2": "What command do I run to run tests in repository kestrel?",
+        "3": "What is the entry point for repository kestrel?",
+        "4": "What is the build tool for repository fern?",
+        "5": "What is the build tool for repository kestrel?",
+        "6": "What is my timezone?"
+      }
+    },
+    {
+      "source": "Can you explain a linked list?",
+      "fact_ids": [],
+      "rejected": [
+        "Extracted answer is not an exact span of the user message"
+      ],
+      "index": {
+        "0": "What is my name?",
+        "1": "What is the preferred style for explanations?",
+        "2": "What command do I run to run tests in repository kestrel?",
+        "3": "What is the entry point for repository kestrel?",
+        "4": "What is the build tool for repository fern?",
+        "5": "What is the build tool for repository kestrel?",
+        "6": "What is my timezone?"
+      }
+    },
+    {
+      "source": "Thanks, that was useful!",
+      "fact_ids": [],
+      "rejected": [],
+      "index": {
+        "0": "What is my name?",
+        "1": "What is the preferred style for explanations?",
+        "2": "What command do I run to run tests in repository kestrel?",
+        "3": "What is the entry point for repository kestrel?",
+        "4": "What is the build tool for repository fern?",
+        "5": "What is the build tool for repository kestrel?",
+        "6": "What is my timezone?"
+      }
+    },
+    {
+      "source": "If my name were Bob, what would you call me?",
+      "fact_ids": [],
+      "rejected": [],
+      "index": {
+        "0": "What is my name?",
+        "1": "What is the preferred style for explanations?",
+        "2": "What command do I run to run tests in repository kestrel?",
+        "3": "What is the entry point for repository kestrel?",
+        "4": "What is the build tool for repository fern?",
+        "5": "What is the build tool for repository kestrel?",
+        "6": "What is my timezone?"
+      }
+    },
+    {
+      "source": "The migration policy for kestrel is append-only SQL files under db/changes.",
+      "fact_ids": [
+        7
+      ],
+      "rejected": [],
+      "index": {
+        "0": "What is my name?",
+        "1": "What is the preferred style for explanations?",
+        "2": "What command do I run to run tests in repository kestrel?",
+        "3": "What is the entry point for repository kestrel?",
+        "4": "What is the build tool for repository fern?",
+        "5": "What is the build tool for repository kestrel?",
+        "6": "What is my timezone?",
+        "7": "What is the migration policy for kestrel?"
+      }
+    }
+  ],
+  "reads": [
+    {
+      "question": "What should you call me?",
+      "expected": "Ilaria",
+      "recalled": [],
+      "correct": false
+    },
+    {
+      "question": "How do I like things explained?",
+      "expected": "explanations with worked examples",
+      "recalled": [],
+      "correct": false
+    },
+    {
+      "question": "Which command runs kestrel's API tests?",
+      "expected": "uv run pytest tests/api -q",
+      "recalled": [],
+      "correct": false
+    },
+    {
+      "question": "Where does the kestrel service start?",
+      "expected": "services/gateway/start.py",
+      "recalled": [],
+      "correct": false
+    },
+    {
+      "question": "What builds fern?",
+      "expected": "Meson",
+      "recalled": [],
+      "correct": false
+    },
+    {
+      "question": "What builds kestrel now?",
+      "expected": "Ninja",
+      "recalled": [],
+      "correct": false
+    },
+    {
+      "question": "What time zone do I use?",
+      "expected": "Pacific/Chatham",
+      "recalled": [
+        {
+          "id": 6,
+          "question": "What is my timezone?",
+          "answer": "Pacific/Chatham"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "question": "What is my favourite fruit?",
+      "expected": null,
+      "recalled": [],
+      "correct": true
+    },
+    {
+      "question": "Where do kestrel's database changes go, and can we edit old migrations?",
+      "expected": "append-only SQL files under db/changes",
+      "recalled": [],
+      "correct": false
+    }
+  ],
+  "correct": 2,
+  "count": 9,
+  "memory_bytes": 330896,
+  "elapsed_seconds": 35.4223934590118
+}

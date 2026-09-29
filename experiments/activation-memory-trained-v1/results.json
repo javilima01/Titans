@@ -1,0 +1,97 @@
+{
+  "architecture": "ActivationFastMemory with differentiable inner ridge solve and auxiliary token addressing loss",
+  "events": [
+    {
+      "epoch": 1,
+      "loss": 0.11402452456454436,
+      "validation_loss": 0.5903981983661651,
+      "validation_address_accuracy": 0.9012750864028931,
+      "seconds": 0.7220137499971315
+    },
+    {
+      "epoch": 2,
+      "loss": 0.009869397648920615,
+      "validation_loss": 0.5769616782665252,
+      "validation_address_accuracy": 0.9097857236862182,
+      "seconds": 1.2529232500237413
+    },
+    {
+      "epoch": 3,
+      "loss": 0.004839794797201952,
+      "validation_loss": 0.6189725071191787,
+      "validation_address_accuracy": 0.9055304050445556,
+      "seconds": 1.8126455000019632
+    },
+    {
+      "epoch": 4,
+      "loss": 0.003476544010142485,
+      "validation_loss": 0.6291377499699593,
+      "validation_address_accuracy": 0.9055304050445556,
+      "seconds": 2.356322458013892
+    },
+    {
+      "epoch": 5,
+      "loss": 0.0023812375512594977,
+      "validation_loss": 0.6119699165225029,
+      "validation_address_accuracy": 0.9055304050445556,
+      "seconds": 2.8957967910100706
+    },
+    {
+      "epoch": 6,
+      "loss": 0.0019380533307169873,
+      "validation_loss": 0.6112661957740784,
+      "validation_address_accuracy": 0.9097857236862182,
+      "seconds": 3.460756625048816
+    },
+    {
+      "epoch": 7,
+      "loss": 0.0015993084665387868,
+      "validation_loss": 0.6465784519910812,
+      "validation_address_accuracy": 0.9055304050445556,
+      "seconds": 4.0125752910389565
+    },
+    {
+      "epoch": 8,
+      "loss": 0.0013509504582422476,
+      "validation_loss": 0.628711499273777,
+      "validation_address_accuracy": 0.9097857236862182,
+      "seconds": 4.5480406660353765
+    },
+    {
+      "epoch": 9,
+      "loss": 0.0011885813577100634,
+      "validation_loss": 0.6333192586898804,
+      "validation_address_accuracy": 0.9097857236862182,
+      "seconds": 5.067653750011232
+    },
+    {
+      "epoch": 10,
+      "loss": 0.001038757583592087,
+      "validation_loss": 0.6305533736944199,
+      "validation_address_accuracy": 0.9130115389823914,
+      "seconds": 5.627660708036274
+    },
+    {
+      "epoch": 11,
+      "loss": 0.000901630085427314,
+      "validation_loss": 0.6549769103527069,
+      "validation_address_accuracy": 0.9055304050445556,
+      "seconds": 6.162324583041482
+    },
+    {
+      "epoch": 12,
+      "loss": 0.0008470781062108775,
+      "validation_loss": 0.657306182384491,
+      "validation_address_accuracy": 0.9097857236862182,
+      "seconds": 6.693756750028115
+    }
+  ],
+  "training_examples": 1200,
+  "selected_epoch": 2,
+  "cache": "experiments/activation-memory-features-v1",
+  "config": {
+    "epochs": 12,
+    "lr": 0.0003,
+    "batch_size": 16
+  }
+}

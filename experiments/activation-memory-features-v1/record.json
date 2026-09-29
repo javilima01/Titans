@@ -1,0 +1,13 @@
+{
+  "id": "activation-memory-features-v1",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Feature cache for outer learning. Source statements and teacher-forced query prefixes are training/evaluation artifacts, never persistent inference memory. The latest supporting statement is selected by benchmark annotations.",
+  "result": "Feature cache for outer learning. Source statements and teacher-forced query prefixes are training/evaluation artifacts, never persistent inference memory. The latest supporting statement is selected by benchmark annotations.",
+  "command": "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python -m src.llm.helpers.activation_memory_probe cache --output experiments/activation-memory-features-v1 --train-limit 1200 --eval-limit 80",
+  "recorded_at": "2026-09-29T03:48:37.928260+00:00",
+  "status": "experimental",
+  "source": ".datasets_cache/session-open-values-v1"
+}

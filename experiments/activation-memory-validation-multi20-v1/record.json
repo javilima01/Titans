@@ -1,0 +1,28 @@
+{
+  "id": "activation-memory-validation-multi20-v1",
+  "kind": "analysis",
+  "checkpoint": "experiments/activation-memory-trained-v1",
+  "training": {},
+  "reports": {
+    "results.json": {
+      "split": "validation",
+      "evaluation_kind": "neural_parameters_only",
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 80,
+            "value_presence": 0.25,
+            "exact_match": 0.25,
+            "match_target": "answer"
+          }
+        }
+      }
+    }
+  },
+  "note": "20/80 exact answer matches; 20/80 contain the value (lenient). Structured development probe, oracle supporting-statement selection.",
+  "result": "20/80 exact answer matches; 20/80 contain the value (lenient). Structured development probe, oracle supporting-statement selection.",
+  "command": "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python -m src.llm.helpers.activation_memory_probe evaluate --cache experiments/activation-memory-features-v1 --checkpoint experiments/activation-memory-trained-v1 --output experiments/activation-memory-validation-multi20-v1 --eval-limit 80 --facts-per-memory 20 --scale 32",
+  "recorded_at": "2026-09-29T03:53:42.126109+00:00",
+  "status": "experimental",
+  "source": null
+}

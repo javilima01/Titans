@@ -1,0 +1,393 @@
+{
+  "architecture": "ActivationFastMemory",
+  "results": [
+    {
+      "id": "session-novel-b12ce1e25c5316cd13158bf7-0",
+      "source": "My account is cyoxni. Correction: in repository ijcxfj, run tests with pnpm test.",
+      "question": "Session 3. My account is cyoxni. How should I run tests in repository ijcxfj?",
+      "answer": "pnpm test",
+      "task": "repo_test_command_update",
+      "key": "validation.0",
+      "split": "validation",
+      "prediction": "cyoxni",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-3a45c11721ab699df63cce63-0",
+      "source": "Session 1. My account is sjskvk. Please remember that my name is Priya.",
+      "question": "Session 3. My account is sjskvk. What name should you call me? Reply with only the name.",
+      "answer": "Priya",
+      "task": "name",
+      "key": "validation.2",
+      "split": "validation",
+      "prediction": "sjskvk",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-9faa93b560becad26081ffb9-0",
+      "source": "Session 1. My account is maljal. Repository xpoqod uses Kotlin as its runtime.",
+      "question": "Session 3. My account is maljal. Which runtime does repository xpoqod use?",
+      "answer": "Kotlin",
+      "task": "repo_runtime",
+      "key": "validation.4",
+      "split": "validation",
+      "prediction": "Python",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-74461157ac6ad2415b4cad9a-0",
+      "source": "Session 1. My account is mbenjf. In repository ywomjz, the entry point is src/queue/main.py.",
+      "question": "Session 3. My account is mbenjf. What is the entry point file for repository ywomjz?",
+      "answer": "src/queue/main.py",
+      "task": "repo_entry",
+      "key": "validation.6",
+      "split": "validation",
+      "prediction": "/commit",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 30,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-75577b9fd5f17efb705e63f4-0",
+      "source": "Session 1. My account is bdwobh. Please remember that I prefer replies in Swedish.",
+      "question": "Session 3. My account is bdwobh. Which language do I prefer for replies?",
+      "answer": "Swedish",
+      "task": "preference",
+      "key": "validation.8",
+      "split": "validation",
+      "prediction": "English",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000009
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-d86fdebce4b213c84a53c402-0",
+      "source": "Session 1. My account is dfgvrc. My time zone is Vancouver.",
+      "question": "Session 3. My account is dfgvrc. Which time zone should you use for me?",
+      "answer": "Vancouver",
+      "task": "timezone",
+      "key": "validation.10",
+      "split": "validation",
+      "prediction": "America/New_York",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 19,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-5da78134f730b500001ccfc7-0",
+      "source": "Session 1. My account is aazddz. My current project is Summit.",
+      "question": "Session 3. My account is aazddz. Which project am I working on?",
+      "answer": "Summit",
+      "task": "current_project",
+      "key": "validation.12",
+      "split": "validation",
+      "prediction": "Aazddz",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 19,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-df75338da83e47c9d4bd1c83-0",
+      "source": "Session 1. My account is udgulv. The build tool for repository bogxfo is Ant.",
+      "question": "Session 3. My account is udgulv. Which build tool does repository bogxfo use?",
+      "answer": "Ant",
+      "task": "repo_build_tool",
+      "key": "validation.14",
+      "split": "validation",
+      "prediction": "bogxfo",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 23,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-5826736bc99a2a71f43cc2eb-0",
+      "source": "Session 1. My account is fbogcj. Repository dyysik reads its config from settings/web.yaml.",
+      "question": "Session 3. My account is fbogcj. What is the config file for repository dyysik?",
+      "answer": "settings/web.yaml",
+      "task": "repo_config_file",
+      "key": "validation.16",
+      "split": "validation",
+      "prediction": "dyysik",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-e975845dfafc96e81fffa141-0",
+      "source": "Session 1. My account is peytwe. Please remember that I am 95 years old.",
+      "question": "Session 3. My account is peytwe. How old am I now? Reply with only the number.",
+      "answer": "95",
+      "task": "age",
+      "key": "validation.18",
+      "split": "validation",
+      "prediction": "35",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 23,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-b12ce1e25c5316cd13158bf7-1",
+      "source": "My account is cyoxni. Correction: in repository ijcxfj, run tests with mvn test.",
+      "question": "Session 3. My account is cyoxni. How should I run tests in repository ijcxfj?",
+      "answer": "mvn test",
+      "task": "repo_test_command_update",
+      "key": "validation.1",
+      "split": "validation",
+      "prediction": "cyoxni",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-3a45c11721ab699df63cce63-1",
+      "source": "Session 1. My account is sjskvk. Please remember that my name is Theo.",
+      "question": "Session 3. My account is sjskvk. What name should you call me? Reply with only the name.",
+      "answer": "Theo",
+      "task": "name",
+      "key": "validation.3",
+      "split": "validation",
+      "prediction": "sjskvk",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 21,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-9faa93b560becad26081ffb9-1",
+      "source": "Session 1. My account is maljal. Repository xpoqod uses Elixir as its runtime.",
+      "question": "Session 3. My account is maljal. Which runtime does repository xpoqod use?",
+      "answer": "Elixir",
+      "task": "repo_runtime",
+      "key": "validation.5",
+      "split": "validation",
+      "prediction": "Python",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 23,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-74461157ac6ad2415b4cad9a-1",
+      "source": "Session 1. My account is mbenjf. In repository ywomjz, the entry point is src/cache/main.py.",
+      "question": "Session 3. My account is mbenjf. What is the entry point file for repository ywomjz?",
+      "answer": "src/cache/main.py",
+      "task": "repo_entry",
+      "key": "validation.7",
+      "split": "validation",
+      "prediction": "/commit",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 29,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-75577b9fd5f17efb705e63f4-1",
+      "source": "Session 1. My account is bdwobh. Please remember that I prefer replies in Hindi.",
+      "question": "Session 3. My account is bdwobh. Which language do I prefer for replies?",
+      "answer": "Hindi",
+      "task": "preference",
+      "key": "validation.9",
+      "split": "validation",
+      "prediction": "English",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 22,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-d86fdebce4b213c84a53c402-1",
+      "source": "Session 1. My account is dfgvrc. My time zone is Nairobi.",
+      "question": "Session 3. My account is dfgvrc. Which time zone should you use for me?",
+      "answer": "Nairobi",
+      "task": "timezone",
+      "key": "validation.11",
+      "split": "validation",
+      "prediction": "America/New_York",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 19,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-5da78134f730b500001ccfc7-1",
+      "source": "Session 1. My account is aazddz. My current project is Polaris.",
+      "question": "Session 3. My account is aazddz. Which project am I working on?",
+      "answer": "Polaris",
+      "task": "current_project",
+      "key": "validation.13",
+      "split": "validation",
+      "prediction": "Aazddz",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 20,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-df75338da83e47c9d4bd1c83-1",
+      "source": "Session 1. My account is udgulv. The build tool for repository bogxfo is Meson.",
+      "question": "Session 3. My account is udgulv. Which build tool does repository bogxfo use?",
+      "answer": "Meson",
+      "task": "repo_build_tool",
+      "key": "validation.15",
+      "split": "validation",
+      "prediction": "bogxfo",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-5826736bc99a2a71f43cc2eb-1",
+      "source": "Session 1. My account is fbogcj. Repository dyysik reads its config from conf/worker.json.",
+      "question": "Session 3. My account is fbogcj. What is the config file for repository dyysik?",
+      "answer": "conf/worker.json",
+      "task": "repo_config_file",
+      "key": "validation.17",
+      "split": "validation",
+      "prediction": "dyysik",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    },
+    {
+      "id": "session-novel-e975845dfafc96e81fffa141-1",
+      "source": "Session 1. My account is peytwe. Please remember that I am 98 years old.",
+      "question": "Session 3. My account is peytwe. How old am I now? Reply with only the number.",
+      "answer": "98",
+      "task": "age",
+      "key": "validation.19",
+      "split": "validation",
+      "prediction": "35",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 23,
+          "surprise": 0.0009765625000000013
+        }
+      ],
+      "facts_in_memory": 1
+    }
+  ],
+  "correct": 0,
+  "count": 20,
+  "checkpoint": "experiments/activation-memory-trained-v1",
+  "split": "validation",
+  "scale": 0.0,
+  "untrained_projections": false,
+  "facts_per_memory": 1,
+  "elapsed_seconds": 5.342035125009716
+}

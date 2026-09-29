@@ -1,0 +1,103 @@
+{
+  "index": {
+    "0": "What is your name?",
+    "1": "What is the preferred style for explanations?",
+    "2": "What command do I run to run tests in repository kestrel?",
+    "3": "What is the entry point for repository kestrel?",
+    "4": "What is the build tool for repository fern?",
+    "5": "What is the build tool for repository kestrel?",
+    "6": "What is the build tool for repository kestrel?",
+    "7": "What is my timezone?",
+    "8": "What is the migration policy for kestrel?"
+  },
+  "writes": [
+    {
+      "source": "Please remember: My name is Ilaria.",
+      "result": "[{\"question\":\"What is your name?\",\"answer\":\"Ilaria\"}]"
+    },
+    {
+      "source": "I prefer explanations with worked examples.",
+      "result": "[{\"question\":\"What is the preferred style for explanations?\", \"answer\":\"explanations with worked examples\"}]"
+    },
+    {
+      "source": "In repository kestrel, run tests with uv run pytest tests/api -q.",
+      "result": "[{\"question\":\"What command do I run to run tests in repository kestrel?\",\"answer\":\"uv run pytest tests/api -q\"}]"
+    },
+    {
+      "source": "The entry point for repository kestrel is services/gateway/start.py.",
+      "result": "[{\"question\":\"What is the entry point for repository kestrel?\",\"answer\":\"services/gateway/start.py\"}]"
+    },
+    {
+      "source": "The build tool for repository fern is Meson.",
+      "result": "[{\"question\":\"What is the build tool for repository fern?\",\"answer\":\"Meson\"}]"
+    },
+    {
+      "source": "For repository kestrel, use the build tool Bazel.",
+      "result": "[{\"question\":\"What is the build tool for repository kestrel?\",\"answer\":\"Bazel\"}]"
+    },
+    {
+      "source": "Correction: the build tool for repository kestrel is Ninja.",
+      "result": "[{\"question\":\"What is the build tool for repository kestrel?\",\"answer\":\"Ninja\"}]"
+    },
+    {
+      "source": "My timezone is Pacific/Chatham.",
+      "result": "[{\"question\":\"What is my timezone?\",\"answer\":\"Pacific/Chatham\"}]"
+    },
+    {
+      "source": "Can you explain a linked list?",
+      "result": "[{\"question\":\"What is a linked list?\",\"answer\":\"A data structure where each node contains a value and a reference to the next node, allowing for dynamic memory management and efficient insertion/deletion without reallocation.\"}]"
+    },
+    {
+      "source": "Thanks, that was useful!",
+      "result": "[]"
+    },
+    {
+      "source": "If my name were Bob, what would you call me?",
+      "result": "[]"
+    },
+    {
+      "source": "The migration policy for kestrel is append-only SQL files under db/changes.",
+      "result": "[{\"question\":\"What is the migration policy for kestrel?\",\"answer\":\"append-only SQL files under db/changes\"}]"
+    }
+  ],
+  "reads": [
+    {
+      "question": "What should you call me?",
+      "result": "[]"
+    },
+    {
+      "question": "How do I like things explained?",
+      "result": "[]"
+    },
+    {
+      "question": "Which command runs kestrel's API tests?",
+      "result": "[2]"
+    },
+    {
+      "question": "Where does the kestrel service start?",
+      "result": "[]"
+    },
+    {
+      "question": "What builds fern?",
+      "result": "[]"
+    },
+    {
+      "question": "What builds kestrel now?",
+      "result": "[]"
+    },
+    {
+      "question": "What time zone do I use?",
+      "result": "[7]"
+    },
+    {
+      "question": "What is my favourite fruit?",
+      "result": "[]"
+    },
+    {
+      "question": "Where do kestrel's database changes go, and can we edit old migrations?",
+      "result": "[]"
+    }
+  ],
+  "extract_instruction": "Convert the user's factual statements into questions and answers for later recall.\nPreserve the named subject, repository and property in each question. Use first person for user facts.\nAnswers must be exact substrings of the user's text. Do not make assumptions.\nReturn ONLY JSON: [{\"question\":\"...\", \"answer\":\"...\"}].\nReturn [] for questions, hypotheticals, small talk or requests with no stated fact.\n",
+  "route_instruction": "Select the stored questions whose answers would help answer the current\nuser request. Match the subject AND property. Include only relevant questions.\nDo not select a different repository or person. Return ONLY a JSON array of integer\nIDs, at most 3. Return [] when none match. You cannot see the stored answers.\n"
+}

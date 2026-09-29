@@ -1,0 +1,34 @@
+{
+  "id": "neural-statement-stress-read-v1",
+  "kind": "analysis",
+  "checkpoint": "experiments/neural-statement-stress-write-v1/network.safetensors",
+  "training": {},
+  "reports": {
+    "results.json": {
+      "split": "development",
+      "evaluation_kind": "neural_parameters_only",
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 128,
+            "value_presence": 0.3984375,
+            "exact_match": 0.375,
+            "match_target": "complete_statement"
+          }
+        },
+        "unknown": {
+          "metrics": {
+            "count": 16,
+            "empty_output_rate": 0.0
+          }
+        }
+      }
+    }
+  },
+  "note": "48/128 exact complete statement matches; 51/128 contain the value (lenient). Unknown questions: 0/16 empty outputs. Separate E5 encoder, development probe; not a Qwen activation adapter.",
+  "result": "48/128 exact complete statement matches; 51/128 contain the value (lenient). Unknown questions: 0/16 empty outputs. Separate E5 encoder, development probe; not a Qwen activation adapter.",
+  "command": ".venv/bin/python -m src.llm.helpers.neural_statement_probe --cases experiments/neural-statement-stress-cases-v1/reads.json --output experiments/neural-statement-stress-read-v1 --state experiments/neural-statement-stress-write-v1/network.safetensors",
+  "recorded_at": "2026-09-28T18:24:09.001024+00:00",
+  "status": "experimental",
+  "source": "experiments/neural-statement-stress-cases-v1/reads.json"
+}

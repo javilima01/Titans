@@ -1,0 +1,1039 @@
+{
+  "config": {
+    "cases": "experiments/neural-statement-stress-cases-v1/writes.json",
+    "output": "experiments/neural-statement-questions-write-v2",
+    "features": 4096,
+    "bandwidth": 2.0,
+    "code_width": 64,
+    "latent_width": 1024,
+    "latent_sparsity": 32,
+    "device": "mps",
+    "write_only": true,
+    "write_questions": true,
+    "normalize_write_questions": true,
+    "select_important": false,
+    "verify_read": false,
+    "read_kind": "query",
+    "state": null
+  },
+  "writes": [
+    {
+      "source": "The test command for repository cobalt is uv run pytest tests/qufyuvy -q.",
+      "questions": [
+        "For repository cobalt, which test command should I run?",
+        "What is the correct pytest command for repository cobalt?",
+        "Which test command should I use for repository cobalt?"
+      ],
+      "raw_questions": "[\"Which test command should I run?\", \"What is the correct pytest command for repository cobalt?\", \"Which test command should I use for repository cobalt?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.00026982178508916377,
+      "bytes": 73,
+      "keys": 4
+    },
+    {
+      "source": "The documentation directory for repository firwood is docs/dmdazjt.",
+      "questions": [
+        "Where is the documentation directory for firwood?",
+        "Which folder contains the documentation for firwood?",
+        "Where should I find the documentation for firwood?"
+      ],
+      "raw_questions": "[\"Where is the documentation directory for firwood?\", \"Which folder contains the documentation for firwood?\", \"Where should I find the documentation for firwood?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0003739676357099597,
+      "bytes": 67,
+      "keys": 4
+    },
+    {
+      "source": "The log format for repository cobalt is jsonl-hhgyrjj.",
+      "questions": [
+        "Which log format is used for repository cobalt?",
+        "What is the specific log format for repository cobalt?",
+        "Which log format should I use for repository cobalt?"
+      ],
+      "raw_questions": "[\"Which log format is used for repository cobalt?\", \"What is the specific log format for repository cobalt?\", \"Which log format should I use for repository cobalt?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.00047439195390097666,
+      "bytes": 54,
+      "keys": 4
+    },
+    {
+      "source": "The development command for repository tamarind is just dev-pqxdndf.",
+      "questions": [
+        "For repository tamarind, which command should I run?",
+        "What is the correct command for tamarind?",
+        "Which command is the development command for tamarind?"
+      ],
+      "raw_questions": "[\"Which command should I run?\", \"What is the correct command for tamarind?\", \"Which command is the development command for tamarind?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.00042625077458069427,
+      "bytes": 68,
+      "keys": 4
+    },
+    {
+      "source": "The development command for repository cobalt is just dev-kzjdpga.",
+      "questions": [
+        "Which command is used for repository cobalt?",
+        "What is the specific command for repository cobalt?",
+        "Which command should I run for repository cobalt?"
+      ],
+      "raw_questions": "[\"Which command is used for repository cobalt?\", \"What is the specific command for repository cobalt?\", \"Which command should I run for repository cobalt?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0006309993043487339,
+      "bytes": 66,
+      "keys": 4
+    },
+    {
+      "source": "The log format for repository firwood is jsonl-zufjszg.",
+      "questions": [
+        "Which log format is used for repository firwood?",
+        "What is the specific log format for repository firwood?",
+        "What is the format for repository firwood logs?"
+      ],
+      "raw_questions": "[\"Which log format is used for repository firwood?\", \"What is the specific log format for repository firwood?\", \"What is the format for repository firwood logs?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005307410763180087,
+      "bytes": 55,
+      "keys": 4
+    },
+    {
+      "source": "The migration directory for repository cobalt is db/qfcjqtm/changes.",
+      "questions": [
+        "Where is cobalt's migration directory?",
+        "Which directory contains the migration for repository cobalt?",
+        "Where should I look to migrate repository cobalt?"
+      ],
+      "raw_questions": "[\"Where is cobalt's migration directory?\", \"Which directory contains the migration for repository cobalt?\", \"Where should I look to migrate repository cobalt?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0004884129702986684,
+      "bytes": 68,
+      "keys": 4
+    },
+    {
+      "source": "I write dates as DD.MM.YYYY.",
+      "questions": [
+        "What is my date format?",
+        "How should I format my dates?",
+        "What is the correct date format for me?"
+      ],
+      "raw_questions": "[\"What is my date format?\", \"How should I format my dates?\", \"What is the correct date format for me?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.00040951672872324707,
+      "bytes": 28,
+      "keys": 4
+    },
+    {
+      "source": "The development command for repository firwood is just dev-fucpufb.",
+      "questions": [
+        "For repository firwood, which command should I run?",
+        "What is the correct command for firwood?",
+        "Which command is the development command for firwood?"
+      ],
+      "raw_questions": "[\"Which command should I run?\", \"What is the correct command for firwood?\", \"Which command is the development command for firwood?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0006705206487822579,
+      "bytes": 67,
+      "keys": 4
+    },
+    {
+      "source": "The documentation directory for repository quasar is docs/dujgfyh.",
+      "questions": [
+        "Where is quasar's documentation directory?",
+        "Which folder contains the documentation for quasar?",
+        "Where should I find the documentation for quasar?"
+      ],
+      "raw_questions": "[\"Where is quasar's documentation directory?\", \"Which folder contains the documentation for quasar?\", \"Where should I find the documentation for quasar?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.00036342936982691754,
+      "bytes": 66,
+      "keys": 4
+    },
+    {
+      "source": "The migration directory for repository tamarind is db/jaubpqt/changes.",
+      "questions": [
+        "Where is tamarind's migration directory?",
+        "Which directory contains the changes for tamarind?",
+        "Where should I look to migrate tamarind?"
+      ],
+      "raw_questions": "[\"Where is tamarind's migration directory?\", \"Which directory contains the changes for tamarind?\", \"Where should I look to migrate tamarind?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.000904875407286454,
+      "bytes": 70,
+      "keys": 4
+    },
+    {
+      "source": "The test command for repository tamarind is uv run pytest tests/ffvkzbq -q.",
+      "questions": [
+        "For repository tamarind, which test command should I run?",
+        "What test command is available for tamarind?",
+        "Which test command should I use for tamarind?"
+      ],
+      "raw_questions": "[\"Which test command should I run?\", \"What test command is available for tamarind?\", \"Which test command should I use for tamarind?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0009053392250280012,
+      "bytes": 75,
+      "keys": 4
+    },
+    {
+      "source": "The maintainer for repository firwood is wpfvwmb Orvex.",
+      "questions": [
+        "Who is the maintainer of repository firwood?",
+        "What is the name of the repository firwood's maintainer?",
+        "Who is the person associated with repository firwood?"
+      ],
+      "raw_questions": "[\"Who is the maintainer of repository firwood?\", \"What is the name of the repository firwood's maintainer?\", \"Who is the person associated with repository firwood?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0004802611047125538,
+      "bytes": 55,
+      "keys": 4
+    },
+    {
+      "source": "The artifact directory for repository quasar is out/gecbtjn/artifacts.",
+      "questions": [
+        "Where is quasar's artifact directory?",
+        "Which directory contains artifacts for repository quasar?",
+        "Where should I find the artifacts for quasar?"
+      ],
+      "raw_questions": "[\"Where is quasar's artifact directory?\", \"Which directory contains artifacts for repository quasar?\", \"Where should I find the artifacts for quasar?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0006512126710731536,
+      "bytes": 70,
+      "keys": 4
+    },
+    {
+      "source": "The entry point for repository quasar is services/btzpjks/main.py.",
+      "questions": [
+        "Which entry point does quasar use?",
+        "Where is the main entry point for quasar?",
+        "Which script starts the quasar service?"
+      ],
+      "raw_questions": "[\"Which entry point does quasar use?\", \"Where is the main entry point for quasar?\", \"Which script starts the quasar service?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0006055310677766101,
+      "bytes": 66,
+      "keys": 4
+    },
+    {
+      "source": "The configuration file for repository quasar is config/trvqzke.toml.",
+      "questions": [
+        "Where is quasar's configuration file?",
+        "Which file configures repository quasar?",
+        "Where should I look to configure quasar?"
+      ],
+      "raw_questions": "[\"Where is quasar's configuration file?\", \"Which file configures repository quasar?\", \"Where should I look to configure quasar?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005523576764971949,
+      "bytes": 68,
+      "keys": 4
+    },
+    {
+      "source": "The entry point for repository cobalt is services/dggjzyw/main.py.",
+      "questions": [
+        "Which entry point does repository cobalt use?",
+        "Where is the entry point for repository cobalt?",
+        "Which script starts repository cobalt?"
+      ],
+      "raw_questions": "[\"Which entry point does repository cobalt use?\", \"Where is the entry point for repository cobalt?\", \"Which script starts repository cobalt?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.000713724773049762,
+      "bytes": 66,
+      "keys": 4
+    },
+    {
+      "source": "The release branch for repository cobalt is release/muhnxsr.",
+      "questions": [
+        "Which branch is the release for repository cobalt?",
+        "What branch should I use to deploy cobalt?"
+      ],
+      "raw_questions": "[\"Which branch is the release for repository cobalt?\", \"What branch should I use to deploy cobalt?\", \"Which branch is the release for repository cobalt?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0006458207305210332,
+      "bytes": 60,
+      "keys": 3
+    },
+    {
+      "source": "I prefer explanations with worked examples.",
+      "questions": [
+        "Which explanation style do you prefer?",
+        "What worked examples should I use?",
+        "What kind of explanations do you like?"
+      ],
+      "raw_questions": "[\"Which explanation style do you prefer?\", \"What worked examples should I use?\", \"What kind of explanations do you like?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005618968762064469,
+      "bytes": 43,
+      "keys": 4
+    },
+    {
+      "source": "Please remember: my name is Olivane.",
+      "questions": [
+        "What is my name?",
+        "Who is my name?"
+      ],
+      "raw_questions": "[\"What is my name?\", \"Who is my name?\", \"What is my name?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0006186332357174251,
+      "bytes": 36,
+      "keys": 3
+    },
+    {
+      "source": "The log format for repository tamarind is jsonl-vukwaem.",
+      "questions": [
+        "Which log format is used for repository tamarind?",
+        "What is the expected log format for tamarind?",
+        "What is the format for tamarind's logs?"
+      ],
+      "raw_questions": "[\"Which log format is used for repository tamarind?\", \"What is the expected log format for tamarind?\", \"What is the format for tamarind's logs?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.000616412483395834,
+      "bytes": 56,
+      "keys": 4
+    },
+    {
+      "source": "I use the Colemak keyboard layout.",
+      "questions": [
+        "Which keyboard layout do I use?",
+        "What keyboard layout should I use?",
+        "Which layout is my default choice?"
+      ],
+      "raw_questions": "[\"Which keyboard layout do I use?\", \"What keyboard layout should I use?\", \"Which layout is my default choice?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005542280850932002,
+      "bytes": 34,
+      "keys": 4
+    },
+    {
+      "source": "The package manager for repository cobalt is pkg-egdmmjg.",
+      "questions": [
+        "Which package manager is available for repository cobalt?",
+        "What is the name of the package manager for repository cobalt?",
+        "Which package manager should I use for repository cobalt?"
+      ],
+      "raw_questions": "[\"Which package manager is available for repository cobalt?\", \"What is the name of the package manager for repository cobalt?\", \"Which package manager should I use for repository cobalt?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0003977794663114764,
+      "bytes": 57,
+      "keys": 4
+    },
+    {
+      "source": "The entry point for repository firwood is services/rvdwzub/main.py.",
+      "questions": [
+        "Which entry point does firwood use?",
+        "Where is firwood's main entry point?",
+        "Which script starts firwood?"
+      ],
+      "raw_questions": "[\"Which entry point does firwood use?\", \"Where is firwood's main entry point?\", \"Which script starts firwood?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.000681310591971851,
+      "bytes": 67,
+      "keys": 4
+    },
+    {
+      "source": "The formatter for repository tamarind is fmt-xftzeeq.",
+      "questions": [
+        "For repository tamarind, which formatter do I use?",
+        "For repository tamarind, what is my preferred formatter?",
+        "For repository tamarind, which formatter should you recommend to me?"
+      ],
+      "raw_questions": "[\"Which formatter do I use?\", \"What is my preferred formatter?\", \"Which formatter should you recommend to me?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0004496023175306618,
+      "bytes": 53,
+      "keys": 4
+    },
+    {
+      "source": "The migration directory for repository firwood is db/btqsjhf/changes.",
+      "questions": [
+        "Where is firwood's migration directory?",
+        "Which directory contains the changes for repository firwood?",
+        "Where should I look to migrate firwood?"
+      ],
+      "raw_questions": "[\"Where is firwood's migration directory?\", \"Which directory contains the changes for repository firwood?\", \"Where should I look to migrate firwood?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0008276277148979716,
+      "bytes": 69,
+      "keys": 4
+    },
+    {
+      "source": "Remember: my terminal font is Iosevka.",
+      "questions": [
+        "What font is my terminal set to?",
+        "Which font should I use for my terminal?"
+      ],
+      "raw_questions": "[\"What font is my terminal set to?\", \"Which font should I use for my terminal?\", \"What font is my terminal set to?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005746140838406669,
+      "bytes": 38,
+      "keys": 3
+    },
+    {
+      "source": "I prefer meetings on Thursdays.",
+      "questions": [
+        "Which day do I prefer for meetings?",
+        "What day should I meet on?",
+        "What is my preferred meeting day?"
+      ],
+      "raw_questions": "[\"Which day do I prefer for meetings?\", \"What day should I meet on?\", \"What is my preferred meeting day?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005321414569152694,
+      "bytes": 31,
+      "keys": 4
+    },
+    {
+      "source": "The release branch for repository quasar is release/pgjzxsk.",
+      "questions": [
+        "Which branch is the release for repository quasar?",
+        "What branch is the release for repository quasar?"
+      ],
+      "raw_questions": "[\"Which branch is the release for repository quasar?\", \"What branch is the release for repository quasar?\", \"Which branch is the release for repository quasar?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007138604005376692,
+      "bytes": 60,
+      "keys": 3
+    },
+    {
+      "source": "The formatter for repository firwood is fmt-qqagzuz.",
+      "questions": [
+        "Which formatter is used for repository firwood?",
+        "What is the specific formatter name for repository firwood?",
+        "Which tool should I use to format repository firwood?"
+      ],
+      "raw_questions": "[\"Which formatter is used for repository firwood?\", \"What is the specific formatter name for repository firwood?\", \"Which tool should I use to format repository firwood?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0008092790876617073,
+      "bytes": 52,
+      "keys": 4
+    },
+    {
+      "source": "The documentation directory for repository cobalt is docs/uhkqcpx.",
+      "questions": [
+        "Where is the documentation directory for repository cobalt?",
+        "Which folder contains the documentation for repository cobalt?",
+        "Where should I find the documentation for cobalt?"
+      ],
+      "raw_questions": "[\"Where is the documentation directory for repository cobalt?\", \"Which folder contains the documentation for repository cobalt?\", \"Where should I find the documentation for cobalt?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0006476785410995944,
+      "bytes": 66,
+      "keys": 4
+    },
+    {
+      "source": "The artifact directory for repository tamarind is out/fufedag/artifacts.",
+      "questions": [
+        "Where is tamarind's artifact directory?",
+        "Which directory contains tamarind's artifacts?",
+        "Where should I find tamarind's artifacts?"
+      ],
+      "raw_questions": "[\"Where is tamarind's artifact directory?\", \"Which directory contains tamarind's artifacts?\", \"Where should I find tamarind's artifacts?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007649972721992526,
+      "bytes": 72,
+      "keys": 4
+    },
+    {
+      "source": "My pronouns are they/them.",
+      "questions": [
+        "What pronouns do I use?",
+        "What pronouns should I use?",
+        "What pronouns do you prefer?"
+      ],
+      "raw_questions": "[\"What pronouns do I use?\", \"What pronouns should I use?\", \"What pronouns do you prefer?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0004833100701944204,
+      "bytes": 26,
+      "keys": 4
+    },
+    {
+      "source": "The artifact directory for repository cobalt is out/gdercmw/artifacts.",
+      "questions": [
+        "Where is cobalt's artifact directory?",
+        "Which directory contains cobalt's artifacts?",
+        "Where should I find cobalt's artifacts?"
+      ],
+      "raw_questions": "[\"Where is cobalt's artifact directory?\", \"Which directory contains cobalt's artifacts?\", \"Where should I find cobalt's artifacts?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007013004906184506,
+      "bytes": 70,
+      "keys": 4
+    },
+    {
+      "source": "The formatter for repository quasar is fmt-jfbjmhc.",
+      "questions": [
+        "For repository quasar, which formatter do I use?",
+        "For repository quasar, what is my preferred formatter?",
+        "For repository quasar, which formatter should you recommend to me?"
+      ],
+      "raw_questions": "[\"Which formatter do I use?\", \"What is my preferred formatter?\", \"Which formatter should you recommend to me?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005922310533605923,
+      "bytes": 51,
+      "keys": 4
+    },
+    {
+      "source": "I am 37 years old.",
+      "questions": [
+        "What is my age?"
+      ],
+      "raw_questions": "[\"What is my age?\", \"What is my age?\", \"What is my age?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0010861080954782665,
+      "bytes": 18,
+      "keys": 2
+    },
+    {
+      "source": "The configuration file for repository cobalt is config/rgcbsjp.toml.",
+      "questions": [
+        "Where is cobalt's configuration file?",
+        "Which file configures repository cobalt?",
+        "Where should I look to configure cobalt?"
+      ],
+      "raw_questions": "[\"Where is cobalt's configuration file?\", \"Which file configures repository cobalt?\", \"Where should I look to configure cobalt?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.000781421666033566,
+      "bytes": 68,
+      "keys": 4
+    },
+    {
+      "source": "The configuration file for repository firwood is config/peqgghs.toml.",
+      "questions": [
+        "Where is firwood's configuration file?",
+        "Which file configures repository firwood?",
+        "Where should I look to configure firwood?"
+      ],
+      "raw_questions": "[\"Where is firwood's configuration file?\", \"Which file configures repository firwood?\", \"Where should I look to configure firwood?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007705129901296459,
+      "bytes": 69,
+      "keys": 4
+    },
+    {
+      "source": "My working hours are 07:30-15:30.",
+      "questions": [
+        "When do I work?",
+        "What time do I work?",
+        "What time do I not work?"
+      ],
+      "raw_questions": "[\"When do I work?\", \"What time do I work?\", \"What time do I not work?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005228504414844792,
+      "bytes": 33,
+      "keys": 4
+    },
+    {
+      "source": "The artifact directory for repository firwood is out/sgvrkww/artifacts.",
+      "questions": [
+        "Where is firwood's artifact directory?",
+        "Which directory contains firwood's artifacts?",
+        "Where should I find firwood's artifacts?"
+      ],
+      "raw_questions": "[\"Where is firwood's artifact directory?\", \"Which directory contains firwood's artifacts?\", \"Where should I find firwood's artifacts?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0006613571786147077,
+      "bytes": 71,
+      "keys": 4
+    },
+    {
+      "source": "The formatter for repository cobalt is fmt-mradfsp.",
+      "questions": [
+        "Which formatter is used for repository cobalt?",
+        "What is the specific formatter for repository cobalt?",
+        "Which tool should I use to format repository cobalt?"
+      ],
+      "raw_questions": "[\"Which formatter is used for repository cobalt?\", \"What is the specific formatter for repository cobalt?\", \"Which tool should I use to format repository cobalt?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007000259829510469,
+      "bytes": 51,
+      "keys": 4
+    },
+    {
+      "source": "My preferred editor is Zed.",
+      "questions": [
+        "Which editor do I use?",
+        "What is my preferred editor?",
+        "What editor should you recommend to me?"
+      ],
+      "raw_questions": "[\"Which editor do I use?\", \"What is my preferred editor?\", \"What editor should you recommend to me?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.000509228100781911,
+      "bytes": 27,
+      "keys": 4
+    },
+    {
+      "source": "The package manager for repository tamarind is pkg-rtjmbxu.",
+      "questions": [
+        "Which package manager is available for tamarind?",
+        "What is the name of the package manager for tamarind?",
+        "Which package manager should I use for tamarind?"
+      ],
+      "raw_questions": "[\"Which package manager is available for tamarind?\", \"What is the name of the package manager for tamarind?\", \"Which package manager should I use for tamarind?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.000613010120105173,
+      "bytes": 59,
+      "keys": 4
+    },
+    {
+      "source": "The package manager for repository quasar is pkg-unvfcts.",
+      "questions": [
+        "Which package manager is available for repository quasar?",
+        "What is the official package manager for repository quasar?",
+        "Which tool should I use to manage repository quasar?"
+      ],
+      "raw_questions": "[\"Which package manager is available for repository quasar?\", \"What is the official package manager for repository quasar?\", \"Which tool should I use to manage repository quasar?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007522149089709274,
+      "bytes": 57,
+      "keys": 4
+    },
+    {
+      "source": "My job title is embedded systems engineer.",
+      "questions": [
+        "What is my job title?",
+        "What is my current job title?",
+        "What is my role as an embedded systems engineer?"
+      ],
+      "raw_questions": "[\"What is my job title?\", \"What is my current job title?\", \"What is my role as an embedded systems engineer?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005600705790129723,
+      "bytes": 42,
+      "keys": 4
+    },
+    {
+      "source": "My timezone is Europe/Tallinn.",
+      "questions": [
+        "What timezone is my current location?",
+        "Which timezone should I use for my work?",
+        "What timezone is my preferred location?"
+      ],
+      "raw_questions": "[\"What timezone is my current location?\", \"Which timezone should I use for my work?\", \"What timezone is my preferred location?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.000633317707979586,
+      "bytes": 30,
+      "keys": 4
+    },
+    {
+      "source": "The test command for repository quasar is uv run pytest tests/psxjcsz -q.",
+      "questions": [
+        "For repository quasar, which test command should I run?",
+        "What test command is available for repository quasar?",
+        "Which test command should I use for quasar?"
+      ],
+      "raw_questions": "[\"Which test command should I run?\", \"What test command is available for repository quasar?\", \"Which test command should I use for quasar?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005400887057476211,
+      "bytes": 73,
+      "keys": 4
+    },
+    {
+      "source": "The documentation directory for repository tamarind is docs/fdcurpn.",
+      "questions": [
+        "Where is tamarind's documentation directory?",
+        "Which folder contains tamarind's documentation?",
+        "Where should I find tamarind's docs?"
+      ],
+      "raw_questions": "[\"Where is tamarind's documentation directory?\", \"Which folder contains tamarind's documentation?\", \"Where should I find tamarind's docs?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007351924177783076,
+      "bytes": 68,
+      "keys": 4
+    },
+    {
+      "source": "The log format for repository quasar is jsonl-wdkhqgr.",
+      "questions": [
+        "Which log format is used for repository quasar?",
+        "What is the specific log format for repository quasar?",
+        "Which log format should I use for repository quasar?"
+      ],
+      "raw_questions": "[\"Which log format is used for repository quasar?\", \"What is the specific log format for repository quasar?\", \"Which log format should I use for repository quasar?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005911318403377663,
+      "bytes": 54,
+      "keys": 4
+    },
+    {
+      "source": "The maintainer for repository quasar is zqtzgnt Orvex.",
+      "questions": [
+        "Who is the maintainer of repository quasar?",
+        "What is the name of the repository quasar's maintainer?",
+        "Who is the person associated with repository quasar?"
+      ],
+      "raw_questions": "[\"Who is the maintainer of repository quasar?\", \"What is the name of the repository quasar's maintainer?\", \"Who is the person associated with repository quasar?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.000664234530631802,
+      "bytes": 54,
+      "keys": 4
+    },
+    {
+      "source": "I want commit messages written in Spanish.",
+      "questions": [
+        "\u00bfC\u00f3mo puedo escribir mensajes de commit en espa\u00f1ol?",
+        "\u00bfQu\u00e9 idioma debo usar para mis mensajes de commit?",
+        "\u00bfCu\u00e1l es el idioma que debo utilizar para mis mensajes de commit?"
+      ],
+      "raw_questions": "[\"\u00bfC\u00f3mo puedo escribir mensajes de commit en espa\u00f1ol?\", \"\u00bfQu\u00e9 idioma debo usar para mis mensajes de commit?\", \"\u00bfCu\u00e1l es el idioma que debo utilizar para mis mensajes de commit?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0004828939745493699,
+      "bytes": 42,
+      "keys": 4
+    },
+    {
+      "source": "The release branch for repository firwood is release/jyqkmst.",
+      "questions": [
+        "Which branch is the release for firwood?",
+        "What branch is the release for firwood?"
+      ],
+      "raw_questions": "[\"Which branch is the release for firwood?\", \"What branch is the release for firwood?\", \"Which branch is the release for firwood?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007174385923462978,
+      "bytes": 61,
+      "keys": 3
+    },
+    {
+      "source": "The migration directory for repository quasar is db/yynzzxn/changes.",
+      "questions": [
+        "Where is the migration directory for repository quasar?",
+        "Which directory contains the migration changes for quasar?",
+        "For repository quasar, where should I look to find the migration directory?"
+      ],
+      "raw_questions": "[\"Where is the migration directory for repository quasar?\", \"Which directory contains the migration changes for quasar?\", \"Where should I look to find the migration directory?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005984813433315139,
+      "bytes": 68,
+      "keys": 4
+    },
+    {
+      "source": "The configuration file for repository tamarind is config/qhgcjan.toml.",
+      "questions": [
+        "Which configuration file is for repository tamarind?",
+        "What is the path to the repository tamarind's config?",
+        "Where is the configuration file for tamarind located?"
+      ],
+      "raw_questions": "[\"Which configuration file is for repository tamarind?\", \"What is the path to the repository tamarind's config?\", \"Where is the configuration file for tamarind located?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007073110609780997,
+      "bytes": 70,
+      "keys": 4
+    },
+    {
+      "source": "The entry point for repository tamarind is services/unxmnfm/main.py.",
+      "questions": [
+        "Which entry point does tamarind use?",
+        "Where is the entry point for tamarind?",
+        "Which script starts the tamarind service?"
+      ],
+      "raw_questions": "[\"Which entry point does tamarind use?\", \"Where is the entry point for tamarind?\", \"Which script starts the tamarind service?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007793330241838703,
+      "bytes": 68,
+      "keys": 4
+    },
+    {
+      "source": "The maintainer for repository tamarind is dgchvdt Orvex.",
+      "questions": [
+        "Who is the maintainer of repository tamarind?",
+        "What is the current owner of repository tamarind?",
+        "Who should I contact to get the repository tamarind's owner?"
+      ],
+      "raw_questions": "[\"Who is the maintainer of repository tamarind?\", \"What is the current owner of repository tamarind?\", \"Who should I contact to get the repository tamarind's owner?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007160298409871757,
+      "bytes": 56,
+      "keys": 4
+    },
+    {
+      "source": "The maintainer for repository cobalt is aspqzaz Orvex.",
+      "questions": [
+        "Who is the maintainer of repository cobalt?",
+        "What is the name of the repository cobalt's maintainer?",
+        "For repository cobalt, who is the person named aspqzaz Orvex?"
+      ],
+      "raw_questions": "[\"Who is the maintainer of repository cobalt?\", \"What is the name of the repository cobalt's maintainer?\", \"Who is the person named aspqzaz Orvex?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0006512632821795705,
+      "bytes": 54,
+      "keys": 4
+    },
+    {
+      "source": "The package manager for repository firwood is pkg-ygjwyxv.",
+      "questions": [
+        "Which package manager is installed for repository firwood?",
+        "What is the name of the package manager for repository firwood?",
+        "Which package manager should I use for firwood?"
+      ],
+      "raw_questions": "[\"Which package manager is installed for repository firwood?\", \"What is the name of the package manager for repository firwood?\", \"Which package manager should I use for firwood?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005455078207887709,
+      "bytes": 58,
+      "keys": 4
+    },
+    {
+      "source": "The development command for repository quasar is just dev-rymvyev.",
+      "questions": [
+        "For repository quasar, which command should I run?",
+        "What is the correct command for repository quasar?",
+        "Which command should I use to develop quasar?"
+      ],
+      "raw_questions": "[\"Which command should I run?\", \"What is the correct command for repository quasar?\", \"Which command should I use to develop quasar?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007813058473402634,
+      "bytes": 66,
+      "keys": 4
+    },
+    {
+      "source": "The release branch for repository tamarind is release/syheszf.",
+      "questions": [
+        "Which branch is the release for tamarind?",
+        "What branch is the release for tamarind?"
+      ],
+      "raw_questions": "[\"Which branch is the release for tamarind?\", \"What branch is the release for tamarind?\", \"Which branch is the release for tamarind?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.000689918186177844,
+      "bytes": 62,
+      "keys": 3
+    },
+    {
+      "source": "I avoid foods containing hazelnuts.",
+      "questions": [
+        "Which food do I avoid?",
+        "What food should you not recommend to me?",
+        "What is my dietary restriction?"
+      ],
+      "raw_questions": "[\"Which food do I avoid?\", \"What food should you not recommend to me?\", \"What is my dietary restriction?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005693282510037534,
+      "bytes": 35,
+      "keys": 4
+    },
+    {
+      "source": "I prefer distances in kilometres.",
+      "questions": [
+        "Which unit of distance do I prefer?",
+        "What is my preferred unit for measuring distance?",
+        "Which unit should I use for distance?"
+      ],
+      "raw_questions": "[\"Which unit of distance do I prefer?\", \"What is my preferred unit for measuring distance?\", \"Which unit should I use for distance?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0005141990259289742,
+      "bytes": 33,
+      "keys": 4
+    },
+    {
+      "source": "I live in Tartu.",
+      "questions": [
+        "Where is Tartu located?",
+        "What city is I currently in?",
+        "Which city am I from?"
+      ],
+      "raw_questions": "[\"Where is Tartu located?\", \"What city is I currently in?\", \"Which city am I from?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007516520272474736,
+      "bytes": 16,
+      "keys": 4
+    },
+    {
+      "source": "The test command for repository firwood is uv run pytest tests/tqjxsvk -q.",
+      "questions": [
+        "For repository firwood, which test command should I run?",
+        "What test command is available for repository firwood?",
+        "Which test command should I use for firwood?"
+      ],
+      "raw_questions": "[\"Which test command should I run?\", \"What test command is available for repository firwood?\", \"Which test command should I use for firwood?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0007084639446475194,
+      "bytes": 74,
+      "keys": 4
+    },
+    {
+      "source": "Correction: the release branch for repository tamarind is ship/syheszf-v2.",
+      "questions": [
+        "Which branch is the release for tamarind?",
+        "What is the current release branch for tamarind?",
+        "Which branch should I use to release tamarind?"
+      ],
+      "raw_questions": "[\"Which branch is the release for tamarind?\", \"What is the current release branch for tamarind?\", \"Which branch should I use to release tamarind?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0010800008749356493,
+      "bytes": 74,
+      "keys": 4
+    },
+    {
+      "source": "Correction: the release branch for repository cobalt is ship/muhnxsr-v2.",
+      "questions": [
+        "Which release branch is available for repository cobalt?",
+        "What branch contains the latest version for repository cobalt?",
+        "Which branch should I use to deploy cobalt?"
+      ],
+      "raw_questions": "[\"Which release branch is available for repository cobalt?\", \"What branch contains the latest version for repository cobalt?\", \"Which branch should I use to deploy cobalt?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.001846780360210687,
+      "bytes": 72,
+      "keys": 4
+    },
+    {
+      "source": "Correction: the release branch for repository quasar is ship/pgjzxsk-v2.",
+      "questions": [
+        "Which release branch is available for repository quasar?",
+        "What is the current branch name for repository quasar?",
+        "Which branch should I use to deploy quasar?"
+      ],
+      "raw_questions": "[\"Which release branch is available for repository quasar?\", \"What is the current branch name for repository quasar?\", \"Which branch should I use to deploy quasar?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0016968270938377827,
+      "bytes": 72,
+      "keys": 4
+    },
+    {
+      "source": "Correction: the release branch for repository firwood is ship/jyqkmst-v2.",
+      "questions": [
+        "Which branch is the release for repository firwood?",
+        "What is the current release branch for repository firwood?",
+        "Which branch should I use to deploy firwood?"
+      ],
+      "raw_questions": "[\"Which branch is the release for repository firwood?\", \"What is the current release branch for repository firwood?\", \"Which branch should I use to deploy firwood?\"]",
+      "accepted": true,
+      "expected_selection": null,
+      "selection_raw": null,
+      "surprise": 0.0010429579415358603,
+      "bytes": 73,
+      "keys": 4
+    }
+  ],
+  "reads": [],
+  "contains_answer": 0,
+  "count": 0,
+  "exact_statement": 0,
+  "network_bytes": 216089504,
+  "elapsed_seconds": 68.11110645794543
+}

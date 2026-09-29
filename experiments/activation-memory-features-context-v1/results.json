@@ -1,0 +1,5 @@
+{
+  "architecture": "Qwen block activations plus causal mean of input-token embeddings",
+  "parent": "experiments/activation-memory-features-v1",
+  "count": 1360
+}

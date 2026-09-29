@@ -1,0 +1,13 @@
+{
+  "id": "neural-write-no-grad-v1",
+  "kind": "analysis",
+  "checkpoint": null,
+  "source": "tests/test_activation_memory.py; tests/test_titans_training.py",
+  "training": {},
+  "reports": {},
+  "note": "77 tests passed. Analytical online writes update fast weights under no_grad; frozen Titans also matches an independent autograd reference under inference_mode. These checks do not establish factual recall.",
+  "result": "77 tests passed. Analytical online writes update fast weights under no_grad; frozen Titans also matches an independent autograd reference under inference_mode. These checks do not establish factual recall.",
+  "command": ".venv/bin/python -m unittest discover -s tests -v",
+  "recorded_at": "2026-09-29T17:32:28.171953+00:00",
+  "status": "completed"
+}

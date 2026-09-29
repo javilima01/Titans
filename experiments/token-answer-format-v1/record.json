@@ -1,0 +1,16 @@
+{
+  "id": "token-answer-format-v1",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Explicit evidence formats each gave 7/9 exact answers but missed name/build paraphrases.",
+  "result": "Explicit evidence formats each gave 7/9 exact answers but missed name/build paraphrases.",
+  "details": "Both user-evidence and system-evidence formats abstained on the unknown fact.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.433004+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "results.json"
+  ]
+}

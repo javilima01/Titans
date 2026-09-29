@@ -1,0 +1,173 @@
+{
+  "state": "experiments/online-token-memory-attend-v1/memory.safetensors",
+  "facts": [
+    {
+      "id": 0,
+      "question": "What is my name?",
+      "answer": "Ilaria"
+    },
+    {
+      "id": 1,
+      "question": "What is the preferred style for explanations?",
+      "answer": "explanations with worked examples"
+    },
+    {
+      "id": 2,
+      "question": "What command do I run to run tests in repository kestrel?",
+      "answer": "uv run pytest tests/api -q"
+    },
+    {
+      "id": 3,
+      "question": "What is the entry point for repository kestrel?",
+      "answer": "services/gateway/start.py"
+    },
+    {
+      "id": 4,
+      "question": "What is the build tool for repository fern?",
+      "answer": "Meson"
+    },
+    {
+      "id": 5,
+      "question": "What is the build tool for repository kestrel?",
+      "answer": "Ninja"
+    },
+    {
+      "id": 6,
+      "question": "What is my timezone?",
+      "answer": "Pacific/Chatham"
+    },
+    {
+      "id": 7,
+      "question": "What is the migration policy for kestrel?",
+      "answer": "append-only SQL files under db/changes"
+    }
+  ],
+  "results": [
+    {
+      "mode": "user_evidence",
+      "question": "What should you call me?",
+      "expected": "Ilaria",
+      "prediction": "UNKNOWN",
+      "correct": false
+    },
+    {
+      "mode": "user_evidence",
+      "question": "How do I like things explained?",
+      "expected": "explanations with worked examples",
+      "prediction": "explanations with worked examples",
+      "correct": true
+    },
+    {
+      "mode": "user_evidence",
+      "question": "Which command runs kestrel's API tests?",
+      "expected": "uv run pytest tests/api -q",
+      "prediction": "uv run pytest tests/api -q",
+      "correct": true
+    },
+    {
+      "mode": "user_evidence",
+      "question": "Where does the kestrel service start?",
+      "expected": "services/gateway/start.py",
+      "prediction": "services/gateway/start.py",
+      "correct": true
+    },
+    {
+      "mode": "user_evidence",
+      "question": "What builds fern?",
+      "expected": "Meson",
+      "prediction": "Meson",
+      "correct": true
+    },
+    {
+      "mode": "user_evidence",
+      "question": "What builds kestrel now?",
+      "expected": "Ninja",
+      "prediction": "UNKNOWN",
+      "correct": false
+    },
+    {
+      "mode": "user_evidence",
+      "question": "What time zone do I use?",
+      "expected": "Pacific/Chatham",
+      "prediction": "Pacific/Chatham",
+      "correct": true
+    },
+    {
+      "mode": "user_evidence",
+      "question": "What is my favourite fruit?",
+      "expected": null,
+      "prediction": "UNKNOWN",
+      "correct": true
+    },
+    {
+      "mode": "user_evidence",
+      "question": "Where do kestrel's database changes go, and can we edit old migrations?",
+      "expected": "append-only SQL files under db/changes",
+      "prediction": "append-only SQL files under db/changes",
+      "correct": true
+    },
+    {
+      "mode": "system_evidence",
+      "question": "What should you call me?",
+      "expected": "Ilaria",
+      "prediction": "UNKNOWN",
+      "correct": false
+    },
+    {
+      "mode": "system_evidence",
+      "question": "How do I like things explained?",
+      "expected": "explanations with worked examples",
+      "prediction": "explanations with worked examples",
+      "correct": true
+    },
+    {
+      "mode": "system_evidence",
+      "question": "Which command runs kestrel's API tests?",
+      "expected": "uv run pytest tests/api -q",
+      "prediction": "uv run pytest tests/api -q",
+      "correct": true
+    },
+    {
+      "mode": "system_evidence",
+      "question": "Where does the kestrel service start?",
+      "expected": "services/gateway/start.py",
+      "prediction": "services/gateway/start.py",
+      "correct": true
+    },
+    {
+      "mode": "system_evidence",
+      "question": "What builds fern?",
+      "expected": "Meson",
+      "prediction": "Meson",
+      "correct": true
+    },
+    {
+      "mode": "system_evidence",
+      "question": "What builds kestrel now?",
+      "expected": "Ninja",
+      "prediction": "UNKNOWN",
+      "correct": false
+    },
+    {
+      "mode": "system_evidence",
+      "question": "What time zone do I use?",
+      "expected": "Pacific/Chatham",
+      "prediction": "Pacific/Chatham",
+      "correct": true
+    },
+    {
+      "mode": "system_evidence",
+      "question": "What is my favourite fruit?",
+      "expected": null,
+      "prediction": "UNKNOWN",
+      "correct": true
+    },
+    {
+      "mode": "system_evidence",
+      "question": "Where do kestrel's database changes go, and can we edit old migrations?",
+      "expected": "append-only SQL files under db/changes",
+      "prediction": "append-only SQL files under db/changes",
+      "correct": true
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "index": {},
+  "writes": [
+    {
+      "source": "Please remember: My name is Ilaria.",
+      "result": "```json\n[\n  {\n    \"question\": \"What is your name?\",\n    \"answer\": \"Ilaria\"\n  }\n]\n```"
+    },
+    {
+      "source": "I prefer explanations with worked examples.",
+      "result": "```json\n[\n  {\n    \"question\": \"What is the user's preference regarding explanations?\"\n  },\n  {\n    \"answer\": \"explanations with worked examples\"\n  }\n]\n```"
+    },
+    {
+      "source": "In repository kestrel, run tests with uv run pytest tests/api -q.",
+      "result": "```json\n[\n  {\n    \"question\": \"What command is used to run tests in the repository kestrel with the specified arguments?\"\n  },\n  {\n    \"answer\": \"uv run pytest tests/api -q\"\n  }\n]\n```"
+    },
+    {
+      "source": "The entry point for repository kestrel is services/gateway/start.py.",
+      "result": "```json\n[\n  {\n    \"question\": \"What is the entry point for repository kestrel?\"\n  },\n  {\n    \"answer\": \"services/gateway/start.py\"\n  }\n]\n```"
+    },
+    {
+      "source": "The build tool for repository fern is Meson.",
+      "result": "```json\n[\n  {\n    \"question\": \"What is the build tool for repository fern?\"\n  },\n  {\n    \"answer\": \"Meson\"\n  }\n]\n```"
+    },
+    {
+      "source": "For repository kestrel, use the build tool Bazel.",
+      "result": "```json\n[\n  {\n    \"question\": \"What is the build tool used for repository kestrel?\"\n  },\n  {\n    \"answer\": \"Bazel\"\n  }\n]\n```"
+    },
+    {
+      "source": "Correction: the build tool for repository kestrel is Ninja.",
+      "result": "```json\n[\n  {\n    \"question\": \"What is the build tool for repository kestrel?\"\n  },\n  {\n    \"answer\": \"Ninja\"\n  }\n]\n```"
+    },
+    {
+      "source": "My timezone is Pacific/Chatham.",
+      "result": "```json\n[\n  {\n    \"question\": \"What is the timezone of Pacific/Chatham?\"\n  },\n  {\n    \"answer\": \"Pacific/Chatham\"\n  }\n]\n```"
+    },
+    {
+      "source": "Can you explain a linked list?",
+      "result": "```json\n[\n  {\n    \"question\": \"What is the primary data structure used to implement a linked list?\"\n  },\n  {\n    \"question\": \"How does a linked list differ from an array-based list in terms of memory usage?\"\n  },\n  {\n    \"question\": \"What is the time complexity for inserting and deleting elements in a linked list?\"\n  },\n  {\n    \"question\": \"How is the head of a linked list typically accessed?\"\n  },\n  {\n    \"question\": \"What is the role of the tail pointer in a linked list?\"\n  },\n  {\n    \"question\": \"How does a linked list handle memory management compared to arrays?\"\n  },\n  {\n    \"question\": \"What is the difference between a singly linked list and a doubly linked list?\"\n  },\n  {\n    \"question\": \"How does a linked list support dynamic resizing?\"\n  },\n  {\n    \"question\": \"What is the time complexity for traversing a linked list?\"\n  },\n  {\n    \"question\": \"How does a linked list handle duplicate values?\"\n  },\n  {\n    \"question\": \"What is the time complexity for finding the first occurrence of a value in a linked list?\"\n  },\n  {\n    \"question\": \"How does a linked list support random access to elements?\"\n  },\n  {\n    \"question\": \"What is the time complexity for inserting a new node at the beginning of a linked list?\"\n  },\n  {\n    \"question\": \"How does a linked list handle the case of a null pointer?\"\n  },\n  {\n    \"question\": \"What is the time complexity for deleting a node from the middle of a linked list?\""
+    },
+    {
+      "source": "Thanks, that was useful!",
+      "result": "```json\n[\n  {\n    \"question\": \"What did the user say was useful?\",\n    \"answer\": \"That was useful!\"\n  }\n]\n```"
+    },
+    {
+      "source": "If my name were Bob, what would you call me?",
+      "result": "```json\n[\n  {\n    \"question\": \"If my name were Bob, what would you call me?\",\n    \"answer\": \"Bob\"\n  }\n]\n```"
+    },
+    {
+      "source": "The migration policy for kestrel is append-only SQL files under db/changes.",
+      "result": "```json\n[\n  {\n    \"question\": \"What is the name of the migration policy for kestrel?\"\n  },\n  {\n    \"answer\": \"append-only SQL files\"\n  }\n]\n```"
+    }
+  ],
+  "reads": [
+    {
+      "question": "What should you call me?",
+      "result": "[]"
+    },
+    {
+      "question": "How do I like things explained?",
+      "result": "[]"
+    },
+    {
+      "question": "Which command runs kestrel's API tests?",
+      "result": "[]"
+    },
+    {
+      "question": "Where does the kestrel service start?",
+      "result": "[]"
+    },
+    {
+      "question": "What builds fern?",
+      "result": "[]"
+    },
+    {
+      "question": "What builds kestrel now?",
+      "result": "[]"
+    },
+    {
+      "question": "What time zone do I use?",
+      "result": "[]"
+    },
+    {
+      "question": "What is my favourite fruit?",
+      "result": "[]"
+    },
+    {
+      "question": "Where do kestrel's database changes go, and can we edit old migrations?",
+      "result": "[]"
+    }
+  ],
+  "extract_instruction": "Convert the user's factual statements into questions and answers for later recall.\nPreserve the named subject, repository and property in each question. Use first person for user facts.\nAnswers must be exact substrings of the user's text. Do not make assumptions.\nReturn ONLY JSON: [{\"question\":\"...\", \"answer\":\"...\"}].\nReturn [] for questions, hypotheticals, small talk or requests with no stated fact.\n",
+  "route_instruction": "Select the stored questions whose answers would help answer the current\nuser request. Match the subject AND property. Include only relevant questions.\nDo not select a different repository or person. Return ONLY a JSON array of integer\nIDs, at most 3. Return [] when none match. You cannot see the stored answers.\n"
+}

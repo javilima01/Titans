@@ -1,0 +1,30 @@
+{
+  "id": "neural-output-facts-paraphrases-v2",
+  "kind": "analysis",
+  "checkpoint": "experiments/neural-output-facts-paraphrases-v2/network.safetensors",
+  "training": {},
+  "reports": {
+    "results.json": {
+      "split": "development",
+      "evaluation_kind": "neural_parameters_only",
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 8,
+            "exact_match": 0.75
+          }
+        }
+      }
+    }
+  },
+  "note": "Network-only automatic writes with demonstrated paraphrasing: 6/8 exact reads.",
+  "result": "Network-only automatic writes with demonstrated paraphrasing: 6/8 exact reads.",
+  "details": "All eight read question strings were absent from write supervision. Some generated paraphrases change the requested property; source substring validation cannot detect this.",
+  "command": ".venv/bin/python -m src.llm.helpers.neural_fact_probe --paraphrases --output experiments/NEW-RUN/results.json",
+  "recorded_at": "2026-09-28T18:01:48.434582+00:00",
+  "status": "experimental",
+  "artifacts": [
+    "network.safetensors",
+    "results.json"
+  ]
+}

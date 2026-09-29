@@ -1,0 +1,7613 @@
+{
+  "architecture": "ActivationFastMemory",
+  "results": [
+    {
+      "id": "session-novel-b12ce1e25c5316cd13158bf7-0",
+      "source": "My account is cyoxni. Correction: in repository ijcxfj, run tests with pnpm test.",
+      "question": "Session 3. My account is cyoxni. How should I run tests in repository ijcxfj?",
+      "answer": "pnpm test",
+      "task": "repo_test_command_update",
+      "key": "validation.0",
+      "split": "validation",
+      "prediction": "npm test",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-3a45c11721ab699df63cce63-0",
+      "source": "Session 1. My account is sjskvk. Please remember that my name is Priya.",
+      "question": "Session 3. My account is sjskvk. What name should you call me? Reply with only the name.",
+      "answer": "Priya",
+      "task": "name",
+      "key": "validation.2",
+      "split": "validation",
+      "prediction": "your.",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-9faa93b560becad26081ffb9-0",
+      "source": "Session 1. My account is maljal. Repository xpoqod uses Kotlin as its runtime.",
+      "question": "Session 3. My account is maljal. Which runtime does repository xpoqod use?",
+      "answer": "Kotlin",
+      "task": "repo_runtime",
+      "key": "validation.4",
+      "split": "validation",
+      "prediction": "Kotlin",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-74461157ac6ad2415b4cad9a-0",
+      "source": "Session 1. My account is mbenjf. In repository ywomjz, the entry point is src/queue/main.py.",
+      "question": "Session 3. My account is mbenjf. What is the entry point file for repository ywomjz?",
+      "answer": "src/queue/main.py",
+      "task": "repo_entry",
+      "key": "validation.6",
+      "split": "validation",
+      "prediction": "config/queue.yaml",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-75577b9fd5f17efb705e63f4-0",
+      "source": "Session 1. My account is bdwobh. Please remember that I prefer replies in Swedish.",
+      "question": "Session 3. My account is bdwobh. Which language do I prefer for replies?",
+      "answer": "Swedish",
+      "task": "preference",
+      "key": "validation.8",
+      "split": "validation",
+      "prediction": "Swedish",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-d86fdebce4b213c84a53c402-0",
+      "source": "Session 1. My account is dfgvrc. My time zone is Vancouver.",
+      "question": "Session 3. My account is dfgvrc. Which time zone should you use for me?",
+      "answer": "Vancouver",
+      "task": "timezone",
+      "key": "validation.10",
+      "split": "validation",
+      "prediction": "Vancouver",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5da78134f730b500001ccfc7-0",
+      "source": "Session 1. My account is aazddz. My current project is Summit.",
+      "question": "Session 3. My account is aazddz. Which project am I working on?",
+      "answer": "Summit",
+      "task": "current_project",
+      "key": "validation.12",
+      "split": "validation",
+      "prediction": "Please, my aaza",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-df75338da83e47c9d4bd1c83-0",
+      "source": "Session 1. My account is udgulv. The build tool for repository bogxfo is Ant.",
+      "question": "Session 3. My account is udgulv. Which build tool does repository bogxfo use?",
+      "answer": "Ant",
+      "task": "repo_build_tool",
+      "key": "validation.14",
+      "split": "validation",
+      "prediction": "docker",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5826736bc99a2a71f43cc2eb-0",
+      "source": "Session 1. My account is fbogcj. Repository dyysik reads its config from settings/web.yaml.",
+      "question": "Session 3. My account is fbogcj. What is the config file for repository dyysik?",
+      "answer": "settings/web.yaml",
+      "task": "repo_config_file",
+      "key": "validation.16",
+      "split": "validation",
+      "prediction": "config/queue.yaml",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-e975845dfafc96e81fffa141-0",
+      "source": "Session 1. My account is peytwe. Please remember that I am 95 years old.",
+      "question": "Session 3. My account is peytwe. How old am I now? Reply with only the number.",
+      "answer": "95",
+      "task": "age",
+      "key": "validation.18",
+      "split": "validation",
+      "prediction": "95",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-b9dff3aab1c6105f01997097-0",
+      "source": "My account is avcgmn. Correction: in repository efbkfi, run tests with npm test.",
+      "question": "Session 3. My account is avcgmn. How should I run tests in repository efbkfi?",
+      "answer": "npm test",
+      "task": "repo_test_command_update",
+      "key": "validation.20",
+      "split": "validation",
+      "prediction": "mvn test",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-087557a2383b88f5a8bc5c3a-0",
+      "source": "Session 1. My account is amszaw. Please remember that my name is Lena.",
+      "question": "Session 3. My account is amszaw. What name should you call me? Reply with only the name.",
+      "answer": "Lena",
+      "task": "name",
+      "key": "validation.22",
+      "split": "validation",
+      "prediction": "Emma",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-116f5636fc1b8857fb1b5488-0",
+      "source": "My account is huuuyq. Correction: in repository xselyf, run tests with mvn test.",
+      "question": "Session 3. My account is huuuyq. How should I run tests in repository xselyf?",
+      "answer": "mvn test",
+      "task": "repo_test_command_update",
+      "key": "validation.24",
+      "split": "validation",
+      "prediction": "Please do not test.",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-4599a2360d0932cc442c2d63-0",
+      "source": "Session 1. My account is isvgoq. Repository dwodbq uses Kotlin as its runtime.",
+      "question": "Session 3. My account is isvgoq. Which runtime does repository dwodbq use?",
+      "answer": "Kotlin",
+      "task": "repo_runtime",
+      "key": "validation.26",
+      "split": "validation",
+      "prediction": "q3.",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5488a38b64d37c0199909da5-0",
+      "source": "Session 1. My account is mhqnwg. The build tool for repository iobnmt is Ant.",
+      "question": "Session 3. My account is mhqnwg. Which build tool does repository iobnmt use?",
+      "answer": "Ant",
+      "task": "repo_build_tool",
+      "key": "validation.28",
+      "split": "validation",
+      "prediction": "n",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-b3fe266088fb1fac36b55897-0",
+      "source": "Session 1. My account is yaxzek. Please remember that my name is Omar.",
+      "question": "Session 3. My account is yaxzek. What name should you call me? Reply with only the name.",
+      "answer": "Omar",
+      "task": "name",
+      "key": "validation.30",
+      "split": "validation",
+      "prediction": "yak.",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-ab0cf95cb17f7d9a30d8d7de-0",
+      "source": "Session 1. My account is pvvnpr. I use Kate as my editor.",
+      "question": "Session 3. My account is pvvnpr. Which editor do I use?",
+      "answer": "Kate",
+      "task": "editor",
+      "key": "validation.32",
+      "split": "validation",
+      "prediction": "Visual (Read-only",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-d5ca77d2b933466ecc5ecc67-0",
+      "source": "Session 1. My account is lgxsdb. Repository faiidy reads its config from config/cache.yaml.",
+      "question": "Session 3. My account is lgxsdb. What is the config file for repository faiidy?",
+      "answer": "config/cache.yaml",
+      "task": "repo_config_file",
+      "key": "validation.34",
+      "split": "validation",
+      "prediction": "config/queue.yaml",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-fbe70c468716628ba8332c97-0",
+      "source": "Session 1. My account is iqflmx. My time zone is Vancouver.",
+      "question": "Session 3. My account is iqflmx. Which time zone should you use for me?",
+      "answer": "Vancouver",
+      "task": "timezone",
+      "key": "validation.36",
+      "split": "validation",
+      "prediction": "Vancouver",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-72de3419159ad31bd13ec30f-0",
+      "source": "Session 1. My account is dfjzky. Repository iihrfa reads its config from config/queue.ini.",
+      "question": "Session 3. My account is dfjzky. What is the config file for repository iihrfa?",
+      "answer": "config/queue.ini",
+      "task": "repo_config_file",
+      "key": "validation.38",
+      "split": "validation",
+      "prediction": "config/queue.ini",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009398761123733062
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0009246286612675015
+        },
+        {
+          "tokens": 30,
+          "surprise": 0.0010933227410836336
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010196010436644752
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010810045215228967
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010567889862428523
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0013681960545230381
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0013894379788193872
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015564125880631716
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0010996490241805257
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0007440361552832737
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012421494954212953
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007656019999319297
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008174189976134652
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005697989570395482
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010211372438784186
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0008293921414064111
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0005003069337246162
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0008407377648120794
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5ec7cd5437d7c93493852000-0",
+      "source": "Session 1. My account is hpcmid. The build tool for repository rhyvxv is Ninja.",
+      "question": "Session 3. My account is hpcmid. Which build tool does repository rhyvxv use?",
+      "answer": "Ninja",
+      "task": "repo_build_tool",
+      "key": "validation.40",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-1e27d766c26b972bf7af731f-0",
+      "source": "Session 1. My account is juayjf. The build tool for repository hwmgbp is Buck.",
+      "question": "Session 3. My account is juayjf. Which build tool does repository hwmgbp use?",
+      "answer": "Buck",
+      "task": "repo_build_tool",
+      "key": "validation.42",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-13bef2a49398e3bfe6b064db-0",
+      "source": "Session 1. My account is explol. My current project is Caldera.",
+      "question": "Session 3. My account is explol. Which project am I working on?",
+      "answer": "Caldera",
+      "task": "current_project",
+      "key": "validation.44",
+      "split": "validation",
+      "prediction": "Python",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5dd6c0f6c163b9d6811296ef-0",
+      "source": "Session 1. My account is bdrpgg. Please remember that my name is Theo.",
+      "question": "Session 3. My account is bdrpgg. What name should you call me? Reply with only the name.",
+      "answer": "Theo",
+      "task": "name",
+      "key": "validation.46",
+      "split": "validation",
+      "prediction": "v.",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-76669e02f0e1136da7e5b6f8-0",
+      "source": "Session 1. My account is vchtos. Please remember that I am 92 years old.",
+      "question": "Session 3. My account is vchtos. How old am I now? Reply with only the number.",
+      "answer": "92",
+      "task": "age",
+      "key": "validation.48",
+      "split": "validation",
+      "prediction": "82",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-a0cb059cb3fd0ccff4d58e24-0",
+      "source": "Session 1. My account is ojxiwf. Please remember that I am 83 years old.",
+      "question": "Session 3. My account is ojxiwf. How old am I now? Reply with only the number.",
+      "answer": "83",
+      "task": "age",
+      "key": "validation.50",
+      "split": "validation",
+      "prediction": "82",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-bea907573192a83f33be44c5-0",
+      "source": "Session 1. My account is rnilty. My time zone is Auckland.",
+      "question": "Session 3. My account is rnilty. Which time zone should you use for me?",
+      "answer": "Auckland",
+      "task": "timezone",
+      "key": "validation.52",
+      "split": "validation",
+      "prediction": "America",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-2359b7e5b8c48d1400be04e4-0",
+      "source": "Session 1. My account is bkxyiu. The build tool for repository ajwfoj is Meson.",
+      "question": "Session 3. My account is bkxyiu. Which build tool does repository ajwfoj use?",
+      "answer": "Meson",
+      "task": "repo_build_tool",
+      "key": "validation.54",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5953cc7d4bdda722ac1f1ada-0",
+      "source": "Session 1. My account is wkpiox. In repository wlrijy, run tests with mvn test.",
+      "question": "Session 3. My account is wkpiox. How should I run tests in repository wlrijy?",
+      "answer": "mvn test",
+      "task": "repo_test_command",
+      "key": "validation.56",
+      "split": "validation",
+      "prediction": "mvn test",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-d59170cf4f6d0fb1cb5547d0-0",
+      "source": "My account is cjeuov. In repository ukptbg, the entry point moved to src/queue/main.py.",
+      "question": "Session 3. My account is cjeuov. What is the entry point file for repository ukptbg?",
+      "answer": "src/queue/main.py",
+      "task": "repo_update",
+      "key": "validation.58",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-6ac16fbf1b34821488a97dda-0",
+      "source": "Session 1. My account is vrpije. The build tool for repository shvtjn is Buck.",
+      "question": "Session 3. My account is vrpije. Which build tool does repository shvtjn use?",
+      "answer": "Buck",
+      "task": "repo_build_tool",
+      "key": "validation.60",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-19106e8cf3173e968694c2af-0",
+      "source": "Session 1. My account is dimqlt. In repository rxnsug, run tests with mvn test.",
+      "question": "Session 3. My account is dimqlt. How should I run tests in repository rxnsug?",
+      "answer": "mvn test",
+      "task": "repo_test_command",
+      "key": "validation.62",
+      "split": "validation",
+      "prediction": "mvn test",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-43d1d81988b6da9d28763ab5-0",
+      "source": "My account is baprko. Correction: I am 81 years old now.",
+      "question": "Session 3. My account is baprko. How old am I now? Reply with only the number.",
+      "answer": "81",
+      "task": "age_update",
+      "key": "validation.64",
+      "split": "validation",
+      "prediction": "82",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-67663fcfef2d30751dbc6d7a-0",
+      "source": "My account is owvmps. In repository rmbwyb, the entry point moved to src/billing/main.py.",
+      "question": "Session 3. My account is owvmps. What is the entry point file for repository rmbwyb?",
+      "answer": "src/billing/main.py",
+      "task": "repo_update",
+      "key": "validation.66",
+      "split": "validation",
+      "prediction": "src/billing/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5d83516d5660cf76cb33d811-0",
+      "source": "My account is dkkhyx. Correction: I am 82 years old now.",
+      "question": "Session 3. My account is dkkhyx. How old am I now? Reply with only the number.",
+      "answer": "82",
+      "task": "age_update",
+      "key": "validation.68",
+      "split": "validation",
+      "prediction": "82",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-11226cbaa247eb3a1f74f012-0",
+      "source": "Session 1. My account is grrwex. In repository ipfdfq, the entry point is src/billing/main.py.",
+      "question": "Session 3. My account is grrwex. What is the entry point file for repository ipfdfq?",
+      "answer": "src/billing/main.py",
+      "task": "repo_entry",
+      "key": "validation.70",
+      "split": "validation",
+      "prediction": "src/billing/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-90a81df42387d8875cd71b7e-0",
+      "source": "Session 1. My account is fuzozz. Repository ncmxna uses PHP as its runtime.",
+      "question": "Session 3. My account is fuzozz. Which runtime does repository ncmxna use?",
+      "answer": "PHP",
+      "task": "repo_runtime",
+      "key": "validation.72",
+      "split": "validation",
+      "prediction": "Python",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-76ee717a80f9b59a2ba2c3fa-0",
+      "source": "Session 1. My account is oxlwrk. Please remember that I am 98 years old.",
+      "question": "Session 3. My account is oxlwrk. How old am I now? Reply with only the number.",
+      "answer": "98",
+      "task": "age",
+      "key": "validation.74",
+      "split": "validation",
+      "prediction": "82",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-dab6142c54652a927d454793-0",
+      "source": "My account is qbtelb. Correction: I am 96 years old now.",
+      "question": "Session 3. My account is qbtelb. How old am I now? Reply with only the number.",
+      "answer": "96",
+      "task": "age_update",
+      "key": "validation.76",
+      "split": "validation",
+      "prediction": "82",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-27a42eb4b3009b4a55469a03-0",
+      "source": "My account is hotwbz. In repository zyooiw, the entry point moved to src/cache/main.py.",
+      "question": "Session 3. My account is hotwbz. What is the entry point file for repository zyooiw?",
+      "answer": "src/cache/main.py",
+      "task": "repo_update",
+      "key": "validation.78",
+      "split": "validation",
+      "prediction": "src/billing/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.000537150823029631
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0006965550804410576
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008078494635171556
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009267361772562457
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0004322128546781817
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007786004563463585
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.000771820725388543
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013585846505945085
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0020415570834127505
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0007737758459427576
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007954346007984764
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0009485323193358901
+        },
+        {
+          "tokens": 26,
+          "surprise": 0.0009739454318573473
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006449470844854803
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0008941878174847762
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001456817949932704
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005482439385016306
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006136509649808849
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009237132305406869
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-b12ce1e25c5316cd13158bf7-1",
+      "source": "My account is cyoxni. Correction: in repository ijcxfj, run tests with mvn test.",
+      "question": "Session 3. My account is cyoxni. How should I run tests in repository ijcxfj?",
+      "answer": "mvn test",
+      "task": "repo_test_command_update",
+      "key": "validation.1",
+      "split": "validation",
+      "prediction": ". Please remember",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-3a45c11721ab699df63cce63-1",
+      "source": "Session 1. My account is sjskvk. Please remember that my name is Theo.",
+      "question": "Session 3. My account is sjskvk. What name should you call me? Reply with only the name.",
+      "answer": "Theo",
+      "task": "name",
+      "key": "validation.3",
+      "split": "validation",
+      "prediction": "name.",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-9faa93b560becad26081ffb9-1",
+      "source": "Session 1. My account is maljal. Repository xpoqod uses Elixir as its runtime.",
+      "question": "Session 3. My account is maljal. Which runtime does repository xpoqod use?",
+      "answer": "Elixir",
+      "task": "repo_runtime",
+      "key": "validation.5",
+      "split": "validation",
+      "prediction": "Python",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-74461157ac6ad2415b4cad9a-1",
+      "source": "Session 1. My account is mbenjf. In repository ywomjz, the entry point is src/cache/main.py.",
+      "question": "Session 3. My account is mbenjf. What is the entry point file for repository ywomjz?",
+      "answer": "src/cache/main.py",
+      "task": "repo_entry",
+      "key": "validation.7",
+      "split": "validation",
+      "prediction": ". Please",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-75577b9fd5f17efb705e63f4-1",
+      "source": "Session 1. My account is bdwobh. Please remember that I prefer replies in Hindi.",
+      "question": "Session 3. My account is bdwobh. Which language do I prefer for replies?",
+      "answer": "Hindi",
+      "task": "preference",
+      "key": "validation.9",
+      "split": "validation",
+      "prediction": "Hindi",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-d86fdebce4b213c84a53c402-1",
+      "source": "Session 1. My account is dfgvrc. My time zone is Nairobi.",
+      "question": "Session 3. My account is dfgvrc. Which time zone should you use for me?",
+      "answer": "Nairobi",
+      "task": "timezone",
+      "key": "validation.11",
+      "split": "validation",
+      "prediction": "America",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5da78134f730b500001ccfc7-1",
+      "source": "Session 1. My account is aazddz. My current project is Polaris.",
+      "question": "Session 3. My account is aazddz. Which project am I working on?",
+      "answer": "Polaris",
+      "task": "current_project",
+      "key": "validation.13",
+      "split": "validation",
+      "prediction": "I am unable access my account credentials to verify my identity or determine the context of the \"I am my account aaza",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-df75338da83e47c9d4bd1c83-1",
+      "source": "Session 1. My account is udgulv. The build tool for repository bogxfo is Meson.",
+      "question": "Session 3. My account is udgulv. Which build tool does repository bogxfo use?",
+      "answer": "Meson",
+      "task": "repo_build_tool",
+      "key": "validation.15",
+      "split": "validation",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5826736bc99a2a71f43cc2eb-1",
+      "source": "Session 1. My account is fbogcj. Repository dyysik reads its config from conf/worker.json.",
+      "question": "Session 3. My account is fbogcj. What is the config file for repository dyysik?",
+      "answer": "conf/worker.json",
+      "task": "repo_config_file",
+      "key": "validation.17",
+      "split": "validation",
+      "prediction": ". Please",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-e975845dfafc96e81fffa141-1",
+      "source": "Session 1. My account is peytwe. Please remember that I am 98 years old.",
+      "question": "Session 3. My account is peytwe. How old am I now? Reply with only the number.",
+      "answer": "98",
+      "task": "age",
+      "key": "validation.19",
+      "split": "validation",
+      "prediction": "98",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-b9dff3aab1c6105f01997097-1",
+      "source": "My account is avcgmn. Correction: in repository efbkfi, run tests with pnpm test.",
+      "question": "Session 3. My account is avcgmn. How should I run tests in repository efbkfi?",
+      "answer": "pnpm test",
+      "task": "repo_test_command_update",
+      "key": "validation.21",
+      "split": "validation",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-087557a2383b88f5a8bc5c3a-1",
+      "source": "Session 1. My account is amszaw. Please remember that my name is Noah.",
+      "question": "Session 3. My account is amszaw. What name should you call me? Reply with only the name.",
+      "answer": "Noah",
+      "task": "name",
+      "key": "validation.23",
+      "split": "validation",
+      "prediction": "aszaw.",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-116f5636fc1b8857fb1b5488-1",
+      "source": "My account is huuuyq. Correction: in repository xselyf, run tests with pnpm test.",
+      "question": "Session 3. My account is huuuyq. How should I run tests in repository xselyf?",
+      "answer": "pnpm test",
+      "task": "repo_test_command_update",
+      "key": "validation.25",
+      "split": "validation",
+      "prediction": "pnpm test",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-4599a2360d0932cc442c2d63-1",
+      "source": "Session 1. My account is isvgoq. Repository dwodbq uses PHP as its runtime.",
+      "question": "Session 3. My account is isvgoq. Which runtime does repository dwodbq use?",
+      "answer": "PHP",
+      "task": "repo_runtime",
+      "key": "validation.27",
+      "split": "validation",
+      "prediction": ".",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5488a38b64d37c0199909da5-1",
+      "source": "Session 1. My account is mhqnwg. The build tool for repository iobnmt is Buck.",
+      "question": "Session 3. My account is mhqnwg. Which build tool does repository iobnmt use?",
+      "answer": "Buck",
+      "task": "repo_build_tool",
+      "key": "validation.29",
+      "split": "validation",
+      "prediction": ".ubuntu-test",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-b3fe266088fb1fac36b55897-1",
+      "source": "Session 1. My account is yaxzek. Please remember that my name is Lena.",
+      "question": "Session 3. My account is yaxzek. What name should you call me? Reply with only the name.",
+      "answer": "Lena",
+      "task": "name",
+      "key": "validation.31",
+      "split": "validation",
+      "prediction": "yakzek",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-ab0cf95cb17f7d9a30d8d7de-1",
+      "source": "Session 1. My account is pvvnpr. I use Sublime Text as my editor.",
+      "question": "Session 3. My account is pvvnpr. Which editor do I use?",
+      "answer": "Sublime Text",
+      "task": "editor",
+      "key": "validation.33",
+      "split": "validation",
+      "prediction": "Sublime Text",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-d5ca77d2b933466ecc5ecc67-1",
+      "source": "Session 1. My account is lgxsdb. Repository faiidy reads its config from config/queue.ini.",
+      "question": "Session 3. My account is lgxsdb. What is the config file for repository faiidy?",
+      "answer": "config/queue.ini",
+      "task": "repo_config_file",
+      "key": "validation.35",
+      "split": "validation",
+      "prediction": ".terraform.yaml",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-fbe70c468716628ba8332c97-1",
+      "source": "Session 1. My account is iqflmx. My time zone is Auckland.",
+      "question": "Session 3. My account is iqflmx. Which time zone should you use for me?",
+      "answer": "Auckland",
+      "task": "timezone",
+      "key": "validation.37",
+      "split": "validation",
+      "prediction": "America",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-72de3419159ad31bd13ec30f-1",
+      "source": "Session 1. My account is dfjzky. Repository iihrfa reads its config from settings/web.yaml.",
+      "question": "Session 3. My account is dfjzky. What is the config file for repository iihrfa?",
+      "answer": "settings/web.yaml",
+      "task": "repo_config_file",
+      "key": "validation.39",
+      "split": "validation",
+      "prediction": ".terraform.yaml",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 24,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0009307674339274175
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009507250943477965
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0011557499483235895
+        },
+        {
+          "tokens": 22,
+          "surprise": 0.0010166550480651656
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010879194116753296
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0011125419231819253
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0012818563845144071
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0014519210786931363
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0015795035408254204
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001202106533057958
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0006985250043957893
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001031990693732325
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009408722576893378
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009284546473874146
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0005691160914484191
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0012617509159165573
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001012160279977623
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000587779474339981
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0008885687693783698
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5ec7cd5437d7c93493852000-1",
+      "source": "Session 1. My account is hpcmid. The build tool for repository rhyvxv is SCons.",
+      "question": "Session 3. My account is hpcmid. Which build tool does repository rhyvxv use?",
+      "answer": "SCons",
+      "task": "repo_build_tool",
+      "key": "validation.41",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-1e27d766c26b972bf7af731f-1",
+      "source": "Session 1. My account is juayjf. The build tool for repository hwmgbp is SCons.",
+      "question": "Session 3. My account is juayjf. Which build tool does repository hwmgbp use?",
+      "answer": "SCons",
+      "task": "repo_build_tool",
+      "key": "validation.43",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-13bef2a49398e3bfe6b064db-1",
+      "source": "Session 1. My account is explol. My current project is Solstice.",
+      "question": "Session 3. My account is explol. Which project am I working on?",
+      "answer": "Solstice",
+      "task": "current_project",
+      "key": "validation.45",
+      "split": "validation",
+      "prediction": "Solstice",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5dd6c0f6c163b9d6811296ef-1",
+      "source": "Session 1. My account is bdrpgg. Please remember that my name is Noah.",
+      "question": "Session 3. My account is bdrpgg. What name should you call me? Reply with only the name.",
+      "answer": "Noah",
+      "task": "name",
+      "key": "validation.47",
+      "split": "validation",
+      "prediction": "v.",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-76669e02f0e1136da7e5b6f8-1",
+      "source": "Session 1. My account is vchtos. Please remember that I am 82 years old.",
+      "question": "Session 3. My account is vchtos. How old am I now? Reply with only the number.",
+      "answer": "82",
+      "task": "age",
+      "key": "validation.49",
+      "split": "validation",
+      "prediction": "96",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-a0cb059cb3fd0ccff4d58e24-1",
+      "source": "Session 1. My account is ojxiwf. Please remember that I am 98 years old.",
+      "question": "Session 3. My account is ojxiwf. How old am I now? Reply with only the number.",
+      "answer": "98",
+      "task": "age",
+      "key": "validation.51",
+      "split": "validation",
+      "prediction": "96",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-bea907573192a83f33be44c5-1",
+      "source": "Session 1. My account is rnilty. My time zone is Vancouver.",
+      "question": "Session 3. My account is rnilty. Which time zone should you use for me?",
+      "answer": "Vancouver",
+      "task": "timezone",
+      "key": "validation.53",
+      "split": "validation",
+      "prediction": "America",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-2359b7e5b8c48d1400be04e4-1",
+      "source": "Session 1. My account is bkxyiu. The build tool for repository ajwfoj is Ninja.",
+      "question": "Session 3. My account is bkxyiu. Which build tool does repository ajwfoj use?",
+      "answer": "Ninja",
+      "task": "repo_build_tool",
+      "key": "validation.55",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5953cc7d4bdda722ac1f1ada-1",
+      "source": "Session 1. My account is wkpiox. In repository wlrijy, run tests with pnpm test.",
+      "question": "Session 3. My account is wkpiox. How should I run tests in repository wlrijy?",
+      "answer": "pnpm test",
+      "task": "repo_test_command",
+      "key": "validation.57",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-d59170cf4f6d0fb1cb5547d0-1",
+      "source": "My account is cjeuov. In repository ukptbg, the entry point moved to src/cache/main.py.",
+      "question": "Session 3. My account is cjeuov. What is the entry point file for repository ukptbg?",
+      "answer": "src/cache/main.py",
+      "task": "repo_update",
+      "key": "validation.59",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-6ac16fbf1b34821488a97dda-1",
+      "source": "Session 1. My account is vrpije. The build tool for repository shvtjn is Meson.",
+      "question": "Session 3. My account is vrpije. Which build tool does repository shvtjn use?",
+      "answer": "Meson",
+      "task": "repo_build_tool",
+      "key": "validation.61",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-19106e8cf3173e968694c2af-1",
+      "source": "Session 1. My account is dimqlt. In repository rxnsug, run tests with ctest.",
+      "question": "Session 3. My account is dimqlt. How should I run tests in repository rxnsug?",
+      "answer": "ctest",
+      "task": "repo_test_command",
+      "key": "validation.63",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-43d1d81988b6da9d28763ab5-1",
+      "source": "My account is baprko. Correction: I am 94 years old now.",
+      "question": "Session 3. My account is baprko. How old am I now? Reply with only the number.",
+      "answer": "94",
+      "task": "age_update",
+      "key": "validation.65",
+      "split": "validation",
+      "prediction": "96",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-67663fcfef2d30751dbc6d7a-1",
+      "source": "My account is owvmps. In repository rmbwyb, the entry point moved to src/search/main.py.",
+      "question": "Session 3. My account is owvmps. What is the entry point file for repository rmbwyb?",
+      "answer": "src/search/main.py",
+      "task": "repo_update",
+      "key": "validation.67",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-5d83516d5660cf76cb33d811-1",
+      "source": "My account is dkkhyx. Correction: I am 96 years old now.",
+      "question": "Session 3. My account is dkkhyx. How old am I now? Reply with only the number.",
+      "answer": "96",
+      "task": "age_update",
+      "key": "validation.69",
+      "split": "validation",
+      "prediction": "96",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-11226cbaa247eb3a1f74f012-1",
+      "source": "Session 1. My account is grrwex. In repository ipfdfq, the entry point is src/queue/main.py.",
+      "question": "Session 3. My account is grrwex. What is the entry point file for repository ipfdfq?",
+      "answer": "src/queue/main.py",
+      "task": "repo_entry",
+      "key": "validation.71",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-90a81df42387d8875cd71b7e-1",
+      "source": "Session 1. My account is fuzozz. Repository ncmxna uses Kotlin as its runtime.",
+      "question": "Session 3. My account is fuzozz. Which runtime does repository ncmxna use?",
+      "answer": "Kotlin",
+      "task": "repo_runtime",
+      "key": "validation.73",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-76ee717a80f9b59a2ba2c3fa-1",
+      "source": "Session 1. My account is oxlwrk. Please remember that I am 86 years old.",
+      "question": "Session 3. My account is oxlwrk. How old am I now? Reply with only the number.",
+      "answer": "86",
+      "task": "age",
+      "key": "validation.75",
+      "split": "validation",
+      "prediction": "96",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-dab6142c54652a927d454793-1",
+      "source": "My account is qbtelb. Correction: I am 92 years old now.",
+      "question": "Session 3. My account is qbtelb. How old am I now? Reply with only the number.",
+      "answer": "92",
+      "task": "age_update",
+      "key": "validation.77",
+      "split": "validation",
+      "prediction": "96",
+      "correct": false,
+      "contains_answer": false,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    },
+    {
+      "id": "session-novel-27a42eb4b3009b4a55469a03-1",
+      "source": "My account is hotwbz. In repository zyooiw, the entry point moved to src/queue/main.py.",
+      "question": "Session 3. My account is hotwbz. What is the entry point file for repository zyooiw?",
+      "answer": "src/queue/main.py",
+      "task": "repo_update",
+      "key": "validation.79",
+      "split": "validation",
+      "prediction": "src/queue/main.py",
+      "correct": true,
+      "contains_answer": true,
+      "writes": [
+        {
+          "tokens": 25,
+          "surprise": 0.000976562500000001
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.00039801868496688327
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.0007189676698407353
+        },
+        {
+          "tokens": 21,
+          "surprise": 0.0008135280227472693
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.0009168787415612382
+        },
+        {
+          "tokens": 23,
+          "surprise": 0.00043296953554857907
+        },
+        {
+          "tokens": 18,
+          "surprise": 0.000792652833866635
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0007923527187243049
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0013159442195191124
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0019673225966204315
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0008720329687453042
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0009524479488737513
+        },
+        {
+          "tokens": 19,
+          "surprise": 0.0010063067252060406
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0009453305049075535
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0006548183628698692
+        },
+        {
+          "tokens": 29,
+          "surprise": 0.0010104354786324111
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.001503884834818697
+        },
+        {
+          "tokens": 24,
+          "surprise": 0.0005387821418060822
+        },
+        {
+          "tokens": 20,
+          "surprise": 0.0005769295473047479
+        },
+        {
+          "tokens": 25,
+          "surprise": 0.0007997268468024038
+        }
+      ],
+      "facts_in_memory": 20
+    }
+  ],
+  "correct": 20,
+  "count": 80,
+  "checkpoint": "experiments/activation-memory-trained-v1",
+  "split": "validation",
+  "scale": 32.0,
+  "untrained_projections": false,
+  "facts_per_memory": 20,
+  "elapsed_seconds": 22.4165026670089
+}

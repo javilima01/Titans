@@ -1,0 +1,13 @@
+{
+  "id": "neural-statement-addressing-v1",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Offline addressing diagnostic with access to source vectors. Cosine and exact-kernel comparisons are diagnostic upper bounds, not admissible network-only readers. Random-feature coefficient ranking is also only a diagnostic, not decoded sentence accuracy.",
+  "result": "Offline addressing diagnostic with access to source vectors. Cosine and exact-kernel comparisons are diagnostic upper bounds, not admissible network-only readers. Random-feature coefficient ranking is also only a diagnostic, not decoded sentence accuracy.",
+  "command": ".venv/bin/python -m experiments.neural-statement-addressing-v1.diagnostic",
+  "recorded_at": "2026-09-28T18:26:29.665194+00:00",
+  "status": "experimental",
+  "source": "experiments/neural-statement-stress-cases-v1"
+}

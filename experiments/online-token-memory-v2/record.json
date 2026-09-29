@@ -1,0 +1,16 @@
+{
+  "id": "online-token-memory-v2",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Historical text-addressed path: 2/9 checks passed; the classifier mostly abstained.",
+  "result": "Historical text-addressed path: 2/9 checks passed; the classifier mostly abstained.",
+  "details": "Eight facts were stored with a correction, but addressing failed. Includes one unknown-fact check.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.432015+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "results.json"
+  ]
+}

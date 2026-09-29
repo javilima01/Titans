@@ -1,0 +1,139 @@
+{
+  "architecture": "ActivationFastMemory",
+  "checkpoint": "experiments/activation-memory-trained-multi20-v2",
+  "cases": "experiments/activation-memory-natural-cases-v1/writes.json",
+  "stage": "session-write",
+  "results": [
+    {
+      "source": "Please remember that I navigate applications with a screen reader and keyboard only.",
+      "tokens": 15,
+      "surprise": 0.0009765625
+    },
+    {
+      "source": "When showing me code, I prefer examples in Rust.",
+      "tokens": 12,
+      "surprise": 0.001282874552306948
+    },
+    {
+      "source": "I cannot take calls before 10:00 Europe/Riga.",
+      "tokens": 16,
+      "surprise": 0.0013917279411239255
+    },
+    {
+      "source": "Use CHF as the currency in my expense summaries.",
+      "tokens": 11,
+      "surprise": 0.0012217057495393065
+    },
+    {
+      "source": "My work Git remote is called upstream-work.",
+      "tokens": 10,
+      "surprise": 0.0016203690898893026
+    },
+    {
+      "source": "The identity I use when signing commits is Mira Sable.",
+      "tokens": 13,
+      "surprise": 0.0013795184167838422
+    },
+    {
+      "source": "Remember: the codename of my side project is Silver Otter.",
+      "tokens": 15,
+      "surprise": 0.001233312636739149
+    },
+    {
+      "source": "I want temperatures expressed in Celsius.",
+      "tokens": 8,
+      "surprise": 0.0012700622429749457
+    },
+    {
+      "source": "Code observation in repository LLM: Qwen35Titans is defined in src/llm/modules/qwen.py.",
+      "tokens": 26,
+      "surprise": 0.0016141709957593754
+    },
+    {
+      "source": "Code observation in repository LLM: TitansMemory lives in src/llm/modules/titans.py.",
+      "tokens": 22,
+      "surprise": 0.0006356729904034813
+    },
+    {
+      "source": "Code observation in repository LLM: TrainingMonitor lives in src/llm/helpers/monitoring.py.",
+      "tokens": 22,
+      "surprise": 0.0006029579490114783
+    },
+    {
+      "source": "In repository LLM, run all tests with .venv/bin/python -m unittest discover -s tests -v.",
+      "tokens": 25,
+      "surprise": 0.0014754544318348584
+    },
+    {
+      "source": "In repository LLM, format Python files with .venv/bin/ruff format .",
+      "tokens": 18,
+      "surprise": 0.0009599211490090895
+    },
+    {
+      "source": "In repository LLM, Python commands must run from the repository root because imports use src.llm.",
+      "tokens": 21,
+      "surprise": 0.001319452403357171
+    },
+    {
+      "source": "The Qwen model cache for repository LLM is .models_cache/Qwen/Qwen3.5-0.8B.",
+      "tokens": 27,
+      "surprise": 0.0014657137628629547
+    },
+    {
+      "source": "Code observation in repository LLM: memory adapters use FP32 even with a BF16 backbone.",
+      "tokens": 22,
+      "surprise": 0.0010875430600389526
+    },
+    {
+      "source": "Code observation in repository aster: the public HTTP routes are registered in app/web/routes_v3.py.",
+      "tokens": 21,
+      "surprise": 0.0016301339598422347
+    },
+    {
+      "source": "In repository aster, launch the development server with pnpm dev.",
+      "tokens": 14,
+      "surprise": 0.0015337573505982837
+    },
+    {
+      "source": "Repository aster reads secrets from the ASTER_SECRET_FILE environment variable.",
+      "tokens": 14,
+      "surprise": 0.0017030432690562697
+    },
+    {
+      "source": "Code observation in repository aster: retry delays use exponential backoff capped at 17 seconds.",
+      "tokens": 20,
+      "surprise": 0.0013379579117484427
+    },
+    {
+      "source": "Remember: all schema changes in repository aster need approval from the data-platform team.",
+      "tokens": 17,
+      "surprise": 0.001288622522243274
+    },
+    {
+      "source": "The generated files in repository aster are under lib/autogen and must never be hand-edited.",
+      "tokens": 21,
+      "surprise": 0.0017008185090010102
+    },
+    {
+      "source": "Repository linden uses the deploy command ./ops/ship --region eu-west-3.",
+      "tokens": 19,
+      "surprise": 0.001854344815567736
+    },
+    {
+      "source": "Repository linden stores its architecture decision records in design/decisions.",
+      "tokens": 15,
+      "surprise": 0.001429917502280606
+    },
+    {
+      "source": "Correction: when showing me code, use Zig examples from now on.",
+      "tokens": 15,
+      "surprise": 0.0013479703483932372
+    },
+    {
+      "source": "Correction: in repository aster, launch the development server with just up-local.",
+      "tokens": 16,
+      "surprise": 0.0007312027034697317
+    }
+  ],
+  "scale": null
+}

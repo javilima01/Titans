@@ -1,0 +1,17 @@
+{
+  "id": "online-token-memory-nearest-v1",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Nearest frozen-feature addressing answered 4/9 checks correctly.",
+  "result": "Nearest frozen-feature addressing answered 4/9 checks correctly.",
+  "details": "Nearest-neighbor addressing confused related repository properties and guessed a name for an unknown fruit.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.432457+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "memory.safetensors",
+    "results.json"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "activation-memory-trained-v1",
+  "kind": "analysis",
+  "checkpoint": "experiments/activation-memory-trained-v1/network.safetensors",
+  "training": {
+    "examples": 1200,
+    "epochs": 12,
+    "selected_epoch": 2,
+    "lr": 0.0003,
+    "batch_size": 16
+  },
+  "reports": {},
+  "note": "Slow read/write projections trained through an inner fast-weight solve on observed statement tokens. No test-time question/answer demonstrations or separate semantic encoder. Generation still requires independent evaluation; address accuracy is not answer accuracy.",
+  "result": "Slow read/write projections trained through an inner fast-weight solve on observed statement tokens. No test-time question/answer demonstrations or separate semantic encoder. Generation still requires independent evaluation; address accuracy is not answer accuracy.",
+  "command": "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python -m src.llm.helpers.activation_memory_probe train --cache experiments/activation-memory-features-v1 --output experiments/activation-memory-trained-v1 --epochs 12",
+  "recorded_at": "2026-09-29T03:49:20.027670+00:00",
+  "status": "experimental",
+  "source": "experiments/activation-memory-features-v1"
+}

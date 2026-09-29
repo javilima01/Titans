@@ -1,0 +1,412 @@
+{
+  "reads": [
+    {
+      "question": "The test command for repository cobalt is uv run pytest tests/qufyuvy -q.",
+      "answer": "The test command for repository cobalt is uv run pytest tests/qufyuvy -q.",
+      "statement": "The test command for repository cobalt is uv run pytest tests/qufyuvy -q.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The documentation directory for repository firwood is docs/dmdazjt.",
+      "answer": "The documentation directory for repository firwood is docs/dmdazjt.",
+      "statement": "The documentation directory for repository firwood is docs/dmdazjt.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The log format for repository cobalt is jsonl-hhgyrjj.",
+      "answer": "The log format for repository cobalt is jsonl-hhgyrjj.",
+      "statement": "The log format for repository cobalt is jsonl-hhgyrjj.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The development command for repository tamarind is just dev-pqxdndf.",
+      "answer": "The development command for repository tamarind is just dev-pqxdndf.",
+      "statement": "The development command for repository tamarind is just dev-pqxdndf.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The development command for repository cobalt is just dev-kzjdpga.",
+      "answer": "The development command for repository cobalt is just dev-kzjdpga.",
+      "statement": "The development command for repository cobalt is just dev-kzjdpga.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The log format for repository firwood is jsonl-zufjszg.",
+      "answer": "The log format for repository firwood is jsonl-zufjszg.",
+      "statement": "The log format for repository firwood is jsonl-zufjszg.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The migration directory for repository cobalt is db/qfcjqtm/changes.",
+      "answer": "The migration directory for repository cobalt is db/qfcjqtm/changes.",
+      "statement": "The migration directory for repository cobalt is db/qfcjqtm/changes.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "I write dates as DD.MM.YYYY.",
+      "answer": "I write dates as DD.MM.YYYY.",
+      "statement": "I write dates as DD.MM.YYYY.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The development command for repository firwood is just dev-fucpufb.",
+      "answer": "The development command for repository firwood is just dev-fucpufb.",
+      "statement": "The development command for repository firwood is just dev-fucpufb.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The documentation directory for repository quasar is docs/dujgfyh.",
+      "answer": "The documentation directory for repository quasar is docs/dujgfyh.",
+      "statement": "The documentation directory for repository quasar is docs/dujgfyh.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The migration directory for repository tamarind is db/jaubpqt/changes.",
+      "answer": "The migration directory for repository tamarind is db/jaubpqt/changes.",
+      "statement": "The migration directory for repository tamarind is db/jaubpqt/changes.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The test command for repository tamarind is uv run pytest tests/ffvkzbq -q.",
+      "answer": "The test command for repository tamarind is uv run pytest tests/ffvkzbq -q.",
+      "statement": "The test command for repository tamarind is uv run pytest tests/ffvkzbq -q.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The maintainer for repository firwood is wpfvwmb Orvex.",
+      "answer": "The maintainer for repository firwood is wpfvwmb Orvex.",
+      "statement": "The maintainer for repository firwood is wpfvwmb Orvex.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The artifact directory for repository quasar is out/gecbtjn/artifacts.",
+      "answer": "The artifact directory for repository quasar is out/gecbtjn/artifacts.",
+      "statement": "The artifact directory for repository quasar is out/gecbtjn/artifacts.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The entry point for repository quasar is services/btzpjks/main.py.",
+      "answer": "The entry point for repository quasar is services/btzpjks/main.py.",
+      "statement": "The entry point for repository quasar is services/btzpjks/main.py.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The configuration file for repository quasar is config/trvqzke.toml.",
+      "answer": "The configuration file for repository quasar is config/trvqzke.toml.",
+      "statement": "The configuration file for repository quasar is config/trvqzke.toml.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The entry point for repository cobalt is services/dggjzyw/main.py.",
+      "answer": "The entry point for repository cobalt is services/dggjzyw/main.py.",
+      "statement": "The entry point for repository cobalt is services/dggjzyw/main.py.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The release branch for repository cobalt is release/muhnxsr.",
+      "answer": "The release branch for repository cobalt is release/muhnxsr.",
+      "statement": "The release branch for repository cobalt is release/muhnxsr.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "I prefer explanations with worked examples.",
+      "answer": "I prefer explanations with worked examples.",
+      "statement": "I prefer explanations with worked examples.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "Please remember: my name is Olivane.",
+      "answer": "Please remember: my name is Olivane.",
+      "statement": "Please remember: my name is Olivane.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The log format for repository tamarind is jsonl-vukwaem.",
+      "answer": "The log format for repository tamarind is jsonl-vukwaem.",
+      "statement": "The log format for repository tamarind is jsonl-vukwaem.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "I use the Colemak keyboard layout.",
+      "answer": "I use the Colemak keyboard layout.",
+      "statement": "I use the Colemak keyboard layout.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The package manager for repository cobalt is pkg-egdmmjg.",
+      "answer": "The package manager for repository cobalt is pkg-egdmmjg.",
+      "statement": "The package manager for repository cobalt is pkg-egdmmjg.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The entry point for repository firwood is services/rvdwzub/main.py.",
+      "answer": "The entry point for repository firwood is services/rvdwzub/main.py.",
+      "statement": "The entry point for repository firwood is services/rvdwzub/main.py.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The formatter for repository tamarind is fmt-xftzeeq.",
+      "answer": "The formatter for repository tamarind is fmt-xftzeeq.",
+      "statement": "The formatter for repository tamarind is fmt-xftzeeq.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The migration directory for repository firwood is db/btqsjhf/changes.",
+      "answer": "The migration directory for repository firwood is db/btqsjhf/changes.",
+      "statement": "The migration directory for repository firwood is db/btqsjhf/changes.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "Remember: my terminal font is Iosevka.",
+      "answer": "Remember: my terminal font is Iosevka.",
+      "statement": "Remember: my terminal font is Iosevka.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "I prefer meetings on Thursdays.",
+      "answer": "I prefer meetings on Thursdays.",
+      "statement": "I prefer meetings on Thursdays.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The release branch for repository quasar is release/pgjzxsk.",
+      "answer": "The release branch for repository quasar is release/pgjzxsk.",
+      "statement": "The release branch for repository quasar is release/pgjzxsk.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The formatter for repository firwood is fmt-qqagzuz.",
+      "answer": "The formatter for repository firwood is fmt-qqagzuz.",
+      "statement": "The formatter for repository firwood is fmt-qqagzuz.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The documentation directory for repository cobalt is docs/uhkqcpx.",
+      "answer": "The documentation directory for repository cobalt is docs/uhkqcpx.",
+      "statement": "The documentation directory for repository cobalt is docs/uhkqcpx.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The artifact directory for repository tamarind is out/fufedag/artifacts.",
+      "answer": "The artifact directory for repository tamarind is out/fufedag/artifacts.",
+      "statement": "The artifact directory for repository tamarind is out/fufedag/artifacts.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "My pronouns are they/them.",
+      "answer": "My pronouns are they/them.",
+      "statement": "My pronouns are they/them.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The artifact directory for repository cobalt is out/gdercmw/artifacts.",
+      "answer": "The artifact directory for repository cobalt is out/gdercmw/artifacts.",
+      "statement": "The artifact directory for repository cobalt is out/gdercmw/artifacts.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The formatter for repository quasar is fmt-jfbjmhc.",
+      "answer": "The formatter for repository quasar is fmt-jfbjmhc.",
+      "statement": "The formatter for repository quasar is fmt-jfbjmhc.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "I am 37 years old.",
+      "answer": "I am 37 years old.",
+      "statement": "I am 37 years old.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The configuration file for repository cobalt is config/rgcbsjp.toml.",
+      "answer": "The configuration file for repository cobalt is config/rgcbsjp.toml.",
+      "statement": "The configuration file for repository cobalt is config/rgcbsjp.toml.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The configuration file for repository firwood is config/peqgghs.toml.",
+      "answer": "The configuration file for repository firwood is config/peqgghs.toml.",
+      "statement": "The configuration file for repository firwood is config/peqgghs.toml.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "My working hours are 07:30-15:30.",
+      "answer": "My working hours are 07:30-15:30.",
+      "statement": "My working hours are 07:30-15:30.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The artifact directory for repository firwood is out/sgvrkww/artifacts.",
+      "answer": "The artifact directory for repository firwood is out/sgvrkww/artifacts.",
+      "statement": "The artifact directory for repository firwood is out/sgvrkww/artifacts.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The formatter for repository cobalt is fmt-mradfsp.",
+      "answer": "The formatter for repository cobalt is fmt-mradfsp.",
+      "statement": "The formatter for repository cobalt is fmt-mradfsp.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "My preferred editor is Zed.",
+      "answer": "My preferred editor is Zed.",
+      "statement": "My preferred editor is Zed.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The package manager for repository tamarind is pkg-rtjmbxu.",
+      "answer": "The package manager for repository tamarind is pkg-rtjmbxu.",
+      "statement": "The package manager for repository tamarind is pkg-rtjmbxu.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The package manager for repository quasar is pkg-unvfcts.",
+      "answer": "The package manager for repository quasar is pkg-unvfcts.",
+      "statement": "The package manager for repository quasar is pkg-unvfcts.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "My job title is embedded systems engineer.",
+      "answer": "My job title is embedded systems engineer.",
+      "statement": "My job title is embedded systems engineer.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "My timezone is Europe/Tallinn.",
+      "answer": "My timezone is Europe/Tallinn.",
+      "statement": "My timezone is Europe/Tallinn.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The test command for repository quasar is uv run pytest tests/psxjcsz -q.",
+      "answer": "The test command for repository quasar is uv run pytest tests/psxjcsz -q.",
+      "statement": "The test command for repository quasar is uv run pytest tests/psxjcsz -q.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The documentation directory for repository tamarind is docs/fdcurpn.",
+      "answer": "The documentation directory for repository tamarind is docs/fdcurpn.",
+      "statement": "The documentation directory for repository tamarind is docs/fdcurpn.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The log format for repository quasar is jsonl-wdkhqgr.",
+      "answer": "The log format for repository quasar is jsonl-wdkhqgr.",
+      "statement": "The log format for repository quasar is jsonl-wdkhqgr.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The maintainer for repository quasar is zqtzgnt Orvex.",
+      "answer": "The maintainer for repository quasar is zqtzgnt Orvex.",
+      "statement": "The maintainer for repository quasar is zqtzgnt Orvex.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "I want commit messages written in Spanish.",
+      "answer": "I want commit messages written in Spanish.",
+      "statement": "I want commit messages written in Spanish.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The release branch for repository firwood is release/jyqkmst.",
+      "answer": "The release branch for repository firwood is release/jyqkmst.",
+      "statement": "The release branch for repository firwood is release/jyqkmst.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The migration directory for repository quasar is db/yynzzxn/changes.",
+      "answer": "The migration directory for repository quasar is db/yynzzxn/changes.",
+      "statement": "The migration directory for repository quasar is db/yynzzxn/changes.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The configuration file for repository tamarind is config/qhgcjan.toml.",
+      "answer": "The configuration file for repository tamarind is config/qhgcjan.toml.",
+      "statement": "The configuration file for repository tamarind is config/qhgcjan.toml.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The entry point for repository tamarind is services/unxmnfm/main.py.",
+      "answer": "The entry point for repository tamarind is services/unxmnfm/main.py.",
+      "statement": "The entry point for repository tamarind is services/unxmnfm/main.py.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The maintainer for repository tamarind is dgchvdt Orvex.",
+      "answer": "The maintainer for repository tamarind is dgchvdt Orvex.",
+      "statement": "The maintainer for repository tamarind is dgchvdt Orvex.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The maintainer for repository cobalt is aspqzaz Orvex.",
+      "answer": "The maintainer for repository cobalt is aspqzaz Orvex.",
+      "statement": "The maintainer for repository cobalt is aspqzaz Orvex.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The package manager for repository firwood is pkg-ygjwyxv.",
+      "answer": "The package manager for repository firwood is pkg-ygjwyxv.",
+      "statement": "The package manager for repository firwood is pkg-ygjwyxv.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The development command for repository quasar is just dev-rymvyev.",
+      "answer": "The development command for repository quasar is just dev-rymvyev.",
+      "statement": "The development command for repository quasar is just dev-rymvyev.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The release branch for repository tamarind is release/syheszf.",
+      "answer": "The release branch for repository tamarind is release/syheszf.",
+      "statement": "The release branch for repository tamarind is release/syheszf.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "I avoid foods containing hazelnuts.",
+      "answer": "I avoid foods containing hazelnuts.",
+      "statement": "I avoid foods containing hazelnuts.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "I prefer distances in kilometres.",
+      "answer": "I prefer distances in kilometres.",
+      "statement": "I prefer distances in kilometres.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "I live in Tartu.",
+      "answer": "I live in Tartu.",
+      "statement": "I live in Tartu.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "The test command for repository firwood is uv run pytest tests/tqjxsvk -q.",
+      "answer": "The test command for repository firwood is uv run pytest tests/tqjxsvk -q.",
+      "statement": "The test command for repository firwood is uv run pytest tests/tqjxsvk -q.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "Correction: the release branch for repository tamarind is ship/syheszf-v2.",
+      "answer": "Correction: the release branch for repository tamarind is ship/syheszf-v2.",
+      "statement": "Correction: the release branch for repository tamarind is ship/syheszf-v2.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "Correction: the release branch for repository cobalt is ship/muhnxsr-v2.",
+      "answer": "Correction: the release branch for repository cobalt is ship/muhnxsr-v2.",
+      "statement": "Correction: the release branch for repository cobalt is ship/muhnxsr-v2.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "Correction: the release branch for repository quasar is ship/pgjzxsk-v2.",
+      "answer": "Correction: the release branch for repository quasar is ship/pgjzxsk-v2.",
+      "statement": "Correction: the release branch for repository quasar is ship/pgjzxsk-v2.",
+      "category": "same_source_control"
+    },
+    {
+      "question": "Correction: the release branch for repository firwood is ship/jyqkmst-v2.",
+      "answer": "Correction: the release branch for repository firwood is ship/jyqkmst-v2.",
+      "statement": "Correction: the release branch for repository firwood is ship/jyqkmst-v2.",
+      "category": "same_source_control"
+    }
+  ]
+}

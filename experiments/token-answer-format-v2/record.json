@@ -1,0 +1,16 @@
+{
+  "id": "token-answer-format-v2",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Q/A examples plus a copy instruction gave 6/9 exact answers and still invented an unknown fruit.",
+  "result": "Q/A examples plus a copy instruction gave 6/9 exact answers and still invented an unknown fruit.",
+  "details": "Prompt instructions alone did not reliably constrain this 0.8B model.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.433214+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "results.json"
+  ]
+}

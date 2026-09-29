@@ -1,0 +1,16 @@
+{
+  "id": "token-readout-rejected-v1",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Withdrawn hybrid design; source snapshot retained for experiment audit.",
+  "result": "Withdrawn hybrid design; source snapshot retained for experiment audit.",
+  "details": "The user clarified that remembered facts must live in the network. The tentative CLI, saved question index, replay-backed readout, and reconstructed-text integration were removed. source.zip contains the attempted code and CLI at that point; the current main.py has no online-memory-file option.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.433859+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "source.zip"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "activation-memory-live-read-v1",
+  "kind": "analysis",
+  "checkpoint": "experiments/activation-memory-live-write-v1",
+  "training": {},
+  "reports": {
+    "results.json": {
+      "split": "development",
+      "evaluation_kind": "neural_parameters_only",
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 20,
+            "value_presence": 0.95,
+            "exact_match": 0.75,
+            "match_target": "answer"
+          }
+        }
+      }
+    }
+  },
+  "note": "15/20 exact answer matches; 19/20 contain the value (lenient). Independent processes; reader uses neural state and questions only. Structured validation cases.",
+  "result": "15/20 exact answer matches; 19/20 contain the value (lenient). Independent processes; reader uses neural state and questions only. Structured validation cases.",
+  "command": "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python -m src.llm.helpers.activation_memory_probe session-read --checkpoint experiments/activation-memory-live-write-v1 --cases experiments/activation-memory-live-cases-v1/reads.json --output experiments/activation-memory-live-read-v1 --scale 32",
+  "recorded_at": "2026-09-29T04:04:40.389226+00:00",
+  "status": "experimental",
+  "source": "experiments/activation-memory-live-cases-v1/reads.json"
+}

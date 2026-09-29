@@ -1,0 +1,28 @@
+{
+  "id": "activation-memory-test-single-v1",
+  "kind": "analysis",
+  "checkpoint": "experiments/activation-memory-trained-v1",
+  "training": {},
+  "reports": {
+    "results.json": {
+      "split": "test",
+      "evaluation_kind": "neural_parameters_only",
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 80,
+            "value_presence": 1.0,
+            "exact_match": 0.825,
+            "match_target": "answer"
+          }
+        }
+      }
+    }
+  },
+  "note": "66/80 exact answer matches; 80/80 contain the value (lenient). Novel-value test, oracle supporting-statement selection.",
+  "result": "66/80 exact answer matches; 80/80 contain the value (lenient). Novel-value test, oracle supporting-statement selection.",
+  "command": "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python -m src.llm.helpers.activation_memory_probe evaluate --cache experiments/activation-memory-features-v1 --checkpoint experiments/activation-memory-trained-v1 --output experiments/activation-memory-test-single-v1 --eval-limit 80 --scale 32 --split test",
+  "recorded_at": "2026-09-29T03:59:28.395926+00:00",
+  "status": "experimental",
+  "source": null
+}

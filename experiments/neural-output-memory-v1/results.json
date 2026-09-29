@@ -1,0 +1,718 @@
+{
+  "architecture": "fixed_size_fast_linear_network_to_frozen_token_embeddings",
+  "repeats": 1,
+  "elapsed_seconds": 9.599933375022374,
+  "network_bytes": 12583088,
+  "state_shapes": {
+    "weight": [
+      1024,
+      1024
+    ],
+    "inverse_covariance": [
+      1024,
+      1024
+    ]
+  },
+  "count": 40,
+  "correct": 40,
+  "writes": [
+    {
+      "writes": 4,
+      "mean_surprise": 1.1545923042076487
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 1.079656051437959
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 1.110249778066153
+    },
+    {
+      "writes": 6,
+      "mean_surprise": 1.3034281658139009
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 0.92508395587278
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 1.0866215623602358
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 0.9124405789757506
+    },
+    {
+      "writes": 2,
+      "mean_surprise": 0.8877744387488721
+    },
+    {
+      "writes": 4,
+      "mean_surprise": 1.1413344618951595
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 1.0953644178460378
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 0.9580773837471147
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 1.208021143441067
+    },
+    {
+      "writes": 4,
+      "mean_surprise": 1.0169114466663414
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 0.1286080992746054
+    },
+    {
+      "writes": 2,
+      "mean_surprise": 0.39441984024544513
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 0.974082637764334
+    },
+    {
+      "writes": 2,
+      "mean_surprise": 0.8506187382772443
+    },
+    {
+      "writes": 4,
+      "mean_surprise": 1.0910102551826422
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 0.017083435144681105
+    },
+    {
+      "writes": 5,
+      "mean_surprise": 0.8478143063745737
+    },
+    {
+      "writes": 4,
+      "mean_surprise": 0.39919529171145596
+    },
+    {
+      "writes": 2,
+      "mean_surprise": 0.9464453628892437
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 0.9165345606066234
+    },
+    {
+      "writes": 5,
+      "mean_surprise": 0.6344969521749977
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 1.1030614704259971
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 0.8293299914839349
+    },
+    {
+      "writes": 4,
+      "mean_surprise": 1.2085352713352853
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 1.2210274329856816
+    },
+    {
+      "writes": 5,
+      "mean_surprise": 1.5506930574120403
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 0.19685938607325895
+    },
+    {
+      "writes": 4,
+      "mean_surprise": 0.47802239805060437
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 1.1325476589791112
+    },
+    {
+      "writes": 4,
+      "mean_surprise": 0.44959789417038687
+    },
+    {
+      "writes": 2,
+      "mean_surprise": 1.3016155617593004
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 1.356238336114145
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 0.5403904646127352
+    },
+    {
+      "writes": 4,
+      "mean_surprise": 1.3755400255834125
+    },
+    {
+      "writes": 5,
+      "mean_surprise": 0.5041492608309721
+    },
+    {
+      "writes": 3,
+      "mean_surprise": 0.935250978340357
+    },
+    {
+      "writes": 4,
+      "mean_surprise": 0.47650988511892695
+    }
+  ],
+  "results": [
+    {
+      "id": "session-novel-b12ce1e25c5316cd13158bf7-0",
+      "variant": 0,
+      "question": "Session 3. My account is cyoxni. How should I run tests in repository ijcxfj?",
+      "expected": "pnpm test",
+      "prediction": "pnpm test",
+      "correct": true,
+      "confidence": [
+        0.9999991059303284,
+        1.0000001192092896,
+        1.0,
+        0.9999996423721313
+      ]
+    },
+    {
+      "id": "session-novel-3a45c11721ab699df63cce63-0",
+      "variant": 0,
+      "question": "Session 3. My account is sjskvk. What name should you call me? Reply with only the name.",
+      "expected": "Priya",
+      "prediction": "Priya",
+      "correct": true,
+      "confidence": [
+        0.9999997019767761,
+        1.0000001192092896,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-9faa93b560becad26081ffb9-0",
+      "variant": 0,
+      "question": "Session 3. My account is maljal. Which runtime does repository xpoqod use?",
+      "expected": "Kotlin",
+      "prediction": "Kotlin",
+      "correct": true,
+      "confidence": [
+        0.9999998211860657,
+        0.9999998211860657,
+        0.9999998211860657
+      ]
+    },
+    {
+      "id": "session-novel-74461157ac6ad2415b4cad9a-0",
+      "variant": 0,
+      "question": "Session 3. My account is mbenjf. What is the entry point file for repository ywomjz?",
+      "expected": "src/queue/main.py",
+      "prediction": "src/queue/main.py",
+      "correct": true,
+      "confidence": [
+        0.9999997019767761,
+        0.9999999403953552,
+        0.9999998211860657,
+        0.9999992251396179,
+        1.0000001192092896,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-75577b9fd5f17efb705e63f4-0",
+      "variant": 0,
+      "question": "Session 3. My account is bdwobh. Which language do I prefer for replies?",
+      "expected": "Swedish",
+      "prediction": "Swedish",
+      "correct": true,
+      "confidence": [
+        0.9999998807907104,
+        0.9999998807907104,
+        1.000000238418579
+      ]
+    },
+    {
+      "id": "session-novel-d86fdebce4b213c84a53c402-0",
+      "variant": 0,
+      "question": "Session 3. My account is dfgvrc. Which time zone should you use for me?",
+      "expected": "Vancouver",
+      "prediction": "Vancouver",
+      "correct": true,
+      "confidence": [
+        0.9999997019767761,
+        1.0000001192092896,
+        0.9999996423721313
+      ]
+    },
+    {
+      "id": "session-novel-5da78134f730b500001ccfc7-0",
+      "variant": 0,
+      "question": "Session 3. My account is aazddz. Which project am I working on?",
+      "expected": "Summit",
+      "prediction": "Summit",
+      "correct": true,
+      "confidence": [
+        0.9999998807907104,
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-df75338da83e47c9d4bd1c83-0",
+      "variant": 0,
+      "question": "Session 3. My account is udgulv. Which build tool does repository bogxfo use?",
+      "expected": "Ant",
+      "prediction": "Ant",
+      "correct": true,
+      "confidence": [
+        1.0,
+        0.9999998211860657
+      ]
+    },
+    {
+      "id": "session-novel-5826736bc99a2a71f43cc2eb-0",
+      "variant": 0,
+      "question": "Session 3. My account is fbogcj. What is the config file for repository dyysik?",
+      "expected": "settings/web.yaml",
+      "prediction": "settings/web.yaml",
+      "correct": true,
+      "confidence": [
+        0.9999986886978149,
+        0.9999997615814209,
+        0.9999998211860657,
+        0.9999996423721313
+      ]
+    },
+    {
+      "id": "session-novel-e975845dfafc96e81fffa141-0",
+      "variant": 0,
+      "question": "Session 3. My account is peytwe. How old am I now? Reply with only the number.",
+      "expected": "95",
+      "prediction": "95",
+      "correct": true,
+      "confidence": [
+        1.0,
+        1.0,
+        0.9999998807907104
+      ]
+    },
+    {
+      "id": "session-novel-b9dff3aab1c6105f01997097-0",
+      "variant": 0,
+      "question": "Session 3. My account is avcgmn. How should I run tests in repository efbkfi?",
+      "expected": "npm test",
+      "prediction": "npm test",
+      "correct": true,
+      "confidence": [
+        0.9999998807907104,
+        1.0000001192092896,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": "session-novel-087557a2383b88f5a8bc5c3a-0",
+      "variant": 0,
+      "question": "Session 3. My account is amszaw. What name should you call me? Reply with only the name.",
+      "expected": "Lena",
+      "prediction": "Lena",
+      "correct": true,
+      "confidence": [
+        0.9999999403953552,
+        1.0,
+        0.9999998807907104
+      ]
+    },
+    {
+      "id": "session-novel-116f5636fc1b8857fb1b5488-0",
+      "variant": 0,
+      "question": "Session 3. My account is huuuyq. How should I run tests in repository xselyf?",
+      "expected": "mvn test",
+      "prediction": "mvn test",
+      "correct": true,
+      "confidence": [
+        1.0,
+        0.9999999403953552,
+        0.9999998807907104,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-4599a2360d0932cc442c2d63-0",
+      "variant": 0,
+      "question": "Session 3. My account is isvgoq. Which runtime does repository dwodbq use?",
+      "expected": "Kotlin",
+      "prediction": "Kotlin",
+      "correct": true,
+      "confidence": [
+        0.9999998807907104,
+        0.9999998211860657,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-5488a38b64d37c0199909da5-0",
+      "variant": 0,
+      "question": "Session 3. My account is mhqnwg. Which build tool does repository iobnmt use?",
+      "expected": "Ant",
+      "prediction": "Ant",
+      "correct": true,
+      "confidence": [
+        1.0,
+        0.9999998211860657
+      ]
+    },
+    {
+      "id": "session-novel-b3fe266088fb1fac36b55897-0",
+      "variant": 0,
+      "question": "Session 3. My account is yaxzek. What name should you call me? Reply with only the name.",
+      "expected": "Omar",
+      "prediction": "Omar",
+      "correct": true,
+      "confidence": [
+        0.9999998807907104,
+        1.0000001192092896,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": "session-novel-ab0cf95cb17f7d9a30d8d7de-0",
+      "variant": 0,
+      "question": "Session 3. My account is pvvnpr. Which editor do I use?",
+      "expected": "Kate",
+      "prediction": "Kate",
+      "correct": true,
+      "confidence": [
+        1.0000001192092896,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-d5ca77d2b933466ecc5ecc67-0",
+      "variant": 0,
+      "question": "Session 3. My account is lgxsdb. What is the config file for repository faiidy?",
+      "expected": "config/cache.yaml",
+      "prediction": "config/cache.yaml",
+      "correct": true,
+      "confidence": [
+        0.9999972581863403,
+        0.9999989867210388,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-fbe70c468716628ba8332c97-0",
+      "variant": 0,
+      "question": "Session 3. My account is iqflmx. Which time zone should you use for me?",
+      "expected": "Vancouver",
+      "prediction": "Vancouver",
+      "correct": true,
+      "confidence": [
+        0.9999998807907104,
+        1.0,
+        0.9999998807907104
+      ]
+    },
+    {
+      "id": "session-novel-72de3419159ad31bd13ec30f-0",
+      "variant": 0,
+      "question": "Session 3. My account is dfjzky. What is the config file for repository iihrfa?",
+      "expected": "config/queue.ini",
+      "prediction": "config/queue.ini",
+      "correct": true,
+      "confidence": [
+        0.9999978542327881,
+        0.9999999403953552,
+        1.0000001192092896,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-b12ce1e25c5316cd13158bf7-1",
+      "variant": 1,
+      "question": "Session 3. My account is cyoxni. How should I run tests in repository ijcxfj?",
+      "expected": "mvn test",
+      "prediction": "mvn test",
+      "correct": true,
+      "confidence": [
+        0.9999982714653015,
+        0.9999994039535522,
+        0.9999986290931702,
+        0.9999996423721313
+      ]
+    },
+    {
+      "id": "session-novel-3a45c11721ab699df63cce63-1",
+      "variant": 1,
+      "question": "Session 3. My account is sjskvk. What name should you call me? Reply with only the name.",
+      "expected": "Theo",
+      "prediction": "Theo",
+      "correct": true,
+      "confidence": [
+        0.9999998807907104,
+        0.9999998807907104
+      ]
+    },
+    {
+      "id": "session-novel-9faa93b560becad26081ffb9-1",
+      "variant": 1,
+      "question": "Session 3. My account is maljal. Which runtime does repository xpoqod use?",
+      "expected": "Elixir",
+      "prediction": "Elixir",
+      "correct": true,
+      "confidence": [
+        0.9999997615814209,
+        0.9999998807907104,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-74461157ac6ad2415b4cad9a-1",
+      "variant": 1,
+      "question": "Session 3. My account is mbenjf. What is the entry point file for repository ywomjz?",
+      "expected": "src/cache/main.py",
+      "prediction": "src/cache/main.py",
+      "correct": true,
+      "confidence": [
+        0.9999998807907104,
+        0.9999998807907104,
+        0.9999992251396179,
+        0.9999998807907104,
+        0.9999996423721313
+      ]
+    },
+    {
+      "id": "session-novel-75577b9fd5f17efb705e63f4-1",
+      "variant": 1,
+      "question": "Session 3. My account is bdwobh. Which language do I prefer for replies?",
+      "expected": "Hindi",
+      "prediction": "Hindi",
+      "correct": true,
+      "confidence": [
+        1.0,
+        1.0000001192092896,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": "session-novel-d86fdebce4b213c84a53c402-1",
+      "variant": 1,
+      "question": "Session 3. My account is dfgvrc. Which time zone should you use for me?",
+      "expected": "Nairobi",
+      "prediction": "Nairobi",
+      "correct": true,
+      "confidence": [
+        0.9999963045120239,
+        1.0000001192092896,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": "session-novel-5da78134f730b500001ccfc7-1",
+      "variant": 1,
+      "question": "Session 3. My account is aazddz. Which project am I working on?",
+      "expected": "Polaris",
+      "prediction": "Polaris",
+      "correct": true,
+      "confidence": [
+        1.0,
+        0.9999999403953552,
+        1.0000001192092896,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-df75338da83e47c9d4bd1c83-1",
+      "variant": 1,
+      "question": "Session 3. My account is udgulv. Which build tool does repository bogxfo use?",
+      "expected": "Meson",
+      "prediction": "Meson",
+      "correct": true,
+      "confidence": [
+        0.9999998807907104,
+        1.0000001192092896,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-5826736bc99a2a71f43cc2eb-1",
+      "variant": 1,
+      "question": "Session 3. My account is fbogcj. What is the config file for repository dyysik?",
+      "expected": "conf/worker.json",
+      "prediction": "conf/worker.json",
+      "correct": true,
+      "confidence": [
+        0.9999983310699463,
+        0.9999996423721313,
+        0.9999992251396179,
+        1.0,
+        0.9999998807907104
+      ]
+    },
+    {
+      "id": "session-novel-e975845dfafc96e81fffa141-1",
+      "variant": 1,
+      "question": "Session 3. My account is peytwe. How old am I now? Reply with only the number.",
+      "expected": "98",
+      "prediction": "98",
+      "correct": true,
+      "confidence": [
+        1.0000001192092896,
+        1.0,
+        0.9999998807907104
+      ]
+    },
+    {
+      "id": "session-novel-b9dff3aab1c6105f01997097-1",
+      "variant": 1,
+      "question": "Session 3. My account is avcgmn. How should I run tests in repository efbkfi?",
+      "expected": "pnpm test",
+      "prediction": "pnpm test",
+      "correct": true,
+      "confidence": [
+        0.9999998211860657,
+        0.9999988079071045,
+        0.9999989867210388,
+        0.9999996423721313
+      ]
+    },
+    {
+      "id": "session-novel-087557a2383b88f5a8bc5c3a-1",
+      "variant": 1,
+      "question": "Session 3. My account is amszaw. What name should you call me? Reply with only the name.",
+      "expected": "Noah",
+      "prediction": "Noah",
+      "correct": true,
+      "confidence": [
+        0.9999998807907104,
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-116f5636fc1b8857fb1b5488-1",
+      "variant": 1,
+      "question": "Session 3. My account is huuuyq. How should I run tests in repository xselyf?",
+      "expected": "pnpm test",
+      "prediction": "pnpm test",
+      "correct": true,
+      "confidence": [
+        1.0,
+        0.9999998807907104,
+        0.9999991655349731,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": "session-novel-4599a2360d0932cc442c2d63-1",
+      "variant": 1,
+      "question": "Session 3. My account is isvgoq. Which runtime does repository dwodbq use?",
+      "expected": "PHP",
+      "prediction": "PHP",
+      "correct": true,
+      "confidence": [
+        1.0000001192092896,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-5488a38b64d37c0199909da5-1",
+      "variant": 1,
+      "question": "Session 3. My account is mhqnwg. Which build tool does repository iobnmt use?",
+      "expected": "Buck",
+      "prediction": "Buck",
+      "correct": true,
+      "confidence": [
+        1.0000001192092896,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-b3fe266088fb1fac36b55897-1",
+      "variant": 1,
+      "question": "Session 3. My account is yaxzek. What name should you call me? Reply with only the name.",
+      "expected": "Lena",
+      "prediction": "Lena",
+      "correct": true,
+      "confidence": [
+        1.0000001192092896,
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-ab0cf95cb17f7d9a30d8d7de-1",
+      "variant": 1,
+      "question": "Session 3. My account is pvvnpr. Which editor do I use?",
+      "expected": "Sublime Text",
+      "prediction": "Sublime Text",
+      "correct": true,
+      "confidence": [
+        1.0,
+        1.0000001192092896,
+        1.0,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": "session-novel-d5ca77d2b933466ecc5ecc67-1",
+      "variant": 1,
+      "question": "Session 3. My account is lgxsdb. What is the config file for repository faiidy?",
+      "expected": "config/queue.ini",
+      "prediction": "config/queue.ini",
+      "correct": true,
+      "confidence": [
+        0.9999983906745911,
+        0.9999997019767761,
+        0.9999987483024597,
+        0.9999990463256836,
+        0.9999931454658508
+      ]
+    },
+    {
+      "id": "session-novel-fbe70c468716628ba8332c97-1",
+      "variant": 1,
+      "question": "Session 3. My account is iqflmx. Which time zone should you use for me?",
+      "expected": "Auckland",
+      "prediction": "Auckland",
+      "correct": true,
+      "confidence": [
+        1.0000001192092896,
+        1.0000001192092896,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-72de3419159ad31bd13ec30f-1",
+      "variant": 1,
+      "question": "Session 3. My account is dfjzky. What is the config file for repository iihrfa?",
+      "expected": "settings/web.yaml",
+      "prediction": "settings/web.yaml",
+      "correct": true,
+      "confidence": [
+        0.9999996423721313,
+        0.9999995827674866,
+        0.9999995827674866,
+        1.0
+      ]
+    }
+  ]
+}

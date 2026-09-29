@@ -1,0 +1,435 @@
+{
+  "data": ".datasets_cache/session-broad-novel-values-v1/validation.jsonl",
+  "count": 40,
+  "correct": 40,
+  "baseline_correct": 0,
+  "all_zeroed_weights_abstain": true,
+  "zeroed_weight_predictions": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "facts_per_scope": 20,
+  "stored_tokens": 70,
+  "memory_bytes": 482544,
+  "elapsed_seconds": 14.814595500007272,
+  "predictions": [
+    {
+      "id": "session-novel-b12ce1e25c5316cd13158bf7-0",
+      "variant": 0,
+      "question": "Session 3. My account is cyoxni. How should I run tests in repository ijcxfj?",
+      "expected": "pnpm test",
+      "prediction": "pnpm test",
+      "correct": true,
+      "baseline": "cyoxni",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-3a45c11721ab699df63cce63-0",
+      "variant": 0,
+      "question": "Session 3. My account is sjskvk. What name should you call me? Reply with only the name.",
+      "expected": "Priya",
+      "prediction": "Priya",
+      "correct": true,
+      "baseline": "sjskvk",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-9faa93b560becad26081ffb9-0",
+      "variant": 0,
+      "question": "Session 3. My account is maljal. Which runtime does repository xpoqod use?",
+      "expected": "Kotlin",
+      "prediction": "Kotlin",
+      "correct": true,
+      "baseline": "Python",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-74461157ac6ad2415b4cad9a-0",
+      "variant": 0,
+      "question": "Session 3. My account is mbenjf. What is the entry point file for repository ywomjz?",
+      "expected": "src/queue/main.py",
+      "prediction": "src/queue/main.py",
+      "correct": true,
+      "baseline": "/commit",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-75577b9fd5f17efb705e63f4-0",
+      "variant": 0,
+      "question": "Session 3. My account is bdwobh. Which language do I prefer for replies?",
+      "expected": "Swedish",
+      "prediction": "Swedish",
+      "correct": true,
+      "baseline": "English",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-d86fdebce4b213c84a53c402-0",
+      "variant": 0,
+      "question": "Session 3. My account is dfgvrc. Which time zone should you use for me?",
+      "expected": "Vancouver",
+      "prediction": "Vancouver",
+      "correct": true,
+      "baseline": "America/New_York",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-5da78134f730b500001ccfc7-0",
+      "variant": 0,
+      "question": "Session 3. My account is aazddz. Which project am I working on?",
+      "expected": "Summit",
+      "prediction": "Summit",
+      "correct": true,
+      "baseline": "Aazddz",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-df75338da83e47c9d4bd1c83-0",
+      "variant": 0,
+      "question": "Session 3. My account is udgulv. Which build tool does repository bogxfo use?",
+      "expected": "Ant",
+      "prediction": "Ant",
+      "correct": true,
+      "baseline": "bogxfo",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-5826736bc99a2a71f43cc2eb-0",
+      "variant": 0,
+      "question": "Session 3. My account is fbogcj. What is the config file for repository dyysik?",
+      "expected": "settings/web.yaml",
+      "prediction": "settings/web.yaml",
+      "correct": true,
+      "baseline": "dyysik",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-e975845dfafc96e81fffa141-0",
+      "variant": 0,
+      "question": "Session 3. My account is peytwe. How old am I now? Reply with only the number.",
+      "expected": "95",
+      "prediction": "95",
+      "correct": true,
+      "baseline": "35",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-b9dff3aab1c6105f01997097-0",
+      "variant": 0,
+      "question": "Session 3. My account is avcgmn. How should I run tests in repository efbkfi?",
+      "expected": "npm test",
+      "prediction": "npm test",
+      "correct": true,
+      "baseline": "efbkfi",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-087557a2383b88f5a8bc5c3a-0",
+      "variant": 0,
+      "question": "Session 3. My account is amszaw. What name should you call me? Reply with only the name.",
+      "expected": "Lena",
+      "prediction": "Lena",
+      "correct": true,
+      "baseline": "amzaw",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-116f5636fc1b8857fb1b5488-0",
+      "variant": 0,
+      "question": "Session 3. My account is huuuyq. How should I run tests in repository xselyf?",
+      "expected": "mvn test",
+      "prediction": "mvn test",
+      "correct": true,
+      "baseline": "To run tests in a repository named `xselyf`, you should use the `pytest` command-line tool with the",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-4599a2360d0932cc442c2d63-0",
+      "variant": 0,
+      "question": "Session 3. My account is isvgoq. Which runtime does repository dwodbq use?",
+      "expected": "Kotlin",
+      "prediction": "Kotlin",
+      "correct": true,
+      "baseline": "dwo",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-5488a38b64d37c0199909da5-0",
+      "variant": 0,
+      "question": "Session 3. My account is mhqnwg. Which build tool does repository iobnmt use?",
+      "expected": "Ant",
+      "prediction": "Ant",
+      "correct": true,
+      "baseline": "gh",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-b3fe266088fb1fac36b55897-0",
+      "variant": 0,
+      "question": "Session 3. My account is yaxzek. What name should you call me? Reply with only the name.",
+      "expected": "Omar",
+      "prediction": "Omar",
+      "correct": true,
+      "baseline": "Yaxzek",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-ab0cf95cb17f7d9a30d8d7de-0",
+      "variant": 0,
+      "question": "Session 3. My account is pvvnpr. Which editor do I use?",
+      "expected": "Kate",
+      "prediction": "Kate",
+      "correct": true,
+      "baseline": "VNC (Virtual Network Computing) is a protocol that allows remote access to a computer's graphical user interface. The default",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-d5ca77d2b933466ecc5ecc67-0",
+      "variant": 0,
+      "question": "Session 3. My account is lgxsdb. What is the config file for repository faiidy?",
+      "expected": "config/cache.yaml",
+      "prediction": "config/cache.yaml",
+      "correct": true,
+      "baseline": "faiidy-config.yaml",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-fbe70c468716628ba8332c97-0",
+      "variant": 0,
+      "question": "Session 3. My account is iqflmx. Which time zone should you use for me?",
+      "expected": "Vancouver",
+      "prediction": "Vancouver",
+      "correct": true,
+      "baseline": "America/New_York",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-72de3419159ad31bd13ec30f-0",
+      "variant": 0,
+      "question": "Session 3. My account is dfjzky. What is the config file for repository iihrfa?",
+      "expected": "config/queue.ini",
+      "prediction": "config/queue.ini",
+      "correct": true,
+      "baseline": "dfjzky",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-b12ce1e25c5316cd13158bf7-1",
+      "variant": 1,
+      "question": "Session 3. My account is cyoxni. How should I run tests in repository ijcxfj?",
+      "expected": "mvn test",
+      "prediction": "mvn test",
+      "correct": true,
+      "baseline": "cyoxni",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-3a45c11721ab699df63cce63-1",
+      "variant": 1,
+      "question": "Session 3. My account is sjskvk. What name should you call me? Reply with only the name.",
+      "expected": "Theo",
+      "prediction": "Theo",
+      "correct": true,
+      "baseline": "sjskvk",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-9faa93b560becad26081ffb9-1",
+      "variant": 1,
+      "question": "Session 3. My account is maljal. Which runtime does repository xpoqod use?",
+      "expected": "Elixir",
+      "prediction": "Elixir",
+      "correct": true,
+      "baseline": "Python",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-74461157ac6ad2415b4cad9a-1",
+      "variant": 1,
+      "question": "Session 3. My account is mbenjf. What is the entry point file for repository ywomjz?",
+      "expected": "src/cache/main.py",
+      "prediction": "src/cache/main.py",
+      "correct": true,
+      "baseline": "/commit",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-75577b9fd5f17efb705e63f4-1",
+      "variant": 1,
+      "question": "Session 3. My account is bdwobh. Which language do I prefer for replies?",
+      "expected": "Hindi",
+      "prediction": "Hindi",
+      "correct": true,
+      "baseline": "English",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-d86fdebce4b213c84a53c402-1",
+      "variant": 1,
+      "question": "Session 3. My account is dfgvrc. Which time zone should you use for me?",
+      "expected": "Nairobi",
+      "prediction": "Nairobi",
+      "correct": true,
+      "baseline": "America/New_York",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-5da78134f730b500001ccfc7-1",
+      "variant": 1,
+      "question": "Session 3. My account is aazddz. Which project am I working on?",
+      "expected": "Polaris",
+      "prediction": "Polaris",
+      "correct": true,
+      "baseline": "Aazddz",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-df75338da83e47c9d4bd1c83-1",
+      "variant": 1,
+      "question": "Session 3. My account is udgulv. Which build tool does repository bogxfo use?",
+      "expected": "Meson",
+      "prediction": "Meson",
+      "correct": true,
+      "baseline": "bogxfo",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-5826736bc99a2a71f43cc2eb-1",
+      "variant": 1,
+      "question": "Session 3. My account is fbogcj. What is the config file for repository dyysik?",
+      "expected": "conf/worker.json",
+      "prediction": "conf/worker.json",
+      "correct": true,
+      "baseline": "dyysik",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-e975845dfafc96e81fffa141-1",
+      "variant": 1,
+      "question": "Session 3. My account is peytwe. How old am I now? Reply with only the number.",
+      "expected": "98",
+      "prediction": "98",
+      "correct": true,
+      "baseline": "35",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-b9dff3aab1c6105f01997097-1",
+      "variant": 1,
+      "question": "Session 3. My account is avcgmn. How should I run tests in repository efbkfi?",
+      "expected": "pnpm test",
+      "prediction": "pnpm test",
+      "correct": true,
+      "baseline": "efbkfi",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-087557a2383b88f5a8bc5c3a-1",
+      "variant": 1,
+      "question": "Session 3. My account is amszaw. What name should you call me? Reply with only the name.",
+      "expected": "Noah",
+      "prediction": "Noah",
+      "correct": true,
+      "baseline": "amzaw",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-116f5636fc1b8857fb1b5488-1",
+      "variant": 1,
+      "question": "Session 3. My account is huuuyq. How should I run tests in repository xselyf?",
+      "expected": "pnpm test",
+      "prediction": "pnpm test",
+      "correct": true,
+      "baseline": "To run tests in a repository named `xselyf`, you should use the `pytest` command-line tool with the",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-4599a2360d0932cc442c2d63-1",
+      "variant": 1,
+      "question": "Session 3. My account is isvgoq. Which runtime does repository dwodbq use?",
+      "expected": "PHP",
+      "prediction": "PHP",
+      "correct": true,
+      "baseline": "dwo",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-5488a38b64d37c0199909da5-1",
+      "variant": 1,
+      "question": "Session 3. My account is mhqnwg. Which build tool does repository iobnmt use?",
+      "expected": "Buck",
+      "prediction": "Buck",
+      "correct": true,
+      "baseline": "gh",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-b3fe266088fb1fac36b55897-1",
+      "variant": 1,
+      "question": "Session 3. My account is yaxzek. What name should you call me? Reply with only the name.",
+      "expected": "Lena",
+      "prediction": "Lena",
+      "correct": true,
+      "baseline": "Yaxzek",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-ab0cf95cb17f7d9a30d8d7de-1",
+      "variant": 1,
+      "question": "Session 3. My account is pvvnpr. Which editor do I use?",
+      "expected": "Sublime Text",
+      "prediction": "Sublime Text",
+      "correct": true,
+      "baseline": "VNC (Virtual Network Computing) is a protocol that allows remote access to a computer's graphical user interface. The default",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-d5ca77d2b933466ecc5ecc67-1",
+      "variant": 1,
+      "question": "Session 3. My account is lgxsdb. What is the config file for repository faiidy?",
+      "expected": "config/queue.ini",
+      "prediction": "config/queue.ini",
+      "correct": true,
+      "baseline": "faiidy-config.yaml",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-fbe70c468716628ba8332c97-1",
+      "variant": 1,
+      "question": "Session 3. My account is iqflmx. Which time zone should you use for me?",
+      "expected": "Auckland",
+      "prediction": "Auckland",
+      "correct": true,
+      "baseline": "America/New_York",
+      "baseline_correct": false
+    },
+    {
+      "id": "session-novel-72de3419159ad31bd13ec30f-1",
+      "variant": 1,
+      "question": "Session 3. My account is dfjzky. What is the config file for repository iihrfa?",
+      "expected": "settings/web.yaml",
+      "prediction": "settings/web.yaml",
+      "correct": true,
+      "baseline": "dfjzky",
+      "baseline_correct": false
+    }
+  ]
+}

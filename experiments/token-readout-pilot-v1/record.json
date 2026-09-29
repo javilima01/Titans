@@ -1,0 +1,16 @@
+{
+  "id": "token-readout-pilot-v1",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Historical supervised readout pilot: ridge and nearest-neighbor each recalled 20/20 demonstrations. Superseded by the network-only constraint.",
+  "result": "Historical supervised readout pilot: ridge and nearest-neighbor each recalled 20/20 demonstrations. Superseded by the network-only constraint.",
+  "details": "The ridge fit retained examples for refitting; the alternative used nearest-neighbor labels. This is not the final network-only memory.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.430020+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "results.json"
+  ]
+}

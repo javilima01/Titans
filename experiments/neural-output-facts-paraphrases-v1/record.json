@@ -1,0 +1,30 @@
+{
+  "id": "neural-output-facts-paraphrases-v1",
+  "kind": "analysis",
+  "checkpoint": "experiments/neural-output-facts-paraphrases-v1/network.safetensors",
+  "training": {},
+  "reports": {
+    "results.json": {
+      "split": "development",
+      "evaluation_kind": "neural_parameters_only",
+      "evaluations": {
+        "normal": {
+          "metrics": {
+            "count": 8,
+            "exact_match": 0.625
+          }
+        }
+      }
+    }
+  },
+  "note": "Network-only automatic statement writes: 5/8 independent question wordings recalled exactly.",
+  "result": "Network-only automatic statement writes: 5/8 independent question wordings recalled exactly.",
+  "details": "The first paraphrase generator yielded few usable variants. Test questions did not appear among the generated write questions.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.434349+00:00",
+  "status": "experimental",
+  "artifacts": [
+    "network.safetensors",
+    "results.json"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "online-token-memory-attend-v1",
+  "kind": "analysis",
+  "checkpoint": null,
+  "training": {},
+  "reports": {},
+  "note": "Attending to all reconstructed facts gave 6/9 strict exact matches; one additional answer differed only in case.",
+  "result": "Attending to all reconstructed facts gave 6/9 strict exact matches; one additional answer differed only in case.",
+  "details": "The response generator invented a build command and an unknown fruit. This text-reconstruction design was later rejected by the user constraint.",
+  "command": null,
+  "recorded_at": "2026-09-28T18:01:48.432718+00:00",
+  "status": "superseded",
+  "artifacts": [
+    "memory.safetensors",
+    "results.json"
+  ]
+}

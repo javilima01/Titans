@@ -1,0 +1,237 @@
+{
+  "paraphrases": true,
+  "writes": [
+    {
+      "source": "Please remember: My name is Ilaria.",
+      "raw": "[{\"question\":\"What is your name?\",\"answer\":\"Ilaria\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is my name?",
+            "Who is my name?"
+          ],
+          "answer": "Ilaria"
+        }
+      ]
+    },
+    {
+      "source": "I prefer explanations with worked examples.",
+      "raw": "[{\"question\":\"What is the preferred style for explanations?\", \"answer\":\"explanations with worked examples\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is the preferred style for explanations?"
+          ],
+          "answer": "explanations with worked examples"
+        }
+      ]
+    },
+    {
+      "source": "In repository kestrel, run tests with uv run pytest tests/api -q.",
+      "raw": "[{\"question\":\"What command do I run to run tests in repository kestrel?\",\"answer\":\"uv run pytest tests/api -q\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What command do I run to run tests in repository kestrel?"
+          ],
+          "answer": "uv run pytest tests/api -q"
+        }
+      ]
+    },
+    {
+      "source": "The entry point for repository kestrel is services/gateway/start.py.",
+      "raw": "[{\"question\":\"What is the entry point for repository kestrel?\",\"answer\":\"services/gateway/start.py\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is the entry point for repository kestrel?"
+          ],
+          "answer": "services/gateway/start.py"
+        }
+      ]
+    },
+    {
+      "source": "The build tool for repository fern is Meson.",
+      "raw": "[{\"question\":\"What is the build tool for repository fern?\",\"answer\":\"Meson\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is the build tool for repository fern?"
+          ],
+          "answer": "Meson"
+        }
+      ]
+    },
+    {
+      "source": "For repository kestrel, use the build tool Bazel.",
+      "raw": "[{\"question\":\"What is the build tool for repository kestrel?\",\"answer\":\"Bazel\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is the build tool for repository kestrel?"
+          ],
+          "answer": "Bazel"
+        }
+      ]
+    },
+    {
+      "source": "Correction: the build tool for repository kestrel is Ninja.",
+      "raw": "[{\"question\":\"What is the build tool for repository kestrel?\",\"answer\":\"Ninja\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is the build tool for repository kestrel?"
+          ],
+          "answer": "Ninja"
+        }
+      ]
+    },
+    {
+      "source": "My timezone is Pacific/Chatham.",
+      "raw": "[{\"question\":\"What is my timezone?\",\"answer\":\"Pacific/Chatham\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is my timezone?"
+          ],
+          "answer": "Pacific/Chatham"
+        }
+      ]
+    },
+    {
+      "source": "The migration policy for kestrel is append-only SQL files under db/changes.",
+      "raw": "[{\"question\":\"What is the migration policy for kestrel?\",\"answer\":\"append-only SQL files under db/changes\"}]",
+      "accepted": [
+        {
+          "questions": [
+            "What is the migration policy for kestrel?"
+          ],
+          "answer": "append-only SQL files under db/changes"
+        }
+      ]
+    }
+  ],
+  "reads": [
+    {
+      "question": "What should you call me?",
+      "expected": "Ilaria",
+      "prediction": "Ilaria",
+      "confidence": [
+        0.9430577158927917,
+        0.9760933518409729,
+        0.9833543300628662
+      ],
+      "correct": true,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "How do I like things explained?",
+      "expected": "explanations with worked examples",
+      "prediction": "explanations with worked examples",
+      "confidence": [
+        0.6113154888153076,
+        0.9097594022750854,
+        0.9275649189949036,
+        0.8877182602882385,
+        0.9562000632286072,
+        0.9882128834724426,
+        0.9802552461624146
+      ],
+      "correct": true,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "Which command runs kestrel's API tests?",
+      "expected": "uv run pytest tests/api -q",
+      "prediction": "uv run pytest tests/api -q",
+      "confidence": [
+        0.9838491678237915,
+        0.9393652081489563,
+        0.9333726763725281,
+        0.962812066078186,
+        0.8771932125091553,
+        0.9856940507888794,
+        0.9926629066467285,
+        0.9929655194282532
+      ],
+      "correct": true,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "Where does the kestrel service start?",
+      "expected": "services/gateway/start.py",
+      "prediction": "services/gateway/start.py",
+      "confidence": [
+        0.705491840839386,
+        0.914523720741272,
+        0.9459840059280396,
+        0.8616195321083069,
+        0.9088050723075867,
+        0.9664293527603149
+      ],
+      "correct": true,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "What builds fern?",
+      "expected": "Meson",
+      "prediction": "Mesoninja",
+      "confidence": [
+        0.7587398886680603,
+        0.4906231164932251,
+        0.48338180780410767,
+        0.5778279900550842
+      ],
+      "correct": false,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "What builds kestrel now?",
+      "expected": "Ninja",
+      "prediction": "append-only SQL files under db/changes",
+      "confidence": [
+        0.6844838261604309,
+        0.9684153199195862,
+        0.9450984001159668,
+        0.9759486317634583,
+        0.9202295541763306,
+        0.9793314337730408,
+        0.9949666857719421,
+        0.9880553483963013,
+        0.9974863529205322
+      ],
+      "correct": false,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "What time zone do I use?",
+      "expected": "Pacific/Chatham",
+      "prediction": "Pacific/Chatham",
+      "confidence": [
+        0.9654229283332825,
+        0.9752268195152283,
+        0.9849440455436707,
+        0.9974849820137024,
+        0.9905906915664673
+      ],
+      "correct": true,
+      "question_seen_during_write": false
+    },
+    {
+      "question": "Where do kestrel's database changes go, and can we edit old migrations?",
+      "expected": "append-only SQL files under db/changes",
+      "prediction": "Ninja",
+      "confidence": [
+        0.5731690526008606,
+        0.8731629252433777,
+        0.7390502691268921
+      ],
+      "correct": false,
+      "question_seen_during_write": false
+    }
+  ],
+  "correct": 5,
+  "count": 8,
+  "network_bytes": 12583088,
+  "elapsed_seconds": 18.366634416976012
+}

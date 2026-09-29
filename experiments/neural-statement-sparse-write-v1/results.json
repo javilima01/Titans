@@ -1,0 +1,363 @@
+{
+  "config": {
+    "cases": "experiments/neural-statement-stress-cases-v1/writes.json",
+    "output": "experiments/neural-statement-sparse-write-v1",
+    "features": 4096,
+    "bandwidth": 2.0,
+    "code_width": 64,
+    "latent_width": 1024,
+    "latent_sparsity": 32,
+    "device": "mps",
+    "write_only": true,
+    "read_kind": "query",
+    "state": null
+  },
+  "writes": [
+    {
+      "source": "The test command for repository cobalt is uv run pytest tests/qufyuvy -q.",
+      "surprise": 0.0009765624417923391,
+      "bytes": 73
+    },
+    {
+      "source": "The documentation directory for repository firwood is docs/dmdazjt.",
+      "surprise": 0.0012665463145822287,
+      "bytes": 67
+    },
+    {
+      "source": "The log format for repository cobalt is jsonl-hhgyrjj.",
+      "surprise": 0.0012527109356597066,
+      "bytes": 54
+    },
+    {
+      "source": "The development command for repository tamarind is just dev-pqxdndf.",
+      "surprise": 0.0011451671598479152,
+      "bytes": 68
+    },
+    {
+      "source": "The development command for repository cobalt is just dev-kzjdpga.",
+      "surprise": 0.0013328103814274073,
+      "bytes": 66
+    },
+    {
+      "source": "The log format for repository firwood is jsonl-zufjszg.",
+      "surprise": 0.0015142005868256092,
+      "bytes": 55
+    },
+    {
+      "source": "The migration directory for repository cobalt is db/qfcjqtm/changes.",
+      "surprise": 0.001167480368167162,
+      "bytes": 68
+    },
+    {
+      "source": "I write dates as DD.MM.YYYY.",
+      "surprise": 0.0009818172547966242,
+      "bytes": 28
+    },
+    {
+      "source": "The development command for repository firwood is just dev-fucpufb.",
+      "surprise": 0.0012848603073507547,
+      "bytes": 67
+    },
+    {
+      "source": "The documentation directory for repository quasar is docs/dujgfyh.",
+      "surprise": 0.0011366865364834666,
+      "bytes": 66
+    },
+    {
+      "source": "The migration directory for repository tamarind is db/jaubpqt/changes.",
+      "surprise": 0.0016297058900818229,
+      "bytes": 70
+    },
+    {
+      "source": "The test command for repository tamarind is uv run pytest tests/ffvkzbq -q.",
+      "surprise": 0.001771216164343059,
+      "bytes": 75
+    },
+    {
+      "source": "The maintainer for repository firwood is wpfvwmb Orvex.",
+      "surprise": 0.001057050540111959,
+      "bytes": 55
+    },
+    {
+      "source": "The artifact directory for repository quasar is out/gecbtjn/artifacts.",
+      "surprise": 0.001129057491198182,
+      "bytes": 70
+    },
+    {
+      "source": "The entry point for repository quasar is services/btzpjks/main.py.",
+      "surprise": 0.0011546595487743616,
+      "bytes": 66
+    },
+    {
+      "source": "The configuration file for repository quasar is config/trvqzke.toml.",
+      "surprise": 0.00121052167378366,
+      "bytes": 68
+    },
+    {
+      "source": "The entry point for repository cobalt is services/dggjzyw/main.py.",
+      "surprise": 0.0015772865153849125,
+      "bytes": 66
+    },
+    {
+      "source": "The release branch for repository cobalt is release/muhnxsr.",
+      "surprise": 0.0011386252008378506,
+      "bytes": 60
+    },
+    {
+      "source": "I prefer explanations with worked examples.",
+      "surprise": 0.001146236201748252,
+      "bytes": 43
+    },
+    {
+      "source": "Please remember: my name is Olivane.",
+      "surprise": 0.0010599461384117603,
+      "bytes": 36
+    },
+    {
+      "source": "The log format for repository tamarind is jsonl-vukwaem.",
+      "surprise": 0.001500310841947794,
+      "bytes": 56
+    },
+    {
+      "source": "I use the Colemak keyboard layout.",
+      "surprise": 0.0011723969364538789,
+      "bytes": 34
+    },
+    {
+      "source": "The package manager for repository cobalt is pkg-egdmmjg.",
+      "surprise": 0.0011395770125091076,
+      "bytes": 57
+    },
+    {
+      "source": "The entry point for repository firwood is services/rvdwzub/main.py.",
+      "surprise": 0.0014008104335516691,
+      "bytes": 67
+    },
+    {
+      "source": "The formatter for repository tamarind is fmt-xftzeeq.",
+      "surprise": 0.001101009314879775,
+      "bytes": 53
+    },
+    {
+      "source": "The migration directory for repository firwood is db/btqsjhf/changes.",
+      "surprise": 0.0015026440378278494,
+      "bytes": 69
+    },
+    {
+      "source": "Remember: my terminal font is Iosevka.",
+      "surprise": 0.0011044680140912533,
+      "bytes": 38
+    },
+    {
+      "source": "I prefer meetings on Thursdays.",
+      "surprise": 0.001105586183257401,
+      "bytes": 31
+    },
+    {
+      "source": "The release branch for repository quasar is release/pgjzxsk.",
+      "surprise": 0.0014345023082569242,
+      "bytes": 60
+    },
+    {
+      "source": "The formatter for repository firwood is fmt-qqagzuz.",
+      "surprise": 0.0015655041206628084,
+      "bytes": 52
+    },
+    {
+      "source": "The documentation directory for repository cobalt is docs/uhkqcpx.",
+      "surprise": 0.0013368469662964344,
+      "bytes": 66
+    },
+    {
+      "source": "The artifact directory for repository tamarind is out/fufedag/artifacts.",
+      "surprise": 0.0017573924269527197,
+      "bytes": 72
+    },
+    {
+      "source": "My pronouns are they/them.",
+      "surprise": 0.0011236659483984113,
+      "bytes": 26
+    },
+    {
+      "source": "The artifact directory for repository cobalt is out/gdercmw/artifacts.",
+      "surprise": 0.0014364811358973384,
+      "bytes": 70
+    },
+    {
+      "source": "The formatter for repository quasar is fmt-jfbjmhc.",
+      "surprise": 0.0014212552923709154,
+      "bytes": 51
+    },
+    {
+      "source": "I am 37 years old.",
+      "surprise": 0.001101628877222538,
+      "bytes": 18
+    },
+    {
+      "source": "The configuration file for repository cobalt is config/rgcbsjp.toml.",
+      "surprise": 0.0015708629507571459,
+      "bytes": 68
+    },
+    {
+      "source": "The configuration file for repository firwood is config/peqgghs.toml.",
+      "surprise": 0.0015007408801466227,
+      "bytes": 69
+    },
+    {
+      "source": "My working hours are 07:30-15:30.",
+      "surprise": 0.0010947359260171652,
+      "bytes": 33
+    },
+    {
+      "source": "The artifact directory for repository firwood is out/sgvrkww/artifacts.",
+      "surprise": 0.0013479061890393496,
+      "bytes": 71
+    },
+    {
+      "source": "The formatter for repository cobalt is fmt-mradfsp.",
+      "surprise": 0.001216216362081468,
+      "bytes": 51
+    },
+    {
+      "source": "My preferred editor is Zed.",
+      "surprise": 0.0011655254056677222,
+      "bytes": 27
+    },
+    {
+      "source": "The package manager for repository tamarind is pkg-rtjmbxu.",
+      "surprise": 0.0015482716262340546,
+      "bytes": 59
+    },
+    {
+      "source": "The package manager for repository quasar is pkg-unvfcts.",
+      "surprise": 0.00135878287255764,
+      "bytes": 57
+    },
+    {
+      "source": "My job title is embedded systems engineer.",
+      "surprise": 0.0010904505616053939,
+      "bytes": 42
+    },
+    {
+      "source": "My timezone is Europe/Tallinn.",
+      "surprise": 0.001093139871954918,
+      "bytes": 30
+    },
+    {
+      "source": "The test command for repository quasar is uv run pytest tests/psxjcsz -q.",
+      "surprise": 0.0014065151335671544,
+      "bytes": 73
+    },
+    {
+      "source": "The documentation directory for repository tamarind is docs/fdcurpn.",
+      "surprise": 0.0013705373276025057,
+      "bytes": 68
+    },
+    {
+      "source": "The log format for repository quasar is jsonl-wdkhqgr.",
+      "surprise": 0.0012942309258505702,
+      "bytes": 54
+    },
+    {
+      "source": "The maintainer for repository quasar is zqtzgnt Orvex.",
+      "surprise": 0.0014943925198167562,
+      "bytes": 54
+    },
+    {
+      "source": "I want commit messages written in Spanish.",
+      "surprise": 0.0010689656483009458,
+      "bytes": 42
+    },
+    {
+      "source": "The release branch for repository firwood is release/jyqkmst.",
+      "surprise": 0.0014348514378070831,
+      "bytes": 61
+    },
+    {
+      "source": "The migration directory for repository quasar is db/yynzzxn/changes.",
+      "surprise": 0.0012636224273592234,
+      "bytes": 68
+    },
+    {
+      "source": "The configuration file for repository tamarind is config/qhgcjan.toml.",
+      "surprise": 0.0014086635783314705,
+      "bytes": 70
+    },
+    {
+      "source": "The entry point for repository tamarind is services/unxmnfm/main.py.",
+      "surprise": 0.0013305448228493333,
+      "bytes": 68
+    },
+    {
+      "source": "The maintainer for repository tamarind is dgchvdt Orvex.",
+      "surprise": 0.0014589033089578152,
+      "bytes": 56
+    },
+    {
+      "source": "The maintainer for repository cobalt is aspqzaz Orvex.",
+      "surprise": 0.0013360908487811685,
+      "bytes": 54
+    },
+    {
+      "source": "The package manager for repository firwood is pkg-ygjwyxv.",
+      "surprise": 0.0013331541558727622,
+      "bytes": 58
+    },
+    {
+      "source": "The development command for repository quasar is just dev-rymvyev.",
+      "surprise": 0.0013249729527160525,
+      "bytes": 66
+    },
+    {
+      "source": "The release branch for repository tamarind is release/syheszf.",
+      "surprise": 0.0013964225072413683,
+      "bytes": 62
+    },
+    {
+      "source": "I avoid foods containing hazelnuts.",
+      "surprise": 0.0010947466362267733,
+      "bytes": 35
+    },
+    {
+      "source": "I prefer distances in kilometres.",
+      "surprise": 0.0011365878162905574,
+      "bytes": 33
+    },
+    {
+      "source": "I live in Tartu.",
+      "surprise": 0.001169045688584447,
+      "bytes": 16
+    },
+    {
+      "source": "The test command for repository firwood is uv run pytest tests/tqjxsvk -q.",
+      "surprise": 0.0012733638286590576,
+      "bytes": 74
+    },
+    {
+      "source": "Correction: the release branch for repository tamarind is ship/syheszf-v2.",
+      "surprise": 0.0013050246052443981,
+      "bytes": 74
+    },
+    {
+      "source": "Correction: the release branch for repository cobalt is ship/muhnxsr-v2.",
+      "surprise": 0.0021209740079939365,
+      "bytes": 72
+    },
+    {
+      "source": "Correction: the release branch for repository quasar is ship/pgjzxsk-v2.",
+      "surprise": 0.0016912186983972788,
+      "bytes": 72
+    },
+    {
+      "source": "Correction: the release branch for repository firwood is ship/jyqkmst-v2.",
+      "surprise": 0.0015795702347531915,
+      "bytes": 73
+    }
+  ],
+  "reads": [],
+  "contains_answer": 0,
+  "count": 0,
+  "exact_statement": 0,
+  "network_bytes": 216089504,
+  "elapsed_seconds": 1.2501215420197695
+}

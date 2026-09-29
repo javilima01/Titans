@@ -1,0 +1,99 @@
+{
+  "index": {
+    "0": "What is the user's name?",
+    "1": "What is the user's name?",
+    "2": "What is the user's name?",
+    "3": "What is the user's name?",
+    "4": "What is the user's name?"
+  },
+  "writes": [
+    {
+      "source": "Please remember: My name is Ilaria.",
+      "result": "[{\"question\":\"What is the user's name?\",\"answer\":\"Ilaria\",\"replaces\":null}]"
+    },
+    {
+      "source": "I prefer explanations with worked examples.",
+      "result": "[{\"question\":\"What is the user's name?\",\"answer\":\"I prefer explanations with worked examples.\",\"replaces\":null}]"
+    },
+    {
+      "source": "In repository kestrel, run tests with uv run pytest tests/api -q.",
+      "result": "[{\"question\":\"What is the user's name?\",\"answer\":\"Kestrel\"}]"
+    },
+    {
+      "source": "The entry point for repository kestrel is services/gateway/start.py.",
+      "result": "[{\"question\":\"What is the user's name?\",\"answer\":\"The user's name is not explicitly stated in the provided message.\",\"replaces\":null}]"
+    },
+    {
+      "source": "The build tool for repository fern is Meson.",
+      "result": "[{\"question\":\"What is the user's name?\",\"answer\":\"The build tool for repository fern is Meson.\",\"replaces\":null}]"
+    },
+    {
+      "source": "For repository kestrel, use the build tool Bazel.",
+      "result": "[{\"question\":\"What is the user's name?\",\"answer\":\"Kestrel\",\"replaces\":null},{\"question\":\"What is the user's name?\",\"answer\":\"Kestrel\",\"replaces\":null},{\"question\":\"What is the user's name?\",\"answer\":\"Kestrel\",\"replaces\":null}]"
+    },
+    {
+      "source": "Correction: the build tool for repository kestrel is Ninja.",
+      "result": "[{\"question\":\"What is the user's name?\",\"answer\":\"Kestrel\",\"replaces\":null},{\"question\":\"What is the user's name?\",\"answer\":\"Kestrel\",\"replaces\":null},{\"question\":\"What is the user's name?\",\"answer\":\"Kestrel\",\"replaces\":null}]"
+    },
+    {
+      "source": "My timezone is Pacific/Chatham.",
+      "result": "[{\"question\":\"What is the user's name?\",\"answer\":\"Pacific/Chatham\",\"replaces\":null}]"
+    },
+    {
+      "source": "Can you explain a linked list?",
+      "result": "[]"
+    },
+    {
+      "source": "Thanks, that was useful!",
+      "result": "[]"
+    },
+    {
+      "source": "If my name were Bob, what would you call me?",
+      "result": "[{\"question\":\"What is the user's name?\",\"answer\":\"Bob\",\"replaces\":null}]"
+    },
+    {
+      "source": "The migration policy for kestrel is append-only SQL files under db/changes.",
+      "result": "[]"
+    }
+  ],
+  "reads": [
+    {
+      "question": "What should you call me?",
+      "result": "[]"
+    },
+    {
+      "question": "How do I like things explained?",
+      "result": "[]"
+    },
+    {
+      "question": "Which command runs kestrel's API tests?",
+      "result": "[]"
+    },
+    {
+      "question": "Where does the kestrel service start?",
+      "result": "[]"
+    },
+    {
+      "question": "What builds fern?",
+      "result": "[]"
+    },
+    {
+      "question": "What builds kestrel now?",
+      "result": "[]"
+    },
+    {
+      "question": "What time zone do I use?",
+      "result": "[]"
+    },
+    {
+      "question": "What is my favourite fruit?",
+      "result": "[]"
+    },
+    {
+      "question": "Where do kestrel's database changes go, and can we edit old migrations?",
+      "result": "[]"
+    }
+  ],
+  "extract_instruction": "You maintain a persistent memory for one user and their repositories.\nExtract durable facts explicitly asserted in the current user message: preferences,\npersonal facts, project decisions, code locations, commands and conventions.\nQuestions, hypothetical examples, requests to do work, and small talk are not facts.\nA request to remember a stated fact is a fact. Never invent or infer an answer.\nReturn ONLY a JSON array. Each entry has question, answer, replaces.\nThe question asks for that one fact and includes the repository name when applicable.\nThe answer MUST be an exact contiguous substring of the user's message.\nreplaces is the integer ID of an existing question about the SAME entity and property,\nor null for a new fact. A correction replaces only that entity's fact.\nUse existing question wording exactly when replacing it. Return [] if there are no facts.\nExample message: I prefer concise replies. The entry file for acorn is app/start.py.\nExample result: [{\"question\":\"What style of replies do I prefer?\",\"answer\":\"concise\", \"replaces\":null}, {\"question\":\"What is the entry file for acorn?\",\"answer\":\"app/start.py\",\"replaces\":null}]\n",
+  "route_instruction": "Select the stored questions whose answers would help answer the current\nuser request. Match the subject AND property. Include only relevant questions.\nDo not select a different repository or person. Return ONLY a JSON array of integer\nIDs, at most 3. Return [] when none match. You cannot see the stored answers.\n"
+}

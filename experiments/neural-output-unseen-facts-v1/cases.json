@@ -1,0 +1,23 @@
+{
+  "sources": [
+    "Remember: my preferred editor is Lapce.",
+    "I want dates written as YYYY/MM/DD.",
+    "Repository selene reads configuration from config/bluebird.toml.",
+    "In repository selene, start development with just serve-local.",
+    "The logging format for repository selene is newline-delimited JSON.",
+    "For repository rowan, the release branch is stable/2026-q3.",
+    "I avoid foods containing sesame.",
+    "The maintainer of repository rowan is Velune Arqis.",
+    "Correction: the release branch for repository rowan is release/blue-moon."
+  ],
+  "reads": [
+    ["Which editor do I usually use?", "Lapce"],
+    ["What date format do I prefer?", "YYYY/MM/DD"],
+    ["Where is selene's configuration file?", "config/bluebird.toml"],
+    ["How do I launch the selene dev server?", "just serve-local"],
+    ["How are selene's logs formatted?", "newline-delimited JSON"],
+    ["Which branch do rowan releases come from?", "release/blue-moon"],
+    ["Which food ingredient should you avoid recommending to me?", "sesame"],
+    ["Who maintains rowan?", "Velune Arqis"]
+  ]
+}

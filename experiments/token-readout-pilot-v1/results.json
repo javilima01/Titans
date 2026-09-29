@@ -1,0 +1,539 @@
+{
+  "elapsed_seconds": 8.44095770799322,
+  "stored_facts": 20,
+  "stored_tokens": 66,
+  "results": [
+    {
+      "id": "session-novel-b12ce1e25c5316cd13158bf7-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is cyoxni. How should I run tests in repository ijcxfj?",
+      "answer": "pnpm test",
+      "prediction": "pnpm test",
+      "correct": true,
+      "scores": [
+        0.998231828212738,
+        0.9997959136962891,
+        0.9998721480369568,
+        1.0000336170196533
+      ]
+    },
+    {
+      "id": "session-novel-b12ce1e25c5316cd13158bf7-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is cyoxni. How should I run tests in repository ijcxfj?",
+      "answer": "pnpm test",
+      "prediction": "pnpm test",
+      "correct": true,
+      "scores": [
+        0.9999999403953552,
+        1.0,
+        1.0,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": "session-novel-3a45c11721ab699df63cce63-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is sjskvk. What name should you call me? Reply with only the name.",
+      "answer": "Priya",
+      "prediction": "Priya",
+      "correct": true,
+      "scores": [
+        0.9989534616470337,
+        0.9998260736465454,
+        0.9999794960021973
+      ]
+    },
+    {
+      "id": "session-novel-3a45c11721ab699df63cce63-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is sjskvk. What name should you call me? Reply with only the name.",
+      "answer": "Priya",
+      "prediction": "Priya",
+      "correct": true,
+      "scores": [
+        1.0,
+        0.9999998211860657,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-9faa93b560becad26081ffb9-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is maljal. Which runtime does repository xpoqod use?",
+      "answer": "Kotlin",
+      "prediction": "Kotlin",
+      "correct": true,
+      "scores": [
+        0.9996203184127808,
+        0.9999303817749023,
+        0.9999134540557861
+      ]
+    },
+    {
+      "id": "session-novel-9faa93b560becad26081ffb9-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is maljal. Which runtime does repository xpoqod use?",
+      "answer": "Kotlin",
+      "prediction": "Kotlin",
+      "correct": true,
+      "scores": [
+        0.9999998807907104,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-74461157ac6ad2415b4cad9a-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is mbenjf. What is the entry point file for repository ywomjz?",
+      "answer": "src/queue/main.py",
+      "prediction": "src/queue/main.py",
+      "correct": true,
+      "scores": [
+        0.9986327290534973,
+        0.9995667338371277,
+        0.999882161617279,
+        0.9986937642097473,
+        0.9995274543762207,
+        0.9998466968536377
+      ]
+    },
+    {
+      "id": "session-novel-74461157ac6ad2415b4cad9a-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is mbenjf. What is the entry point file for repository ywomjz?",
+      "answer": "src/queue/main.py",
+      "prediction": "src/queue/main.py",
+      "correct": true,
+      "scores": [
+        0.9999999403953552,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-75577b9fd5f17efb705e63f4-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is bdwobh. Which language do I prefer for replies?",
+      "answer": "Swedish",
+      "prediction": "Swedish",
+      "correct": true,
+      "scores": [
+        0.9995181560516357,
+        0.9998595714569092,
+        1.0000243186950684
+      ]
+    },
+    {
+      "id": "session-novel-75577b9fd5f17efb705e63f4-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is bdwobh. Which language do I prefer for replies?",
+      "answer": "Swedish",
+      "prediction": "Swedish",
+      "correct": true,
+      "scores": [
+        0.9999998807907104,
+        1.0,
+        0.9999998807907104
+      ]
+    },
+    {
+      "id": "session-novel-d86fdebce4b213c84a53c402-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is dfgvrc. Which time zone should you use for me?",
+      "answer": "Vancouver",
+      "prediction": "Vancouver",
+      "correct": true,
+      "scores": [
+        0.999868631362915,
+        0.9999654293060303,
+        0.9997158050537109
+      ]
+    },
+    {
+      "id": "session-novel-d86fdebce4b213c84a53c402-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is dfgvrc. Which time zone should you use for me?",
+      "answer": "Vancouver",
+      "prediction": "Vancouver",
+      "correct": true,
+      "scores": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": "session-novel-5da78134f730b500001ccfc7-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is aazddz. Which project am I working on?",
+      "answer": "Summit",
+      "prediction": "Summit",
+      "correct": true,
+      "scores": [
+        0.9994596838951111,
+        0.9998180270195007,
+        0.9999695420265198
+      ]
+    },
+    {
+      "id": "session-novel-5da78134f730b500001ccfc7-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is aazddz. Which project am I working on?",
+      "answer": "Summit",
+      "prediction": "Summit",
+      "correct": true,
+      "scores": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-df75338da83e47c9d4bd1c83-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is udgulv. Which build tool does repository bogxfo use?",
+      "answer": "Ant",
+      "prediction": "Ant",
+      "correct": true,
+      "scores": [
+        0.999640941619873,
+        0.9996893405914307
+      ]
+    },
+    {
+      "id": "session-novel-df75338da83e47c9d4bd1c83-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is udgulv. Which build tool does repository bogxfo use?",
+      "answer": "Ant",
+      "prediction": "Ant",
+      "correct": true,
+      "scores": [
+        0.9999997615814209,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-5826736bc99a2a71f43cc2eb-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is fbogcj. What is the config file for repository dyysik?",
+      "answer": "settings/web.yaml",
+      "prediction": "settings/web.yaml",
+      "correct": true,
+      "scores": [
+        0.997981071472168,
+        0.9991970658302307,
+        0.9997239112854004,
+        1.0001213550567627
+      ]
+    },
+    {
+      "id": "session-novel-5826736bc99a2a71f43cc2eb-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is fbogcj. What is the config file for repository dyysik?",
+      "answer": "settings/web.yaml",
+      "prediction": "settings/web.yaml",
+      "correct": true,
+      "scores": [
+        0.9999999403953552,
+        1.0,
+        0.9999999403953552,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-e975845dfafc96e81fffa141-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is peytwe. How old am I now? Reply with only the number.",
+      "answer": "95",
+      "prediction": "95",
+      "correct": true,
+      "scores": [
+        0.9996135234832764,
+        0.9994929432868958,
+        0.9995924234390259
+      ]
+    },
+    {
+      "id": "session-novel-e975845dfafc96e81fffa141-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is peytwe. How old am I now? Reply with only the number.",
+      "answer": "95",
+      "prediction": "95",
+      "correct": true,
+      "scores": [
+        1.0,
+        0.9999999403953552,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": "session-novel-b9dff3aab1c6105f01997097-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is avcgmn. How should I run tests in repository efbkfi?",
+      "answer": "npm test",
+      "prediction": "npm test",
+      "correct": true,
+      "scores": [
+        0.9987471103668213,
+        0.9999310374259949,
+        0.9998685717582703
+      ]
+    },
+    {
+      "id": "session-novel-b9dff3aab1c6105f01997097-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is avcgmn. How should I run tests in repository efbkfi?",
+      "answer": "npm test",
+      "prediction": "npm test",
+      "correct": true,
+      "scores": [
+        1.0,
+        0.9999999403953552,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": "session-novel-087557a2383b88f5a8bc5c3a-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is amszaw. What name should you call me? Reply with only the name.",
+      "answer": "Lena",
+      "prediction": "Lena",
+      "correct": true,
+      "scores": [
+        0.9991230964660645,
+        0.999817430973053,
+        0.9999880194664001
+      ]
+    },
+    {
+      "id": "session-novel-087557a2383b88f5a8bc5c3a-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is amszaw. What name should you call me? Reply with only the name.",
+      "answer": "Lena",
+      "prediction": "Lena",
+      "correct": true,
+      "scores": [
+        1.0,
+        1.0,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": "session-novel-116f5636fc1b8857fb1b5488-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is huuuyq. How should I run tests in repository xselyf?",
+      "answer": "mvn test",
+      "prediction": "mvn test",
+      "correct": true,
+      "scores": [
+        0.9989556670188904,
+        0.99977707862854,
+        0.9997967481613159,
+        0.9998358488082886
+      ]
+    },
+    {
+      "id": "session-novel-116f5636fc1b8857fb1b5488-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is huuuyq. How should I run tests in repository xselyf?",
+      "answer": "mvn test",
+      "prediction": "mvn test",
+      "correct": true,
+      "scores": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-4599a2360d0932cc442c2d63-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is isvgoq. Which runtime does repository dwodbq use?",
+      "answer": "Kotlin",
+      "prediction": "Kotlin",
+      "correct": true,
+      "scores": [
+        0.9994566440582275,
+        0.9999057650566101,
+        1.000028371810913
+      ]
+    },
+    {
+      "id": "session-novel-4599a2360d0932cc442c2d63-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is isvgoq. Which runtime does repository dwodbq use?",
+      "answer": "Kotlin",
+      "prediction": "Kotlin",
+      "correct": true,
+      "scores": [
+        1.0,
+        1.0,
+        0.9999998807907104
+      ]
+    },
+    {
+      "id": "session-novel-5488a38b64d37c0199909da5-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is mhqnwg. Which build tool does repository iobnmt use?",
+      "answer": "Ant",
+      "prediction": "Ant",
+      "correct": true,
+      "scores": [
+        0.9993911981582642,
+        1.0002360343933105
+      ]
+    },
+    {
+      "id": "session-novel-5488a38b64d37c0199909da5-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is mhqnwg. Which build tool does repository iobnmt use?",
+      "answer": "Ant",
+      "prediction": "Ant",
+      "correct": true,
+      "scores": [
+        1.0,
+        0.9999999403953552
+      ]
+    },
+    {
+      "id": "session-novel-b3fe266088fb1fac36b55897-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is yaxzek. What name should you call me? Reply with only the name.",
+      "answer": "Omar",
+      "prediction": "Omar",
+      "correct": true,
+      "scores": [
+        0.9994156360626221,
+        0.9997929930686951,
+        0.9999783039093018
+      ]
+    },
+    {
+      "id": "session-novel-b3fe266088fb1fac36b55897-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is yaxzek. What name should you call me? Reply with only the name.",
+      "answer": "Omar",
+      "prediction": "Omar",
+      "correct": true,
+      "scores": [
+        0.9999998211860657,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-ab0cf95cb17f7d9a30d8d7de-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is pvvnpr. Which editor do I use?",
+      "answer": "Kate",
+      "prediction": "Kate",
+      "correct": true,
+      "scores": [
+        0.9995999336242676,
+        0.999967098236084
+      ]
+    },
+    {
+      "id": "session-novel-ab0cf95cb17f7d9a30d8d7de-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is pvvnpr. Which editor do I use?",
+      "answer": "Kate",
+      "prediction": "Kate",
+      "correct": true,
+      "scores": [
+        0.9999999403953552,
+        1.0000001192092896
+      ]
+    },
+    {
+      "id": "session-novel-d5ca77d2b933466ecc5ecc67-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is lgxsdb. What is the config file for repository faiidy?",
+      "answer": "config/cache.yaml",
+      "prediction": "config/cache.yaml",
+      "correct": true,
+      "scores": [
+        0.9988443851470947,
+        0.998044490814209,
+        0.9992794990539551,
+        0.9999011754989624
+      ]
+    },
+    {
+      "id": "session-novel-d5ca77d2b933466ecc5ecc67-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is lgxsdb. What is the config file for repository faiidy?",
+      "answer": "config/cache.yaml",
+      "prediction": "config/cache.yaml",
+      "correct": true,
+      "scores": [
+        0.9999999403953552,
+        1.0,
+        1.0000001192092896,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-fbe70c468716628ba8332c97-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is iqflmx. Which time zone should you use for me?",
+      "answer": "Vancouver",
+      "prediction": "Vancouver",
+      "correct": true,
+      "scores": [
+        0.9998292922973633,
+        0.9998831748962402,
+        1.0001952648162842
+      ]
+    },
+    {
+      "id": "session-novel-fbe70c468716628ba8332c97-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is iqflmx. Which time zone should you use for me?",
+      "answer": "Vancouver",
+      "prediction": "Vancouver",
+      "correct": true,
+      "scores": [
+        1.0000001192092896,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "session-novel-72de3419159ad31bd13ec30f-0",
+      "mode": "ridge",
+      "question": "Session 3. My account is dfjzky. What is the config file for repository iihrfa?",
+      "answer": "config/queue.ini",
+      "prediction": "config/queue.ini",
+      "correct": true,
+      "scores": [
+        0.9987533092498779,
+        0.9982936382293701,
+        0.9999170899391174,
+        0.9985997080802917,
+        0.9999464154243469
+      ]
+    },
+    {
+      "id": "session-novel-72de3419159ad31bd13ec30f-0",
+      "mode": "nearest",
+      "question": "Session 3. My account is dfjzky. What is the config file for repository iihrfa?",
+      "answer": "config/queue.ini",
+      "prediction": "config/queue.ini",
+      "correct": true,
+      "scores": [
+        1.0,
+        1.0,
+        1.0000001192092896,
+        1.0,
+        0.9999998807907104
+      ]
+    }
+  ]
+}

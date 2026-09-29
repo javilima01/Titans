@@ -165,6 +165,29 @@ class MemoryTests(unittest.TestCase):
         expected.square().sum().backward()
         torch.testing.assert_close(inputs.grad, other_inputs.grad, atol=1e-10, rtol=1e-7)
 
+    def test_frozen_memory_updates_fast_state_without_autograd(self):
+        for chunk_size in (1, 3):
+            memory = TitansMemory(4, 7, chunk_size=chunk_size).double().eval()
+            inputs = torch.randn(2, 9, 4, dtype=torch.float64)
+            expected = reference_memory(copy.deepcopy(memory), inputs).detach()
+            memory.requires_grad_(False)
+            slow_weights = {name: p.clone() for name, p in memory.named_parameters()}
+            for context in (torch.no_grad, torch.inference_mode):
+                with context():
+                    first, state = memory(inputs[:, :6], return_state=True, batched_state=True)
+                    second, continued = memory(
+                        inputs[:, 6:], state=state, return_state=True, batched_state=True
+                    )
+                    actual = torch.cat((first, second), dim=1)
+                    torch.testing.assert_close(actual, expected, atol=1e-10, rtol=1e-8)
+                    assert not actual.requires_grad
+                    for name, initial in memory.memory.named_parameters():
+                        assert not torch.equal(state["params"][name][0], initial)
+                        assert not torch.equal(continued["params"][name], state["params"][name])
+                    for name, parameter in memory.named_parameters():
+                        torch.testing.assert_close(parameter, slow_weights[name], atol=0, rtol=0)
+                        assert parameter.grad is None
+
     def test_causality_batch_isolation_and_padding_state(self):
         memory = TitansMemory(4, 7, chunk_size=3).eval()
         x = torch.randn(2, 7, 4)

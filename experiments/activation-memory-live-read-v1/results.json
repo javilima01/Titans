@@ -1,0 +1,149 @@
+{
+  "architecture": "ActivationFastMemory",
+  "checkpoint": "experiments/activation-memory-live-write-v1",
+  "cases": "experiments/activation-memory-live-cases-v1/reads.json",
+  "stage": "session-read",
+  "results": [
+    {
+      "question": "Session 3. My account is cyoxni. How should I run tests in repository ijcxfj?",
+      "answer": "pnpm test",
+      "prediction": "pnpm test",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is sjskvk. What name should you call me? Reply with only the name.",
+      "answer": "Priya",
+      "prediction": "Priya",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is maljal. Which runtime does repository xpoqod use?",
+      "answer": "Kotlin",
+      "prediction": "Kotlin",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is mbenjf. What is the entry point file for repository ywomjz?",
+      "answer": "src/queue/main.py",
+      "prediction": "src/queue/main.py",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is bdwobh. Which language do I prefer for replies?",
+      "answer": "Swedish",
+      "prediction": "Swedish",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is dfgvrc. Which time zone should you use for me?",
+      "answer": "Vancouver",
+      "prediction": "Vancouver",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is aazddz. Which project am I working on?",
+      "answer": "Summit",
+      "prediction": "Summit",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is udgulv. Which build tool does repository bogxfo use?",
+      "answer": "Ant",
+      "prediction": "Ant.",
+      "correct": false,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is fbogcj. What is the config file for repository dyysik?",
+      "answer": "settings/web.yaml",
+      "prediction": "config/queue.ini",
+      "correct": false,
+      "contains_answer": false
+    },
+    {
+      "question": "Session 3. My account is peytwe. How old am I now? Reply with only the number.",
+      "answer": "95",
+      "prediction": "95",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is avcgmn. How should I run tests in repository efbkfi?",
+      "answer": "npm test",
+      "prediction": "npm test",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is amszaw. What name should you call me? Reply with only the name.",
+      "answer": "Lena",
+      "prediction": "Lena",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is huuuyq. How should I run tests in repository xselyf?",
+      "answer": "mvn test",
+      "prediction": "mvn test",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is isvgoq. Which runtime does repository dwodbq use?",
+      "answer": "Kotlin",
+      "prediction": "Kotlin as a",
+      "correct": false,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is mhqnwg. Which build tool does repository iobnmt use?",
+      "answer": "Ant",
+      "prediction": "Ant.",
+      "correct": false,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is yaxzek. What name should you call me? Reply with only the name.",
+      "answer": "Omar",
+      "prediction": "Omar.",
+      "correct": false,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is pvvnpr. Which editor do I use?",
+      "answer": "Kate",
+      "prediction": "Kate",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is lgxsdb. What is the config file for repository faiidy?",
+      "answer": "config/cache.yaml",
+      "prediction": "config/cache.yaml",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is iqflmx. Which time zone should you use for me?",
+      "answer": "Vancouver",
+      "prediction": "Vancouver",
+      "correct": true,
+      "contains_answer": true
+    },
+    {
+      "question": "Session 3. My account is dfjzky. What is the config file for repository iihrfa?",
+      "answer": "config/queue.ini",
+      "prediction": "config/queue.ini",
+      "correct": true,
+      "contains_answer": true
+    }
+  ],
+  "scale": 32.0
+}
